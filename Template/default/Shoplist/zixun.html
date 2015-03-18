@@ -1,0 +1,29 @@
+<link href="__CSS__/detail.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__CSS__/base.css" media="all">
+<div id="_detailConsultContent0" style="padding-top:15px;">
+    <volist name="list" id="vo" empty="还没有人发布咨询!">
+        <if condition="$pro_id eq base64_decode($_GET[md5('Goods')])">
+        <if condition="$vo[ask_content] neq null OR $vo[ask_content] neq ''">
+    <ul class="u-consulting-qa">
+        <li>
+                <div class="u-consulting-ask">
+                    <p class="u-consulting-a"> <i></i> <span class="u-consulting-n"> {:$vo['uname'] == null ?'游客':$vo[uname]} &nbsp;&nbsp;&nbsp; -- &nbsp;&nbsp;&nbsp;{$vo.mold_name}</span>
+                        <span class="u-consulting-time">{:date('Y-m-d H:i:s',$vo['published'])}</span>
+                    </p>
+                    <p class="u-consulting-q">{$vo.content}</p>
+                </div>
+            <div class="u-consulting-ans">
+                <p class="u-consulting-c"> <i></i> <span class="u-consulting-s">酒富网客服回复：</span>
+                    <span class="u-consulting-time">{:date('Y-m-d H:i:s',$vo['update_time'])}</span>
+                </p>
+                <p class="u-consulting-r">{:$vo[ask_content] == null ?'客服还没有进行回复':$vo[ask_content]}</p>
+            </div>
+        </li>
+    </ul></if></if>
+    </volist>
+    <div class="u-evaluate-page-wrap" id="_detailConsultPage0">
+        <div class="u-evaluate-page">
+            {$show}
+        </div>
+    </div>
+</div>

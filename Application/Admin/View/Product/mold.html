@@ -1,0 +1,418 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>商品类型管理-类型管理-后台管理首页-{$site.SITE_INFO.name}</title>
+    <php>
+        $addCss="";
+        $addJs="";
+        $currentNav ='类型管理 > 商品属性管理 >'.($productProp?'编辑商品属性':'添加商品属性');
+    </php>
+    <include file="Common:intoHead"/>
+    <style>
+
+        .column-group {
+            width: 100%;
+            display: block;
+            margin: 8px 30px;
+        }
+
+        .clearfix:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+
+        .clearfix {
+            display: inline-table;
+        }
+
+        .column-group .left {
+            float: left;
+            height: 25px;
+            font-size: 14px;
+            line-height: 25px;
+            min-width: 100px;
+            text-align: right;
+        }
+
+        .column-group .right {
+            float: left;
+            height: 25px;
+            font-size: 14px;
+            line-height: 25px;
+            margin: 0 0 0 30px;
+            padding: 5px 10px;
+
+        }
+
+        .column-group .right input[type='text'], .column-group .right {
+            width: 150px;
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        .hidden {
+            display: none;;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+
+        div.spot {
+            float: right;
+            width: 80px;
+            height: 40px;;
+            border: 2px dashed #ddd;
+        }
+
+        .droparea {
+            position: relative;
+            text-align: center;
+
+        }
+
+        .droparea div, .droparea input {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .droparea input {
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .propValueName {
+            margin-top: 8px;
+        }
+
+        .droparea div, .droparea input {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .delete-btn {
+            min-width: 50%;
+        }
+    </style>
+</head>
+<body>
+<?php
+ $statuList=array(
+0=>'否',
+1=>'是',
+);
+$typeList=array(
+'input'=>'输入',
+'optional'=>'单选',
+'multiCheck'=>'多选',
+);
+?>
+<div class="wrap">
+    <include file="Common:head"/>
+    <div class="mainBody">
+        <include file="Common:left"/>
+        <div id="Right">
+            <div class="Item hr">
+                <div class="current"><?php echo $productProp?'编辑商品属性':'添加商品属性'?></div>
+            </div>
+
+            <div class="column-group clearfix">
+                <div class="left">
+                    <label for="productProp_category_id">类目
+                        <span class="require">*</span>
+                    </label>
+                </div>
+                <div class="right">
+                    <select name="productProp[category_id]" id="productProp_category_id">
+                        <option value="">--请选择--</option>
+                        <volist name="categoryList" id="vo">
+                            <option value="{$vo.id}"
+                            <php> echo $productProp&&$productProp['category_id']==$vo['id']?'selected':''</php>
+                            >{$vo.fullname}</option>
+                        </volist>
+                    </select>
+                </div>
+                <div class="right">
+                    <div class="error hidden">未选择类目</div>
+                </div>
+            </div>
+            <div class="column-group clearfix">
+                <div class="left">
+                    <label for="productProp_parent_prop_id">上级属性ID
+                    </label>
+                </div>
+                <div class="right">
+                    <select name="productProp[parent_prop_id]" id="productProp_parent_prop_id">
+                        <option value="0">顶级属性</option>
+                        <!--<option value="21"-->
+                        <!--<?php// echo $productProp&&$productProp['parent_prop_id']==21?'selected':'' ?>>a2</option>-->
+                    </select>
+                </div>
+            </div>
+            <div class="column-group clearfix">
+                <div class="left">
+                    <label for="productProp_prop_name">属性名
+                        <span class="require">*</span>
+                    </label>
+                </div>
+                <div class="right">
+                    <input type="text" class="input" name="productProp[prop_name]" id="productProp_prop_name"
+                           value="<?php echo $productProp['prop_name']?>"/>
+                </div>
+                <div class="right">
+                    <div class="error hidden">属性名不能为空</div>
+                </div>
+            </div>
+            <div class="column-group clearfix">
+                <div class="left">
+                    <label>属性值类型:</label>
+                </div>
+                <div class="right">
+                    <?php
+                    $i=0;
+                    //var_dump($productProp);die;
+                    foreach($typeList as $key=>$type){?>
+                    <input type="radio" name="productProp[type]" id="select<?php echo $i?>"
+                           value="<?php echo $key?>" <?php if($productProp['type']==$key) echo 'checked="checked"'?>/>
+                    <label
+                            for="select<?php echo $i?>"><?php echo $type?></label>
+                    <?php $i++;}?>
+
+                </div>
+            </div>
+            <div class="column-group clearfix">
+                <div class="left">
+                    <label class="control-label" for="productProp_is_image_prop">图片属性</label>
+                </div>
+                <div class="right"><select name="productProp[is_image_prop]" id="productProp_is_image_prop"
+                                           data-key="<?php echo count($propValues)?count($propValues):'0'?>">
+                    <?php foreach($statuList as $key=>$status){?>
+                    <option value="<?php echo $key?>"
+                    <?php echo $productProp['is_image_prop']==$key?'selected':''?>><?php echo $status?></option>
+                    <?php }?>
+                </select></div>
+            </div>
+            <div class="column-group clearfix">
+                <div class="left">
+                    <label class="control-label" for="productProp_is_sale_prop">销售属性</label>
+                </div>
+                <div class="right">
+                    <select name="productProp[is_sale_prop]" id="productProp_is_sale_prop">
+                        <?php foreach($statuList as $key=>$status){?>
+                        <option value="<?php echo $key?>"
+                        <?php echo $productProp['is_sale_prop']==$key?'selected':''?>><?php echo $status?></option>
+                        <?php }?>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="column-group clearfix">
+                <div class="left">
+                    <label class="control-label" for="productProp_is_show">前台是否显示</label>
+                </div>
+                <div class="right">
+                    <select name="productProp[is_show]" id="productProp_is_show">
+                        <?php foreach($statuList as $key=>$status){?>
+                        <option value="<?php echo $key?>"
+                        <?php echo $productProp['is_show']==$key?'selected':''?>><?php echo $status?></option>
+                        <?php }?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="column-group clearfix">
+                <div class="left">
+                    <label class="control-label" for="productProp_status">状态</label>
+                </div>
+                <div class="right">
+                    <select name="productProp[status]" id="productProp_status">
+                        <?php foreach($statuList as $key=>$status){?>
+                        <option value="<?php echo $key?>"
+                        <?php echo $productProp['status']==$key?'selected':''?>><?php echo $status?></option>
+                        <?php }?>
+                    </select>
+                </div>
+            </div>
+            <div class="column-group clearfix">
+                <div class="left">
+                    <label for="productProp_sort">排序
+                    </label>
+                </div>
+                <div class="right">
+                    <input type="text" class="input" name="productProp[sort]" id="productProp_sort"
+                           value="<?php echo $productProp['sort']?>"/>
+                </div>
+            </div>
+            <div class="column-group clearfix">
+                <h2>添加商品属性值<span class="btn" style="min-width: 0;margin-left: 20px" id="add-prop-btn">+</span></h2>
+
+                <table id="add-prop-table" class="tab" width="400px">
+                    <tr class="prop-table-head">
+                        <td style="width:500px;">属性值名称</td>
+                        <td style="width:150px;">操作</td>
+                    </tr>
+                    <?php $i=0;
+                    foreach($propValues as $propValue){
+                    $i++;
+if($productProp['is_image_prop']==0){
+?>
+                    <tr>
+                        <td><input type="text" name="propValue[value_name][]" class="input"
+                                   value="<?php echo $propValue['value_name']?>"/>
+                        </td>
+                        <td>
+                            <div class="btn delete-btn">删除</div>
+                        </td>
+                    </tr>
+                    <?php }else{?>
+                    <tr>
+                        <td class="prop-image">
+                            <input type="text" class="input propValueName" name="propValue[value_name][<?php echo $i?>]"
+                                   value="<?php echo $propValue['value_name']?>"/>
+
+                            <div class="droparea spot"
+                                 style="background-image: url(<?php echo $propValue['pic']?>);background-size: 80px 40px;cursor: pointer">
+                                <div class="prop-image-add"></div>
+                                <input type="hidden" class="prop_value_pic" name="propValue[pic][<?php echo $i?>]"
+                                       value="<?php echo $propValue['pic']?>"/></div>
+                        </td>
+                        <td>
+                            <div class="btn delete-btn">删除</div>
+                        </td>
+                    </tr>
+                    <?php }}?>
+                </table>
+            </div>
+            <php>if(!$productProp){</php>
+            <button type="submit" class="create-btn btn" data-url="{:U('Product/addProp')}">创建</button>
+            <php> }else{</php>
+            <button type="submit" class="create-btn btn"
+                    data-url="{:U('product/editProp',array('id'=>$productProp['id']))}">修改
+            </button>
+            <php> }</php>
+        </div>
+    </div>
+
+</div>
+<div class="clear"></div>
+<include file="Common:foot"/>
+<js href="--PUBLIC--/kindeditor/kindeditor.js,--PUBLIC--/kindeditor/lang/zh_CN.js"/>
+</body>
+<script>
+    $(function () {
+        $('#productProp_is_image_prop').change(function () {
+            $(this).data('key', 0);
+            $('#add-prop-table').find('tr').each(function () {
+                if (!$(this).hasClass('prop-table-head')) {
+                    $(this).remove();
+                }
+            });
+        })
+        $('#add-prop-table').on('click', '.delete-btn', function () {
+            $(this).parents('tr').remove();
+        });
+        $('#add-prop-btn').click(function () {
+            var imgSelect = $('#productProp_is_image_prop');
+            imgSelect.data('key', imgSelect.data('key') + 1);
+            var $is_image = imgSelect.val();
+            var html = '';
+            if ($is_image == 0) {
+                html += '<tr><td><input type="text" class="input propValueName" name="propValue[value_name][]"/></td><td><div class="btn delete-btn">删除</div></td></tr>';
+            } else {
+                var imgHtml = '<div class="droparea spot"' +
+                        ' style="background-image: url();background-size: 80px 40px;cursor: pointer"><div class= "prop-image-add"></div>' +
+                        '<input type="hidden" class="prop_value_pic" name="propValue[pic][' + imgSelect.data('key') + ']"/></div> ';
+                html += '<tr><td class="prop-image"><input type="text" class="input propValueName" name="propValue[value_name][' + imgSelect.data('key') + ']"/>' + imgHtml + '</td><td><div class="btn delete-btn">删除</div></td></tr>';
+            }
+            $('#add-prop-table').append(html);
+        });
+
+        $('.create-btn').click(function () {
+            var $this = $(this);
+            var $flag = 0;
+            var Require = $('.require').parents('.column-group').find('input,select');
+            Require.each(function () {
+                var $error = $(this).parents('.column-group').find('.error');
+                if (!$error.hasClass('hidden')) {
+                    $error.addClass('hidden');
+                }
+                if ($(this).val().length == 0) {
+                    $(this).parents('.column-group').find('.error').removeClass('hidden');
+                    $flag = 1;
+                }
+            });
+            if ($flag == 0) {
+                var data = {
+                    'productProp[category_id]': $('[name="productProp[category_id]"]').val(),
+                    'productProp[parent_prop_id]': $('[name="productProp[parent_prop_id]"]').val(),
+                    'productProp[prop_name]': $('[name="productProp[prop_name]"]').val(),
+                    'productProp[type]': $('[name="productProp[type]"]:checked').val(),
+                    'productProp[is_image_prop]': $('[name="productProp[is_image_prop]"]').val(),
+                    'productProp[is_sale_prop]': $('[name="productProp[is_sale_prop]"]').val(),
+                    'productProp[status]': $('[name="productProp[status]"]').val(),
+                    'productProp[is_show]': $('[name="productProp[is_show]"]').val(),
+                    'productProp[sort]': $('[name="productProp[sort]"]').val()
+
+                };
+                $('.propValueName').each(function () {
+                    data[$(this).attr('name')] = $(this).val();
+                    var pic = $(this).parents('.prop-image').find('.prop_value_pic');
+                    data[pic.attr('name')] = pic.val();
+                });
+                $.post($this.data('url'), data, function ($result) {
+                    if($result.status==0){
+                        popup.error($result.message);
+                    }else {
+                        popup.success($result.message);
+                    }
+                }, 'json');
+            }
+        })
+        var content;
+        KindEditor.ready(function (K) {
+            content = K.create('#content', {
+                allowFileManager: true,
+                uploadJson: '--PUBLIC--/kindeditor/php/upload_json.php?dirname=product'
+            });
+        });
+
+        KindEditor.ready(function (K) {
+            K.create();
+            var editor = K.editor({
+                allowFileManager: true,
+                uploadJson: '--PUBLIC--/kindeditor/php/upload_json.php?dirname=product'
+                //sdl:false
+            });
+            $('#add-prop-table').on('click', '.prop-image-add', function () {
+                var imgs_id = $(this).data('key');
+                var $this = $(this);
+                editor.loadPlugin('image', function () {
+                    editor.plugin.imageDialog({
+                        imageUrl: $this.parents('.droparea').find('input').val(),
+                        clickFn: function (url, title, width, height, border, align) {
+                            $this.parents('.droparea').css('background-image', 'url(' + url + ')').css('background-size', '80px 40px');
+                            $this.parents('.droparea').find('input').val(url);
+                            // K('#getImgUrl').val(url);
+                            editor.hideDialog();
+                        }
+                    });
+                });
+            });
+        });
+    });
+
+</script>
+
+</html>

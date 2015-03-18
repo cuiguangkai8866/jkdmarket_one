@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>评价管理-{$site.SITE_INFO.name}</title>
+    <php>
+        $addCss="";
+        $addJs="";
+        $currentNav ='评价管理 > 评价列表';
+    </php>
+    <include file="Common:intoHead" />
+</head>
+<body>
+<div class="wrap">
+    <include file="Common:head" />
+    <div class="mainBody">
+        <include file="Common:left" />
+        <div id="Right">
+            <div class="Item hr">
+                <div class="current">评价列表</div>
+            </div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                <thead>
+                <tr>
+                    <td width="20%">商品名称</td>
+                    <td width="30%">评价内容</td>
+                    <td width="30%">客服回复</td>
+                    <td width="10%">评价时间</td>
+                    <td width="10%">操作</td>
+                </tr>
+                </thead>
+                <volist name="list" id="vo">
+                    <tr align="center" id="{$vo.id}">
+                        <td><a href="__ROOT__/detail.html?{:md5('Goods').'='.base64_encode($vo[pro_id])}" target="_blank">{$vo.product}</a></td>
+                        <td>{$vo.content}</td>
+                        <td>{$vo[t_content] == null ?'未回复':$vo[t_content]}</td>
+                        <td>{$vo.published|date="Y-m-d H:i:s",###}</td>
+                        <td>
+                           <if condition="$vo[t_content] != null">
+                               已回复
+                               <else />
+                               <a href="javascript:void(0)" zid="{$vo.id}" class="ask_update">回复</a>
+                           </if>
+                            &nbsp;&nbsp;&nbsp;
+                           <a link="{:U('Siteinfo/delpingjia/',array('id'=>$vo['id']))}" href="javascript:void(0)" name="{$vo.product}" class="del">删除</a> </td>
+                    </tr>
+                </volist>
+                <tr><td colspan="7" align="right">{$page}</td></td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+    $(function(){
+        $(".del").click(function(){
+            var delLink=$(this).attr("link"),$this = $(this);
+            popup.confirm('您确认已回复,即刻删除【<b>'+$(this).attr("name")+'</b>】这条商品评价吗?','温馨提示',function(action){
+                if(action == 'ok'){
+                    delByLink(delLink,$this);
+                }
+            });
+            return false;
+        });
+    });
+    function changeStatus(id,v){
+        $.get('{:U("Siteinfo/changeMessageStatus")}?id='+id,function(data){
+            if(data.status==1){
+                $(v).html(data.info);
+            }
+        });
+    }
+    $(function(){
+        $('.ask_update').click(function(){
+            asyncbox.prompt('回复咨询','请输入回复内容:','','textarea',function(action,val){
+                if(action == 'ok'){
+                    var zid = $('.ask_update').attr('zid');
+                    $.post(location.href,{content:val,zid:zid},function(data){
+                        if(data.status == 1){
+                            popup.success(data.info);
+                            setTimeout(function(){
+                                popup.close('asyncbox_success');
+                            },2000);
+                            setTimeout(function(){
+                                location.reload();
+                            },2200)
+                        }else{
+                            popup.error(data.info);
+                            setTimeout(function(){
+                                popup.close('asyncbox_error');
+                            },2000)
+                        }
+                    },'json')
+                }
+            })
+        });
+    })
+</script>
+</body>
+</html>

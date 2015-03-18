@@ -1,0 +1,34 @@
+<include file="Common:top" />
+<include file="Common:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/helpcenter.css">
+<div class="member w clearfix"  style="width:1000px;">
+<div class="member_l fl">
+    <div class="member_ty1">
+        <span class="fl"></span>
+        <b class="fl">帮助中心</b>
+    </div>
+    <div class="slideqa">
+        <nav position="bottom" order="sort" tag="Help">
+            <div class="slideqa_t">
+                <div class="slideqa_c">
+                    <a href="javascript:;" title="" class="slideqa_a dib icon fl"></a><b class="dib fl">{$nav_name}</b><span class="icon dib rotate"></span>
+                </div>
+                <ul class="slideqa_b">
+                    <nav position="bottom" order="sort" parent_id="$id">
+                        <li>
+                            ·<a href="{:U('/Help/'.$tag)}" title="{$nav_name}">{$nav_name}</a>
+                        </li>
+                    </nav>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $(".slideqa_t .slideqa_c").on('click', function(){
+            $(this).siblings('.slideqa_b').slideToggle();
+            $(this).children('span').toggleClass('rotate')
+        })
+    })
+</script>

@@ -1,0 +1,368 @@
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.common.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.index.css" media="all">
+<link type="text/css" rel="stylesheet" href="__CSS__/ued.guang-min.css">
+<link rel="stylesheet" type="text/css" href="__CSS__/plist20131112.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/pop_compare.css" media="all">
+<link href="__CSS__/nav.css" rel="stylesheet" type="text/css">
+<script src="__PUBLIC__/Js/functions.js"></script>
+<script src="__PUBLIC__/Js/jquery.form.js"></script>
+<script src="__PUBLIC__/Js/asyncbox/asyncbox.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Js/asyncbox/skins/default.css">
+<script type="text/javascript" src="__JS__/common_js.js"></script>
+<script type="text/javascript" src="__JS__/shoppingcart.js"></script>
+<block name="comcss"></block>
+<meta property="qc:admins" content="4325736403462156516375" />
+<meta property="wb:webmaster" content="0901c649fe107b67" />
+<style type="text/css">
+    .detail-box1,.w{ width: 1000px;}
+    .detail-right{ width: 788px; float: right;}
+    .warpper{min-width: 1000px;}
+    #myjf{margin-left: 65px;}
+    #search-2013{width: 400px;}
+    #search-2013 .text{width: 300px;}
+    #search-2013 .i-search{width: 388px;}
+    .warpper .menu ul{padding-left: 183px;}
+    #logo-2013{ width: 260px;}
+    #myjf{margin-left: 65px;}
+</style>
+<!-- 头部 -->
+<div id="o-header-2013">
+<div id="header-2013" class="w">
+<div id="logo-2013" class="ld">
+    <a href="__ROOT__/" hidefocus="true">
+        <b>
+        </b>
+        <img src="__IMG__/logo.png" alt="{$title}" title="{$title}">
+    </a>
+</div>
+<div id="search-2013">
+    <div class="i-search ld">
+        <ul id="shelper" class="hide">
+        </ul>
+        <div class="form">
+            <form action="{:U('/search')}" method="get">
+            <input id="key" type="text" accesskey="s" autocomplete="off"
+                   class="text" name="search" placeholder="请输入关键词搜索" value="{$_GET['search']}" />
+            <if condition="$_GET['Mid'] neq null">
+                <input type="hidden" name="Mid" value="{$_GET['Mid']}" />
+            </if>
+            <input type="submit" value="搜索"
+                   class="button">
+            </form>
+        </div>
+    </div>
+    <php>
+        $resou = explode(',',C('SITE_INFO.resou'));
+    </php>
+    <div id="hotwords">
+        <volist name="resou" id="vo">
+            <a href="__ROOT__/shop.html?search={$vo}"
+               target="_blank">
+                {$vo}
+            </a>
+        </volist>
+    </div>
+</div>
+
+<!-- 我的酒富 -->
+<if condition="$_SESSION['member'] neq null">
+    <div id="myjf">
+        <dl>
+            <dt class="ld">
+                <s>
+                </s>
+                    <a href="__ROOT__/Member" target="_blank">
+                        我的酒富
+                    </a>
+                <b>
+                </b>
+            </dt>
+            <if condition="$_SESSION['member'] neq null">
+                <dd>
+                    <div class="prompt">
+                        <span class="fl">
+                            <strong>
+                                {$Think.session.member.nickname}
+                            </strong>
+                        </span>
+                        <span class="fr">
+                            <a href="__ROOT__/Member">
+                                去我的酒富首页&nbsp;&gt;
+                            </a>
+                        </span>
+                    </div>
+                    <div id="jduc-orderlist">
+                        <div class="orderlist">
+                            <div class="smt">
+                                <h4>
+                                    订单状态：
+                                </h4>
+                                <div class="extra">
+                                    <a href="__ROOT__/index.php?s=/Member/Order" target="_blank">
+                                        查看所有订单&nbsp;&gt;
+                                    </a>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="smt">
+                                <h4>
+                                    个人资料：
+                                </h4>
+                                <div class="extra">
+                                    <a href="__ROOT__/index.php?s=/Member/User" target="_blank">
+                                        查看个人资料&nbsp;&gt;
+                                    </a>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="smt">
+                                <h4>
+                                    账户安全：
+                                </h4>
+                                <div class="extra">
+                                    <a href="__ROOT__/index.php?s=/Member/Safe" target="_blank">
+                                       设置账户安全&nbsp;&gt;
+                                    </a>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="smt">
+                                <h4>
+                                    地址管理：
+                                </h4>
+                                <div class="extra">
+                                    <a href="__ROOT__/index.php?s=/Member/Address" target="_blank">
+                                        收货地址管理&nbsp;&gt;
+                                    </a>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="smt">
+                                <h4>
+                                    &nbsp;
+                                </h4>
+                                <div class="extra">
+                                    <a href="__ROOT__/Logout.html" target="_blank">
+                                        安全退出&nbsp;
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="smc">
+                                <ul>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </dd>
+            </if>
+
+
+
+            <dd class="jf-loading">
+                <div class="loading-style1">
+                    <b>
+                    </b>
+                    加载中，请稍候...
+                </div>
+            </dd>
+        </dl>
+    </div>
+</if>
+
+<!-- 去购物车结算 -->
+<div id="settleup-2013">
+    <dl>
+        <dt class="ld">
+            <s>
+            </s>
+            <if condition="$_SESSION['member'] neq null">
+                <span class="shopping">
+                    <span id="shopping-amount">
+                        {:($cart_count == null) ? 0 : $cart_count}
+                    </span>
+                </span>
+            </if>
+            <a id="settleup-url" href="{:$_SESSION['member'] == null ? '__ROOT__/Login.html' :'__ROOT__/buycart.html'}" target="_blank">
+                {:$_SESSION['member'] == null ? '我的酒富' :'去购物车结算'}
+            </a>
+            <b>
+            </b>
+        </dt>
+        <if condition="$_SESSION['member'] eq null">
+            <dd>
+                <div id="settleup-content">
+                    <div class="smt">
+                        <h4 class="fl">
+                            您当前尚未登录,是否 &nbsp;&nbsp;<a href="__ROOT__/Login.html" target="_blank" style="color:#f00">立刻登录</a>&nbsp;&nbsp;?
+                        </h4>
+                    </div>
+                </div>
+            </dd>
+            <else />
+        <dd>
+            <div id="settleup-content">
+                <div class="smt">
+                    <h4 class="fl">
+                        购物车内的商品
+                    </h4>
+                </div>
+                <div class="smc">
+                    <ul id="mcart-sigle">
+                    </ul>
+                    <ul id="mcart-gift">
+                        <?php if(empty($cart_list)){ ?>
+                            <div style="margin:10px 0 0 20px;">您还没有添加任何商品!</div>
+                        <?php } ?>
+                        <volist name="cart_list" id="vo" offset="0" length="5" key="j">
+                        <li id="buycart{$vo.id}">
+                            <div class="p-img fl">
+                                <a href="{:'__ROOT__/detail.html?'.md5('Goods').'='.base64_encode($vo[pro_id])}" target="_blank">
+                                    <img src="__ROOT__{$vo.img}"
+                                        width="50" height="50" alt="{$vo.title}">
+                                </a>
+                            </div>
+                            <div class="p-name fl">
+                                <a href="{:'__ROOT__/detail.html?'.md5('Goods').'='.base64_encode($vo[pro_id])}" title="{$vo.title}"
+                                   target="_blank">
+                                    {:mb_substr($vo['title'],0,14,'UTF-8')}...
+                                </a>
+                            </div>
+                            <div class="p-detail fr ar">
+                                <span class="p-price">
+                                    <strong>
+                                        ￥ <span id="cart_price{$vo.id}" class="cart_price{$vo.pro_id}">{$vo.price}</span>
+                                    </strong>
+                                    ×<span id="cart_num{$vo.id}" class="cart_num{$vo.pro_id}">{$vo.num}</span>
+                                </span>
+                                <br>
+                                <a class="delete" style="cursor: pointer;" onclick="delBuyCart('{$vo.id}','__ROOT__/Common/delBuyCart')">
+                                    删除
+                                </a>
+                            </div>
+                        </li>
+                            <php>$money += $vo['price']*$vo['num'];</php>
+                        </volist>
+                    </ul>
+                </div>
+                <div class="smb ar">
+                    共
+                    <b id="total_shop">
+                        {$cart_count == null?0:$cart_count}
+                    </b>
+                    件商品　共计
+                    <strong>
+                        ￥ <span id="cart_money"><php>echo $money == null ? 0 : $money</php></span>
+                    </strong>
+                    <br>
+                    <a href="{:U('/buycart')}" title="去购物车结算"
+                       id="btn-payforgoods">
+                        去购物车结算
+                    </a>
+                </div>
+            </div>
+        </dd>
+        </if>
+
+        <dd class="jf-loading">
+            <div class="loading-style1">
+                <b>
+                </b>
+                加载中，请稍候...
+            </div>
+        </dd>
+    </dl>
+</div>
+</div>
+<div class="warpper">
+<div class="menu">
+    <ul class="clearfix">
+        <li><a href="__ROOT__/" >首页</a></li>
+        <nav position="top" order="sort" tag="nav">
+            <php>
+                if($tag == 'shop'){
+            </php>
+            <li><a {:$target == 1 ?'target="_blank"':''} href="{:U('/'.$tag).'?Mid='.base64_encode($guide)}" title="{$title}" <php>echo ($_GET['Mid'] == base64_encode($guide) && $tag == 'shop') ?'class="select"': '';</php> >{$nav_name}</a></li>
+            <php>}else{</php>
+            <li><a {:$target == 1 ?'target="_blank"':''} href="{:U('/'.$tag)}" title="{$title}" <php>echo (ACTION_NAME == $tag && $tag != 'shop' || $tag == $tag2) ?'class="select"': '';</php> >{$nav_name}</a></li>
+            <php>}</php>
+        </nav>
+    </ul>
+</div>
+<div class="w">
+<div id="nav">
+<div class="mod_cate_hd"><i></i>全部商品分类</div>
+<ul class="tit">
+ <!-- {:(CONTROLLER_NAME == 'Index' && MODULE_NAME == 'Home') ?'style="display:block;"':''} -->
+<volist name="cateListArr" key="u" id="v1">
+<li class="mod_cate">
+<div class="mod_subli">
+    <h2 class="clearfix">
+        <em class="arrow_ico arrow_ico{$u} fl"></em>
+        <a href="{:U('/shop').'?Mid='.base64_encode($v1[cid])}" target="_blank" class="fl">{$v1.name}</a>
+        <!-- hot图标 -->
+        <i class="arrow_hot fl"></i>
+        <i class="arrow_dot fr"></i></h2>
+    <p class="mod_cate_r">
+        <volist name="v1[guige]" id="v2">
+            <if condition="$u eq 1">
+                <a href="{:U('/shop').'?Mid='.base64_encode($v1[cid]).'&Gid='.base64_encode($v2[cid])}" target="_blank">{$v2.name}</a>
+                <else />
+                <a href="{:U('/shop').'?Mid='.base64_encode($v1[cid]).'&Attr1='.base64_encode($v2[cid])}" target="_blank">{$v2.name}</a>
+            </if>
+        </volist>
+    </p>
+</div>
+<div class="mod_subcate">
+<div class="mod_subcate_main">
+<volist name="v1[shuxing]" key="t" id="v3">
+    <ul class="subitem_gs clearfix">
+        <!-- 右侧小分类标题 -->
+            <div class="cat_r_title">
+                {$v3.name}
+                <a href="{:U('/shop').'?Mid='.base64_encode($v1[cid]).'&Gid='.base64_encode($v2[cid])}" target="_blank" title="查看更多" class="more fr">更多></a>
+            </div>
+            <volist name="v3[val]" id="v4">
+                <li>
+                    <em>
+                        <a href="{:U('/shop').'?Mid='.base64_encode($v1[cid]).'&Gid='.base64_encode($v2[cid]).'&Attr'.$t.'='.base64_encode($v4[cid])}" title="{$v4.name}" target="_blank">{$v4.name}</a>
+                    </em>
+                </li>
+            </volist>
+    </ul>
+</volist>
+</div>
+</div>
+</li>
+</volist>
+</ul>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+    $("#nav .tit").slide({
+        type:"menu",
+        titCell:".mod_cate",
+        targetCell:".mod_subcate",
+        delayTime:0,
+        triggerTime:10,
+        defaultPlay:false,
+        returnDefault:true,
+        endFun: function(){
+            var onind = $(".tit .on").index();
+            var subTop = $(".tit .on").position().top;
+            $(".tit li").find(".mod_subcate").stop(true).animate({top:subTop},400);
+        }
+    });
+    $(function(){
+        $(".jxhd").parent("a").css('z-index', '9');
+        $(".jxhd").parents("li").css('z-index', '10');
+        $(".myjd-set").hover(function() {
+            $(this).addClass('hover');
+        }, function() {
+            $(this).removeClass('hover');
+        });
+    })
+</script>
+</div>

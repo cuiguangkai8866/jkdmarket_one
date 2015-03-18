@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>密钥配置-系统设置-{$site.SITE_INFO.name}</title>
+    <php>$addCss="";</php>
+    <php>$addJs="";</php>
+    <include file="Common:intoHead" />
+</head>
+<body>
+<div class="wrap"> <include file="Common:head" />
+    <div class="mainBody"> <include file="Common:left" />
+        <div id="Right">
+            <div class="contentArea">
+                <div class="Item hr">
+                    <div class="current">密钥配置</div>
+                </div>
+                <form action="" method="post">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                        <tr>
+                            <th width="120">短信通道编号：</th>
+                            <td><input name="dx_group" type="text" class="input" size="20" value="{$site.WEIXIN.dx_group}" />   </td>
+                        </tr>
+                        <tr>
+                            <th width="120">短信验证账户：</th>
+                            <td><input name="dx_account" type="text" class="input" size="40" value="{$site.WEIXIN.dx_account}" />   </td>
+                        </tr>
+                        <tr>
+                            <th width="120">短信验证密钥：</th>
+                            <td><input name="dx_key" type="text" class="input" size="60" value="{$site.WEIXIN.dx_key}" />   </td>
+                        </tr>
+
+                        <tr>
+                            <th>-------------------</th>
+                            <td>
+                                -----------------------------------------------------------------------------------
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120">QQ互联APPID：</th>
+                            <td><input name="qq_appid" type="text" class="input" size="40" value="{$site.WEIXIN.qq_appid}" />   </td>
+                        </tr>
+                        <tr>
+                            <th width="120">QQ互联APPKEY：</th>
+                            <td><input name="qq_appkey" type="text" class="input" size="60" value="{$site.WEIXIN.qq_appkey}" />   </td>
+                        </tr>
+                        <tr>
+                            <th>-------------------</th>
+                            <td>
+                                -----------------------------------------------------------------------------------
+                            </td>
+                        </tr>
+						<tr>
+                            <th width="120">新浪微博APPID：</th>
+                            <td><input name="wb_appid" type="text" class="input" size="40" value="{$site.WEIXIN.wb_appid}" />   </td>
+                        </tr>
+                        <tr>
+                            <th width="120">新浪微博APPKEY：</th>
+                            <td><input name="wb_appkey" type="text" class="input" size="60" value="{$site.WEIXIN.wb_appkey}" />   </td>
+                        </tr>
+						<tr>
+                            <th>-------------------</th>
+                            <td>
+                                -----------------------------------------------------------------------------------
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120">支付宝账号：</th>
+                            <td><input name="alipay_app" type="text" class="input" size="40" value="{$site.WEIXIN.alipay_app}" />   必须是有密钥的账号</td>
+                        </tr>
+                        <tr>
+                            <th width="120">支付宝商户号：</th>
+                            <td><input name="alipay_appid" type="text" class="input" size="40" value="{$site.WEIXIN.alipay_appid}" />   </td>
+                        </tr>
+                        <tr>
+                            <th width="120">支付宝密钥：</th>
+                            <td><input name="alipay_appkey" type="text" class="input" size="60" value="{$site.WEIXIN.alipay_appkey}" />   </td>
+                        </tr>
+                        <tr>
+                            <th width="120">订单名称：</th>
+                            <td><input name="alipay_appname" type="text" class="input" size="60" value="{$site.WEIXIN.alipay_appname}" />   </td>
+                        </tr>
+						<tr>
+                            <th>-------------------</th>
+                            <td>
+                                -----------------------------------------------------------------------------------
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120">快递接口APPKEY：</th>
+                            <td><input name="kd_appkey" type="text" class="input" size="60" value="{$site.WEIXIN.kd_appkey}" />   </td>
+                        </tr>
+                    </table>
+                </form>
+                <div class="commonBtnArea" >
+                    <button class="btn submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+    $(".submit").click(function(){
+        commonAjaxSubmit();
+    });
+</script>
+</body>
+</html>

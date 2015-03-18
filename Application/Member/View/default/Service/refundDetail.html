@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>我的退货申请</title>
+<link rel="stylesheet" type="text/css" href="__CSS__/base.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.common.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.index.css" media="all">
+<link href="__CSS__/nav.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="__JS__/jquery.lazyload.min.js"></script>
+<script src="__JS__/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="huanhuo">
+              <h1>退货订单编号 <span>{$info.oid}</span></h1>
+                <div class="dd_infor">
+                    <em class="fr">更新时间:{:date('Y-m-d H:i:s',$info[update_time])}</em><span>订单编号：{$info.oid}</span><span>当前状态：<em>{:$info[status] == 4 ?'待审核':'已成功'}</em></span>
+                </div>
+                <if condition="$info[status] eq 4">
+                    <div class="ljtx">
+                        <span>您的退货申请已经提交，请等待客服审核。</span>
+                    </div>
+                    <elseif condition="$info[status] eq 6" />
+                    <div class="ljtx">
+                        <span>您的退货申请已经通过客服的审核。</span>
+                    </div>
+                </if>
+                <div class="step hh_step">
+                    <div class="step_pic">
+                        <!-- 不同步骤改变图片路径，hh_step1.jpg 到 hh_step4.jpg -->
+                        <img src="__IMG__/hh_step{:$info[status] == 4 ?3:4}.jpg">
+                    </div>
+                    <p>
+                        <span>
+                            <em>申请本次退款</em>
+                        </span>
+                        <span>
+                            <em>填写退款原因</em>
+                        </span>
+                        
+                        <span>
+                            <em>客服审核退款</em>
+                        </span>
+                        <span>
+                            <em>本次退款完成</em>
+                        </span>
+
+                    </p>
+                
+                </div>
+                
+                
+                <div class="sqxx tab_sty">
+                    <h2>申请信息</h2>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tbody><tr>
+                        <th>商品图片</th>
+                        <th>商品名称</th>
+                        <th>换货数量</th>
+                      </tr>
+                      <volist name="info[product]" id="vo" empty="未检测到商品,该笔订单是否违法操作?">
+                          <tr>
+                              <td>
+                                  <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank" title="{$vo.title}">
+                                      <img src="__ROOT__/{$vo.savepath}" width="60" height="60">
+                                  </a>
+                              </td>
+                              <td><a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" title="{$vo.title}" target="_blank">
+                                  {$vo.title}
+                              </a>
+                              </td>
+                              <td>{$vo.num}</td>
+                          </tr>
+                      </volist>
+                    </tbody></table>
+                    <div class="sq_infor">
+                        <p>
+                            <em class="g8">联系人:</em>
+                            <i>{$info.username}</i>
+                        </p>
+                        <p>
+                            <em class="g8">退货原因:</em>
+                            <i>{$info.t_why}</i>
+                        </p>
+                        <p>
+                            <em class="g8">手　机:</em>
+                            <i>{$info.phone}</i>
+                        </p>
+                        <p>
+                            <em class="g8">返回方式:</em>
+                            <i>自行寄回</i>
+                        </p>
+                        <p style="width:100%;">
+                            <em class="g8">地　址:</em>
+                            <i>{$info.shen_cityname}-{$info.shi_cityname}-{$info.xian_cityname}-{$info.address}</i>
+                        </p>
+                    </div>
+                </div>
+            </div>

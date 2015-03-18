@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<link rel="stylesheet" type="text/css" href="__CSS__/base.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.common.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.index.css" media="all">
+<link type="text/css" rel="stylesheet" href="__CSS__/ued.guang-min.css">
+<link rel="stylesheet" type="text/css" href="__CSS__/plist20131112.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/pop_compare.css" media="all">
+<link href="__CSS__/detail.css" rel="stylesheet" type="text/css" />
+        <body>
+        <div class="u-evaluate-wrap">
+        <volist name="list" id="vo" empty="此商品暂无评价!">
+            <div class="u-evaluate-box clearfix">
+                <div class="u-img-box">
+                    <div class="u-img">
+                        <img src="__ROOT__{$vo.avatar}" alt="{$vo.nickname}" width="54" height="54" />
+                    </div>
+                    <div class="u-name">
+                        {$vo.nickname}
+                    </div>
+                </div>
+                <div class="u-reply-wrap">
+                    <div class="u-evaluate">
+                        <div class="u-evaluate-tit">
+                            <span class="u-star-{$vo.feel}"></span>
+                        </div>
+                        <div class="u-evaluate-info">
+                            <div class="u-evaluate-exp">
+                                心得：
+                            </div>
+                            <div class="u-evaluate-text">
+                                <p class="u-evaluate-t">{$vo.content}</p>
+                                <p class="u-evaluate-buydate">购买日期：{:date('Y-m-d H:i:s',$vo[buytime])}</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <php>if($vo[t_content]  != null){</php>
+                        <div class="u-evaluate-info">
+                            <div class="u-evaluate-exp">
+                                客服回复：
+                            </div>
+                            <div class="u-evaluate-text">
+                                <p class="u-evaluate-t">{$vo[t_content]}</p>
+                                <p class="u-evaluate-buydate">购买日期：{:date('Y-m-d H:i:s',$vo[update_time])}</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <php>}</php>
+                    </div>
+                    <div class="u-reply-box" style="display:;">
+                        <i class="u-reply-tri"></i>
+                        <div class="u-reply-input inputTextarea">
+                            <input id="evaId577555" class="evaId" type="hidden" value="577555" />
+                            <input id="userId577555" class="userId" type="hidden" value="11716431" />
+                            <input id="proId577555" class="proId" type="hidden" value="10802" />
+                            <div class="rt">
+                                <textarea id="replayContent" name="replayContent" cols="" rows=""></textarea>
+                                <div class="u-reply-tip">
+                                    回复
+                                    <span> jx***76 </span>
+                                </div>
+                            </div>
+                            <div class="u-reply-btn">
+                                <a href="javascript:;" onclick="">回复</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </volist>
+        <div class="u-evaluate-page-wrap" id="_detailEvaluatePage">
+            <div class="u-evaluate-page">
+                {$show}
+            </div>
+        </div>
+        </div>
+        </body>

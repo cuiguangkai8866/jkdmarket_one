@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>站点配置-系统设置-{$site.SITE_INFO.name}</title>
+    <php>$addCss="";</php>
+    <php>$addJs="";</php>
+    <include file="Common:intoHead" />
+</head>
+<body>
+<div class="wrap"> <include file="Common:head" />
+    <div class="mainBody"> <include file="Common:left" />
+        <div id="Right">
+            <div class="contentArea">
+                <div class="Item hr">
+                    <div class="current">站点配置</div>
+                </div>
+                <form action="" method="post">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                        <tr>
+                            <th width="120">站点名称：</th>
+                            <td><input name="name" type="text" class="input" size="40" value="{$site.SITE_INFO.name}" /></td>
+                        </tr>
+                        <tr>
+                            <th width="120">热搜词库：</th>
+                            <td><input name="resou" type="text" class="input" size="40" value="{$site.SITE_INFO.resou}" />&nbsp;&nbsp;&nbsp;必须以英文半角逗号分割,否则无效!示例: ,</td>
+                        </tr>
+                        <tr>
+                            <th width="120">站点地址：</th>
+                            <td><input name="url" type="text" class="input" size="40" value="{$site.SITE_INFO.url}" /></td>
+                        </tr>
+                        <tr>
+                            <th>QQ客服：</th>
+                            <td><textarea name="qqkf" cols="40" rows="5">{$site.SITE_INFO.qqkf}</textarea>格式（说明|qq号码）多个回车隔开</td>
+                        </tr>
+                        <tr>
+                            <th width="120">底部版权：</th>
+                            <td><input name="version" type="text" class="input" size="40" value="{$site.SITE_INFO.version}" /></td>
+                        </tr>
+                        <tr>
+                            <th>网站关键字：</th>
+                            <td><input class="input" name="keyword" type="text" size="40" value="{$site.SITE_INFO.keyword}" /></td>
+                        </tr>
+                        <tr>
+                            <th>网站简介：</th>
+                            <td><textarea name="description" cols="80" rows="3">{$site.SITE_INFO.description}</textarea></td>
+                        </tr>
+                    </table>
+                </form>
+                <div class="commonBtnArea" >
+                    <button class="btn submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+    $(".submit").click(function(){
+        commonAjaxSubmit();
+    });
+</script>
+</body>
+</html>

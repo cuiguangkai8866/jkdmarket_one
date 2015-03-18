@@ -1,0 +1,2 @@
+<?php die('forbidden'); ?>
+{"appid":"101178641","appkey":"2ab7f03f3679eb40d8b6786f6b157a17","callback":"test.jiufu9.com/qqCallback","scope":"<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>,<?=$val?>","errorReport":true,"storageType":"file","host":"localhost","user":"root","password":"root","database":"test"}

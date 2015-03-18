@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>显示配置-系统设置-{$site.SITE_INFO.name}</title>
+    <php>$addCss="";</php>
+    <php>$addJs="";</php>
+    <include file="Common:intoHead" />
+    <css href="--PUBLIC--/kindeditor/themes/default/default.css" />
+</head>
+<body>
+<div class="wrap"> <include file="Common:head" />
+    <div class="mainBody"> <include file="Common:left" />
+        <div id="Right">
+            <div class="contentArea">
+                <div class="Item hr">
+                    <div class="current">全局配置</div>
+                </div>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                        <tr>
+                            <th width="120">后台库存报警：</th>
+                            <td>
+                                <input name="stockWarning" type="text" class="input" size="10" value="{$site.LISTNUM.stockWarning}" />
+                                低于当前输入的数量则列入库存不足列表
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120">积分兑换比例：</th>
+                            <td>
+                                <input name="setCredit" type="text" class="input" size="10" value="{$site.LISTNUM.setCredit}" />元 = (1) 积分   发布商品时不填写积分自动生成
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120">拍拍即将开始天数：</th>
+                            <td>
+                                <input name="startTime" type="text" class="input" size="10" value="{$site.LISTNUM.startTime}" />
+                                设置距离拍卖开始时间的天数
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120">开启订单作废机制：</th>
+                            <td>
+                                <select name="isOpenDelTime" id="">
+                                    <option value="0" {:$site[LISTNUM][isOpenDelTime] == 0 ?'selected':''}>否</option>
+                                    <option value="1" {:$site[LISTNUM][isOpenDelTime] == 1 ?'selected':''}>是</option>
+                                </select>
+                                <input name="orderDelTime" type="text" class="input" size="13" value="{$site.LISTNUM.orderDelTime}" />
+                                设置订单作废时间/小时制
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120">选择主题：</th>
+                            <td><input  class="input" name="DEFAULT_THEME" size="20" value="{$site.LISTNUM.DEFAULT_THEME}" />默认模版：default</td>
+                        </tr>
+                        <tr>
+                            <th>------前台设置-----</th>
+                            <td>------------------------下列设置为设置前台显示-----------------------</td>
+                        </tr>
+                        <tr>
+                            <th width="120">商品列表显示条数：</th>
+                            <td>
+                                <input name="shopList" type="text" class="input" size="10" value="{$site.LISTNUM.shopList}" />
+                                建议:尽量不要改动
+                            </td>
+                        </tr>
+						<tr>
+                            <th width="120">手机端列表显示条数：</th>
+                            <td>
+                                <input name="wapShopList" type="text" class="input" size="10" value="{$site.LISTNUM.wapShopList}" />
+                                建议:尽量不要改动
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120">拍拍显示最高条数：</th>
+                            <td>
+                                <input name="paipaiList" type="text" class="input" size="10" value="{$site.LISTNUM.paipaiList}" />
+                                建议:尽量不要改动
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120">秒杀显示最高条数：</th>
+                            <td>
+                                <input name="msList" type="text" class="input" size="10" value="{$site.LISTNUM.msList}" />
+                                建议:尽量不要改动
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="120">团购显示最高条数：</th>
+                            <td>
+                                <input name="tuanList" type="text" class="input" size="10" value="{$site.LISTNUM.tuanList}" />
+                                建议:尽量不要改动
+                            </td>
+                        </tr>
+                        <!--<tr>-->
+                            <!--<th width="120">主题颜色：</th>-->
+                            <!--<td><input id="color" class="input" name="tempcolor" size="20" value="{$site.LISTNUM.tempcolor}" /><input type="button" class="btn" id="colorpicker" value="打开取色器" /></td>-->
+                        <!--</tr>-->
+                    </table>
+                </form>
+                <div class="commonBtnArea" >
+                    <button class="btn submit">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<js href="--PUBLIC--/kindeditor/kindeditor.js"/>
+<script>
+    KindEditor.ready(function(K) {
+        var colorpicker;
+        K('#colorpicker').bind('click', function(e) {
+            e.stopPropagation();
+            if (colorpicker) {
+                colorpicker.remove();
+                colorpicker = null;
+                return;
+            }
+            var colorpickerPos = K('#colorpicker').pos();
+            colorpicker = K.colorpicker({
+                x : colorpickerPos.x,
+                y : colorpickerPos.y + K('#colorpicker').height(),
+                z : 19811214,
+                selectedColor : 'default',
+                noColor : '无颜色',
+                click : function(color) {
+                    K('#color').val(color);
+                    colorpicker.remove();
+                    colorpicker = null;
+                }
+            });
+        });
+        K(document).click(function() {
+            if (colorpicker) {
+                colorpicker.remove();
+                colorpicker = null;
+            }
+        });
+    });
+</script>
+<div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+    $(".submit").click(function(){
+        commonAjaxSubmit();
+    });
+</script>
+</body>
+</html>

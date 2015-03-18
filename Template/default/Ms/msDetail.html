@@ -1,0 +1,500 @@
+<include file="Common:top" />
+<include file="Common:header" />
+    <div class="content_c">
+    <link href="__CSS__/detail.css" rel="stylesheet" type="text/css" />
+  <link id="newLink" rel="stylesheet" type="text/css" href="__CSS__/index_1200.css" />
+    <script type="text/javascript" src="__JS__/jquery.lazyload.min.js"></script>
+    <script src="__PUBLIC__/Js/functions.js"></script>
+    <script src="__PUBLIC__/Js/jquery.form.js"></script>
+    <script src="__PUBLIC__/Js/asyncbox/asyncbox.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/Js/asyncbox/skins/default.css">
+        <div class="dmain"> 
+   <div class="lazyload"> 
+    <div class="detail-guide">
+        <volist name="mianBaoXie" id="vo" key="u">
+            <a href="{:$vo[url] == null ?'#':$vo[url]}" target="_self"> {$vo.nav_name}</a> {:$u == 3 ?'':'>'}
+        </volist>
+    </div> 
+    <div class="clearfix" style="border-top:2px solid #e4393c;border:1px solid #e8e8e8;padding:12px;">
+    <script type="text/javascript" src="__JS__/jquery.imagezoom.min.js"></script>
+<!-- 图片放大展示 -->
+    <div class="box">
+        <div class="tb-booth tb-pic tb-s310">
+            <a href="__ROOT__{$info[savepath][0][savepath]}">
+                <img width="400" height="400" src="__ROOT__{$info[savepath][0][savepath]}" alt="{$info[title]}" rel="__ROOT__{$info[savepath][0][savepath]}" class="jqzoom" />
+            </a>
+        </div>
+
+        <ul class="tb-thumb" id="thumblist">
+            <volist name="info[savepath]" id="vo" key='j'>
+                <li class="{:$j == 1 ? 'tb-selected':''}">
+                    <div class="tb-pic tb-s40">
+                        <a href="#">
+                            <img src="__ROOT__{$vo.savepath}" mid="__ROOT__{$vo.savepath}" big="__ROOT__{$vo.savepath}">
+                        </a>
+                    </div>
+                </li>
+            </volist>
+        </ul>
+        
+    </div>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $(".jqzoom").imagezoom();
+    
+    $("#thumblist li a").hover(function(){
+        $(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
+        $(".jqzoom").attr('src',$(this).find("img").attr("mid"));
+        $(".jqzoom").attr('rel',$(this).find("img").attr("big"));
+    });
+    var zoom = $(".jqzoom");
+    if(parseInt(zoom.height()) > parseInt(zoom.width())){
+        zoom.height('100%').width('auto');
+    }else{
+        zoom.width('100%').height('auto');
+    }
+
+});
+</script>
+<style type="text/css">
+    .buyNub-nub .buyNub-nub-blus-c{
+        background-position: -26px 0;
+    }
+    .buyNub-nub .buyNub-nub-blus{
+        background-position: -78px 0px;
+    }
+    .buyNub-nub .buyNub-nub-top{
+        cursor: pointer;
+        background-position: -26px -37px;
+    }
+    #price{margin-bottom:10px}
+    #price strong{margin-right:8px;font:700 36px/1em arial,'\5fae\8f6f\96c5\9ed1';color:#e4393c;}
+    #price span{padding:2px 5px;background:#e4393c;vertical-align:super;font:700 13px/1em arial,'\5fae\8f6f\96c5\9ed1';color:#fff}
+    #price del{text-decoration: line-through;}
+    #price{margin-bottom:10px}
+    #price strong{margin-right:8px;font:700 36px/1em arial,'\5fae\8f6f\96c5\9ed1';color:#e4393c;}
+    #price span{padding:2px 5px;background:#e4393c;vertical-align:super;font:700 13px/1em arial,'\5fae\8f6f\96c5\9ed1';color:#fff}
+    #price del{text-decoration: line-through;}
+    #surplus-time{padding-bottom: 10px;}
+    #surplus-time div{display:inline-block;position:relative;height:28px;*width:150px;padding:0 10px 0 38px;border:1px solid #ddd;font:700 12px/31px arial,'\5fae\8f6f\96c5\9ed1';color:#000}
+    #surplus-time div em{display:block;position:absolute;left:10px;top:5px;width:18px;height:19px;background:url(__IMG__/2014062601.png) no-repeat}
+    .u-cell {position: absolute;width: 150px;left: 180px;top: 30px;height: 48px;cursor: pointer;border: 1px solid #eee;text-align: center;}
+</style>
+
+
+
+
+
+
+     <div class="detail-depict" style="" id="_nomal_div"> 
+      <div class="depict-name"> 
+       <h3>{$info.title}</h3>
+       <p class="dName-Buy" id="_proadvstr" style="">{$info.tuixiao}</p>
+      </div> 
+      <div class="depict-price"> 
+        
+       <div id="price">
+            <strong>￥{$info.price}</strong><span>{:number_format($info[price]*10/$info[market],1)}折</span><del style="margin-left:6px;">￥{$info.market}</del>
+        </div>
+<script type="text/javascript" src="__JS__/jf-pft.js"></script>
+       <div class="pai_price_begin" date-endtime="{$info['productTIme']}">
+            {$info.statusHtml}
+           <if condition="$info[buyStatus] eq 0 OR $info[buyStatus] eq 1">
+               <i></i>
+           </if>
+        </div>
+      </div> 
+      <div class="depict-order" id="_shdzdiv">
+       <!-- 购买数量 --> 
+       <div class="dOrder-buyNub" id="_gmsl"> 
+        <div class="buyNub-tit">
+         数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量
+        </div>
+        <form action="{:U('/really')}" method="post">
+        <div class="buyNub-nub"> 
+         <div class="buyNub-nub-wrap"> 
+          <i class="buyNub-nub-blus-c buyNub-nub-blus sub"></i> 
+          <input name="num" id="pd_number" type="text" value="1" />
+          <input name="type" id="pd_number" type="hidden" value="msOrder" />
+          <input name="id" id="pd_number" type="hidden" value="{$info[id]}" />
+          <i class="buyNub-nub-top add buyNub-nub-blus"></i>
+         </div> 
+        </div>
+           <div class="buyNub-tit">
+               &nbsp;&nbsp;&nbsp;库存：<span class="stock">{$info[stock] == null ?'0':$info[stock]}</span>
+           </div>
+        <div class="clear"></div> 
+       </div>
+      </div> 
+       
+
+
+       <div class="buyNub-buy-wrap pr"> 
+       <div class="buyNub-buy"> 
+       <!-- 
+        商品状态：
+        正常状态为加入购物车；
+        商品下架状态显示商品下架了。
+        -->
+        <if condition="$info[status] eq 0">
+            <a href="javascript:;" class="u-buy-over" id="_nosale">商品已下架</a>
+        <else />
+            <if condition="$info[buyStatus] eq 0">
+            <button style="border:0;" class="u-buy" id="_jrgwc" style=""> <i></i> <span class="_jrgwcanmc">立刻秒拍</span></button>
+            </form>
+            <elseif condition="$info[buyStatus] eq 1" />
+            <a href="#" class="u-buy-orderbuy" id="_orderbuy"> <i></i> <span>即将开始</span></a>
+            <elseif condition="$info[buyStatus] eq 2" />
+            <a href="javascript:;" class="u-buy-over" id="_tmpnosale">已经结束</a>
+            <else />
+            <a href="javascript:;" class="u-buy-over" id="_nosupportsh">尚未开始</a>
+            </if>
+        </if>
+       </div>
+           <if condition="$collect eq null">
+               <div class="u-cell">
+                   <span><img src="/Public/Home/images/shou.jpg" width="16" height="16" alt="{$vo.title}" /></span>
+                   <a href="javascript:void(0)" onclick="AddCommect()">收藏商品</a>
+                   <em>+1</em>
+               </div>
+               <else />
+               <div class="u-cell">
+                   <span><img src="/Public/Home/images/shou.jpg" width="16" height="16" alt="{$vo.title}" /></span>
+                   <a href="javascript:void(0)" onclick="DelCommect()">取消收藏</a>
+                   <em>+1</em>
+               </div>
+           </if>
+      </div>
+      <div class="depict-other"> 
+       <div class="other-payment">
+        分享到：<div class="bshare-custom" style="float:none;margin-top:5px"><div class="bsPromo bsPromo2"></div><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=7afd94bb-a7e8-4d65-9936-979b687f14eb&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+
+       </div> 
+       </div> 
+       <div class="other-point" id="_isDisableBonus" style="display:none"></div> 
+      </div>
+       
+       
+     </div>
+     <div class="clear"></div> 
+    </div> 
+<div class="detail-box2 clearfix">
+<div class="detail-left">
+<div class="u-coupons-box" id="_canusecoupons" style="display:none;">
+</div>
+<include file="Common:detailLeft" />
+</div>
+<div class="detail-right">
+
+<div id="_tzvm"></div>
+<div class="detBox_title" id="answerArea">
+    <div class="productTabTit hd">
+        <!-- __JS__/newdetail/detail.js 商品介绍 -->
+        <ul>
+            <li class="on">商品介绍</li>
+            <li class="">评价<span id="_plnub">({$commentnum})</span></li>
+            <li class="">商品咨询</li>
+        </ul>
+    </div>
+    <div class="detailSetBtn-box" style="display: none;">
+        <a id="_jrgwc2" href="javascript:;" class="detailSetBtn float-top-btn"> <em></em> <span class="_jrgwcanmc">加入购物车</span> </a>
+        <div class="u-buy-lay u-buy-lay-small" id="u-buy-laycl" style="display:none;">
+            <div class="u-buy-con u-buy-con-small">
+                <div class="u-buy-ok u-buy-ok-small">
+                    <i></i>
+                    <span>添加成功!</span>
+                </div>
+                <div class="u-buy-gon u-buy-gon-small">
+                    <a href="{:U('/buycart')}" target="_blank" class="u-buy-go">去结算</a>
+                    <a href="{:U('/shop')}" class="u-buy-g">继续购物</a>
+                </div>
+            </div>
+            <a href="javascript:;" class="u-buy-close"></a>
+            <s></s>
+        </div>
+        <div class="u-buy-lay u-buy-lay-small" id="u-buy-laycl2" style="display:none;">
+            <div class="u-buy-con u-buy-con-small">
+                <div class="u-buy-no">
+                    <i></i>
+                    <span class="_cartstatus">添加失败，库存不足！</span>
+                </div>
+            </div>
+            <a href="javascript:;" class="u-buy-close"></a>
+            <s></s>
+        </div>
+    </div>
+    <div class="detailCode detailCode-on">
+        关注酒富官方微信
+        <span> <img src="/Public/Home/images/qrcode.png" width="21" height="21" data-bd-imgshare-binded="1"> </span>
+        <i></i>
+        <div class="detailCode-t" style="display: none;">
+            <img src="/Public/Home/images/qrcode.png" width="200" height="200" data-bd-imgshare-binded="1">
+        </div>
+    </div>
+</div>
+<div class="dRight-wrap bd">
+<div class="dRight-tab-con" style="display: block;">
+    <div class="detail_switch clearfix" id="proShow">
+        <div class="dRight-parameter">
+            <ul>
+                <volist name="canshu" id="vo" empty="请参考详细介绍!">
+                    <li> <span>{$vo}</span> </li>
+                </volist>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="wxTip">
+            <h4 class="h4_ass"><i></i>产品描述</h4>
+            <p>
+                {$info[description] == null ?'此商品暂无描述!':$info[description]}
+            </p>
+        </div>
+        <div class="part_box clearfix">
+            <dl class="ass_share_dl2 clearfix">
+            </dl>
+        </div>
+        <div style="clear:both;"></div>
+        <!--part_box over-->
+        <div class="part_box clearfix">
+            <h4 class="h4_ass"> <i></i> 商品介绍 </h4>
+            <dl class="ass_share_dl2 clearfix">
+               {$info[content] == null ?'此商品暂无介绍!':$info[content]}
+            </dl>
+            <!--detail_prtpic over-->
+        </div>
+    </div>
+</div>
+    <div class="dRight-tab-con" style="display: none;">
+        <div class="dRight_detBox">
+            <div class="detBox_con">
+                <div class="d-evaluate-no" id="_nopl" style="display:none;">
+                    <p>暂无用户评价,您可对已购买的商品进行评价。</p>
+                    <a class="d-evaluate-btn" href="{:U('/Member/Order')}" target="_blank">查看我的订单</a>
+                </div>
+                <div class="d-evaluate-wrap" id="_havapl" style="">
+                    <div class="d-evaluate">
+                        <div class="d-evaluate-l">
+                            <em>{$pnum}</em>
+                            <span>分</span>
+                            <input type="hidden" value="{$pnum}" id="Fraction">
+                        </div>
+                        <div class="d-evaluate-z">
+                            <div class="d-evaluate-list">
+                                <ul>
+                                    <php>if($pnum >= 1){</php>
+                                    <li class="s1">非常不满意</li>
+                                    <php>}
+                                        if($pnum >=2){</php>
+                                    <li class="s2">不满意</li>
+                                    <php>}
+                                        if($pnum >= 3){
+                                    </php>
+                                    <li class="s3">一般</li>
+                                    <php>}
+                                        if($pnum >= 4){
+                                    </php>
+                                    <li class="s4">满意</li>
+                                    <php>}
+                                        if($pnum >= 5){
+                                    </php>
+                                    <li class="s5">非常满意</li>
+                                    <php>}else{</php>
+									<li class="s1">非常不满意</li>
+									<li class="s2">不满意</li>
+									<li class="s3">一般</li>
+									<li class="s4">满意</li>
+									<li class="s5">非常满意</li>
+									<php>}</php>
+                                </ul>
+                            </div>
+                            <div class="d-evaluate-part">
+                                共有
+                                <strong>{$commentnum}</strong> 次评价
+                            </div>
+                        </div>
+                        <div class="d-evaluate-r">
+                            <p>您可对已购买的商品进行评价</p>
+                            <a href="{:U('/Member/Order')}" target="_blank" class="d-evaluate-link">查看我的订单</a>
+                        </div>
+                    </div>
+                    <!-- 评价 异步请求-->
+                    <div class="u-evaluate-wrap" id="_detailEvaluateContent">
+                        <iframe src="{:U('/Shoplist/pingjia',array('id'=>$_GET['ms']))}" id="iframepage" name="iframepage" frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()" height="100%"></iframe>
+                        <script type="text/javascript" language="javascript">
+                            function iFrameHeight() {
+                                var ifm= document.getElementById("iframepage");
+                                var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;
+                                if(ifm != null && subWeb != null){
+                                    ifm.height = (subWeb.body.clientHeight);
+                                }
+                            }
+                            /*评价分数*/
+                            var f = $("#Fraction").val() || 5;
+                            (function(f){
+                                $(".d-evaluate-l em").text(f);
+                                $(".d-evaluate-list").append('<span>' + f + '</span>');
+                                $(".d-evaluate-list").children('span').css('left', 90 * f - 12);
+                            })(f)
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dRight-tab-con" style="display: none;">
+    <div class="u-consulting-wrap">
+        <div class="u-consulting-title">
+            <ul>
+                <li class="on">商品咨询<i id="_zx0"></i></li>
+            </ul>
+            <div class="u-consulting-line"></div>
+        </div>
+        <div class="u-consulting-info-box">
+            <div class="u-consulting-info-con">
+                <div class="u-consulting-prompt">
+                    <p>提示:因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同， 为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</p>
+                    <a href="#bottom-ask" style="cursor: pointer;" class="u-consulting-btn"><span></span>快速咨询</a>
+                    <div class="clear"></div>
+                </div>
+                <div>
+                    <iframe id="ifr" name="ifr" src="{:U('Shoplist/zixun',array('pro_id'=>base64_decode($_GET[md5('Goods')])))}" style="width: 100%;height:900px;overflow: hidden;" frameborder="0"></iframe>
+                </div>
+            </div>
+            <div class="u-consulting-info-con" style="display:none;">
+                <div class="u-consulting-prompt">
+                    <p>提示:因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同， 为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</p>
+                    <a href="#" class="u-consulting-btn"> <span></span> 我要咨询</a>
+                    <div class="clear"></div>
+                </div>
+                <div id="_detailConsultContent1" style="display:none;">
+                </div>
+            </div>
+            <div class="u-consulting-info-con" style="display:none;">
+                <div class="u-consulting-prompt">
+                    <p>提示:因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同， 为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</p>
+                    <a href="#" class="u-consulting-btn"> <span></span> 我要咨询</a>
+                    <div class="clear"></div>
+                </div>
+                <div id="_detailConsultContent2" style="display:none;">
+                </div>
+            </div>
+            <div class="u-consulting-info-con" style="display:none;">
+                <div class="u-consulting-prompt">
+                    <p>提示:因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同， 为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</p>
+                    <a href="#" class="u-consulting-btn"> <span></span> 我要咨询</a>
+                    <div class="clear"></div>
+                </div>
+                <div id="_detailConsultContent3" style="display:none;">
+                </div>
+            </div>
+            <div class="u-consulting-info-con" style="display:none;">
+                <div class="u-consulting-prompt">
+                    <p>提示:因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同， 为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</p>
+                    <a href="#" class="u-consulting-btn"> <span></span> 我要咨询</a>
+                    <div class="clear"></div>
+                </div>
+                <div id="_detailConsultContent4" style="display:none;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dRight_bottom" id="bottom-ask">
+        <div class="u-comments-area">
+            <div class="u-comments-title">
+                <i></i>
+                <strong>提问：{$info[title]}</strong>
+                <span></span>
+            </div>
+            <div class="u-consulting-table">
+                <form onsubmit="return false;" id="ask">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                        <td align="right"> <strong>提问类型：</strong> </td>
+                        <td> <label> <input type="radio" name="ask[mold_name]" value="商品提问" id="RadioGroup1_0" checked="checked" /> <span>商品提问</span> </label>
+                            <label> <input type="radio" name="ask[mold_name]" value="促销活动提问" id="RadioGroup1_1" /> <span>促销活动提问</span>
+                            </label> <label> <input type="radio" name="ask[mold_name]" value="库存及物流提问" id="RadioGroup1_2" /> <span>库存及物流提问</span> </label>
+                            <label> <input type="radio" name="ask[mold_name]" value="售后提问" id="RadioGroup1_2" /> <span>售后提问</span> </label> </td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top"> <strong>提问内容：</strong> </td>
+                        <td> <textarea id="_ComContent1" name="ask[content]" cols="" rows="" class="u-consulting-form"></textarea> </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td> <input type="button" class="u-consulting-b ask_insert" onclick="" value="提交问题" name="" /></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </form>
+            </div>
+        </div>
+        <div class="u-consulting-rule">
+            <h4>咨询说明</h4>
+            <p>1、商品咨询是酒富网为您提供的疑难问答，在这里您可以与工作人员直接进行交流。因发起咨询的用户较多，可能无法及时进行回复，我们将在最快的时间内为您解答；</p>
+            <p>2、当涉及广告、比价、重复反馈、不实评论、恶意评论、粗口、危害国家安全等等不当言论时，酒富网有权予以管理。</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+</div>
+</div>
+<div class="clear"></div>
+</div>
+
+
+
+ 
+   </div> 
+  </div>
+    <script>
+//        $(function(){
+//            $('#_jrgwc').click(function(){
+//                shoppingCart("{:U('Common/shoppingCart')}","{:$_GET['ms']}",$('#pd_number').val(),1,'m');
+//            });
+//        })
+    </script>
+  <script type="text/javascript" src="__JS__/jf-pft.js"></script>
+<script type="text/javascript">
+daojishi($(".pai_price_begin"));
+    $(function(){
+        
+        /*$(".sub").click(function(){
+           
+            if($("#pd_number").val()>1){
+                $("#pd_number").val(parseInt($("#pd_number").val())-1);
+            }else{
+                $(".sub").addClass("buyNub-nub-blus");
+
+            }
+            if($("#pd_number").val()==1){
+                $(".sub").addClass("buyNub-nub-blus");
+
+            }
+        });
+        
+        $("#pd_number").keyup(function(event){
+            if(!(event.keyCode>=48 && event.keyCode<=57)){
+                $("#pd_number").val(1);
+            }
+        })*/
+
+        // 商品详情切换
+        $(".usedd_tab_nav_list li").bind('click', function(event) {
+            $(this).addClass('cur').siblings('li').removeClass('cur');
+        });
+        $(".u-buy-close").on("click",function(){
+            $(this).parents('.u-buy-lay').hide();
+        })
+        $(".detailCode-on").hover(function() {
+            $(".detailCode-t").toggle();
+        });
+    })
+</script>
+    </div>
+<include file="Common:footer" />

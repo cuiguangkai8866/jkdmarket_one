@@ -1,0 +1,141 @@
+<include file="Common:top" />
+<include file="Common:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/jf-pft.css" media="all">
+    <div class="content_t bge">
+    <ad order="sort" position="ms">
+        <div class="jf_ban" style="background:url(__ROOT__/Uploads/picture/{$ad_img}) top center no-repeat;">
+            <div class="center">
+                <a href="#" title=""></a>
+            </div>
+        </div>
+    </ad>
+        <div class="miao_qp">
+            <div class="miao_t">
+                <div class="center clearfix">
+                    <div class="miao_f miao_f1 fl"></div>
+                    
+                </div>
+            </div>
+            <div class="center">
+                <ul class="jfplist miao_ys clearfix">
+                    <volist name="nowList" id="vo" empty="暂时还没有可秒杀的商品!">
+                        <li>
+                            <div class="jfplist_box">
+                                <a href="{:U('/msDetail').'?ms='.$vo[id]}" title="{$vo.title}">
+                                    <img src="__ROOT__{$vo.savepath}" alt="{$vo.title}" />
+                                </a>
+                            </div>
+                            <div class="jfplist_t">
+                                <a href="{:U('/msDetail').'?ms='.$vo[id]}" title="{$vo.title}">{$vo.title}</a>
+                            </div>
+                            <div class="jfplist_dname">
+                                {$vo.tuixiao}
+                            </div>
+                            <div class="clearfix">
+                                <div class="jfplist_price fl">
+                                    ￥<i>{$vo.price}</i>
+                                </div>
+                                <div class="jfplist_buy fr">
+                                    <a href="{:U('/msDetail').'?ms='.$vo[id]}" title="{$vo.title}">
+                                        立即抢购
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- 时间戳 -->
+                            <div class="jfplist_cou tac" date-endtime="{$vo.end_time}">
+                                <span class="clock_icon"></span>
+                                距结束时间 <i></i>
+                            </div>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+
+
+
+            <div class="miao_t">
+                <div class="center clearfix">
+                    <div class="miao_f miao_f2 fl"></div>
+                    
+                </div>
+            </div>
+            <div class="center">
+                <ul class="jfplist miao_ys clearfix">
+                    <volist name="waitList" id="vo" empty="暂时还没有即将开始的商品!">
+                        <li>
+                            <div class="jfplist_box">
+                                <a href="{:U('/msDetail').'?ms='.$vo[id]}" title="{$vo.title}">
+                                    <img src="__ROOT__{$vo.savepath}" alt="{$vo.title}" />
+                                </a>
+                            </div>
+                            <div class="jfplist_t">
+                                <a href="{:U('/msDetail').'?ms='.$vo[id]}" title="{$vo.title}">{$vo.title}</a>
+                            </div>
+                            <div class="jfplist_dname">
+                                {$vo.tuixiao}
+                            </div>
+                            <div class="clearfix">
+                                <div class="jfplist_price fl">
+                                    ￥<i>{$vo.price}</i>
+                                </div>
+                                <div class="jfplist_buy fr">
+                                    <a href="{:U('/msDetail').'?ms='.$vo[id]}" title="{$vo.title}">
+                                        即将开始
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- 时间戳 -->
+                            <div class="jfplist_cou tac" date-endtime="{$vo.start_time}">
+                                <span class="clock_icon"></span>
+                                距开始时间 <i></i>
+                            </div>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+
+
+
+
+            <div class="miao_t">
+                <div class="center clearfix">
+                    <div class="miao_f miao_f3 fl"></div>
+                    
+                </div>
+            </div>
+            <div class="center">
+                <ul class="jfplist miao_ys clearfix">
+                    <volist name="endList" id="vo" empty="暂时还没有发现结束的商品!">
+                        <li>
+                            <div class="jfplist_box">
+                                <a href="{:U('/msDetail').'?ms='.$vo[id]}" title="{$vo.title}">
+                                    <img src="__ROOT__{$vo.savepath}" alt="{$vo.title}" />
+                                </a>
+                            </div>
+                            <div class="jfplist_t">
+                                <a href="{:U('/msDetail').'?ms='.$vo[id]}" title="{$vo.title}">{$vo.title}</a>
+                            </div>
+                            <div class="jfplist_dname">
+                                {$vo.tuixiao}
+                            </div>
+                            <div class="clearfix">
+                                <div class="jfplist_price fl">
+                                    ￥<i>{$vo.price}</i>
+                                </div>
+                                <div class="jfplist_buy fr">
+                                    <a href="{:U('/msDetail').'?ms='.$vo[id]}" title="{$vo.title}">
+                                        已经结束
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="__JS__/jf-pft.js"></script>
+<script type="text/javascript">
+    daojishi($(".jfplist_cou"));
+</script>
+<include file="Common:footer" />

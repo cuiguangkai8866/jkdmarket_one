@@ -1,0 +1,56 @@
+<div class="dLeft-taste">
+    <h4 class="taste-tit">商品推荐</h4>
+    <ul class="taste-list">
+        <volist name="moods" id="vo" offset="0" length="5" empty="还没有推荐的产品!">
+            <li>
+                <div class="taste—listPic">
+                    <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}"> <img src="__ROOT__{:$vo[savepath] == null ?'/Public/Home/images/no_goods.jpg':$vo[savepath]}" alt="{$vo.title}" width="160" height="160" /> </a>
+                </div>
+                <div class="taste—listDep">
+                    <p class="listDep-nam"> <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}" title="{$vo.title}">{:mb_substr($vo['title'],0,15,'UTF-8')}...</a> </p>
+                    <p class="listDep-pri"> <b>￥{$vo.price}</b>
+                        <del>
+                            ￥{$vo.market}
+                        </del> </p>
+                    <p class="listDep-but"> <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank">立即购买</a> </p>
+                </div></li>
+        </volist>
+    </ul>
+</div>
+<div class="dLeft-ranking">
+    <h4>一周销量排行榜</h4>
+    <ul>
+        <volist name="moods_7" key="k" id="vo" offset="0" length="8" empty="系统还没热销产品!">
+            <li>
+                <div class="rank-unfold clearfix" style="display:none;">
+                    <div class="rUnfold-pic">
+                        <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}"> <img src="__ROOT__{:$vo[savepath] == null ?'/Public/Home/images/no_goods.jpg':$vo[savepath]}" alt="{$vo.title}" width="54" height="54" style="display: inline;" /> </a>
+                    </div>
+                    <div class="rUnfold-dep">
+                        <p class="rUnfold-name"> <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}" title="{$vo.title}">{:mb_substr($vo['title'],0,7,'UTF-8')}...</a></p>
+                        <p class="rUnfold-pri" goodid="14707">￥{$vo.price}</p>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="rUnfold-nub">
+                        {$k}
+                    </div>
+                </div>
+                <div class="rank-packup">
+                    <div class="rUnfold-nub">
+                        {$k}
+                    </div>
+                    <span class="rPackup-name"> <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}" title="{$vo.title}">{$vo.title}</a> </span>
+                </div> </li>
+        </volist>
+    </ul>
+    <script type="text/javascript">
+        $(function(){
+            $(".dLeft-ranking li").first().children('.rank-unfold').show().siblings().hide();
+            $(".dLeft-ranking li:gt(2)").find('.rUnfold-nub').addClass('rUnfold-nub2');
+            $(".dLeft-ranking li").hover(function(){
+                $(this).children('.rank-unfold').show().siblings().hide();
+                $(this).siblings('li').children('.rank-unfold').hide().siblings().show();
+            })
+        })
+    </script>
+</div>

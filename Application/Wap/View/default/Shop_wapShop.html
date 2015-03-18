@@ -1,0 +1,80 @@
+﻿<include file="Common:subHead" />
+  <div class="new-ct new-p-re"> 
+   <div class="new-search">
+<script type="text/javascript">
+  $(function(){
+    $(".tab4").bind('touchend', function(event) {
+      $(this).children('.on').removeClass("on").siblings('span').addClass('on');
+      if($(".listTab").hasClass('on')){
+        $(".new-mu_l2w").addClass('pic').removeClass('list');
+      }else{
+        $(".new-mu_l2w").addClass('list').removeClass('pic');
+      }
+    });
+  })
+</script>
+
+    <div class="tabBar clearfix">
+       <a id="saleHref" class="tab tab1 {:($_GET['Px'] == null || $_GET['Px'] == 'hot') ?'on':''}" href="
+       <php>
+        if($_GET == null){
+            echo U('/wapShop').'?Px=hot';
+        }else{
+            if($_GET['Px'] == null){
+                echo U('/wapShop').'?'.$_SERVER['QUERY_STRING'].'&Px=hot';
+            }else{
+                echo U('/wapShop').str_replace('Px='.$_GET['Px'],'Px=hot','?'.$_SERVER['QUERY_STRING']);
+            }
+        }
+       </php>
+       "><span>销量</span><!-- <span id="saleSort"  class="sort sale down on"></span> --></a>
+      <a id="priceHref" class="tab tab2 {:($_GET['Px'] == 'price') ?'on':''}" href="
+      <php>
+        if($_GET == null){
+            echo U('/wapShop').'?Px=price';
+        }else{
+            if($_GET['Px'] == null){
+                echo U('/wapShop').'?'.$_SERVER['QUERY_STRING'].'&Px=price';
+            }else{
+                echo U('/wapShop').str_replace('Px='.$_GET['Px'],'Px=price','?'.$_SERVER['QUERY_STRING']);
+            }
+        }
+       </php>
+      "><span>价格</span><span id="priceSort" class="sort prodPrice "></span></a>
+      <a id="markHref" class="tab tab3 {:($_GET['Px'] == 'click') ?'on':''}" href="
+      <php>
+        if($_GET == null){
+            echo U('/wapShop').'?Px=click';
+        }else{
+            if($_GET['Px'] == null){
+                echo U('/wapShop').'?'.$_SERVER['QUERY_STRING'].'&Px=click';
+            }else{
+                echo U('/wapShop').str_replace('Px='.$_GET['Px'],'Px=click','?'.$_SERVER['QUERY_STRING']);
+            }
+        }
+       </php>
+      "><span>人气</span><!-- <span id="markSort" class="sort popular down"></span> --></a>
+      <a class="tab tab4">
+        <span class="listTab"></span>
+        <span class="picTab on" id="picClass"></span>
+      </a>
+      <span class="line line1"></span>
+      <span class="line line2"></span>
+      <span class="line line3"></span>
+    </div>
+
+
+    <ul class="new-mu_l2w clearfix">
+        <volist name="list" id="vo" empty="暂时还没有产品">
+            <li class="new-mu_l2"> <a href="{:U('/wapDetail').'?Gid='.$vo[id]}" class="new-mu_l2a"> <span class="new-mu_tmb"><img src="__ROOT__{$vo.savepath}" width="100" height="100" /></span> <span class="new-mu_l2cw"> <strong class="new-mu_l2h">{$vo.title}</strong> <span class="new-mu_l2c"><strong class="new-txt-rd2">￥{$vo.price}</strong></span> </span> </a> </li>
+        </volist>
+    </ul> 
+   </div>
+      <div class="new-paging">
+      <div class="new-tbl-type">
+          {$show}
+      </div>
+  </div>
+  </div>
+
+<include file="Common:footer" />

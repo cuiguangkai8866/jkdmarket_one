@@ -1,0 +1,65 @@
+<div id="left">
+    <div class="myjf">
+        <a href="{:U('/Member')}" title="{$Think.session.uid}">
+            <i></i>
+            <div class="myjf_c">
+                <div class="myjf_t">我的酒富</div>
+                <div class="myjf_b">MY JIUFU</div>
+            </div>
+            <em></em>
+        </a>
+    </div>
+    <div id="menu">
+        <h3>会员中心</h3>
+        <ul>
+            <li {:ACTION_NAME == 'index' && CONTROLLER_NAME == 'Order' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/Order')}" title="我的订单">所有订单</a>
+            </li>
+            <li {:ACTION_NAME == 'favorite' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/Favorite')}" title="我的收藏">我的收藏</a>
+            </li>
+            <li {:ACTION_NAME == 'rcdforme' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/Rcdforme')}" title="为我推荐">为我推荐</a>
+            </li>
+            <li {:ACTION_NAME == 'myPat' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/MyPat')}" title="">我的拍卖</a>
+            </li>
+            <li {:ACTION_NAME == 'groupon' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/GroupOn')}" title="">我的团购</a>
+            </li>
+            <li {:ACTION_NAME == 'sale' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/Sale')}" title="">我的秒杀</a>
+            </li>
+            <li {:ACTION_NAME == 'evaluation' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/Evaluation')}" title="">我的评价</a>
+            </li>
+        </ul>
+        <h3>账户管理</h3>
+        <ul>
+            <li {:ACTION_NAME == 'user_info' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/User')}" title="">个人资料设置</a>
+            </li>
+            <li {:ACTION_NAME == 'safe_index' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/Safe')}" title="">账户安全设置</a>
+            </li>
+            <li {:ACTION_NAME == 'address' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/Address')}" title="">收货地址管理</a>
+            </li>
+        </ul>
+        <h3>服务中心</h3>
+        <ul>
+            <li {:ACTION_NAME == 'refund' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/Refund')}">退货管理</a>
+            </li>
+            <li {:ACTION_NAME == 'consulting' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/Consulting')}" title="">商品咨询/回复</a>
+            </li>
+            <li {:ACTION_NAME == 'requestMessage' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/requestMessage')}" title="">申请留言/投诉</a>
+            </li>
+            <li {:ACTION_NAME == 'message' ? 'class="menu_on"':''}>
+                <a href="{:U('/Member/Message')}" title="">留言/投诉管理</a>
+            </li>
+        </ul>
+    </div>
+</div>

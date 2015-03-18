@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <title>{$title}</title>
+    <link rel="stylesheet" type="text/css" href="__CSS__/base.css" media="all">
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="__JS__/jquery.lazyload.min.js"></script>-->
+    <script src="__JS__/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#nav").hover(function(){
+                $(".tit").show();
+            }, function(){
+                $(".tit").hide();
+            })
+        })
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            $("#app-jd,#biz-service,#site-nav").hover(function(){
+                $(this).addClass('hover');
+            },function(){
+                $(this).removeClass('hover');
+            })
+            $("#myjf,#settleup-2013").one('mouseover', function(event) {
+                var $this=$(this);
+                setTimeout(function (){
+                    $this.children('dl').children('.jf-loading').remove();
+                    $this.children('dl.hover').children('dd').addClass('ddhover').fadeIn();
+                }, 1000);
+            });
+            $("#myjf,#settleup-2013").hover(function(){
+                $(this).children('dl').addClass('hover');
+                $(this).children('dl').children('.ddhover').show();
+            },function(){
+                $(this).children('dl').removeClass('hover');
+                $(this).children('dl').children('.ddhover').hide();
+            })
+//            $("img").lazyload({
+//                effect : "fadeIn" ,
+//                placeholder : "__IMG__/grey.gif"  //占位图
+//                // threshold : 200 , //灵敏度,当图片没有看到之前先load 200像素
+//
+//                //event : "click"  //事件
+//            });
+            $(".ckwl a").hover(function(){
+                $(this).siblings('.logistics_box').stop(true).slideToggle();
+            })
+            $(".subitem_gs").each(function() {
+                $(this).children('li').last().css('border-right', 'none');
+            });
+        })
+    </script>
+</head>
+
+<body>
+<!-- top顶部 -->
+<div id="shortcut-2013">
+<div class="w">
+<ul class="fl lh">
+    <li class="fore1 ld">
+        <b>
+        </b>
+        <a onclick="alert('请按CTRL+D键收藏我们!');" rel="nofollow" style="cursor: pointer;">
+            收藏酒富
+        </a>
+    </li>
+</ul>
+<ul class="fr lh">
+    <li class="fore1" id="loginbar">
+        <if condition="$_SESSION['member'] neq null">
+            {:$_SESSION['member']['nickname']}，欢迎来到酒富网!
+            <a href="__ROOT__/Logout.html" class="link-logout">
+                [安全退出]
+            </a>
+            <else />
+            <!-- 未登录 -->
+            <a href="__ROOT__/Login.html" target="_blank" class="link-login">
+                [登录]
+            </a>
+            <a href="__ROOT__/Register.html" target="_blank" class="link-register">
+                [注册]
+            </a>
+        </if>
+    </li>
+    <li class="fore2 ld">
+        <s>
+        </s>
+        <a href="{:($_SESSION['member'] == null) ? '__ROOT__/Login.html':'__ROOT__/index.php?s=/Member/Order'}" rel="nofollow">
+            我的订单
+        </a>
+    </li>
+    <li class="fore2-1 ld" id="jd-vip">
+        <i>
+        </i>
+        <s>
+        </s>
+        <a target="_blank" rel="nofollow" href="{:($_SESSION['member'] == null) ? '__ROOT__/Login.html':'__ROOT__/Member'}">
+            会员中心
+        </a>
+    </li>
+    <li class="fore3 ld menu" id="app-jd" data-widget="dropdown" clstag="homepage|keycount|home2013|01d">
+        <s>
+        </s>
+        <i>
+        </i>
+                <span class="outline">
+                </span>
+                <span class="blank">
+                </span>
+        <a href="__ROOT__/Wap/" target="_blank">
+            手机酒富
+        </a>
+        <b>
+        </b>
+        <div class="dd lh">
+            <img src="__IMG__/qr.png" alt="">
+        </div>
+    </li>
+    <li class="fore4 ld menu" id="biz-service" data-widget="dropdown">
+        <s>
+        </s>
+                <span class="outline">
+                </span>
+                <span class="blank">
+                </span>
+        客户服务
+        <b>
+        </b>
+        <div class="dd">
+            <div>
+                <a href="#" target="_blank">
+                    帮助中心
+                </a>
+            </div>
+            <div>
+                <a href="#" target="_blank" rel="nofollow">
+                    售后服务
+                </a>
+            </div>
+            <div>
+                <a href="#" target="_blank" rel="nofollow">
+                    在线客服
+                </a>
+            </div>
+            <div>
+                <a href="#" target="_blank" rel="nofollow">
+                    投诉中心
+                </a>
+            </div>
+            <div>
+                <a href="#" target="_blank">
+                    客服邮箱
+                </a>
+            </div>
+        </div>
+    </li>
+    <li class="fore5 ld menu" id="site-nav" data-widget="dropdown">
+        <s>
+        </s>
+                <span class="outline">
+                </span>
+                <span class="blank">
+                </span>
+        网站导航
+        <b>
+        </b>
+        <div class="dd lh">
+            <dl class="item fore1">
+                <dt>
+                    特色栏目
+                </dt>
+                <dd>
+                    <div>
+                        <a target="_blank" href="#">
+                            酒富通信
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#" target="_blank">
+                            校园之星
+                        </a>
+                    </div>
+                    <div>
+                        <a target="_blank" href="#">
+                            为我推荐
+                        </a>
+                    </div>
+                    <div>
+                        <a target="_blank" href="#">
+                            视频购物
+                        </a>
+                    </div>
+                    <div>
+                        <a target="_blank" href="#">
+                            酒富社区
+                        </a>
+                    </div>
+                    <div>
+                        <a target="_blank" href="#">
+                            在线读书
+                        </a>
+                    </div>
+                    <div>
+                        <a target="_blank" href="#">
+                            装机大师
+                        </a>
+                    </div>
+                    <div>
+                        <a target="_blank" href="#">
+                            酒富E卡
+                        </a>
+                    </div>
+                    <div>
+                        <a target="_blank" href="#">
+                            家装城
+                        </a>
+                    </div>
+                    <div>
+                        <a target="_blank" href="#">
+                            搭配购
+                        </a>
+                    </div>
+                    <div>
+                        <a target="_blank" href="#">
+                            我喜欢
+                        </a>
+                    </div>
+                </dd>
+            </dl>
+            <dl class="item fore2">
+                <dt>
+                    企业服务
+                </dt>
+                <dd>
+                    <div>
+                        <a target="_blank" href="#">
+                            企业客户
+                        </a>
+                    </div>
+                    <div>
+                        <a target="_blank" href="#">
+                            办公直通车
+                        </a>
+                    </div>
+                </dd>
+            </dl>
+            <dl class="item fore3">
+                <dt>
+                    旗下网站
+                </dt>
+                <dd>
+                    <div>
+                        <a target="_blank" href="#">
+                            English Site
+                        </a>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+    </li>
+</ul>
+        <span class="clr">
+        </span>
+</div>
+</div>

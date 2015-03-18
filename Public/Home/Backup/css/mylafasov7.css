@@ -1,0 +1,946 @@
+﻿@charset "utf-8";
+/* 
+功能描述：MyLafaso(我的乐蜂网)页面样式 
+更新时间：2009-03-25
+*/
+
+.mylafasoV2L a:link,.mylafasoV2L a:visited,.mylafasoV2R a:link,.mylafasoV2R a:visited{ font-size:12px; color:#266cad; text-decoration:none}a:hover{ font-size:12px; color:#266cad; text-decoration:underline}
+/* 页面左侧容器 */
+.leftBox_firstrow{width:186px;border:1px solid #dadada;padding:1px;background:#fff url(http://images.lefeng.com/images/v3_mylafasobg1.jpg) 0 bottom repeat-x;padding-bottom:30px;}
+.leftBox_firstrow h2{padding:1px;height:31px;line-height:31px;font-size:14px;text-align:left;text-indent:15px;margin:0;padding:0;background:url(http://images.lefeng.com/images/v3_mylafasobg2.jpg) 0 0 repeat-x;color:#fff;}
+.leftBox_firstrow h3{width:100%;text-align:left;text-indent:14px;height:31px;line-height:31px;margin:0;padding:0;font-size:14px;}
+.leftBox_firstrow ul{margin-bottom:8px;}
+.leftBox_firstrow li{text-align:left;text-indent:39px;background:url(http://images.lefeng.com/images/mylafasotitle2.jpg) 25px center no-repeat;}
+.leftBox_firstrow li a:link{font-size:12px;color:#000;text-decoration:none;}
+.leftBox_firstrow li a:visited{font-size:12px;color:#000;text-decoration:none;}
+.leftBox_firstrow li a:hover{font-size:12px;text-decoration:underline;}
+.leftBox_firstrow li a:active{font-size:12px;text-decoration:underline;}
+
+/*.djyh{ clear:both;}
+.djyh p{ height:35px; padding-left:10px; background:#E8E7E7}
+.djyh b{ float:left; height:25px; padding:0px 7px; margin-left:5px; margin-top:10px; cursor:pointer; line-height:25px;}
+.djyh b.on{ background:#fff}*/
+/* 页面右侧容器2010.5修改 */
+.rightcontbox{/* width:580px;*/ width:750px;}.h18{ height:18px;}.h21{ height:21px;}.pt3{ padding-top:3px;}.pl100{ padding-left:100px;}.w420{ width:420px;}.emco2{ color:#01669c;}.emco3{ color:#bdbdbd;}
+.rightcontbox h3{ height:26px; clear:both; background:#f8f8f8; padding-left:60px;}
+.rightcontbox h3 b{ float:left; padding:0px 20px; height:26px; line-height:26px; font-size:14px;}
+.rightcontbox h3 b a:link,.rightcontbox h3 b a:visited,.rightcontbox h3 b a:hover{ font-weight:bold; font-size:14px; color:#666}
+.rightcontbox h3 b.on{ background:#dadada}
+.rightcontbox h3 b.on a:link,.rightcontbox h3 b.on a:visited,.rightcontbox h3 b.on a:hover{ font-weight:bold; font-size:14px; color:#666}
+.rightcontbor1{ border:1px solid #8a8a8a;}.rightcontbor2{ border-bottom:1px solid #d4e8fc;}
+.sub2{ float:left; background:url(http://images.lefeng.com/images/reg/reg_04.jpg); width:100px; height:32px; line-height:32px; color:#FFF; border:none; text-align:center;}
+.rightcont{width:578px;border:1px solid #dadada;padding:20px 0px; overflow:hidden;}
+.rightcontH{ width:564px;}.emco1{ color:#c63765;}
+.rightcontHnav{height:24px; clear:both;}
+.rightcontHnav li{float:left; height:24px; line-height:24px; font-size:12px; text-align:center}
+.Hnavbg1{background:url(http://images.lefeng.com/images/sitev5/myLafaso_29.jpg); width:193px; color:#FFF;}
+.Hnavbg2{background:url(http://images.lefeng.com/images/sitev5/myLafaso_30.jpg); width:193px; color:#666;}
+.Hnavbg3{background:url(http://images.lefeng.com/images/sitev5/myLafaso_31.jpg); width:178px; color:#666;}
+.Hnavbg4{background:url(http://images.lefeng.com/images/sitev5/myLafaso_29.jpg); width:193px; color:#FFF;}
+.Hnavbg5{background:url(http://images.lefeng.com/images/sitev5/myLafaso_30.jpg); width:193px; color:#FFF;}
+.Hnavbg6{background:url(http://images.lefeng.com/images/sitev5/myLafaso_29.jpg); width:193px; color:#FFF;}
+.Hnavbg7{background:url(http://images.lefeng.com/images/sitev5/myLafaso_30.jpg); width:193px; color:#FFF;}
+.Hnavbg8{background:url(http://images.lefeng.com/images/sitev5/myLafaso_31.jpg); width:178px; color:#fff;}
+.renewbox{ border-top:1px solid #e6e6e6; padding-left:100px;}
+.renewbox span{ width:300px;}
+.renewbox span em{ width:140px;}
+.unrecivebox{ /*height:123px;*/ border:1px solid #d4e8fc; background:#f4fcfe;}
+.unrecivebox p{ padding-left:50px; padding-top:10px; line-height:25px;}
+.recivebox{ width:330px;background:url(http://images.lefeng.com/images/reg/reg_27.jpg) no-repeat left 25px; padding-left:50px;}
+#bg{background:#CCC;filter:alpha(opacity=70);opacity:70;width:100%;position:absolute;left:0px;top:0px;display:none;z-index:100090;}
+.brandwindow{ position:absolute; left:0px; top:0px; z-index:101; width:405px; height:173px; border:1px solid #b1b1b1; padding:1px; background:#FFF; display:none;}
+.brandwindow h2{ background:#fdeff5; padding-right:10px; font-size:14px; height:27px; line-height:27px; padding-left:24px;}
+.brandwindow h2 img{ margin-top:3px;}
+.brandwbp1{ padding-left:30px;}
+.brandwbp2{ padding-left:70px;}
+.brandwbp3{ height:30px;}
+.brandwbtext{}
+.brandwbsub{ float:left; width:61px; height:25px;background:url(http://images.lefeng.com/images/reg/reg_32.jpg); border:none; margin-left:10px; margin-right:10px;}
+
+/*合并订单开始*/
+.insertbox{ width:645px; position:absolute; left:0px; top:0px; z-index:20; display:none;}
+.insertboxin{ width:643px; border:1px solid #f4a054; border-bottom:none; border-top:none; background:#FFF; padding-bottom:10px;}
+.insertcont{ clear:both; padding:10px;}
+.insertcont p{ padding-left:50px; line-height:18px; padding-top:10px;}
+.insertcont h2{ font-size:14px; padding-left:20px; padding-bottom:10px;}
+.insertcontB{ width:526px; border:1px solid #ccc; margin:0px auto;}
+.insertcontB ul{ height:27px; background:#eaecec; margin:1px; margin-bottom:0px;}
+.insertcontB li{ float:left; height:27px; text-align:center; line-height:27px; line-height:27px; color:#666; font-weight:bold;}
+.insertcontB li.w49{ width:49px;}
+.insertcontB li.w93{ width:93px;}
+.insertcontB li.w96{ width:96px;}
+.insertcontB li.w95{ width:95px;}
+.insertcontB li.w94{ width:94px;}
+.insertcontB li.w97{ width:97px;}
+.insertcontB td{ border:1px solid #ccc; border-right:none; border-bottom:none; text-align:center; line-height:180%;}
+.insertcontB td.top{ border-top:none }
+.insertcontB td em{ color:#cc0000;}.inserco01{ color:#cc0000;}.insertpr35{ padding-right:35px;}
+.ainsertbox{ width:602px; clear:both; margin:0px auto;}
+.ainsertbox p{ float:left; width:532px; padding:10px 35px; line-height:23px;}
+.ainsertbox p strong{ font-weight:bold; color:#000; font-size:14px}
+.ainsertbox p em{ padding-left:22px;}
+.ainsertcontbb{ border-bottom:1px dashed #dedede;}
+.ainsertbox strong{ font-size:16px}
+#bg{background:#000;filter:alpha(opacity=60);opacity:0.6;width:100%;position:absolute;left:0px;top:0px; z-index:15;display:none;}
+.ainsertcontB{ width:537px; clear:both; border:1px solid #ccc; margin:0px auto;}
+.ainsertcontB ul{ height:27px; background:#eaecec; margin:1px; margin-bottom:0px;}
+.ainsertcontB li{ float:left; height:27px; text-align:center; line-height:27px; line-height:27px; color:#666; font-weight:bold;}
+.ainsertcontB li.w233{ width:233px;}
+.ainsertcontB li.w137{ width:137px;}
+.ainsertcontB li.w76{ width:76px;}
+.ainsertcontB li.w88{ width:88px;}
+.ainsertcontB td{ border:1px solid #ccc; border-right:none; border-bottom:none; text-align:center; line-height:15px; padding:5px;}
+.ainsertcontB td.top{ border-top:none }
+.ainsertcontB td em{ color:#cc0000;}.inserco01{ color:#cc0000;}
+.ainsertcontB dt{ padding-left:10px; background:url(http://images.lefeng.com/images/insert_06.jpg) no-repeat left 5px;}
+/*合并订单结束*/
+
+
+/*邮件订阅*/
+.edm_dy{/*width:522px;*/padding 0 10px; clear:both;}
+.edm_dymain{/*width:512px;*/padding:10px 5px;/*border-bottom:1px dashed #c2c2c2;*/overflow:hidden}
+.edm_dymain table{ border-right:1px solid #D8D8D8;}
+
+
+/* 页面右侧容器 */
+.rightBox{ width:764px; border:1px solid #dadada;padding:20px 16px;/* overflow:hidden;*/}
+.rightBox p{font-size:14px;text-align:left;margin:0px 0 10px 0;}
+.rightBox_ptop{margin:0;}
+.rightBox h2{margin-top:30px;font-size:14px;text-align:left;position:relative;}
+.rightBox .rightBox_h2{margin-top:0;}
+/*20120502 modify*/
+/*.rightBoxh2right{top:0;left:0;position:absolute;width:100%;text-align:right;display:block;font-weight:normal;font-size:12px;color:#484849;}*/
+.rightBox .mylafasorightproduct{width:100%;overflow:hidden;margin-top:20px;}
+.rightBox .mylafasorightproduct dl{width:105px;padding:0 15px;}
+.rightBox .mylafasorightproduct dt{text-align:center;}
+.rightBox .mylafasorightproduct dt img{border:1px solid #ccc;padding:5px;}
+.rightBox .mylafasorightproduct dd{text-align:center;font-size:12px;padding:5px 0;}
+/*20120502 modify*/
+/*.downbasictable1{font-size:14px;text-align:right;padding:5px 0;width:100%;}*/
+.downbasictable1{ line-height:24px; text-align:right;clear:both;}
+.downbasictable1 span{ font-family:Tahoma, Geneva, sans-serif; color:#963C00; font-weight:bold;}
+.downbasictable1 em{ font-family:Microsoft YaHei; font-weight:bold; color:#963C00;}
+.mylafasoV2R .downbasictable1  table td{ padding:0px;}
+
+.rightBoxh2modify{position:absolute;left:0;top:0;width:100%;text-align:left;text-indent:100px;font-weight:normal;}
+.rightBox h3{background:url(http://images.lefeng.com/images/v3_mylafasotitlebg1.jpg) 0 0 no-repeat;height:25px;line-height:25px;text-align:left;text-indent:15px;font-size:14px;position:relative; padding-left:10px;}
+.rightBox h3 span a:link,.rightBox h3 span a:visited,.rightBox h3 span a:hover{ color:#006699}
+.rightBox h3 b{ float:left; height:25px; padding-right:10px; cursor:pointer;}
+.rightBox h3 b.on{ background:#FFF;}
+.rightBox .rightBox_h3{margin-top:30px;}
+.rightBoxnext{position:absolute;left:0;top:0;text-align:left;text-indent:105px;font-weight:normal;font-size:12px;color:#484849;}
+
+/* 地址本表格/支付方式表格 */
+.addresstable{width:90%;background:#fefef7;border:1px solid #d9d9d9;margin:20px auto 0 auto;}
+.addresstable td{font-size:12px;padding:3px;}
+.addresstablelefttd{text-align:right;width:22%;}
+.addresstablerighttd{text-align:left;width:78%;}
+.rightBox_anotheraddress{width:94%;margin:20px auto 0 auto;overflow:hidden;}
+.rightBox_anotheraddress_innertable{border:solid 1px #999;width:47%;margin-left:14px;_margin-left:7px;margin-bottom:15px;}
+.rightBox_anotheraddress_innertable td{padding:2px;}
+.rightBox_anotheraddress_innertableleft{text-align:right;width:25%; vertical-align:top;}
+.rightBox_anotheraddress_innertableright{text-align:left;width:75%;}
+.addressMaxHeight{ height:42px; line-height:14px;display:block; overflow:hidden;}
+
+
+/*用户购物流程图示及系统对应后台状态*/
+.mylafasoprocess{width:100%;margin:0 auto;overflow:hidden; display:none;}
+.mylafasoprocess dl{width:97px;float:left;}
+.mylafasoprocess dt{text-align:center;}
+.mylafasoprocess dd{text-align:center;padding:5px 0;}
+.mylafasoprocess .mylafasoprocess_middle{padding-top:20px;}
+
+#formtable1_2{width:90%;margin-left:auto;margin-right:auto;}
+/*20120502 modify*/
+.formtable1 .formtdleft{width:12%;}
+.formtable1 .formtdright{width:92%;color:#000;padding:4px 0;}
+/*2009.9.18添加会员卡绑定*/
+.bangding{ width:680px; padding-left:12px; margin-top:15px;}
+.bangding_title{ width:100%; overflow:hidden;}
+.bangding_title ul{}
+.bangding_title li{ float:left;}
+
+
+/*2009.6.22添加我的试用申请*/
+.useritry_list{ width:335px; margin:0 5px; font-size:12px; margin-bottom:20px; border-bottom:1px dashed #d9d9d9; padding-bottom:8px;  }
+.useritry_list img{ width:90px; height:90px; padding:2px; border:1px solid #d9d9d9; }
+.useritry_list_main{}
+.useritry_list_main ul{}
+.useritry_list_main li{ float:left; margin-right:6px; height:97px;} 
+.useritry_list_main_pro{ width:225px; overflow:hidden;}
+.useritry_list_main p{ margin:0; line-height:23px; font-size:12px; height:23px; overflow:hidden;}
+.useritry_list .report_b{ float:right; margin-right:10px;background: url(http://images.lefeng.com/images/userreport_button.jpg) no-repeat left top; width:92px; height:21px; text-align:center; padding-top:2px;}
+
+a.pro_reda:link{color:#ff0000; }
+a.pro_reda:visited{color:#ff0000;}
+a.pro_reda:hover{color:#ff0000; text-decoration:underline;}
+a.pro_reda:active{color:#ff0000; text-decoration:underline;}
+
+/*2009.8.4新加我的卡管理*/
+.right_cardtime{width:95%;margin:0 auto;overflow:hidden;padding:20px 0 8px 0;border-bottom:1px dashed #c4c5c5;color:#000;}
+.right_cardtime label{padding-right:5px;}
+.right_cardtime span{padding-left:15px;}
+.right_cardtotalmoney{width:95%;margin:0 auto;color:#000;padding:10px 0 5px 0;}
+#k_search .basictable1{width:95%;margin:0 auto;}
+.basictable1 a:link,.basictable1 a:visited,.basictable1 a:hover{color:#006699;}
+#k_search .manu{width:95%;margin:0 auto;padding-top:20px;}
+.zffs_outer{width:100%;overflow:hidden;}
+.zffs_outer_title{width:100%;overflow:hidden;background:url(http://images.lefeng.com/images/v3_mylafaso_bg10.jpg) repeat-x 0 bottom;}
+.zffs_outer_title ul{padding-left:7px;}
+.zffs_outer_title li{float:left;background:url(http://images.lefeng.com/images/v3_mylafaso_bg11.jpg) no-repeat 0 bottom;display:block;width:94px;height:32px;line-height:32px;text-align:center;font-weight:bold;}
+.zffs_outer_title .zffs_outer_titleon{background:url(http://images.lefeng.com/images/v3_mylafaso_bg11_2.jpg) no-repeat 0 bottom;display:block;width:94px;height:32px;line-height:32px;}
+.zffs_outer_title .zffs_outer_titlefore{background:url(http://images.lefeng.com/images/v3_mylafaso_bg12.jpg) no-repeat 0 bottom;display:block;width:85px;}
+.zffs_outer_title .zffs_outer_titleforeon{background:url(http://images.lefeng.com/images/v3_mylafaso_bg12_2.jpg) no-repeat 0 bottom;display:block;width:85px;}
+.zffs_outer_title .zffs_outer_titlethree{background:url(http://images.lefeng.com/images/v3_mylafaso_bg13.jpg) no-repeat 0 bottom;display:block;width:76px;}
+.zffs_outer_title .zffs_outer_titlethreeon{background:url(http://images.lefeng.com/images/v3_mylafaso_bg13_2.jpg) no-repeat 0 bottom;display:block;width:76px;}
+.zffs_outer_content{padding:10px;}
+/*111012订单提醒*/
+.orderRemind{ clear:both; background:#FFF; margin-top:2px;}
+.orderRemind td{ border-bottom:1px solid #f0f1f3; color:#666;}
+.orderRemind td strong{ color:#666;}
+
+.myorders{ border:1px solid #D8D8D8;}
+
+/*1016贵宾卡样式*/
+.k_vip_button{ font-size:12px; padding-top:2px; text-align:center; width:100px; }
+.k_gift{ width:100%; overflow:hidden; margin-top:15px;}
+.k_gift_l{ background:url(http://images.lefeng.com/images/c_vip/gift_l.jpg) no-repeat left top; width:4px; height:29px;}
+.k_gift_r{ background:url(http://images.lefeng.com/images/c_vip/gift_r.jpg) no-repeat left top; width:4px; height:29px;}
+.k_gift_bg{ background:url(http://images.lefeng.com/images/c_vip/gift_bg.jpg) repeat-x left top; width:656px; height:29px; padding:0 13px; position:relative;}
+.k_gift_tag{ position:absolute; background:url(http://images.lefeng.com/images/c_vip/tag_bg.jpg) no-repeat left top; width:93px; height:20px; top:5px; text-align:center; color:#ff6600; font-weight:bold; padding-top:4px;}
+.k_gift_list{ border:1px solid #E5E5E5; background:#fff; margin-top:8px;}
+.k_gift_listtop{ background:#F3F3F3; height:22px; border-bottom:1px solid #E5E5E5; padding-left:15px; font-weight:bold; color:#656565; padding-top:3px;}
+.k_gift_listmain{ padding:8px 0px; min-height:110px; _height:110px; clear:both;}
+.k_gift_pro{ padding:0 8px; width:77px; position:relative;}
+.k_gift_pro ul{}
+.k_gift_pro li{ width:77px; overflow:hidden;}
+.k_gift_pro img{ width:75px; height:75px; border:1px solid #E5E5E5;}
+.k_gift_protitle{ line-height:15px; margin-top:5px; height:30px; overflow:hidden}
+.k_gift_b{ margin:5px 8px;border-top:1px dashed #E5E5E5; padding-top:5px; height:30px; text-align:right}
+.t_pro{ width:365px; height:154px; overflow:hidden; position:absolute; left:85px; top:-120px; display:none;}
+.t_proleft{ background:url(http://images.lefeng.com/images/c_vip/t_proleft.gif) no-repeat left top; width:10px; height:154px;}
+.t_probg{ background:#FFFEEC; border-bottom:1px solid #D4D2D3; border-top:1px solid #D4D2D3; border-right:1px solid #D4D2D3; width:329px; height:142px; overflow:hidden; padding:10px 5px 0;}
+.t_probg img{ width:130px; height:130px; border:1px solid #ECECEA;}
+.t_probg_main{ width:185px; height:133px; overflow:hidden; margin-left:8px; }
+.t_probg_main li{ width:185px; overflow:hidden;}
+
+#confirm{ width:380px; border:1px solid #A6A6A6; background:#fff; padding:8px 8px 15px;}
+.confirm_title{ background:#F2F2F2; height:21px; width:364px; padding:3px 8px;}
+.confirm_title .f_6600{ color:#ff6600; font-size:14px; font-weight:bold;}
+.confirm_title .close{ margin-left:220px;}
+
+
+/*新改版v2*/
+.mylafasoV2L{ width:218px; border:1px solid #ddd; border-top:none;}.fam{ font-family:"宋体"}.h20{ height:20px; clear:both; overflow:hidden;}
+.mylafasoV2Lbox{ width:188px; border:1px solid #ccc;}.mr10{ margin-right:10px;}.pr15{ padding-right:15px;}
+.mylafasoV2Ltit{ height:30px; background:url(http://images.lefeng.com/images/sitev5/mylafasov2_01.jpg); font-size:15px; line-height:30px; color:#FFF; padding-left:34px; text-align:left;}
+.mylafasoV2Lbox h3{ height:29px; background:url(http://images.lefeng.com/images/sitev5/mylafasov2_02.jpg); font-size:12px; color:#000; line-height:29px; padding-left:20px; clear:both; text-align:left;}
+.mylafasoV2Lbox h3 b{display:block;float:left; margin-right:5px; text-indent:-9999px;width:0;height:0;border:4px solid #fafafa;border-left-color:#b3145e;margin-top:10px;overflow:hidden;}
+.mylafasoV2Lbox ul{ float:left; width:188px; clear:both; padding:6px 0px; text-align:left;}
+.mylafasoV2Lbox li{ float:left; width:188px; height:20px; line-height:20px; text-align:left;}
+.mylafasoV2Lbox li a:link,.mylafasoV2Lbox li a:visited{float:left; width:154px; height:20px; padding-left:34px; line-height:20px; color:#333}
+.mylafasoV2Lbox li a:hover{float:left; height:20px; padding-left:34px; width:154px; line-height:20px; background:#f5ccd6; color:#cc0033}
+.mylafasoV2Lbox li.on{ background:#f5ccd6}
+.mylafasoV2Lbox li.on a:link,.mylafasoV2Lbox li.on a:visited,.mylafasoV2Lbox li.on a:hover{ color:#cc0033}
+
+/*2012-04-08 modify begin*/
+.mylafasoV2R{ width:770px; overflow:hidden;}
+.mylafasoV2R table.has{ width:749px;border-top:1px solid #e6e6e6;}
+.mylafasoV2R table td{ padding:4px; color:#000;}
+.mylafasoV2R table.has td{ text-align:center; padding:5px 0px; border-right:1px solid #d8d8d8; border-bottom:1px solid #d8d8d8}
+.mylafasoV2R table td.nobor{ border-bottom:none}
+.mylafasoV2R table.has thead td{ background:url(http://img1.imglefeng.com/images/sitev5/myOrderTrBg.gif) repeat-x; height:30px; color:#666; padding:0px;}
+/*2012-04-08 modify end*/
+.mylafasoV2R table td.pro{ text-align:left; width:213px; overflow:hidden; padding:8px 0 13px 7px}
+.mylafasoV2R table td.pro a:link,.mylafasoV2R table td.pro a:visited{ float:left;margin:5px 0 0 5px; border:1px solid #ccc; display:inline;}
+.mylafasoV2R table td.pro a img{ width:40px; height:40px;}
+.mylafasoV2R table td.pro a:hover{ display:inline-block; border:1px solid #d659a5}
+.mylafasoV2_head{ height:215px; padding:8px; background:#f0f1f3}
+.mylafasoV2_headpicbox{ width:110px;}
+.mylafasoV2_headpicbox img{ width:110px; height:110px;}
+.mylafasoV2_headpicbox p{ line-height:20px; text-align:center;}
+.mylafasoV2_headinfobox{ width:580px; color:#333;}
+.mylafasoV2_headinfobox p{ height:20px; padding-top:10px;}.mylafasoV2_headinfobox strong{ font-size:14px}
+.mylafasoV2_headinfobox p img{ float:left;}
+.mylafasoV2_headinfobox p span{ float:left; margin-left:5px; display:inline}
+.mylafasoV2_headpricebox{ width:600px;}
+.mylafasoV2_headpriceboxL{ width:120px; line-height:20px;}
+.mylafasoV2_headpriceboxL p{ clear:both; height:20px;}.mylafasoV2_headpriceboxL p span{ _padding-top:3px; padding-left:3px;}
+.mylafasoV2_cartonbox{ width:455px; height:81px; padding-left:16px; padding-top:16px; background:#FFF;}
+.mylafasoV2_cartonbox li{ float:left; width:109px; height:24px; padding-left:5px; padding-top:9px; color:#666}
+.mylafasoV2_cartonbox li img{ float:left;}.mylafasoV2_cartonbox li span{ float:left; margin-top:3px;}
+.mylafasoV2_cartonbox li.center{ width:192px; border-right:1px solid #b7b7b7; border-left:1px solid #b7b7b7}
+.mylafasoV2_cartonbox li.right{ width:122px;}
+.mylafasoV2_cartonbanner1{ width:438px; height:11px; border:1px solid #d0d1d1; background:#eff0f2; position:relative;}
+.mylafasoV2_cartonbanner2{ position:absolute; left:-1px; top:-1px;}
+.mylafasoV2_cartonbanner3{ float:left; width:0px; height:11px; border:1px solid #a40869; border-right:none; background:url(http://images.lefeng.com/images/sitev5/mylafasov2_03.jpg); overflow:hidden; z-index:1}
+.mylafasoV2_cartonbanner1 span{position:absolute; top:-1px; width:1px; height:13px; overflow:hidden; background:url(http://images.lefeng.com/images/sitev5/mylafasov2_06.jpg); z-index:2}
+.mylafasoV2_cartonjg1{left:113px;}
+.mylafasoV2_cartonjg2{left:311px;}
+.mylafasoV2_cartonjt{ float:left; width:7px; height:13px; overflow:hidden; background:url(http://images.lefeng.com/images/sitev5/mylafasov2_07.jpg); z-index:2}
+.mylafasoV2title{ height:29px; background:url(http://images.lefeng.com/images/sitev5/mylafasov2_02.jpg); font-size:13px; color:#000; line-height:29px; padding-left:5px; padding-right:20px; clear:both; border-left:1px solid #dedede; border-right:1px solid #dedede;}
+.mylafasoV2title a{ font-weight:normal;}
+.mylafasoV2_tuan{ width:370px;}.mylafasoV2_tuanbox{ height:200px;}
+.mylafasoV2_tuancontent{ width:358px; padding:5px; border:1px solid #d8d8d8; border-top:none;}
+.mylafasoV2_tuancontent a.left img{ width:160px; height:160px;}
+.mylafasoV2_tuancontentR{ width:180px; line-height:18px;}
+.mylafasoV2_tuancontentR a.titleL{ float:left; width:180px; line-height:18px; height:55px; overflow:hidden;}
+.mylafasoV2_tuancontentR a:link,.mylafasoV2_tuancontentR a:visited,.mylafasoV2_tuancontentR a:hover{ color:#000}
+.mylafasoV2_tuancontentR p{ clear:both; padding-top:10px; padding-bottom:5px; color:#666}
+.mylafasoV2_tuancontentR p em{ color:#cc3366}
+.mylafasoV2_tuancontentR p em.pricethrough{ color:#666}
+.mylafasoV2_lasest{ clear:both;}
+.mylafasoV2_lasest li{ float:left; width:120px; text-align:center; padding:20px 15px 10px 15px;}
+.mylafasoV2_lasest li a img{ width:90px; height:90px;}
+.mylafasoV2_lasest li p{ clear:both; padding-top:5px; line-height:18px;}
+.mylafasoV2_lasest li p a:link,.mylafasoV2_lasest li p a:visited,.mylafasoV2_lasest li p a:hover{ color:#000}
+.mylafasoV2_lasest li strong{ color:#c5396a}
+.mylafasoV2_databox{ float:left; position:absolute; left:390px; top:13px;}
+.mylafasoV2_databox p.top{ float:left; width:13px; height:7px; overflow:hidden; background:url(http://images.lefeng.com/images/sitev5/mylafasov2_08.jpg); margin-left:35px; display:inline}
+.mylafasoV2_datacont{ float:left; height:25px; clear:both; white-space:nowrap; background:url(http://images.lefeng.com/images/sitev5/mylafasov2_09.jpg) no-repeat left 0px; padding-left:5px;}
+.mylafasoV2_datacont1{ float:left; height:25px; clear:both; white-space:nowrap; background:url(http://images.lefeng.com/images/sitev5/mylafasov2_11.jpg) no-repeat right 0px; padding-right:5px;}
+.mylafasoV2_datacont p{ float:left; height:25px; line-height:20px; color:#FFF; background:url(http://images.lefeng.com/images/sitev5/mylafasov2_10.jpg); padding:0px 10px;}
+
+
+.ruleslayer{ position:relative; display:block; z-index:3}
+.ruleslayerlink{width:25px; display:block}
+.ruleslayerin{ position:absolute; left:-105px; bottom:20px; width:216px; display:none; z-index:100005;}
+.ruleslayerbody{ float:left; width:186px; padding:17px 15px 0px 15px; background:url(http://images.lefeng.com/images/sitev5/yhj_03.jpg);}
+.ruleslayerbody p{ float:left; width:170px; line-height:18px; height:auto; max-height:170px; _height:170px; overflow:auto; color:#333; background:none;}
+.ruleslayerbody span{ position:absolute; left:180px; top:12px; width:20px; height:19px; overflow:hidden; background:url(http://images.lefeng.com/images/sitev5/yhj_04.jpg); cursor:pointer;}
+.ruleslayerhead{ float:left; width:216px; height:17px; overflow:hidden; background:url(http://images.lefeng.com/images/sitev5/yhj_01.png) !important;
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="http://images.lefeng.com/images/sitev5/yhj_01.png"); _background:none;}
+.ruleslayerfoot{ float:left; width:216px; height:40px; overflow:hidden; background:url(http://images.lefeng.com/images/sitev5/yhj_02.png) !important;
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="http://images.lefeng.com/images/sitev5/yhj_02.png"); _background:none;}
+
+/*新浪微博*/
+.sina_box{ border:1px solid #dadada;}
+.sina_bangbox{ clear:both; height:50px; margin:1px; border-bottom:1px solid #dadada; background:#F4EEF1 url(http://images.lefeng.com/images/sitev5/index_61.jpg) no-repeat 25px 20px; line-height:50px; padding-left:40px; color:#666; font-size:14px}
+.sina_box p{ clear:both; width:310px; margin:0px auto; line-height:20px; height:30px; padding:20px 0px;}
+.sina_box p a.you{ float:left; margin-left:10px; display:inline; padding-left:20px; padding-top:3px; white-space:nowrap}
+.sina_box p a.sina{ background:url(http://images.lefeng.com/images/tuan/tuanthr_21.jpg) no-repeat left top;}
+.sina_removehead{ height:32px; position:relative; bottom:-1px;}
+.sina_removehead a:link,.sina_removehead a:visited,.sina_removehead a:hover{ text-decoration:underline; color:#b6003f; margin-top:15px; font-family:Tahoma, Geneva, sans-serif}
+.sina_removeheadL{ width:212px; height:29px; padding-top:3px; background:url(http://images.lefeng.com/images/sitev5/sina/sina_09.jpg) no-repeat left top;}
+.sina_removehead h2{ height:29px; color:#000; border-left:1px solid #e6e6e6; border-right:1px solid #e6e6e6; width:210px; background:#fff1fa; font-size:14px; text-align:center; line-height:29px;}
+.sina_removecont{ clear:both; height:70px; padding-left:60px; border:1px solid #e6e6e6; background:#fff1fa url(http://images.lefeng.com/images/sitev5/index_71.gif) no-repeat 45px 15px; line-height:20px; padding-top:10px;}
+.sina_removecont p{ padding-left:26px;}
+.sina_removecontbtn{ width:490px; border:1px solid #e6e6e6; border-top:none; padding-left:88px; padding:15px 0px 15px 88px;}
+.sina_removecontbtn p{ width:435px; padding:15px 0px;}.sina_removecontbtn p span{ width:300px; line-height:22px; color:#333}
+.sina_removecontbtn p span em{ color:#a12145}
+.sub2{ float:right; background:url(http://images.lefeng.com/images/reg/reg_04.jpg); width:100px; height:32px; line-height:32px; color:#FFF; border:none; text-align:center; cursor:pointer; margin-top:10px;}
+.sina_setcont{ clear:both; height:52px; padding-left:20px; border:1px solid #e6e6e6; background:#fff1fa; line-height:20px; padding-top:10px;}
+.sina_setcontbtn{ width:746px; border:1px solid #e6e6e6; border-top:none; padding:0px 1px;}
+.sina_setconthead{ height:27px; background:#fafafa}
+.sina_setconthead li{ float:left; height:27px; line-height:27px; text-align:center; color:#333; width:222px;}
+.sina_setconthead li.right{ width:354px;}
+.sina_setcontinfo{ height:27px; color:#666; padding-left:20px; line-height:27px;}
+.sina_setcontdetail{ width:746px; background:#f7f7f7; margin-bottom:5px;}
+.sina_setcontdetail li{ float:left; width:77px; text-align:center;}
+.sina_setcontdetail li.left{ padding-top:7px;}
+.sina_setcontdetail li.mid{ width:140px;}
+.sina_setcontdetail li.mid input{ float:left; width:89px; height:23px; background:url(http://images.lefeng.com/images/sitev5/sina/sina_16.jpg); cursor:pointer; border:none;}
+.sina_setcontdetail li.mid span{ float:left; width:123px; height:22px; background:url(http://images.lefeng.com/images/sitev5/sina/sina_10.jpg); padding-top:3px; line-height:22px; color:#000}
+.sina_setcontdetail li.right{ width:332px; line-height:27px; color:#000; text-align:left; padding-left:20px;}
+
+
+.complaintWarp{ float:left; width:746px; border:1px solid #dadada; padding:1px;}
+.complaintbg{ clear:both; height:109px; background:url(http://images.lefeng.com/images/sitev5/complaint_01.jpg);}
+.complaintch{ clear:both; height:82px; padding-top:24px; background:url(http://images.lefeng.com/images/sitev5/complaint_02.jpg);}
+.complaintch p.left{ float:left; width:360px; padding-left:25px;}
+.complaintch span{ float:left; display:block; height:25px; line-height:25px; vertical-align:baseline; font-size:14px; color:#333; margin-right:30px;}
+.complaintchright{ float:left; width:360px;}
+.complaintchrightp{ clear:both; border:1px solid #ffe591; margin-top:8px; background:#fffde6 url(http://images.lefeng.com/images/sitev5/complaint_05.jpg) no-repeat 14px 6px; padding:5px 35px; position:relative;}
+.complaintchrightp em{ position:absolute; right:15px; top:8px; cursor:pointer;}
+.complaintch a.ch:link,.complaintch a.ch:visited,.complaintch a.ch:hover{ float:left; width:94px; height:28px; display:block; background:url(http://images.lefeng.com/images/sitev5/complaint_03.jpg); text-align:center; line-height:28px; color:#FFF; margin-right:10px; text-decoration:none;}
+.complaintpro{ clear:both; padding:30px; color:#333; line-height:25px;}
+.complaintpro strong{ display:block;}
+.returnwarp{ float:left; width:746px; background:url(http://images.lefeng.com/images/sitev5/complaint_07.jpg) repeat-x left top; padding-top:10px; clear:both;}
+.returnwarp h2{ clear:both;background:url(http://images.lefeng.com/images/sitev5/complaint_08.jpg) no-repeat 18px 7px; height:25px; line-height:25px; font-size:12px; padding-left:30px;}
+.returnwarpLetter{ clear:both; padding:20px 100px 20px 35px;}
+.returnwarplistBox{ float:left; width:680px; margin-left:35px; display:inline}
+.returnwarplisthead{ clear:both; height:25px; overflow:hidden; background:#e8e7e7; border:1px solid #ccc;}
+.returnwarplisthead span{ float:left; height:25px; display:block; line-height:25px; font-weight:bold; color:#333; padding-left:10px;}
+.returnwarplisthead span.left{ width:79px; border-right:1px solid #ccc;}
+.returnwarplisthead span.center{ width:455px; border-right:1px solid #ccc;}
+.returnwarplisthead span.right{ width:111px;}
+.returnwarplistBox ul{ float:left; clear:both; display:block; width:678px; border:1px solid #ccc; border-bottom:none; border-top:none;}
+.returnwarplistBox ul li{ float:left; display:block; width:678px; border-bottom:1px solid #ccc;}
+.returnwarplistBox ul li.hover{ background:#fdfafc;}
+.returnwarplistBox ul li.on{ border:3px solid #c1006b; margin:-3px; position:relative; z-index:2}
+.returnwarplistBox ul li p{ float:left; display:block; padding-left:10px;}
+.returnwarplistBox ul li p.left{ width:79px; padding-top:40px; color:#265c99}
+.returnwarplistBox ul li p.center{ width:465px; border-left:1px solid #ccc; border-right:1px solid #ccc; padding:10px 0px 10px 0px;}
+.returnwarplistBox ul li p.center span{ float:left; width:70px; height:90px; display:inline; margin-left:6px; text-align:center}
+.returnwarplistBox ul li p.center span a{ display:block;}
+.returnwarplistBox ul li p.center span a img{ width:68px; height:68px; border:1px solid #ccc;}
+.returnwarplistBox ul li p.center span em{ clear:both; display:block; height:15px; line-height:15px; vertical-align:baseline; color:#333; padding-top:3px;}
+.returnwarplistBox ul li p.center span em i{ float:left; font-style:normal; padding-top:3px;}
+.returnwarplistBox ul li p.center span em input{ float:left}
+.returnwarplistBox ul li p.right{ width:111px; padding-top:40px;}
+.returnwarplistsure{ clear:both; padding-bottom:100px; position:relative;  text-align:center; padding-top:15px;}
+.returnwarplistsure div.manu{ width:auto; position:absolute; right:0px; top:0px;}
+.returnAppbox{ float:left; width:746px; clear:both; padding-top:20px;}
+.returnAppbox span.left{ float:left; width:117px; height:25px; line-height:25px; display:block; text-align:right; color:#666; font-size:14px}
+.returnAppbox span.left b{ color:#d00f84; font-weight:normal; padding-right:7px;}
+.returnAppbox span.right{ float:left; width:480px; margin-left:10px; display:inline; line-height:25px; color:#666}
+.returnAppbox span.right i{ float:left; clear:both; display:block; font-style:normal; width:600px;}
+.returnAppbox span.right b.complaintchrightp{ margin-top:5px; padding:0px 25px; background:url(http://images.lefeng.com/images/sitev5/complaint_10.jpg) no-repeat 5px 5px; clear:none; border:1px solid #dedddd; margin-right:5px;}
+.returnAppbox span.right b.complaintchrightp em{ right:5px;}
+.returnAppbox span.right em.left,.returnAppbox span.right em.right{ float:left; cursor:pointer; padding-top:5px;}
+.returnAppboxtext1{ width:400px; height:20px; border:1px solid #7f9db9; margin-right:10px; padding-top:3px;}
+.returnAppboxtext2{ width:158px; height:23px; border:1px solid #7f9db9;}
+.returnAppboxtext3{ width:390px; border:1px solid #7f9db9; font-size:12px; color:#999; height:125px; padding:5px;}
+.returnAppboxi{float:left; clear:both; color:#999; width:auto; font-style:normal; padding-left:125px; padding-top:10px; width:600px;}
+.myApptable{ float:left; margin-left:35px; display:inline; margin-top:20px; width:680px;}
+.myApptablehead{ clear:both; height:25px; overflow:hidden; background:#e8e7e7; border:1px solid #ccc;}
+.myApptablehead span{ float:left; height:25px; border-right:1px solid #ccc; display:block; line-height:25px; font-weight:bold; color:#333; padding-left:10px;}
+.myApptablehead span.bh{ width:68px;}
+.myApptablehead span.lx{ width:69px;}
+.myApptablehead span.bt{ width:198px;}
+.myApptablehead span.sj{ width:106px;}
+.myApptablehead span.zt{ width:74px;}
+.myApptablehead span.cz{ width:97px; border-right:0px solid #CCC;}
+.myApptable ul{ float:left; clear:both; display:block; width:678px; border:1px solid #ccc; border-bottom:none; border-top:none;}
+.myApptable ul li{ float:left; display:block; width:678px; border-bottom:1px solid #ccc; background:url(http://images.lefeng.com/images/sitev5/complaint_21.jpg) repeat-y 0px 0px}
+.myApptable ul li.on{ background:url(http://images.lefeng.com/images/sitev5/complaint_21.jpg) repeat-y -677px 0px}
+.myApptable ul li p{ float:left; display:block; padding:10px; padding-right:0px;}
+.myApptable ul li p.bh{ width:69px; color:#265c99;}
+.myApptable ul li p.lx{ width:70px;}
+.myApptable ul li p.bt{ width:199px;}
+.myApptable ul li p.sj{ width:107px;}
+.myApptable ul li p.zt{ width:75px;}
+.myApptable ul li p.cz{ width:98px;}
+.resultBtnbox{ height:40px; padding-top:20px; padding-left:200px;}
+
+.myAppPointerbox{ position:absolute; left:0px; top:0px; width:366px; height:210px; z-index:101; display:none;}
+.myAppPointerbg{ position:absolute; left:0px; top:0px; width:366px; height:210px; z-index:102; background:url(http://images.lefeng.com/images/sitev5/complaint_22.png) !important;
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="http://images.lefeng.com/images/sitev5/complaint_22.png"); _background:none;}
+.myAppPointercont{ position:absolute; left:0px; top:0px; width:366px; height:210px; z-index:103;}
+.myAppPointercont p.closebox{ clear:both; height:22px; padding-right:10px; padding-top:10px;}
+.myAppPointercont p.closebox a{ float:right;}
+.myAppPointercont p.letterbox{ clear:both; padding:10px 50px; color:#666; line-height:20px;}
+.myAppPointercont p.radionbox{ clear:both; height:22px; padding-left:50px; padding-top:10px;}
+.myAppPointercont p.radionbox span{ float:left; display:block; height:22px; margin-right:10px; display:inline}
+.myAppPointercont p.radionbox em{ float:left; margin-left:5px; display:inline}
+.myAppPointercont p.radionbox input{ float:left;}
+.myAppPointercont p.btnbox{ clear:both; height:24px; padding-top:10px;}
+/*mgm*/
+a.xy_acolor_blue{color:#006699;}
+a.xy_acolor_blue:hover{ text-decoration:none}
+img{border:none;}
+.xy_hytj2{ width:730px; float:left; padding:0px 9px;border: #CCC 1px solid}
+.xy_hytj2 h3.xy_hytjT{ color:#000; line-height:28px;}
+.xy_wdtj_title{height:32px; text-align:left;}
+.xy_wdtj_title li{ float:left; margin-right:10px; line-height:32px; position:relative;}
+.xy_wdtj_title .xy_wdtj_zm{height:32px; width:101px; text-align:center; background:url(http://images.lefeng.com/images/hytj/xy_ckdj_t.jpg) no-repeat; line-height:32px; color:#666666;  position:relative; padding-left:14px;}
+.xy_wdtj_title .xy_wdtj_zm span{ font-size:14px;}
+.xy_wdtj_zm span.span_zuan{ height:15px; width:20px; overflow:hidden; display:block; position:absolute; top:9px; left:7px;}
+.xy_tjhx_xx{width:580px; overflow:hidden; margin:0px auto;}
+.xy_tjhx_xx table{border-collapse: collapse; width:580px; font-size:12px; text-align:center}
+.xy_tjhx_xx table th{ border:#cccccc 1px solid; background:#e8e7e7; font-weight:bolder; height:25px;}
+.xy_tjhx_xx table td{ border:#cccccc 1px solid; height:40px;}
+.xy_tjhx_xx p.xy_wdtj_number{ line-height:28px; color:#666;}
+.xy_tjhx_xx p.xy_wdtj_number span{ padding:0px 8px;}
+.fr{float:right;}
+.xy_zuan_dj{position:absolute;width:284px;margin-left:30px;left:80px;top:0px;background:#FFF; z-index:999; display:none;}
+.xy_zuan_dj p.p_zuantop {float:left; height: 6px;width: 284px;overflow: hidden;background: url(http://images.lefeng.com/images/hytj/xy_zuan_top.gif);}
+.xy_zuan_dj p.p_zuanbottom {height: 5px;width: 284px;background: url(http://images.lefeng.com/images/hytj/xy_zuan_bottom.gif);float: left}
+.xy_zuan_dj ul{border-left:#ffa4de 2px solid;border-right:#ffa4de 2px solid;float:left;width:280px;overflow:hidden}
+.xy_zuan_dj span.zuan_arrow {width:16px;height:24px;background:url(http://images.lefeng.com/images/hytj/xy_zuan_arrow.gif) no-repeat;position: absolute;top:10px;left:-14px;}
+.xy_zuan_dj li{width:277px;height:26px;line-height:26px;cursor:pointer;}
+.xy_zuan_dj li.zuan_dj_bg {background:#ebebeb;}
+.xy_zuan_dj li.zuan_dj_hover{background:url(http://images.lefeng.com/images/hytj/xy_zuan_hover.jpg) no-repeat;}
+.xy_zuan_dj span.zuan_tjhynum{display: block;width: 115px;text-align: center;float: left}
+.xy_zuan_dj span.zuan_djmc {display: block;width: 78px;text-align: center;float: left}
+.xy_zuan_dj span.zuan_djbs{display: block;width: 84px;text-align: center;float: left;}
+.xy_zuan_dj span.zuan_djbs img{padding-top:5px;}
+.xy_zuan_dj span.zuan_djbs img.guan{padding-top:2px;}
+#xy_tjhy_tab { float:left; width:748px; position: relative;}
+#xy_tjhy_tab #xy_tjhy_tabz { float:left; width:715px; padding-left:33px;}
+#xy_tjhy_tab #xy_tjhy_tabz ul.xy_tjhy_tabtitle {width: 650px;padding: 0px 15px;overflow: hidden;height: 30px;}
+.xy_tjhy_tabtitle li {float: left;height: 30px;width: 126px;background:url(http://images.lefeng.com/images/zt/tjhy/xy_tjhy_tabt1.jpg) no-repeat bottom;line-height: 30px;text-align: center;font-size: 12px;color: #FFFFFF;cursor: pointer;overflow: hidden}
+#xy_tjhy_tabz li.xy_tabhover {background:url(http://images.lefeng.com/images/zt/tjhy/xy_tjhy_tabt.jpg) no-repeat bottom;color: #ca1549;height: 30px;line-height: 40px; +line-height: 30px;float: left;overflow: hidden}
+#xy_tjhy_tabz #xy_tjhy_tabcon {width: 680px;border: #f6c3cb 1px solid;background: #FFFFFF;float: left;overflow: hidden; padding-bottom:}
+#xy_tjhy_tabz #xy_tjhy_tabcon ul {padding: 20px 30px;display:none; min-height:210px;}
+#xy_tjhy_tabcon .xy_tjhy_kkxc li {line-height: 24px;}
+#xy_tjhy_tabcon .xy_tjhy_yjtz li {line-height: 24px;margin-bottom: 3px;}
+input.yjtj_input01 {width:145px;}
+input.yjtj_input02 {width:380px;}
+input.yjtj_input03 {width:380px; height:70px;}
+.yjtj_input03{ font-size:12px; width:400px;}
+input.yjtj_input04 {text-align:right;background: url(http://images.lefeng.com/images/zt/tjhy/tjhy_btn.jpg) no-repeat;border: none;height: 35px;width: 98px;float:right; cursor:pointer;}
+input.yjtj_input09 {text-align:right;background: url(http://images.lefeng.com/images/zt/tjhy/tjhy_btn02.jpg) no-repeat;border: none;height: 35px;width: 98px;float:right; cursor:pointer;}
+input.yjtj_input05 {width: 190px;}
+input.yjtj_input06 {width: 219px;height: 79px;}
+.xy_tjhy_dxtz .xy_tjhy_dxtz01 {float: left;width: 280px;}
+.xy_tjhy_dxtz02 {float: left;text-align: left;}
+.xy_tjhy_dxtz01 li {float: left;width: 280px;margin-bottom: 10px;}
+.xy_tjhy_dxtz02 li {margin-bottom: 10px;}
+.xy_tjhy_dxtz .xy_tjhy_dxtz02 {float: right;width: 283px;}
+.xy_tjhy_qqtz li {line-height: 24px;margin-bottom: 3px;}
+.xy_tjhy_qqtz li a {display: block;float: left;width: 91px;height: 21px;padding-left: 20px;overflow: hidden;background: url(http://images.lefeng.com/images/zt/tjhy/tjhy_link.jpg) no-repeat;color: #000000}
+.xy_tjhy_qqtz li a.kxfx {background-position: 0px -1px;}
+.xy_tjhy_qqtz li a.rrfx {background-position: 0px -39px;}
+.xy_tjhy_qqtz li a.dbfx {background-position: 0px -80px;}
+.xy_tjhy_qqtz li a.wbfx {background-position: 0px -120px;}
+.tjhy_color {color: #6d6d6d;}
+
+.mgm_tabBox{ clear:both; height:29px; font-size:14px; line-height:29px; border:1px solid #cfcfcf; border-bottom:none; background:url(http://images.lefeng.com/images/hytj/mgm_01.jpg);}
+.mgm_tabBox b{ float:left; display:block; width:186px; height:28px; line-height:28px; font-size:14px; text-align:center; border-right:1px solid #cfcfcf; font-weight:normal; cursor:pointer; border-bottom:1px solid #cfcfcf;}
+.mgm_tabBox b.on{ font-weight:bold; background:url(http://images.lefeng.com/images/hytj/mgm_02.jpg); border-bottom:none;}
+.mgm_contBox{ float:left; width:748px; border:1px solid #cfcfcf; border-top:none; padding:20px 0px;}
+.mgm_contBox dl{ float:left; width:748px;}
+.mgm_contstepbox{ height:32px; background:url(http://images.lefeng.com/images/hytj/mgm_03.jpg) no-repeat; margin:10px 40px;}
+.mgm_contBox dl .xy_tip{ padding:0px 40px;}
+.mgm_contBox dl .xy_tjzg{ padding:0px 40px;}
+.mgm_tuitit{ clear:both; height:20px; background:url(http://images.lefeng.com/images/hytj/mgm_04.jpg) no-repeat; font-size:14px; padding-left:151px; color:#000; line-height:20px; margin:10px 15px;}
+.mgm_tuititsec{ background:url(http://images.lefeng.com/images/hytj/mgm_06.jpg) no-repeat;}
+.mgm_tuicont{ clear:both; height:125px; margin:0px 15px; background:url(http://images.lefeng.com/images/hytj/mgm_05.jpg) no-repeat;}
+.mgm_tuicont a:link,.mgm_tuicont a:visited,.mgm_tuicont a:hover{ float:left; width:119px; height:62px; background:url(about:_blank); display:block;}
+.mgm_tuicontsec{ height:128px; background:url(http://images.lefeng.com/images/hytj/mgm_07.jpg) no-repeat;}
+.mgm_tuicontsec a:link,.mgm_tuicontsec a:visited,.mgm_tuicontsec a:hover{ float:left; width:143px; height:62px; background:url(about:_blank); display:block;}
+.mgm_btnbox{ clear:both; height:27px; padding-top:10px; padding-right:15px;}
+a.mgm_btnbg:link,a.mgm_btnbg:visited,a.mgm_btnbg:hover{ display:block; width:100px; height:27px; background:url(http://images.lefeng.com/images/hytj/mgm_08.jpg); color:#000; line-height:27px; text-align:center}
+.mgm_beituitit{ clear:both; height:36px; background:url(http://images.lefeng.com/images/hytj/mgm_09.jpg) no-repeat; margin:20px 60px;}
+.mgm_beituicontbox{ clear:both; height:194px; padding-left:20px;}
+.mgm_beituicontbox p{ float:left; margin-left:30px; display:inline; width:312px; height:194px; background:url(http://images.lefeng.com/images/hytj/mgm_10.jpg) no-repeat;}
+.mgm_beituicontbox p.right{ background:url(http://images.lefeng.com/images/hytj/mgm_11.jpg) no-repeat;}
+.mgm_beituicontbox p span{ float:left; clear:both; width:148px; color:#5b5b5b; padding-left:28px;}
+.mgm_beituicontbox p span.top{padding-top:102px;}
+.mgm_beituicontbox p span.bottom{ padding-top:10px;}
+.mgm_zigetit{ color:#000; padding-left:15px; clear:both; height:20px; font-size:14px;}
+.mgm_zigestep{ clear:both; height:18px; margin:10px 15px; background:url(http://images.lefeng.com/images/hytj/mgm_12.jpg) no-repeat;}
+.mgm_zigecont{ clear:both; height:96px; display:block; width:748px; overflow:hidden;}
+.mgm_zigecont p{ float:left; width:337px; height:96px; background:url(http://images.lefeng.com/images/hytj/mgm_13.jpg); margin-left:15px; display:inline}
+.mgm_zigecont p span.left{ display:block; height:18px; line-height:18px; text-align:center; padding-top:20px;}
+.mgm_zigecont p span em{ color:#ea3887;}
+.mgm_zigecont p span i{ display:block; height:27px; width:100px; background:url(http://images.lefeng.com/images/hytj/mgm_15.jpg) no-repeat 7px 5px; font-style:normal; cursor:pointer}
+.mgm_zigecont p span i.right{ background:url(http://images.lefeng.com/images/hytj/mgm_16.jpg) no-repeat 7px 5px;}
+.mgm_zigecont p span.leftb{ display:block; height:27px; padding-left:120px; padding-top:15px;}
+.mgm_zigecont p span.right{ display:block; height:36px; line-height:18px; text-align:center; padding-top:10px;}
+.mgm_zigecont p span.rightb{ display:block; height:27px; padding-left:120px; padding-top:8px;}
+.mgm_zigecont b{ float:left; width:16px; height:20px; background:url(http://images.lefeng.com/images/hytj/mgm_14.jpg) no-repeat; margin-top:40px; margin-left:15px; display:inline}
+.mgm_zigecont b.zige{ width:20px; margin-top:50px; background:url(http://images.lefeng.com/images/hytj/mgm_19.jpg) no-repeat;}
+.mgm_zigecontsec{ clear:both; height:116px;}
+.mgm_zigecontsec p{ height:116px; background:url(http://images.lefeng.com/images/hytj/mgm_17.jpg);}
+.mgm_zigecontsec p span.left{ float:left; width:141px; height:17px; padding:0px; background:url(http://images.lefeng.com/images/hytj/mgm_18.jpg); margin-top:7px; margin-left:26px; display:inline}
+.mgm_zigecontsec p span.leftb{ float:left; width:260px; height:36px; line-height:18px; padding-left:20px; padding-top:30px;}
+.mgm_zigecontsec p span.right{float:left; width:132px; height:17px; padding:0px; background:url(http://images.lefeng.com/images/hytj/mgm_20.jpg); margin-top:7px; margin-left:26px; display:inline}
+.mgm_tabBoxgl{ padding-left:10px; border-bottom:1px solid #cfcfcf;}
+.mgm_tabBox2{ float:left; clear:both; padding:5px 30px; width:688px;}
+.mgm_tabBox2 a:link,.mgm_tabBox2 a:visited,.mgm_tabBox2 a:hover{ float:left; margin:5px 10px; height:25px; line-height:25px; font-weight:bold; white-space:nowrap}
+a.mgmlve1:link,a.mgmlve1:visited,a.mgmlve1:hover{ font-size:18px; color:#fb6030;}
+a.mgmlve2:link,a.mgmlve2:visited,a.mgmlve2:hover{ font-size:24px; color:#eb448e;}
+a.mgmlve3:link,a.mgmlve3:visited,a.mgmlve3:hover{ font-size:14px; color:#c3700e;}
+a.mgmlve4:link,a.mgmlve4:visited,a.mgmlve4:hover{ font-size:18px; color:#f7c93c;}
+a.mgmlve5:link,a.mgmlve5:visited,a.mgmlve5:hover{ font-size:14px; color:#3a5fa9;}
+a.mgmlve6:link,a.mgmlve6:visited,a.mgmlve6:hover{ font-size:24px; color:#53da3f;}
+a.mgmlve7:link,a.mgmlve7:visited,a.mgmlve7:hover{ font-size:18px; color:#00aed9;}
+.warning{clear:both;margin:5px 0px 0 0;padding:8px;border: 1px solid #ccc;background:#ffffcc;position:relative; line-height:22px;}
+.warning a.x{position:absolute;right:8px;top:4px;color:red;_right:12px;font-family:Arial;}
+
+/*20111109*/
+/*.orderStateBox {
+    color: #303030;
+    position: relative;
+}
+.orderStateCon {
+    display: none;
+    position: absolute;
+    right: 80px;
+    top: -13px;
+    width: 340px;
+}
+.orderStateCon h2 {
+    border-bottom: 1px solid #BFBFBE;
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+    margin-bottom: 5px;
+}
+.orderStateCon h2 strong {
+    font-weight: bold;
+}
+.orderStateBorder {
+    background-color: #FFFFFF;
+    border-color: #BFBFBF;
+    border-style: solid;
+    border-width: 1px 2px 2px 1px;
+    display: inline;
+    float: left;
+    overflow: hidden;
+    padding: 10px;
+    width: 310px;
+}
+.squearIco {
+    background: url("http://images.lefeng.com/images/sitev5/orderDetail_03.png") no-repeat scroll right top transparent;
+    display: inline;
+    float: left;
+    height: 54px;
+    position: absolute;
+    right: -3px;
+    width: 12px;
+}
+.DealTime {
+    display: block;
+    float: left;
+    text-align: left;
+    width: 126px;
+}
+.DealMsg {
+    display: block;
+    float: left;
+    text-align: left;
+    width: 163px;
+}
+.orderStateBorder li {
+    display: block;
+    line-height: 22px;
+}
+.orderStateBorder ul {
+    overflow: hidden;
+}
+.aboutOrderMsg {
+    border-top: 1px dotted #CCCCCC;
+    clear: both;
+    overflow: hidden;
+    padding-top: 5px;
+    text-align: left;
+}
+.aboutOrderMsg p {
+    line-height: 22px;
+}
+.aboutOrderMsg p a {
+    color: #026996;
+    text-decoration: underline;
+}
+.orderStateScroll {
+    max-height: 400px;
+	_height:expression((document.documentElement.clientHeight||document.body.clientHeight)<1000?"1000px":"")
+    min-height: 150px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.orderStatehover{ z-index:12;}
+.orderStatehover .orderStateCon {
+    display: block;
+}
+*/
+
+/*2011-1209增加样式*/
+
+.myNewL{ width:188px; border:1px solid #ccc;}
+.myNewLtit{ height:30px; background:url(http://images.lefeng.com/images/sitev5/mylafasov2_01.jpg); font-size:15px; line-height:30px; color:#FFF; padding-left:34px;}
+.myNewL h3{ height:29px;font-size:12px; color:#000; line-height:29px; padding-left:20px; clear:both;}
+.myNewL h3 b{display:block;float:left; margin-right:5px; text-indent:-9999px;width:0;height:0;border:4px solid #fafafa;border-left-color:#b3145e;margin-top:10px;overflow:hidden;}
+.myNewL ul{ float:left; width:188px; clear:both; padding:6px 0px;}
+.myNewL li{ float:left; width:188px; height:20px; line-height:20px;}
+.myNewL li a:link,.myNewL li a:visited{float:left; width:154px; height:20px; padding-left:34px; line-height:20px; color:#333}
+.myNewL li a:hover{float:left; width:154px; height:20px; padding-left:34px; line-height:20px; background:#f5ccd6; color:#cc0033}
+.myNewL li.on{ background:#f5ccd6}
+.myNewL li.on a:link,.myNewLb li.on a:visited,.myNewL li.on a:hover{ color:#cc0033}
+
+.myNewR{border:1px solid #DADADA;padding:20px 16px 50px;width: 716px;line-height:24px; display:inline; overflow:hidden;}
+.myNewR h2{color:#b6003f; font-size:14px;}
+.myNewR .reback{ padding:40px 5px 0 30px; width:681px;}
+.myNewR .reback a{ background:url(http://images.lefeng.com/images/sitev5/ddpj01.gif) no-repeat left center; color:#ec0089; font-size:14px; padding-left:8px; margin-right:35px;}
+
+.myNewRdd{border:1px solid #DADADA;padding:0px 11px 50px;width:726px; line-height:24px;}
+.myNewRdd h2{font-size:14px; padding:10px 7px; }
+.myNewRdd_xq{width:726px; overflow:hidden;border-top:1px solid #d8d8d8; clear:both}
+.myNewRdd_xq p.ddje{color:#333;padding:0 7px 10px}
+.myNewRdd_xq p.ddje em{font:normal 14px Arial;}
+.myNewRdd_xq p.ddje span{ margin-left:50px;}
+.myNewRdd_xq .ddpj{clear:both;position:relative; width:600px;}
+.myNewRdd_xq .ddpj b{background: url("http://images.lefeng.com/images/clothing/sqxq_xx.jpg") no-repeat;height: 14px;margin: 5px 5px 0 0;overflow: hidden;width:15px;float:left; cursor:pointer;}
+.myNewRdd_xq .ddpj b.bai {background: url("http://images.lefeng.com/images/clothing/sqxq_xx.jpg") no-repeat  -16px 0;}
+.myNewRdd_xq .ddpj em.number{ color:#fc366b;font:bold 14px Arial;font: bold 14px Arial;left: 170px;padding: 3px 4px 0 15px;position: absolute;top: -2px;}
+.myNewRdd_xq .ddpj em,.myNewRdd_xq .suggest em{color:#666;padding:0 20px; float:left}
+.myNewRdd_xq .ddpj span{width:430px;}
+.myNewRdd_xq .suggest span{float:left; width:430px; padding-top:15px;}
+.myNewRdd_xq .suggest .advic{width:400px; border:1px solid #aaa7a7; padding:5px;height:70px; font-size:12px;}
+.myNewRdd_xq .tjbtn{ background:url(http://images.lefeng.com/images/sitev5/ddtj.gif) no-repeat; width:87px; height:34px; border:none; cursor:pointer; margin:25px 0}
+
+.myNewRdd_xq .pj_top{ background:url(http://images.lefeng.com/images/sitev5/ddpj02.gif) no-repeat; height:3px; overflow:hidden}
+.myNewRdd_xq .pj_bot{ background:url(http://images.lefeng.com/images/sitev5/ddpj03.gif) no-repeat; height:3px;}
+.myNewRdd_xq .pj_con{ background:#faf1f4;border-left:1px solid #e1d2d7;border-right:1px solid #e1d2d7; width:724px; line-height:20px;}
+.pj_con dl{ background:url(http://images.lefeng.com/images/sitev5/ddpj04.gif) repeat-x left bottom; width:726px; padding:15px 0; overflow:hidden;}
+.pj_con dl.last{background:none;}
+.pj_con dl dt{ width:255px; float:left}
+.pj_con dl dt a.pic{width:120px; text-align:center; display:inline-block; float:left}
+.pj_con dl dt a img{ width:90px; height:90px;}
+.pj_con dl dt span{width:135px; color:#000}
+.pj_con dl dd{ float:left; padding:0 31px 0 60px; width:380px;}
+.pj_con dl dd p input{margin:-1px 3px -1px 10px;}
+.pj_con dl dd .pjqy{ padding-top:10px;}
+.pj_con dl dd .pjqy .pjtext{width:280px; border:1px solid #aaa7a7; padding:5px;margin-left:10px; height:50px; font-size:12px;}
+
+.more3{display:none;color:#000;position:absolute;width:149px;top:19px;left:90px; z-index:100; overflow:hidden}
+.moretop{background:url(http://images.lefeng.com/images/sitev5/ddpj05t.gif) no-repeat; height:9px;width:149px; overflow:hidden}
+.morebot{background:url(http://images.lefeng.com/images/sitev5/ddpj05b.gif) no-repeat; height:4px;width:149px;}
+.morecon{border-left:1px solid #d3d3d3;border-right:1px solid #d3d3d3;width:133px; padding:0 7px;line-height:16px;}
+.more3 .morecon em{color:#fc366b; padding:0 8px 0 5px;}
+
+
+/*1219add*/
+
+/*弹窗*/
+.serbrandwindow{ position:absolute; left:0px; top:0px; z-index:101; width:460px; height:230px; display:none; background:url(http://images.lefeng.com/images/sitev5/serverPop.png);}
+.brandwindowinT{ width:454px; height:220px; overflow:hidden;}
+.brandwindowin{ width:442px; height:212px; margin-left:4px; margin-top:4px; display:inline; overflow:hidden}
+.brandwindowin p.closebtn{ float:left; width:442px; padding-right:6px; padding-top:6px; height:21px;}
+.brandwindowcontSer{width:400px; clear:both; background:#fff url(http://images.lefeng.com/images/sitev5/news_64.jpg) no-repeat 35px 15px; padding-left:29px; padding-top:5px;}
+.brandwindowcontSer p{ line-height:25px;}
+.brandwindowcontT{ border-bottom:1px solid #d9d9d9;font-size:14px; padding-left:50px; padding-bottom:10px;}
+.brandwindowcontB{ padding-left:50px;}
+.brandwindowcontB p.top{ clear:both; padding:10px 0px;}
+#bg{background:#CCC; filter:alpha(opacity=80);opacity:0.8;width:100%;position:absolute;left:0px;top:0px;display:none;z-index:100;}
+#xy_prodetail_scroll{float:left; width: 460px; margin-left:28px; display:inline; overflow:hidden;}
+.xy_tzyhboxl_list_none{ float:left; width:160px; text-align:center;display:inline; padding-top:15px; line-height:14px; background:none;}
+.xy_tzyhboxl_list span{ float:left; width:135px; height:48px; overflow:hidden;}
+#xy_prodetail_prev{ float:left; display: block; position:absolute; top:45px; cursor:pointer; left:3px;}
+#xy_prodetail_next{ float:right; display: block;position:absolute; top:45px; cursor:pointer; right:3px;}
+.xy_prodetail_title strong{width:auto; line-height:33px;}
+.xy_prodetail_title span {font-size:12px; font-weight:normal; padding-left:10px;}
+.xy_tzyhbox{overflow:hidden; margin-top:5px;position:relative}
+.xy_detail_scoll{float:left; width:1600px;}
+.xy_detail_scoll li{float:left; width:160px; text-align:center;  display:inline; padding-top:15px; line-height:14px; background:url(http://images.lefeng.com/images/tzyh_lbgs.jpg) right 45px no-repeat;}
+.xy_detail_scoll li.nonebor{ background:none;}
+.ServerMsg{ padding-bottom:12px;}
+.ServerMsg p{ font-size:14px; color:#c20372; padding-left:100px; clear:both; line-height:25px;}
+
+/*2011-12-21修改myjifen*/
+.faml{ font-family:"微软雅黑"; font-size:14px; color:#e02061}
+.marl{margin-left:30px; color:#666}
+.mylafasoV3_head .blue a,.blue a,{color:#266cad}
+.mylafasoV3_head{ width:580px;color:#333;}
+.mylafasoV3_head .box1{line-height:28px;}
+.mylafasoV3_head .box1 img{ float:left;}
+.mylafasoV3_head .box1 span{float:left;display:inline}
+.mylafasoV3_head .box1 b{font-size:14px;font-family:"微软雅黑"}
+.mylafasoV3_huaf{padding-bottom:20px; line-height:25px;}
+.mylafasoV3_huaf a:link,.mylafasoV3_huaf a:visited{color:#266cad;font-size:14px;}
+.mylafasoV3_huaf a,.mylafasoV3_huaf span{ margin-right:40px;}
+.mylafasoV2R table.basictable3{width:714px;}
+.basictable3{border:1px solid #eaeaea;border-bottom:none;margin:0px auto;border-collapse:collapse; clear:both}
+.basictable3 tr:hover{ background:#f7f7f7; cursor:pointer;}
+.basictable3 td{text-align:center; color:#000; border-right:0;border-bottom:1px solid #eaeaea; padding:5px;}
+.basictable3 .tr1 td,.basictable3 .tr1 td:hover{background:url(http://images.lefeng.com/images/sitev5/mylafasov3_03.gif) repeat;height:31px; padding:0;font-size:14px;}
+.basictable3 .tr2:hover{background:none; cursor:auto}
+
+.mylafasoV3_Tab{width:100%;height:30px; position:relative;}
+.mylafasoV3_Tab ul{position:absolute; top:1px; left:0}
+.mylafasoV3_Tab li{dsplay:inline;float:left;margin-right:10px;border:1px solid #eaeaea;border-bottom:0px;height:29px;line-height:29px;padding:1px 25px 0px;cursor:pointer; font-size:14px;}
+.mylafasoV3_Tab li.on{border-top:2px solid #d90351;padding:0px 25px 0px;height:28px; background:#f7f7f7;font-weight:bold;}
+select{border:1px solid #a5acb2;}
+
+
+.blk_18{overflow:hidden; zoom:1; font-size:9pt;width:714px;margin-top:8px; line-height:18px;}
+.blk_18 .pcont {width:652px; float:left; overflow:hidden;padding:0 5px; }
+.blk_18 .ScrCont {width:65200px; zoom:1; margin-left:-5px; }
+.blk_18 #List1_1,.blk_18 #List2_1{float:left; }
+.blk_18 .LeftBotton, .blk_18 .RightBotton {width:15px; height:74px; float:left; background:url(http://images.lefeng.com/images/sitev5/mylafasov3_06.gif) no-repeat; }
+.blk_18 .LeftBotton {background-position: 0 0; margin:50px 5px 0; }
+.blk_18 .RightBotton { background-position: 0 -100px; margin:50px 1px 10px 5px; }
+.blk_18 .LeftBotton:hover { background-position: -20px 0; }
+.blk_18 .RightBotton:hover { background-position: -20px -100px; }
+.blk_18 .pl{float:left;text-align:left;width:160px;overflow:hidden;margin:6px 3px 1px;}
+.blk_18 .pl p{color:#ec0089;font-size:12px; text-align:center}
+.blk_18 .pl img {display:block;cursor:pointer;width:158px;border:1px solid #f3f3f3; height:158px;}
+.blk_18 .pl:hover{ color:#333;}
+
+
+.session_box{ color:#FF0000; margin-left:10px; line-height:25px;}
+.returnAppbox span.right{ width:520px;}
+.returnAppboxtext1{ margin-right:0px;}
+
+/*20120426add代金券*/
+.vouchersR{ width:768px; border:1px solid #dadada; clear:both; padding-bottom:20px;}
+.vouchers_h2{font-size:14px;text-align:left; text-indent:15px;height:35px; line-height:35px; font-weight:bold; color:#666; font-weight:bold;}
+.vouchers_h2 span{ padding-right:20px;}
+.vouchers_h2 a{ font-weight:normal; font-size:12px;}
+.vouchersMsg{ color:#555; padding:8px 40px 8px 8px; overflow:hidden; margin-left:15px; display:inline; float:left;}
+.vouchersMsg span{ display: block; line-height:22px; font-weight:bold; color:#666;}
+.vouchersMsg span.vouchersMsgTxt{ width:590px; font-weight:normal;}
+
+.djyh{ clear:both; padding:0 20px; zoom:1;}
+.djyh .tab_brandHead{ height:33px; padding-left:10px; margin-bottom:10px;background:url(http://img1.imglefeng.com/images/sitev5/line.gif) left bottom repeat-x; }
+.djyh .tab_brandHead span{ float:right; padding-top:2px;}
+.djyh .tab_brandHead span a{ color:#0086CD; font-size:14px;}
+.djyh .tab_brandHead span a:hover{ text-decoration:underline;}
+.djyh b{ float:left; height:33px; width:99px;background:url(http://img1.imglefeng.com/images/sitev5/tag2.gif) no-repeat 0px 0px; margin-left:5px; cursor:pointer; line-height:33px; text-align:center;}
+.djyh b.on{ background:url(http://img1.imglefeng.com/images/sitev5/tag1.gif) no-repeat 0px 0px;font-weight:bold; color:#953B00;  }
+/*---20121023modify----*/
+.djyh .tabaddborder_brandHead{ height:30px; margin:15px 10px 0px; padding-left:0px; border-bottom:1px solid #ccc;}
+.vouchersR .basictable1 td img{ display:block;}
+
+.vouchersR .basictable1{margin:0 auto; width:99%; background-color:#fff;}
+.vouchersR .basictable1margintop{margin-top:0;}
+.vouchersR .basictable1 tr{ border-color:#ddd;}
+.vouchersR .basictable1 td{padding:10px;font-size:12px;border:1px solid #ddd;text-align:left; border-color:#ddd; background:#fff;border-collapse:collapse;}
+.table_tr1{background:#f0f0f0;}
+.vouchersR .basictable1 .table_td1{ padding:0px 10px; padding:0px 9px\0; border:0px; height:33px; font-weight:normal; background:none; border-right:1px solid #ddd; text-align:left; color:#333; background:#f0f0f0;}
+.vouchersR .basictable1 .vertical{vertical-align:top;}
+.vHelpMsg{ background:url(http://img1.imglefeng.com/images/sitev5/vouchersIco.jpg) no-repeat -203px 0px; width:10px; height:12px; display:inline-block; *display:inline !important; position:relative; top:2px; left:2px; cursor:pointer;_display:inline;zoom:1;}
+.vHelpDetail{ position:absolute; top:-70px; left:25px; width:252px; display:none;}
+.vHelpTop{ background:url(http://img1.imglefeng.com/images/sitev5/vouchersIco.png) no-repeat -15px -46px; height:15px; width:252px; font-size:15px; line-height:15px; overflow:hidden;}
+.vHelpCon{ background:url(http://img1.imglefeng.com/images/sitev5/vhelpBg.png) repeat-y; padding-right:5px; float:left; overflow:hidden; width:247px;}
+.vHelpConBg{ background:url(http://img1.imglefeng.com/images/sitev5/vHelpConBg.jpg) no-repeat right bottom;padding: 0px 25px 0px 20px; overflow:hidden; min-height:80px;_height:80px; zoom:1;}
+.vHelpConBg p{ line-height:18px; margin-top:2px;}
+.vHelpBottom{width:252px; background:url(http://img1.imglefeng.com/images/sitev5/vouchersIco.png) no-repeat -15px -150px; height:8px; font-size:8px; line-height:8px; overflow:hidden;}
+.vHelpTip{ background:url(http://img1.imglefeng.com/images/sitev5/vouchersIco.png) no-repeat 0px -108px; display:block; position:absolute; top:60px; left:-15px; width:20px; height:20px;}
+.mylafasoV2R table td{ padding:4px; color:#333;}
+.wordBreak{ word-wrap:break-word; word-break:normal;  display:block;}
+
+/*我的订单2012-04-28add*/
+.userOrderState{ height:35px; overflow:hidden; padding-left:15px;}
+.userOrderState select{ border:1px solid #9c9c9c; height:20px; line-height:20px; margin-top:5px;}
+
+/*订单状态2012-04-28add*/
+/*订单详细区域*/
+.orderDetailArea{ border:1px solid #dadada; background:#fffdf1; padding:10px 0 20px 15px; text-align:left; overflow:hidden; zoom:1;}
+.orderDetailArea h3{ font-size:14px; font-weight:bold; color:#333; clear:both; overflow:hidden; height:30px;}
+.orderDetailArea h3 span{ display:inline; float:left; height:30px; line-height:30px;}
+.osStateTitle{ margin-left:37px;}
+.osPayBtn{margin-left:10px;}
+.osTipMsg{ color:#666; line-height:18px; margin-top:10px; display:inline; float:left;}
+.osTipMsg a{ font-weight:bold; color:#0086cd;}
+.orderDetailArea h3 span.disableOrder{ display:inline; float:right; overflow:hidden;}
+.orderDetailArea h3 span.disableOrder a{ font-weight:normal; color:#266cad;}
+.osBarCon{ overflow:hidden; clear:both;}
+.osBararea{ display:inline; float:left; padding-left:22px; margin-top:22px;}
+.osBararea span{ display:inline; float:left; margin-left:7px;}
+.orangeDot{ background:url(../images/vouchersIco.png) no-repeat 0px -178px; width:23px; height:23px;}
+.greyDot{ background:url(../images/vouchersIco.png) no-repeat -173px -179px; width:21px; height:21px;}
+.orangeBar{ background:url(../images/vouchersIco.png) no-repeat -24px -179px; width:151px; height:21px;}
+.greyBar{ background:url(../images/vouchersIco.png) no-repeat -196px -179px; width:151px; height:21px;}
+.osBarDetail{ display:inline; float:left; padding-left:10px;}
+.osBarDetail li{ display:inline; float:left; width:65px; margin-right:120px; text-align:center;}
+.osBarDetail li span{ color:#999;}
+/*订单追踪*/
+.osTrackArea{ border:1px solid #dadada; text-align:left; padding:10px 15px 20px; overflow:hidden; zoom:1;}
+.osTrackArea h3{ height:30px; line-height:30px; color:#333; font-weight:bold; font-size:14px;}
+.osTrackDetail{ color:#666; line-height:24px; padding:0px 40px 10px 22px; overflow:hidden; clear:both; zoom:1;}
+.osTrackDetail p span{ display:inline; float:left; padding-right:23px;}
+.osTrackDetail p a{ display:inline; float:right;}
+.biaoge{ clear:both; overflow:hidden; font-size:12px; }
+.biaoge table{border-left:1px solid #e5e5e5; border-top:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; margin-left:17px;}
+.biaoge tbody{ font-size:12px;}
+.biaoge th  { border-right:1px solid #E5E5E5; border-bottom:1px dotted #e5e5e5; height:30px; line-height:30px; background-color:#F1F1F1; color:#333; text-indent:10px;}
+.biaoge th b{ font-weight:bold;}
+.biaoge td  { border-right:1px solid #E5E5E5; border-bottom:1px dotted #e5e5e5; color:#676767; padding-left:10px; font-size:12px;}
+/*收货人信息 订货人信息*/
+.osDetailBox{ border: 1px solid #DADADA; padding:0px 0px 60px;}
+.osDetailBox h3{ font-size:14px; font-weight:bold; margin-top:16px;}
+.osDetailBox h3 .btnGreen{ font-weight:normal; font-size:12px; cursor:pointer; color:#0087CB;}
+.osMsgBoxArea{ padding:0px 16px 14px; overflow:hidden; zoom:1;}
+.osMsgBoxArea .formtable1{ margin-top:12px;}
+.osMsgBoxArea input{height:21px; border:1px solid #9c9c9c; line-height:21px; display:inline;}
+.inputw178{ width:178px; }
+.input58{ width:58px;}
+.input118{ width:118px;}
+.input318{ width:318px;}
+.osMainPru{ line-height:18px;}
+.osMainPru a:link,.osMainPru a:visited,.osMainPru a:hover,.osMainPru a:active{ color:#666;}
+.osPresentPru{ color:#666; line-height:18px;}
+.osDetailBox .basictable1{ border-bottom:1px solid #ccc;}
+.osDetailBox .basictable1 .osPresentPru a:link,.osDetailBox .basictable1 .osPresentPru a:visited,.osDetailBox .basictable1 .osPresentPru a:hover,.osDetailBox .basictable1 .osPresentPru a:active{ color:#999;}
+.osDetailBox .basictable1 td,.osDetailBox .basictable1 td,.osDetailBox .basictable1 td,.osDetailBox .basictable1 td{ padding:5px 10px; border-bottom:1px dotted #ccc;}
+.osDetailBox .basictable1 td a:link,.osDetailBox .basictable1 td a:visited,.osDetailBox .basictable1 td a:hover,.osDetailBox .basictable1 td a:active{color:#666;}
+.downbasictable1{ padding:5px;}
+.downbasictable1  span.NoneWeight{ font-weight:normal;}
+.ostotalPrice{ text-align:right; overflow:hidden; zoom:1;clear:both;}
+.ostotalPrice p{ border-top:1px solid #c3c3c3; width:330px; display:inline; font-size:14px; font-weight:bold; line-height:30px; height:30px; float:right;}
+.ostotalPrice p span{ font-family:Tahoma, Geneva, sans-serif; color:#963C00; font-size:18px; font-weight:normal;}
+.ostotalPrice p span em{ font-family:Microsoft YaHei; font-size:14px; font-weight:bold;}
+.osMsgBoxArea .osDeliveryBtn{ background:url(http://img1.imglefeng.com/images/sitev5/peisong.jpg) 0 0 no-repeat; width:100px; height:28px; display:inline; border:0px; cursor:pointer;}
+.osMsgBoxArea .osDeliveryBtn:hover{ background-position:0 -29px;}
+.osMsgBoxArea .oscancelBtn{ background:url(http://img1.imglefeng.com/images/sitev5/peisong.jpg) 0 -116px no-repeat; height:28px; width:100px; display:inline; border:0px; cursor:pointer;}
+.osMsgBoxArea .oscancelBtn:hover{ background-position:0 -145px;}
+.osMsgBoxArea .osPreserveBtn{ background:url(http://img1.imglefeng.com/images/sitev5/peisong.jpg) 0 -58px no-repeat; height:28px; width:100px; display:inline; border:0px; cursor:pointer;}
+.osMsgBoxArea .osPreserveBtn:hover{ background-position:0 -87px;}
+.osMsgBoxArea .formtdright select{ width:80px; display:inline; border:1px solid #9c9c9c; height:20px; line-height:20px;}
+.osMsgBoxArea2{ padding:0px 16px;}
+.formtable1 .valignm{ vertical-align:middle;}
+.shippingmethodtable input{ display:inline; float:left; height:15px; line-height:15px; width:15px; border:0px; margin-top:-1px;}
+.shippingmethodtable input.CashPosNone{ float:none;}
+.shippingmethodtable  em{ display:inline; float:left; margin-left:10px;}
+.mylafasoV2R table td.padding0{ padding:0px;}
+.billTitle{ height:18px; line-height:18px;}
+.billTitle input{ width:15px; height:15px; line-height:15px; display:inline; float:left; border:0px; margin-top:1px;}
+.billTitle em{ display:inline; float:left; margin-left:5px;}
+.Cfe0000{ color:#fe0000;}
+.osdivision{ border-bottom:1px solid #dadada; height:0px;overflow:hidden; font-size:0px; line-height:0px;}
+
+.rightBox1{ width:740px; padding:0px 0px 0px 16px;/* overflow:hidden;*/}
+.osMsgBoxArea2 .basictable1 .table_td1{ background:#f7f7f7;}
+.osMsgBoxArea2 h3 .rightBoxh2right{ font-size:12px; font-weight:normal; float:right;color:#963C00;}
+.howuse { padding:0 0 10px 5px;}
+.howuse a:link{ color:#0086CD;}
+.howuse a:hover{ text-decoration:underline;}
+.howuse2 { padding:10px 0 0 10px;}
+.howuse2 a:link{ color:#0086CD;}
+.howuse2 a:hover{ text-decoration:underline;}
+
+/*   20121219 left    
+.myWrap .myL h1,.myWrap .myL h3{background:url(http://img3.imglefeng.com/images/mjm/my_ico.png) left top;}*/
+.myWrap{width:1000px; margin:10px auto 0; background-color:#fff; overflow:hidden;}
+.myWrap .myL,{ display:inline; /*margin-top:10px;*/}
+.myWrap .myR{float:left; display:inline; /*margin-top:10px;*/}
+.myWrap .myL{ /*margin-right:10px;*/ overflow:hidden; width:218px; float:left; border-left:1px solid #ddd; border-right:1px solid #ddd;}
+.myWrap .myR{width:768px; border:1px solid #ccc; padding-bottom:60px;}
+.myWrap .myL h1{height:32px; line-height:32px; padding-left:19px; color:#fff; font-size:14px; font-weight:bold;}
+.myWrap .myL h3{ text-indent:10px; height:30px; line-height:30px; border-top:1px solid #ddd; color:#404040; font-weight:bold;color:#404040;}
+.myWrap .myL .myleftmenu{ width:198px; border-top:1px solid #eee; margin:0 auto; padding-top:10px; line-height:26px; text-indent:10px;}
+.myWrap .myL .last{border-bottom:1px solid #E6E6E6;}
+.myWrap .myL ul li a{color:#404040}
+.myWrap .myL ul li a:link,.myWrap .myL ul li a:visited,.myWrap .myL ul li a:active{color:#404040; height:26px; overflow:hidden; display:block;}
+.myWrap .myL ul li a:hover{color:#963C00; background-color:#EEEEEE; text-decoration:none;}
+.myWrap .myL ul li.current a{color:#963C00; background-color:#EEEEEE;}
+.myWrap .myL .myleftmenu{}
+.myWrap .myL .blank8{height:8px; line-height:8px; font-size:1px; height:8px; clear:both; overflow:hidden;}
+
+/**/
+.od_Tip em,.squearIco{ background:url(http://img2.imglefeng.com/images/myorder/order_i.gif) no-repeat;}
+.od_Tip{ margin-top:12px; padding:0px 15px; background:#fffcd6; height:29px; border:1px solid #fdb381; line-height:29px; color:#555; float:left; display:inline; overflow:hidden;}
+.od_Tip em{ width: 18px; height:21px; background-position:; display:inline; float:left; margin:4px 8px 0px 0px;}
+
+.defaultPath, .selpath p .setDefault, .vipcoupon h3 a, .alert-pay .btn a.enter, .alert-user-info .btn a.enter {
+    background: url("http://img3.imglefeng.com/images/cart/cart_confirm_ico.png") no-repeat scroll 0 0 transparent;
+}
+.radio{position:relative;top:2px;left:2px;margin:0 5px 0 0;height:auto;}
+.alert-user-info,.alert-pay,.alert-invoice{position:relative;display:none;padding:20px;background:#fff;border:2px solid #963c00;width:724px;overflow:hidden;}
+.alert-user-info h3,.alert-pay h3{width:109px;font-size:14px;line-height:34px;font-weight:bold;text-align:right;color:#333;}
+.alert-user-info h4,.alert-invoice h4{padding:4px 0;font-weight:bold;font-size:14px;}
+.alert-user-info h4 img{display:inline-block;margin:0 5px 0 0; }
+.alert-user-info .tit{display:block;height:34px;font-size:14px;color:#333;font-weight:bold;}
+.alert-user-info .tit a{font-weight:normal;}
+	.selpath{margin:0 0 10px;}
+	.selpath p{position:relative;height:34px;line-height:34px;overflow:hidden;padding:0 20px 0 40px;margin:0 10px;}
+	.defaultPath{background-position:15px -19px}
+	.selpath h4{border-bottom:1px solid #ccc;}
+	.selpath p em{float:right;margin:0 10px;color:#0086cc;}
+	.selpath p .setD{cursor:pointer;}
+	.selpath p .setDefault{background-position:0 -48px;padding:0 0 0 20px;}
+	#moreUser{float:left;cursor:pointer;margin:0 0 0 -20px;}
+	.alert-user-input p,.alert-invoice p,.alert-pay p{position:relative;padding:4px 0;color:#666;}
+	.alert-user-input p input,.alert-invoice .text{width:180px;height:26px;margin:0 4px 0;background:#fff;border:1px solid #c6c6c6;line-height:26px;}
+	.alert-user-input p input.default{width:auto;height:auto;position:relative;top:2px;margin:0 4px 0 10px;}
+	.alert-user-input p b,.alert-invoice p b,.alert-pay p b{display:inline-block;width:90px;text-align:right;font-weight:normal;color:#707070;}
+	.alert-user-input p textarea{display:block;width:300px;height:40px;background:#fff;border:1px solid #ccc;}
+	.alert-user-input .input-path b{position:absolute;}
+	.alert-user-input .input-path textarea,.alert-user-input .input-path span{margin:0 0 0 93px;}
+		.entermail{margin:0 20px;color:#CC3298;}
+	.alert-user-input p .phone1{width:87px;}
+	.alert-user-input p .phone2{width:40px;}
+	.alert-user-input p .phone3{width:70px;}
+	.alert-user-input p .phone4{width:60px;}
+	#zipcode{width:auto;}
+	.alert-user-input p select{display:inline;width:120px;margin:0 3px;padding:1px 0;background:#fff;border:1px solid #ccc;}
+.alert-user-info .btn,.alert-invoice .btn,.alert-pay .btn{height:50px;padding:10px 100px 0;}
+.alert-user-info .btn a,.alert-invoice .btn a,.alert-pay .btn a{float:left;width:80px;height:28px;margin:0 10px 0 0;background:url(http://img3.imglefeng.com/images/cart/cart_confirm_ico.png) no-repeat 0 -56px;line-height:333px;overflow:hidden;}
+.alert-invoice .btn a.enter,.alert-pay .btn a.enter{background-position:0 -28px;}
+.alert-user-info .btn a.enter{background-position:0 -88px;width:144px;height:36px;}
+.alert-user-info .btn a.enter:hover{background-position:0 -124px;}
+

@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>订单-后台管理-{$site.SITE_INFO.name}</title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='订单管理 > 编辑订单';
+        </php>
+        <include file="Common:intoHead" />
+        <style>
+            div.spot {
+                float: left;
+                margin: 0 20px 0 0;
+                width: 220px;
+                min-height: 160px;
+                border: 2px dashed #ddd;
+            }
+            .droparea {
+                position: relative;
+                text-align: center;
+            }
+            .droparea .instructions {
+                opacity: 0.8;
+                background-color: #cccccc;
+                height: 25px;
+                z-index: 10;
+                zoom: 1;
+                background-position: initial initial;
+                background-repeat: initial initial;
+                cursor: pointer;
+            }
+            .droparea div, .droparea input {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+            }
+            .droparea input {
+                cursor: pointer;
+                opacity: 0;
+            }
+            .droparea div, .droparea input {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+            }
+            #uparea1,#uparea2,#uparea3{
+                height: 170px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">订单</div>
+                    </div>
+                    <form action="{:U('Product/deliveryEdit')}" method="post">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                            <php>if($site['SITE_INFO']['LANG_SWITCH_ON']=='1'){</php>
+                            <tr>
+                                <th>语言选择：</th>
+                                <td>
+                                    <select name="info[lang]">
+                                        <option value="zh-cn" <if condition="$info['lang'] eq 'zh-cn'">selected</if> >简体中文</option>
+                                        <option value="en-us" <if condition="$info['lang'] eq 'en-us'">selected</if> >English</option>
+
+                                    </select></td>
+                            </tr>
+                            <php>}</php>
+                            <tr>
+                                <th width="100">快递公司：</th>
+                                <td>
+									<select name="fee_code">
+										<volist name="list" id="vo" empty="无可用记录">
+                                        <option value="{$vo.code}" <if condition="$info['code'] eq $vo['code']">selected</if> >{$vo.name}</option>
+										</volist>
+									</select>
+								</td>
+                            </tr>
+                            <tr>
+                                <th width="100">快递单号：</th>
+                                <td><input type="text"  class="input" size="30" value="{$info.fee_kid}" name="fee_kid" /></td>
+                            </tr>
+                        </table>
+                    </form>
+                    <if condition="$info[status] neq 4">
+                    <div class="commonBtnArea" >
+                        <button class="btn submit">提交</button>
+                    </div>
+                    </if>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Common:foot" />
+        <script type="text/javascript">
+            //类型属性
+            $(function(){
+                $(".submit").click(function(){
+                    commonAjaxSubmit();
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>

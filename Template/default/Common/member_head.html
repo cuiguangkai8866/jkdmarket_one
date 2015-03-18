@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><php>echo ACTION_NAME == 'register' ? '欢迎注册' : ACTION_NAME == 'login' ? '欢迎登录' :'重设密码';</php> - 酒富网</title>
+     <script type="text/javascript" charset="utf-8" src="//libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<include file="Common:intoHead" />
+    <link rel="stylesheet" href="__CSS__/jf_base.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="__CSS__/jf_sign.css" type="text/css" media="screen" charset="utf-8">
+
+    <script type="text/javascript" src="__JS__/register.js"></script>
+    <!--<script type="text/javascript" charset="utf-8" src="__JS__/verification.js"></script>-->
+</head>
+<body>
+
+<div id="header_container">
+    <!--新版的login页面没有头部 -->
+    <div id="logo">
+        <a href="__ROOT__/" id="home" title="酒富网" style="background:url(__IMG__/logo.png) no-repeat top left;margin-top:20px;"><span><php>echo ACTION_NAME == 'register' ? '欢迎注册' : ACTION_NAME == 'login' ? '欢迎登录' :'重设密码';</php></span></a>
+        <div class="header_logo_box">
+            您好，欢迎光临酒富网商城！
+            <a href="{:U('/Login')}" title="" style="margin: 0 20px 0 46px;">[请登录]</a>
+            <i></i>
+            <a href="__ROOT__/" title="">商城首页</a>
+        </div>
+    </div>
+</div>

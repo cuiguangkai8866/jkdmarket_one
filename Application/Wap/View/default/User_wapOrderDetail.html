@@ -1,0 +1,111 @@
+<include file="Common:subHead" />
+<include file="Common:intoHead" />
+<script src="__JS__/wapCommon.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="__CSS__/order.css" charset="UTF-8"/>
+  <section class="orderInformation">
+
+  <!-- 暂无相关订单信息,为空时 -->
+  <div class="orderEmpty" style="display:none;">
+    <span></span>
+    <p class="tips">暂无相关订单信息</p>
+  </div>
+
+
+  <!-- 订单详情,不为空 -->
+
+  <script type="text/javascript">
+    $(function(){
+      $(".ccorder").bind('touchstart', function(event) {
+        $(".mask,.alertTip").show().css('opacity', '.5');;
+      });
+      $(".alertTip .cancel").bind('touchstart', function(event) {
+        $(".mask,.alertTip").hide();
+      });
+    })
+  </script>
+   <div class="orderStatus clearfix"> 
+    <h2>订单号：<span>{$info.oid}</span></h2>
+    <p class="status">订单状态：<span>{$info.statusHtml}</span></p>
+    <!-- 未支付显示立即支付，已完成显示再次购买，跳转到购物车 -->
+    <!-- <a class="pay" href="javascript:;">再次购买</a> -->
+       <if condition="$info[status] eq 0">
+           <a class="pay" href="javascript:;" onclick="changeOrderStatus('{:U('/myOrder')}','{$info.id}','payOrder')">立刻支付</a>
+           <elseif condition="$info[status] eq 1" />
+           <a class="pay" href="javascript:;">订单已取消</a>
+           <elseif condition="$info[status] eq 2" />
+           <a class="pay" href="javascript:;" onclick="changeOrderStatus('{:U('/myOrder')}','{$info.id}','refundAction')">申请退款</a>
+           <elseif condition="$info[status] eq 3" />
+           <a class="pay" href="javascript:;" onclick="changeOrderStatus('{:U('/myOrder')}','{$info.id}','reallyOrder')">确认收货</a>
+           <elseif condition="$info[status] eq 4" />
+           <a class="pay" href="javascript:;" onclick="changeOrderStatus('{:U('/myOrder')}','{$info.id}','cancelRefund')">取消退款</a>
+           <elseif condition="$info[status] eq 5" />
+           <a class="pay" href="javascript:;">交易完成</a>
+           <elseif condition="$info[status] eq 6" />
+           <a class="pay" href="javascript:;">订单已退款</a>
+           <elseif condition="$info[status] eq 7" />
+           <a class="pay" href="javascript:;">订单已失效</a>
+       </if>
+    <p class="tipOrder" id="alert_orderinfo"></p> 
+   </div> 
+   <div class="order trace">
+   <php>if($kdInfo->status == 1){</php>
+    <h2>订单跟踪</h2> 
+    <ul class="traceList">
+    <php>foreach($kdInfo->data as $k=>$v){</php>
+     <li class="first"> <p><span class="date">{$v->time}</span></p> <p>{$v->context}</p> </li>
+     <php>}</php>
+    </ul>
+    <php>}else{</php>
+    没有查到您想要的物流信息
+    <php>}</php>
+   </div> 
+   <div class="order receiver"> 
+    <h2>收货人信息</h2> 
+    <p class="content"> <i class="name">{$address.username}</i> <i class="tel">{$address.phone}</i> <br /> <i class="addr">{$address['shen_cityname']}-{$address.shi_cityname}-{$address.xian_cityname}-{$address.address}</i> </p>
+   </div> 
+   <div class="order pay"> 
+    <h2>支付方式</h2>
+    <p class="content"> <span class="alipay">
+        <if condition="$info[status] eq 0">
+            等待支付
+            <esleif condition="$info[status] eq 1" />
+            订单已取消
+            <elseif condition="$info[status] eq 4" />
+            正在退款
+            <elseif condition="$info[status] eq 6" />
+            订单已退款
+            <elseif condition="$info[status] eq 7" />
+            订单已失效
+            <else/>
+            {$info[payway]}
+        </if>
+    </span>
+    </p>
+   </div> 
+   <div class="order fapiao"> 
+    <h2>发票信息</h2> 
+    <div class="content">
+     <p>发票内容：<i>{$info.invoice}</i></p>
+    </div> 
+   </div> 
+   <div class="order product"> 
+    <h2>订单商品</h2>
+       <volist name="product" id="vo" empty="并未查到商品信息,订单是否违法?">
+           <ul class="orderInfo">
+               <li> <a class="prodImg" href="{$vo.url}" target="_blank"></a> <img src="__ROOT__{$vo.savepath}" />
+                   <div class="info">
+                       <a class="productName" href="{$vo.url}">{$vo.title}</a>
+                   </div> </li>
+               <p class="count"> <span class="unitPrice">&yen;{$vo.price}</span> <span class="number">&times;{$vo.num}</span> </p>
+           </ul>
+       </volist>
+   </div>
+
+   <!-- 已完成或者待收货状态不可取消订单,隐藏取消按钮 -->
+      <if condition="$info[status] eq 0">
+          <a class="btn ccorder" href="javascript:;"  onclick="changeOrderStatus('{:U('/myOrder')}','{$info.id}','cancelOrder');">取消订单</a>
+          <div class="mask"></div>
+      </if>
+
+  </section>
+<include file="Common:footer" />

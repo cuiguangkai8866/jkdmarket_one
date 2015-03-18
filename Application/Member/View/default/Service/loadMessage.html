@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>留言/投诉管理</title>
+<link rel="stylesheet" type="text/css" href="__CSS__/base.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.common.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.index.css" media="all">
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="__JS__/common_js.js"></script>
+    <script src="__PUBLIC__/Js/functions.js"></script>
+    <script src="__PUBLIC__/Js/jquery.form.js"></script>
+    <script src="__PUBLIC__/Js/asyncbox/asyncbox.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/Js/asyncbox/skins/default.css">
+</head>
+
+<body>
+    <!-- 订单列表 -->
+    <div class="orderArea">
+        <div class="clearfix return">
+            <div class="fl">我的留言/投诉</div>
+        </div>
+        <div class="orderlist alyReManager">
+                        <table class="has" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <thead>
+                                <tr>
+                                    <td width="35%">留言内容</td>
+                                    <td width="35%">客服回复</td>
+                                    <td width="10%">留言时间</td>
+                                    <td width="20%">联系邮箱</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php if(empty($askList)){ ?>
+                                <tr>
+                                    <td colspan="4">
+                                        <div style="padding:10px 0;">暂无记录!</div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                            <volist name="askList" id="vo">
+                                <tr>
+                                    <td>{$vo.content}</td>
+                                    <td>{$vo[t_content] == null ?'等待回复':$vo[t_content]}</td>
+                                    <td>{:date('Y-m-d',$vo[addtime])}</td>
+                                    <td>{$vo.email}</td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                    </div>
+        <div class="paging">
+            {$page}
+        </div>
+    </div>
+</body>
+</html>

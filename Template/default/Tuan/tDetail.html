@@ -1,0 +1,683 @@
+<include file="Common:top" />
+<include file="Common:header" />
+    <div class="content_c">
+    <link href="__CSS__/detail.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jquery.lazyload.min.js"></script>
+        <div class="dmain"> 
+   <div class="dmainBox lazyload"> 
+    <div class="detail-guide">
+        <volist name="mianBaoXie" id="vo" key="u">
+            <a href="{:$vo[url] == null ?'#':$vo[url]}" target="_self"> {$vo.nav_name}</a> {:$u == 3 ?'':'>'}
+        </volist>
+    </div> 
+    <div class="detail-box1 clearfix">
+    <script type="text/javascript" src="__JS__/jquery.imagezoom.min.js"></script>
+<style type="text/css">
+    /* box */
+.box{width:410px;float: left;}
+.tb-pic a{display:table-cell;text-align:center;vertical-align:middle;width: 400px;height: 400px;}
+.tb-pic a img{vertical-align:middle;width: 100%;}
+.tb-pic a{*display:block;*font-family:Arial;*line-height:1;}
+.tb-thumb{margin:10px 0 0;overflow:hidden;text-align: center;}
+.tb-thumb li{background:none repeat scroll 0 0 transparent;height:42px;margin:0 6px 0 0;overflow:hidden;padding:1px;display: inline-block;*display:inline;zoom:1;}
+/*.tb-s310, .tb-s310 a{height:310px;width:310px;}
+.tb-s310, .tb-s310 img{width: 100%;height: auto;}*/
+.tb-s310 a{*font-size:271px;}
+.tb-s40 a{*font-size:35px;}
+.tb-s40, .tb-s40 a{height:40px;width:40px;}
+.tb-booth{position:relative;z-index:1;height: 400px;}
+.tb-thumb .tb-selected{background:none repeat scroll 0 0 #C30008;height:40px;padding:2px;}
+.tb-thumb .tb-selected div{background-color:#FFFFFF;border:medium none;}
+.tb-thumb li div{border:1px solid #CDCDCD;}
+div.zoomDiv{z-index:999;position:absolute;top:0px;left:0px;width:200px;height:200px;background:#ffffff;border:1px solid #CCCCCC;display:none;text-align:center;overflow:hidden;}
+div.zoomMask{position:absolute;background:url("__IMG__/mask.png") repeat scroll 0 0 transparent;cursor:pointer;z-index:1;}
+
+</style>
+
+
+<!-- 图片放大展示 -->
+    <div class="box">
+        <div class="tb-booth tb-pic tb-s310">
+            <a href="__ROOT__{$info[savepath][0][savepath]}"><img src="__ROOT__{$info[savepath][0][savepath]}" alt="{$info.title}" rel="__ROOT__{$info[savepath][0][savepath]}" class="jqzoom" /></a>
+        </div>
+
+        <ul class="tb-thumb" id="thumblist">
+            <volist name="info[savepath]" id="vo">
+                <li>
+                    <div class="tb-pic tb-s40">
+                        <a href="#">
+                            <img  src="__ROOT__{$vo.savepath}" mid="__ROOT__{$vo.savepath}" big="__ROOT__{$vo.savepath}">
+                        </a>
+                    </div>
+                </li>
+            </volist>
+
+        </ul>
+        
+    </div>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $(".jqzoom").imagezoom();
+    
+    $("#thumblist li a").hover(function(){
+        $(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
+        $(".jqzoom").attr('src',$(this).find("img").attr("mid"));
+        $(".jqzoom").attr('rel',$(this).find("img").attr("big"));
+    });
+    var zoom = $(".jqzoom");
+    if(parseInt(zoom.height()) > parseInt(zoom.width())){
+        zoom.height('100%').width('auto');
+    }else{
+        zoom.width('100%').height('auto');
+    }
+
+});
+</script>
+<style type="text/css">
+    .time-price {
+        float: left;
+        width: 538px;
+        margin-left:20px;
+    }
+
+    .time-price h2{
+        margin: 30px 0px 10px 10px;
+    }
+
+    .time-price .zaixian {
+        font-size: 12px;
+        color: #999
+    }
+
+    .time-price .extra-bottom {
+        padding: 20px 0 20px 30px;
+        border-top:1px solid #eee;
+        border-bottom:1px solid #eee; 
+    }
+
+    .time-price .extra-bottom .p-goumai {
+        font-size: 14px
+    }
+
+    .time-price .extra-bottom .p-goumai .num {
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        float: left;
+        width: 75px
+    }
+
+    .time-price .extra-bottom .p-goumai .num .bg {
+        display: inline-block;
+        height: 15px;
+        overflow: hidden;
+        position: absolute;
+        top: 7px;
+        width: 15px
+    }
+
+    .time-price .extra-bottom .p-goumai .num .reduce {
+        background-image: url(__IMG__/bg.png);
+        background-repeat: no-repeat;
+        background-position: 0 -214px;
+        left: 0
+    }
+
+    .time-price .extra-bottom .p-goumai .num .reduce:hover {
+        background-image: url(__IMG__/bg.png);
+        background-repeat: no-repeat;
+        background-position: 0 -230px
+    }
+
+    .time-price .extra-bottom .p-goumai .num .add {
+        background-image: url(__IMG__/bg.png);
+        background-repeat: no-repeat;
+        background-position: -16px -214px;
+        right: 0
+    }
+
+    .time-price .extra-bottom .p-goumai .num .add:hover {
+        background-image: url(__IMG__/bg.png);
+        background-repeat: no-repeat;
+        background-position: -16px -230px
+    }
+
+    .time-price .extra-bottom .p-goumai .num .text {
+        border: 1px solid #ccc;
+        height: 16px;
+        margin-left: 19px;
+        padding: 2px;
+        text-align: center;
+        width: 30px
+    }
+
+    .time-price .wei {
+        color: #999
+    }
+
+    .time-price .detial-center {
+        padding: 20px 0 20px 30px;
+        line-height: 25px;
+        font-size: 14px;
+        
+    }
+
+    .time-price .detial-center .text {
+        font-family: verdana;
+        font-size: 14px
+    }
+
+    .time-price .price-top {
+        width: 508px;
+        height: 70px;
+        line-height: 70px;
+        font-family: verdana;
+        padding: 0 0 0 40px;
+        overflow: hidden;
+        background-image: url(__IMG__/bg.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        _padding-top: 10px;
+        margin-top: 20px;
+    }
+
+    .time-price .price-top .now {
+        color: #fff;
+        font-size: 36px
+    }
+
+    .time-price .price-top .prime {
+        color: #8f0000;
+        font-size: 14px
+    }
+
+    .time-price .price-top .sale,.time-price .price-top .comment {
+        display: inline-block;
+        height: 21px;
+        line-height: 21px;
+        vertical-align: middle;
+        background-image: url(__IMG__/bg.png);
+        background-repeat: no-repeat;
+        background-position: 0 -80px;
+        padding: 0 15px
+    }
+
+    .time-price .price-top .sale {
+        margin-left: 10px
+    }
+
+    .time-price .price-top .sale i {
+        background: #fffddc;
+        color: #e3393c;
+        padding: 2px 3px;
+        font-style: normal
+    }
+
+    .time-price .price-top .comment strong {
+        color: #fff;
+        font-weight: normal;
+        font-size: 14px
+    }
+
+    .time-price .price-top .comment strong span {
+        font-size: 12px
+    }
+    #teamStatus .tuan{
+        display: block;
+        width: 188px;
+        height: 46px;
+        line-height: 46px;
+        color: #fff;
+        text-decoration: none;
+        background-position: -41px -214px;
+        background-image: url(__IMG__/bg.png);
+        background-repeat: no-repeat;
+        text-align: center;
+    }
+    #teamStatus .tuan strong{
+        font-family: microsoft yahei;
+        margin-right: 5px;
+        font-size: 24px;
+    }
+    #teamStatus .tuan1 {
+        background-position: -239px -214px;
+    }
+    .time-price h2{font-family:"microsoft yehei";}
+    .jfplist_tuan b i{ font-family: "microsoft yahei"; font-size: 20px;}
+    .other-payment{ margin-left: 30px;}
+    .extra-bottom{border-top: 1px solid #eee;border-bottom: 1px solid #eee;}
+</style>
+
+
+     <div class="time-price">
+     <h2 title="{$info.title}">{$info.title}</h2>
+     <div style="clear:both;"></div>
+        <span style="font-size: 14px; color: #CC0000;font-weight:normal;padding-left:10px;">(本件商品每位客户只可参团一次,最低限购 <em id="zdMin">{$info.zdbuy}</em> 件-最高限购 <em id="zdMax">{$info.zgbuy}</em> 件)</span></h2>
+		<input type="hidden" id="" val="{$info.zdbuy}" />
+		<input type="hidden" id="zdMax" val="{$info.zgbuy}" />
+   <div class="price-top bg"> 
+    <strong class="now">&yen;{$info.price}</strong>
+   </div> 
+   <div class="detial-center"> 
+    <!--未开团--> 
+    <!--已开团 and 已结束--> 
+       <!-- 购买数量 --> 
+	   <php>if($info['buyStatus'] == 0){</php>
+	   <form action="{:U('/really')}" method="post">
+	   <php>}</php>
+      <div class="dOrder-buyNub" id="_gmsl">
+        <div class="buyNub-tit">
+            数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量
+        </div>
+        <div class="buyNub-nub">
+            <div class="buyNub-nub-wrap">
+                <i class="buyNub-nub-blus-c buyNub-nub-blus tsub"></i>
+                <input name="num" id="pd_number" type="text" value="{$info.zdbuy}" />
+                <i class="buyNub-nub-top tadd"></i>
+            </div>
+        </div>
+        <div class="buyNub-tit">
+            &nbsp;&nbsp;&nbsp;库存：<span class="stock">{$info[stock] == null ?'0':$info[stock]}</span><!-- &nbsp;&nbsp;规格:{$info.cname} -->
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <!-- 时间戳 -->
+    <php>if($info['buyStatus'] == 0){</php>
+       <p class="item"> 剩余参团数：<strong class="text">{$info.people}人</strong> </p>
+    <div id="surplus-time" class="jfplist_tuan tac" date-endtime="{$info[end_time]}">
+        <div>
+            剩余时间：
+            <b><i></i></b>
+        </div>
+    </div>
+    <php>}else if($info['buyStatus'] == 1){</php>
+       <p class="item"> 本次可参团总人数：<strong class="text">{$info.stock}人</strong> </p>
+    <div id="surplus-time" class="jfplist_tuan tac" date-endtime="{$info[start_time]}">
+        <div>
+            距离开始剩余：
+            <b><i></i></b>
+        </div>
+    </div>
+    <php>}</php>
+    <script type="text/javascript" src="__JS__/jf-pft.js"></script>
+    <script type="text/javascript">
+        daojishi($(".jfplist_tuan"));
+    </script>
+
+
+   </div> 
+   <div class="extra-bottom"> 
+    <div id="teamStatus">
+     <php>if($info['buyStatus'] == 0){</php>
+        
+            <input type="hidden" name="id" value="{$info.id}" />
+            <input type="hidden" name="type" value="tuanOrder" />
+     <button style="border:0;cursor: pointer;" class="tuan tuan2" href="javascript:void(0);"><strong>{$info[statusHtml]}</strong></button>
+        </form>
+    <php>}else if($info['buyStatus'] == 1){</php>
+    
+     <a href="javascript:void(0)" target="_blank" class="tuan tuan1" date-con="凯逸弗冬季保暖加厚保暖皮衣男夹克" date-time="2014-11-25 9:00" date-url="http://www.jiufu9.com"><strong>{$info[statusHtml]}</strong>开团提醒</a>
+    <php>}</php>
+    </div>
+    
+   </div> 
+
+   <div class="depict-other"> 
+   <div class="other-payment">
+    分享到：<div class="bshare-custom" style="float:inherit;margin-top:6px"><div class="bsPromo bsPromo2"></div><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=7afd94bb-a7e8-4d65-9936-979b687f14eb&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+       </div> 
+   </div> 
+   <div class="other-point" id="_isDisableBonus" style="display:none"></div> 
+  </div>
+
+
+  </div>
+
+
+
+     <div class="clear"></div> 
+    </div> 
+    <div class="detail-box2 clearfix"> 
+     <div class="detail-left"> 
+      <div class="u-coupons-box" id="_canusecoupons" style="display:none;"> 
+      </div> 
+      <div class="dLeft-taste"> 
+       <h4 class="taste-tit">人气商品推荐</h4> 
+       <ul class="taste-list">
+           <volist name="moods" id="vo" offset="0" length="5" empty="还没有推荐的产品!">
+               <li>
+                   <div class="taste—listPic">
+                       <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}"> <img src="__ROOT__{:$vo[savepath] == null ?'/Public/Home/images/no_goods.jpg':$vo[savepath]}" alt="{$vo.title}" width="160" height="160" /> </a>
+                   </div>
+                   <div class="taste—listDep">
+                       <p class="listDep-nam"> <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}" title="{$vo.title}">{:mb_substr($vo['title'],0,15,'UTF-8')}...</a> </p>
+                       <p class="listDep-pri"> <b>￥{$vo.price}</b>
+                           <del>
+                               ￥{$vo.market}
+                           </del> </p>
+                       <p class="listDep-but"> <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank">立即购买</a> </p>
+                   </div></li>
+           </volist>
+       </ul> 
+      </div> 
+      <div class="dLeft-ranking"> 
+       <h4>一周销量排行榜</h4> 
+       <ul>
+           <volist name="moods_7" key="k" id="vo" offset="0" length="7" empty="系统还没热销产品!">
+               <li>
+                   <div class="rank-unfold clearfix" style="display:none;">
+                       <div class="rUnfold-pic">
+                           <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}"> <img src="__ROOT__{:$vo[savepath] == null ?'/Public/Home/images/no_goods.jpg':$vo[savepath]}" alt="{$vo.title}" width="54" height="54" style="display: inline;" /> </a>
+                       </div>
+                       <div class="rUnfold-dep">
+                           <p class="rUnfold-name"> <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}" title="{$vo.title}">{:mb_substr($vo['title'],0,7,'UTF-8')}...</a></p>
+                           <p class="rUnfold-pri" goodid="14707">￥{$vo.price}</p>
+                       </div>
+                       <div class="clear"></div>
+                       <div class="rUnfold-nub">
+                           {$k}
+                       </div>
+                   </div>
+                   <div class="rank-packup" style="display:block;">
+                       <div class="rUnfold-nub">
+                           {$k}
+                       </div>
+                       <span class="rPackup-name"> <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}" title="{$vo.title}">{$vo.title}</a> </span>
+                   </div> </li>
+           </volist>
+       </ul> 
+      </div>
+      <script type="text/javascript">
+        $(function(){
+            $(".dLeft-ranking li").first().children('.rank-unfold').show().siblings().hide();
+            $(".dLeft-ranking li:gt(2)").find('.rUnfold-nub').addClass('rUnfold-nub2');
+            $(".dLeft-ranking li").hover(function(){
+                $(this).children('.rank-unfold').show().siblings().hide();
+                $(this).siblings('li').children('.rank-unfold').hide().siblings().show();
+            })
+        })
+      </script>
+         <!-- <div class="dLeft-history">
+             <div id="_viewll">
+                 <div class="u-paging">
+                     <a href="#" title="">查看更多</a>
+                 </div>
+                 <h4>浏览历史</h4>
+                 <div class="d-history-list">
+                     <ul>
+                         <li>
+         
+                             <volist name="cookie" id="vo" offset="0" length="10" empty="还没有浏览记录!">
+                                 <div class="d-history-info">
+                                     <div class="history-pic">
+                                         <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}">
+                                             <img src="__ROOT__{:$vo[savepath] == null ?'/Public/Home/images/no_goods.jpg':$vo[savepath]}" alt="{$vo.title}" width="64" height="64" />
+                                         </a>
+                                     </div>
+                                     <div class="history-dep">
+                                         <p class="history-name"> <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}" title="{$vo.title}">{:mb_substr($vo['title'],0,7,'UTF-8')}...</a> </p>
+                                         <p class="history-pri" goodid="3">￥{$vo.price}</p>
+                                     </div>
+                                     <div class="clear"></div>
+                                 </div>
+                             </volist>
+                         </li>
+                         <div class="clear"></div>
+                     </ul>
+                 </div>
+             </div>
+         </div> -->
+     </div> 
+     <div class="detail-right"> 
+
+      <div id="_tzvm"></div> 
+      <div class="detBox_title" id="answerArea"> 
+       <div class="productTabTit hd">
+        <!-- __JS__/newdetail/detail.js 商品介绍 --> 
+        <ul> 
+         <li class="on">商品介绍</li> 
+         <li class="">评价<span id="_plnub">({$commentnum})</span></li>
+         <li class="">商品咨询</li>
+        </ul> 
+       </div>
+       <div class="detailCode">
+        关注酒富微信
+        <span> <img src="__IMG__/qrcode.png" width="21" height="21" /> </span> 
+        <i></i> 
+        <div class="detailCode-t"> 
+         <img src="__IMG__/qrcode.png" width="200" height="200" /> 
+        </div> 
+       </div> 
+      </div> 
+      <div class="dRight-wrap bd">
+      <div class="dRight-tab-con" style="display: block;">
+          <div class="detail_switch clearfix" id="proShow">
+              <div class="dRight-parameter">
+                  <ul>
+                      <volist name="canshu" id="vo" empty="请参考详细介绍!">
+                          <li> <span>{$vo}</span> </li>
+                      </volist>
+                      <div class="clear"></div>
+                  </ul>
+              </div>
+              <div class="wxTip">
+                  <h4 class="h4_ass"><i></i>产品描述</h4>
+                  <p>
+                      {$info[description] == null ?'此商品暂无描述!':$info[description]}
+                  </p>
+              </div>
+              <div class="part_box clearfix">
+                  <dl class="ass_share_dl2 clearfix">
+                  </dl>
+              </div>
+              <div style="clear:both;"></div>
+              <!--part_box over-->
+              <div class="part_box clearfix">
+                  <h4 class="h4_ass"> <i></i> 商品介绍 </h4>
+                  <dl class="ass_share_dl2 clearfix">
+                      {$info[content] == null ?'此商品暂无介绍!':$info[content]}
+                  </dl>
+                  <!--detail_prtpic over-->
+              </div>
+          </div>
+      </div>
+       <div class="dRight-tab-con" style="display: none;"> 
+        <div class="dRight_detBox"> 
+         <div class="detBox_con"> 
+          <div class="d-evaluate-no" id="_nopl" style="display:none;"> 
+           <p>暂无用户评价,您可对已购买的商品进行评价。</p> 
+           <a class="d-evaluate-btn" href="{:U('/Member/Order')}" target="_blank">查看我的订单</a>
+          </div> 
+          <div class="d-evaluate-wrap" id="_havapl" style=""> 
+           <div class="d-evaluate">
+                        <div class="d-evaluate-l">
+                            <em>{$pnum}</em>
+                            <span>分</span>
+                            <input type="hidden" value="{$pnum}" id="Fraction">
+                        </div>
+                        <div class="d-evaluate-z">
+                            <div class="d-evaluate-list">
+                                <ul>
+                                    <php>if($pnum >= 1){</php>
+                                    <li class="s1">非常不满意</li>
+                                    <php>}
+                                        if($pnum >=2){</php>
+                                    <li class="s2">不满意</li>
+                                    <php>}
+                                        if($pnum >= 3){
+                                    </php>
+                                    <li class="s3">一般</li>
+                                    <php>}
+                                        if($pnum >= 4){
+                                    </php>
+                                    <li class="s4">满意</li>
+                                    <php>}
+                                        if($pnum >= 5){
+                                    </php>
+                                    <li class="s5">非常满意</li>
+                                    <php>}else{</php>
+									<li class="s1">非常不满意</li>
+									<li class="s2">不满意</li>
+									<li class="s3">一般</li>
+									<li class="s4">满意</li>
+									<li class="s5">非常满意</li>
+									<php>}</php>
+                                </ul>
+                            </div>
+                            <div class="d-evaluate-part">
+                                共有
+                                <strong>{$commentnum}</strong> 次评价
+                            </div>
+                        </div>
+                        <div class="d-evaluate-r">
+                            <p>您可对已购买的商品进行评价</p>
+                            <a href="{:U('/Member/Order')}" target="_blank" class="d-evaluate-link">查看我的订单</a>
+                        </div>
+                    </div> 
+           <!-- 评价 异步请求--> 
+           <div class="u-evaluate-wrap" id="_detailEvaluateContent">
+               <iframe src="{:U('/Shoplist/pingjia',array('id'=>$_GET['tid']))}" id="iframepage" name="iframepage" frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()" height="1000"></iframe>
+			   <script type="text/javascript" language="javascript">
+                        function iFrameHeight() {
+                            var ifm= document.getElementById("iframepage");
+                            var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;
+                            if(ifm != null && subWeb != null){
+                                ifm.height = (subWeb.body.clientHeight) - 800;
+                            }
+                        }
+                        /*评价分数*/
+                        var f = $("#Fraction").val() || 5;
+                        (function(f){
+                            $(".d-evaluate-l em").text(f);
+                            $(".d-evaluate-list").append('<span>' + f + '</span>');
+                            $(".d-evaluate-list").children('span').css('left', 90 * f - 12);
+                        })(f)
+                    </script>
+
+           </div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+       <div class="dRight-tab-con" style="display: none;">
+        <div class="u-consulting-wrap">
+         <div class="u-consulting-title">
+          <ul>
+           <li class="on">商品咨询<i id="_zx0"></i></li>
+          </ul>
+          <div class="u-consulting-line"></div>
+         </div>
+         <div class="u-consulting-info-box">
+             <div class="u-consulting-info-con">
+                 <div class="u-consulting-prompt">
+                     <p>提示:因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同， 为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</p>
+                     <a href="#bottom-ask" style="cursor: pointer;" class="u-consulting-btn"><span></span>快速咨询</a>
+                     <div class="clear"></div>
+                 </div>
+                 <div>
+                     <iframe id="ifr" name="ifr" src="{:U('Shoplist/zixun',array('pro_id'=>$_GET['tid']))}" style="width: 100%;height:900px;overflow: hidden;" frameborder="0"></iframe>
+                 </div>
+             </div>
+          <div class="u-consulting-info-con" style="display:none;">
+           <div class="u-consulting-prompt">
+            <p>提示:因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同， 为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</p>
+            <a href="#" class="u-consulting-btn"> <span></span> 我要咨询</a>
+            <div class="clear"></div>
+           </div>
+           <div id="_detailConsultContent1" style="display:none;">
+           </div>
+          </div>
+          <div class="u-consulting-info-con" style="display:none;">
+           <div class="u-consulting-prompt">
+            <p>提示:因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同， 为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</p>
+            <a href="#" class="u-consulting-btn"> <span></span> 我要咨询</a>
+            <div class="clear"></div>
+           </div>
+           <div id="_detailConsultContent2" style="display:none;">
+           </div>
+          </div>
+          <div class="u-consulting-info-con" style="display:none;">
+           <div class="u-consulting-prompt">
+            <p>提示:因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同， 为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</p>
+            <a href="#" class="u-consulting-btn"> <span></span> 我要咨询</a>
+            <div class="clear"></div>
+           </div>
+           <div id="_detailConsultContent3" style="display:none;">
+           </div>
+          </div>
+          <div class="u-consulting-info-con" style="display:none;">
+           <div class="u-consulting-prompt">
+            <p>提示:因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同， 为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</p>
+            <a href="#" class="u-consulting-btn"> <span></span> 我要咨询</a>
+            <div class="clear"></div>
+           </div>
+           <div id="_detailConsultContent4" style="display:none;">
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="dRight_bottom" id="bottom-ask">
+         <div class="u-comments-area">
+                <div class="u-comments-title">
+                    <i></i>
+                    <strong>提问：{$info[title]}</strong>
+                    <span></span>
+                </div>
+                <div class="u-consulting-table">
+                    <form onsubmit="return false;" id="ask">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr>
+                                <td align="right"> <strong>提问类型：</strong> </td>
+                                <td> <label> <input type="radio" name="ask[mold_name]" value="商品提问" id="RadioGroup1_0" checked="checked" /> <span>商品提问</span> </label>
+                                    <label> <input type="radio" name="ask[mold_name]" value="促销活动提问" id="RadioGroup1_1" /> <span>促销活动提问</span>
+                                    </label> <label> <input type="radio" name="ask[mold_name]" value="库存及物流提问" id="RadioGroup1_2" /> <span>库存及物流提问</span> </label>
+                                    <label> <input type="radio" name="ask[mold_name]" value="售后提问" id="RadioGroup1_2" /> <span>售后提问</span> </label> </td>
+                            </tr>
+                            <tr>
+                                <td align="right" valign="top"> <strong>提问内容：</strong> </td>
+                                <td> <textarea id="_ComContent1" name="ask[content]" cols="" rows="" class="u-consulting-form"></textarea> </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td> <input type="button" class="u-consulting-b ask_insert" onclick="" value="提交问题" name="" /></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+         <div class="u-consulting-rule"> 
+          <h4>咨询说明</h4> 
+          <p>1、商品咨询是酒富网为您提供的疑难问答，在这里您可以与工作人员直接进行交流。因发起咨询的用户较多，可能无法及时进行回复，我们将在最快的时间内为您解答；</p> 
+          <p>2、当涉及广告、比价、重复反馈、不实评论、恶意评论、粗口、危害国家安全等等不当言论时，酒富网有权予以管理。</p> 
+         </div> 
+         <div class="clear"></div> 
+        </div> 
+       </div> 
+      
+      </div> 
+     </div> 
+     <div class="clear"></div> 
+    </div> 
+   </div> 
+  </div>
+<script type="text/javascript">
+    $(function(){
+        $(".productTabTit li").bind('click', function(event) {
+            $(this).addClass('on').siblings('li').removeClass('on');
+            var thindex = $(this).index();
+            $(".dRight-wrap").children('.dRight-tab-con').eq(thindex).show().siblings().hide();
+        });
+        $(".detailCode").hover(function(){
+            $(".detailCode-t").toggle();
+        })
+    })
+</script>
+    </div>
+<include file="Common:footer" />

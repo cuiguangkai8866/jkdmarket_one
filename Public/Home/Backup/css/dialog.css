@@ -1,0 +1,36 @@
+.fdialog{border:3px solid #818181; background-color:#FFF;}
+.fdialog table{border-collapse: collapse;}
+.fhead{background-color: #F6F6F6;}
+.fhead .ftitle{color: #313031;font-weight: bold;height: 28px;line-height:28px; padding-left: 8px; padding-right:6px;} 
+.fhead a.fclose{width:14px;height:14px;display:block;float: right;text-decoration:none;line-height:14px; margin-top:7px;}
+.fmain .fbg{ background-position:0 0;margin-left:10px;margin-top:10px;position: relative;width:48px; height: 48px;}
+.fmain .prompt{ background:url(http://img3.imglefeng.com/images/cart/question.png ) no-repeat 0 0;
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="http://img3.imglefeng.com/images/cart/question.png");
+_background:none;}
+.fmain .error{ background:url(http://img3.imglefeng.com/images/cart/error.png) no-repeat 0 0;
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="http://img3.imglefeng.com/images/cart/error.png");
+_background:none;}
+.fmain .warn{ background:url(http://img3.imglefeng.com/images/cart/warn.png) no-repeat 0 0;
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=noscale, src="http://img3.imglefeng.com/images/cart/warn.png");
+_background:none;}
+.fmain .pay_loading{background:url(http://img3.imglefeng.com/images/cart/loading.gif) no-repeat 0 0;}
+
+.fmain .fcontent{padding:15px; padding-left:5px; line-height:14px; padding-right:10px;}
+.ffoot .fbuttons{ text-align:center; padding-bottom:4px;}
+.ffoot .fbuttons a{color:#fff!important;display: inline-block;height: 25px; line-height: 25px;text-align: center;zoom:1;_display:inline;vertical-align:middle; 
+padding-left:23px;cursor:pointer;}
+.ffoot .fbuttons a span{display: inline-block;zoom:1;_display:inline;padding-right: 23px;}
+/*按钮样式*/
+.ffoot a.sure{background: url(http://img3.imglefeng.com/images/cart/confirm_bt.jpg) no-repeat left top;}
+.ffoot a.sure span{background: url(http://img3.imglefeng.com/images/cart/confirm_bt.jpg) no-repeat right top;}
+.ffoot a.close{background: url(http://img3.imglefeng.com/images/cart/cancle_bt.jpg) no-repeat left top; margin-left:10px; }
+.ffoot a.close span{background: url(http://img3.imglefeng.com/images/cart/cancle_bt.jpg) no-repeat right top;color:#000;}
+.fmask{background-color: #000000;opacity:0.7;filter:alpha(opacity=60);}
+
+
+.ffoot a.queding{ height:28px; line-height:28px; padding-left:23px; background: url(http://images.lefeng.com/images/fc/bc_bt2.jpg) no-repeat left top;}
+.ffoot a.queding span{background: url(http://images.lefeng.com/images/fc/bc_bt2.jpg) no-repeat right top;}
+.ffoot a.quxiao{ height:28px; line-height:28px; padding-left:23px; background: url(http://images.lefeng.com/images/fc/qx_bt.jpg) no-repeat left top; margin-left:10px; }
+.ffoot a.quxiao span{ background: url(http://images.lefeng.com/images/fc/qx_bt.jpg) no-repeat right top;color:#000;}
+
+

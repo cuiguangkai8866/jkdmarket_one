@@ -1,0 +1,669 @@
+.airticket {
+  h1, h2, h3 {
+    font-size: 1em;
+    font-weight: normal;
+  }
+  .header {
+    text-align: center;
+    .ptn_lft {
+      position: absolute;
+      left: 6px;
+      top: 0;
+    }
+    .ptn_rgt {
+      position: absolute;
+      right: 6px;
+      top: 0;
+    }
+  }
+  .mc {
+    padding: 10px;
+  }
+  .txt_ctr {
+    text-align: center;
+  }
+  .txt_rgt {
+    text-align: right;
+  }
+  .txt_lft {
+    text-align: left;
+  }
+  .txt0 {
+    color: #000;
+  }
+  .line {
+    border-top: 1px solid #dbd7d2;
+    border-bottom: 1px solid #fcfaf9;
+  }
+  select {
+    height: 35px;
+    line-height: 35px;
+    width: 100%;
+  }
+  textarea {
+    width: 100%;
+  }
+  .header-btn a img {
+    vertical-align: text-top;
+  }
+  .login-reg .mc {
+    .common-input {
+      width: 100%;
+      padding: 0;
+      color: #b8b1ab;
+    }
+    .htl-input {
+      width: 100%;
+      padding: 0;
+      height: 37px;
+      background-color: #f4f4f4;
+      border: 0;
+      color: #b8b1ab;
+      text-indent: 8px;
+      font-size: .95em;
+    }
+  }
+  .order .mc .htl-input {
+    width: 100%;
+    padding: 0;
+    height: 37px;
+    background-color: #f4f4f4;
+    border: 0;
+    color: #b8b1ab;
+    text-indent: 8px;
+    font-size: .95em;
+  }
+  .srch_lst {
+    width: 100%;
+  }
+  .srch_lstw {
+    display: table;
+    padding: 5px 0;
+    width: 100%;
+  }
+  .slw_v1 {
+    padding-bottom: 0;
+  }
+  .srch_lstw {
+    span {
+      display: table-cell;
+      vertical-align: middle;
+      &.tit {
+        width: 65px;
+        padding-right: 10px;
+        text-align: right;
+      }
+      text-align: left;
+    }
+    .sel_box {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+  }
+  .order .sel_box {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  .srch_lstw {
+    .srch_input, .srch_sel {
+      display: table;
+      width: 100%;
+      height: 23px;
+      line-height: 23px;
+    }
+  }
+  .order {
+    .srch_input {
+      display: table;
+      width: 100%;
+      height: 23px;
+      line-height: 23px;
+    }
+    .srch_sel {
+      display: table;
+      width: 100%;
+      height: 23px;
+      line-height: 23px;
+      background: #f4f4f4 url(../images/html5/h_down.png) 100% 50% no-repeat;
+    }
+  }
+  .login-reg .mc .srch_sel, .order .mc .srch_sel {
+    padding: 8px 0 7px;
+  }
+  .login-reg .mc .srch_sel {
+    .txt {
+      text-indent: 8px;
+    }
+    .calendar {
+      color: #000;
+      text-indent: 8px;
+      background: url(../images/html5/calendar.png) 200px 0 no-repeat;
+      z-index: 5;
+    }
+  }
+  .order .mc .srch_sel .calendar {
+    color: #000;
+    text-indent: 8px;
+    background: url(../images/html5/calendar.png) 200px 0 no-repeat;
+    z-index: 5;
+  }
+  .shelper {
+    width: 100%;
+    padding: 0;
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+    border-color: #ded6d9;
+    li {
+      margin: 0;
+      width: auto;
+      a {
+        display: block;
+      }
+    }
+  }
+  .txt0 {
+    color: #000;
+  }
+  .arrow-pdetail span {
+    &.show {
+      width: 18px;
+      height: 19px;
+      background: url(../images/html5/h_show.png) 0 0 no-repeat;
+    }
+    &.hide {
+      width: 18px;
+      height: 19px;
+      background: url(../images/html5/h_show.png) 0 0 no-repeat;
+      background: url(../images/html5/h_hide.png) 0 0 no-repeat;
+    }
+  }
+  .sbtn_v1 {
+    background: -webkit-gradient(linear, left top, left bottom, from(#73bcdb), color-stop(0.5, #56a9d0), to(#3584b8));
+    background: -moz-linear-gradient(top, #68b6d8, #3584b8);
+  }
+  .htl_myodr {
+    padding-top: 20px;
+  }
+  .hm_v1 {
+    padding: 15px 0 10px;
+  }
+  .htl_cal {
+    background-color: #fffdf7;
+    border: 1px solid #ddd5c8;
+    border-radius: 5px;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      th, td {
+        border-spacing: 0;
+        border: 0;
+        text-align: center;
+      }
+      thead {
+        box-shadow: inset 0 1px 2px #5fabce;
+      }
+      th {
+        height: 30px;
+        line-height: 30px;
+        color: #fff;
+        border-top: 1px solid #ddd5c8;
+        border-bottom: 1px solid #ddd5c8;
+        background: -webkit-gradient(linear, left top, left bottom, from(#2a8ebc), to(#1e83b1));
+        background: -moz-linear-gradient(top, #2a8ebc, #1e83b1);
+      }
+      td {
+        height: 40px;
+        line-height: 40px;
+        color: #999;
+        border-bottom: 1px solid #ddd5c8;
+        border-right: 1px solid #ddd5c8;
+        &:last-child {
+          border-right: 0;
+        }
+        &.txt3 {
+          color: #333;
+        }
+        &.on {
+          background: -webkit-gradient(linear, left top, left bottom, from(#2a8ebc), to(#1e83b1));
+          background: -moz-linear-gradient(top, #2a8ebc, #1e83b1);
+          color: #fff;
+        }
+      }
+      tr:last-child td {
+        border-bottom: 0;
+      }
+    }
+    h3 {
+      height: 35px;
+      line-height: 35px;
+      font-size: 1em;
+      text-align: center;
+      .mon {
+        padding: 0 20px;
+      }
+      .cal_prev, .cal_next {
+        display: inline-block;
+        height: 35px;
+        width: 70px;
+      }
+    }
+  }
+  .p_top {
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #d4d4d4;
+    text-align: center;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ebefee));
+    background: -moz-linear-gradient(top, #fff, #ebefee);
+  }
+  .pt_cont {
+    font-size: .875em;
+    color: #3c3c3c;
+    .date {
+      padding: 0 20px;
+    }
+  }
+  .p_top {
+    .prev, .next {
+      display: inline-block;
+      width: 20px;
+      text-indent: -9999px;
+    }
+    .prev {
+      float: left;
+      background: url(../images/html5/air_prev.png) 50% 50% no-repeat;
+    }
+    .next {
+      float: right;
+      background: url(../images/html5/air_next.png) 50% 50% no-repeat;
+    }
+  }
+  .down-tab {
+    border-bottom: 0;
+  }
+  .up_arrow {
+    padding-left: 10px;
+    color: #f0f0f0;
+  }
+}
+
+.flight_lst {
+  border: 1px solid #e1d9cd;
+  border-radius: 5px;
+  li {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #ded6c9;
+    &:first-child {
+      border-top: 0;
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+    span {
+      font-size: .95em;
+    }
+    a {
+      position: relative;
+      display: block;
+      background-color: #fffdf7;
+      color: #808080;
+      &.down {
+        padding-right: 20px;
+        background: #fffdf7 url(../images/html5/h_down.png) 100% 50% no-repeat;
+      }
+      &.up {
+        padding-right: 20px;
+        background: #f6f1e2 url(../images/html5/h_up.png) 100% 50% no-repeat;
+        .air_logo {
+          background-color: #f6f1e2;
+        }
+      }
+    }
+    .air_logo {
+      position: absolute;
+      left: 0;
+      width: 30px;
+      height: 100%;
+      background: #f9f6ed url(../images/html5/icon_air.png) 50% 20px no-repeat;
+      text-indent: -9999px;
+    }
+    .info {
+      display: block;
+      margin-left: 30px;
+      padding: 15px 0;
+    }
+    .price {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+    }
+  }
+}
+
+.airticket {
+  .txt3c {
+    color: #3c3c3c;
+  }
+  .price_lst {
+    background-color: #f6f1e2;
+    li {
+      position: relative;
+      color: #b8b1ab;
+    }
+  }
+  a.btn_type2 {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    display: inline-block;
+    width: 40px;
+    padding: 8px 17px;
+    text-align: center;
+    font-size: .8em;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ed3131), to(#990a0a));
+    background: -moz-linear-gradient(top, #ed3131, #990a0a);
+    border: 1px solid #baac9d;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    color: #fff;
+    text-shadow: 1px 0 0 #000;
+  }
+  .price_lst li .sale {
+    height: 20px;
+    margin-left: 10px;
+    padding: 0 5px;
+    line-height: 20px;
+    background-color: #e4dccb;
+    border-radius: 3px;
+    text-shadow: 1px 0 0 #fff;
+  }
+  .order_info, .order_info2 {
+    border: 1px solid #ddd5c8;
+    background-color: #fffdf7;
+    border-radius: 3px;
+  }
+  .order_info {
+    .date {
+      padding: 10px 0;
+      background-color: #f4f0e4;
+      text-align: center;
+      border-bottom: #ddd5c8;
+      color: #5a5a5a;
+    }
+    .def_info {
+      padding: 10px;
+    }
+    .flight {
+      padding-left: 25px;
+      background: url(../images/html5/icon_air.png) 0 0 no-repeat;
+    }
+    .flight_str {
+      padding-left: 25px;
+      background: url(../images/html5/icon_air2.png) 0 0 no-repeat;
+    }
+    .flight_end {
+      padding-left: 25px;
+      background: url(../images/html5/icon_air3.png) 0 0 no-repeat;
+    }
+  }
+  .order_info2 {
+    margin-top: 20px;
+    padding: 10px;
+    color: #5a5a5a;
+    .arrow {
+      display: block;
+      background: #fffdf7 url(../images/html5/arrow.png) 100% 50% no-repeat;
+      color: #5a5a5a;
+    }
+  }
+  .user_comm .arrow {
+    display: block;
+    background: #fffdf7 url(../images/html5/arrow.png) 100% 50% no-repeat;
+    color: #5a5a5a;
+  }
+  .order_info2 {
+    .arrow {
+      strong {
+        font-size: .95em;
+      }
+      span {
+        font-size: .8em;
+      }
+    }
+    .static {
+      padding-top: 5px;
+      font-size: .8em;
+      strong {
+        float: right;
+        font-size: 16px;
+      }
+    }
+  }
+  .sub_btn {
+    margin-top: 20px;
+  }
+  .mt_v1 {
+    position: relative;
+  }
+  .add_user {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    padding-left: 20px;
+    background: url(../images/html5/arrow_add.png) 0 14px no-repeat;
+  }
+  .user_comm {
+    padding: 5px 10px;
+    h3 {
+      padding-bottom: 10px;
+    }
+  }
+  .use_list, .use_list_info {
+    border: 1px solid #ddd5c8;
+    background-color: #fffdf7;
+    border-radius: 3px;
+  }
+  .use_list li {
+    position: relative;
+    padding: 5px 0 5px 20px;
+    border-bottom: 1px solid #ddd5c8;
+    color: #5a5a5a;
+    &:last-child {
+      border-bottom: 0;
+    }
+    .edit {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 54px;
+      background: url(../images/html5/icon_air4.png) 50% 50% no-repeat;
+      text-indent: -9999px;
+    }
+    .delete {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 54px;
+      background: url(../images/html5/airline_del.png) 50% 30% no-repeat;
+      text-indent: -9999px;
+    }
+  }
+  .ul_v1 li {
+    padding: 10px 10px;
+    background: 0;
+    span {
+      &:first-child {
+        font-size: .875em;
+      }
+      &:last-child {
+        float: right;
+        height: 22px;
+        line-height: 22px;
+        font-size: .8em;
+        color: #b8b1ab;
+      }
+    }
+  }
+  .use_list .chkbox {
+    margin-right: 10px;
+  }
+  .ul_v1 .chkbox {
+    margin-right: 5px;
+  }
+  .use_list {
+    .num {
+      padding-left: 20px;
+      color: #b8b1ab;
+    }
+    .num2 {
+      display: block;
+      padding: 0 30px 0 20px;
+      font-size: .85em;
+      color: #b8b1ab;
+    }
+  }
+  .use_list_info {
+    padding: 15px;
+    .srch_lstw span {
+      &.tit {
+        width: 90px;
+        text-align: left;
+      }
+      &.tit_v1 {
+        width: 100px;
+      }
+      &.tit_v2 {
+        width: 115px;
+      }
+      &.tit strong {
+        vertical-align: middle;
+      }
+    }
+  }
+  .login-reg .mc .use_list_info .srch_sel .calendar {
+    background-position: 140px 0;
+  }
+  .use_list_info {
+    .htl_cal h3 {
+      .cal_prev, .cal_next {
+        width: 60px;
+      }
+    }
+    .rdo {
+      margin-right: 5px;
+    }
+  }
+  .user_comm .rdo {
+    margin-right: 5px;
+  }
+  .use_list_info .srch_lstw label:nth-child(2) {
+    margin-right: 10px;
+  }
+  .login-reg .mc .user_comm .srch_sel .calendar {
+    background-position: 150px 0;
+  }
+  .user_comm {
+    .srch_lst {
+      margin-top: 10px;
+    }
+    .srch_lstw span.tit {
+      width: 80px;
+    }
+  }
+  .use_list_info {
+    .succ {
+      padding-left: 50px;
+      background: url(../images/html5/pay_succ2.png) 0 50% no-repeat;
+      color: #2e8e01;
+    }
+    .succ_info {
+      padding: 10px 0;
+      font-size: .875em;
+      color: #b8b1ab;
+    }
+    .mg10 {
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .rdo {
+      vertical-align: top;
+      margin-top: 3px;
+    }
+  }
+  .order_static ul {
+    display: table;
+    width: 100%;
+    li {
+      display: table-cell;
+      &:first-child {
+        padding-right: 5px;
+      }
+      &:last-child {
+        padding-left: 5px;
+      }
+    }
+  }
+  .user_comm .arrow {
+    background-position: 97% 50%;
+  }
+  .order_info2_v1 {
+    border-radius: 3px 3px 0 0;
+  }
+  .online_pay {
+    display: block;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: .95em;
+    background-color: #fffdf7;
+    border: 1px solid #ddd5c8;
+    border-top: 0;
+    color: #808080;
+    border-radius: 0 0 3px 3px;
+  }
+  .retreat_info {
+    padding: 10px;
+  }
+  .retreat_info_v1 {
+    border-top: 1px solid #ddd5c8;
+  }
+  .retreat_info ul {
+    display: table;
+    width: 100%;
+    margin-bottom: 15px;
+    &.mgn0 {
+      margin-bottom: 0;
+    }
+    li {
+      display: table-cell;
+      font-size: .95em;
+      &.wth35 {
+        width: 35%;
+      }
+      .txt {
+        color: #666;
+      }
+      .txt2 {
+        font-size: .875em;
+        color: #666;
+        letter-spacing: -1px;
+      }
+    }
+  }
+  .order_info2 .arrow_none {
+    background: 0;
+  }
+  .year {
+    height: 20px;
+    width: 70px;
+  }
+  .mon2 {
+    height: 20px;
+    width: 70px;
+    width: 50px;
+  }
+}

@@ -1,0 +1,337 @@
+ <include file="Common:top" />
+<include file="Common:intoHead" />
+<link href="__CSS__/cart_confirm.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__JS__/shoppingcart.js"></script>
+<div class="header clearfix">
+  <div class="center">
+   <div id="logo">
+    <a href="__ROOT__/"><img src="__IMG__/logo.png" title="返回酒富商城首页" alt="返回酒富商城首页" /></a>
+   </div> 
+   <div class="language">
+    <a href="javascript:void(0);"></a>
+   </div>
+   <div class="progress clearfix"> 
+    <ul class="progress-2"> 
+     <li class="step-1">我的购物车</li> 
+     <li class="step-2">填写核对订单信息</li>
+     <li class="step-3">成功提交订单</li>
+    </ul> 
+   </div> 
+   </div>
+</div>
+<script type="text/javascript">
+  $(function(){
+
+    // 选择收货地址
+    $("#path_list dl:not(.add)").bind({
+      click:function(){
+        $(this).addClass('default').siblings('dl').removeClass('default');
+      },
+      mouseover:function(){
+        $(this).children('.ubtn').show();
+        $(this).find('.def').show();
+      },
+      mouseout:function(){
+        $(this).children('.ubtn').hide();
+        $(this).find('.def').hide();
+      }
+    });
+
+    // 添加新地址
+    function path_add(){
+      var ow = $(window).width();
+      var oh = $(window).height();
+      var iw = $("#path_window").width();
+      var ih = $("#path_window").height();
+      $("#path_window > h3").text('创建收货地址');
+      $("#path_window,#lock").show();
+      $("#path_window").css({'left': (ow-iw)/2,'top': (oh-ih)/2});
+    }
+    $("#path_list dl.add").click(function() {
+      path_add();
+    });
+
+
+    // 修改收货地址
+    $("#path_list .ubtn .update").bind('click', function(event) {
+      path_add();
+      $("#path_window > h3").text('编辑收货地址');
+    });
+
+
+    // 关闭弹出层
+    $("#path_window i.close,#lock").bind('click', function(event) {
+      $("#path_window,#lock").hide();
+    });
+
+    // 快递配送时间修改
+    $(".time .update").bind('click', function(event) {
+      $(this).hide().parent().next().hide().next().show();
+    });
+
+
+    // 快递配送时间选择
+    $("#time_opened dl").bind('click', function(event) {
+      $(this).parent().hide().prev().show().prev().children('b').show();
+      $(this).addClass('on').siblings('dl').removeClass('on');
+      var oText = $(this).children('dt').text();
+      $(this).parent().prev().children('p').text(oText);
+    });
+
+
+
+    // 支付方式手风琴效果
+    $(".info .bank-list:gt(0)").css('border-top-style', 'none');
+    $(".info .bank-list h3").bind('click', function(event) {
+      if($(this).find('input[name=paytype]').attr('checked')){
+        $(this).parent('.bank-list').addClass('bank_on').siblings('.bank-list').removeClass('bank_on');
+        $(this).parent('.bank_on').css({'border-top-style': 'solid','border-bottom-style': 'solid'}).siblings('.bank-list').css({'border-top-style': 'none'});
+        $(".info .bank-list:eq(0)").css('border-top-style', 'solid');
+        /*$(".info .bank-list:eq(2)").css('border-bottom-style', 'solid');*/
+      }
+    });
+
+    // 支付方式选择
+    $(".info .bank-list li").bind('click', function(event) {
+      $(this).addClass('selected').siblings('li').removeClass('selected');
+    });
+
+
+    // 是否开具发票
+    
+    $("#invoice .update").bind('click', function(event) {
+      $(this).hide();
+      $("#invoice_need_save,#time_closed").hide();
+      $('#invoice_need').show();
+    });
+    $("#invoice_need_edit .save").bind('click', function(event) {
+      var invoice_title = $('#invoice_need_edit_cop_title').val()?$('#invoice_need_edit_cop_title').val():$("input[name='invoice[title]']:checked").val();
+      var invoice_con = $('input:radio[name=invoice_need_edit_content]:checked').val();
+      $("#invoice_need_save_title").text(invoice_title);
+      $("#invoice_need_save_content").text(invoice_con);
+      $("#invoice_need_save").show();
+      $("#invoice_need").hide();
+      $(this).parents("#invoice_need").siblings('h3').children('.update').show();
+    });
+    $(".invoice_no").bind('click', function(event) {
+      $(this).parents("#invoice_need").hide().siblings('#time_closed').show().siblings('h3').children('.update').show();
+    });
+    $("#invoices").on('click', function(){
+      if($("input[name='invoice[title]']:checked").val() == '公司'){
+        $("#invoice_need_edit_cop_title").show();
+      }else{
+        $("#invoice_need_edit_cop_title").hide();
+      }
+    })
+  })
+
+</script>
+<div class="grey">
+<div class="main">
+  <!-- 收货地址 -->
+  <div class="path" id="path">
+    <h3><i>1</i>收货地址<span id="path_msg"></span></h3>
+    <div id="path_list">
+  <volist name="address" id='vo'>
+      <dl onclick="setOrderInfo('{$vo.id}','setAddress');" class="{:$vo[id] == $_SESSION['orderInfo']['address'] ?'default':''}">
+          <dt>
+              <span class="tit" id="username{$vo.id}">{$vo.username}</span>
+              <span class="tel" id="phone{$vo.id}">{$vo.phone}</span>
+              <span class="def" onclick="saveAddressInfo('{$vo.id}','status')">{:$vo[status] == 1 ?'':'设为默认'}</span>
+              <span id="postcode{$vo.id}" style="display:none;">{$vo.postcode}</span>
+          </dt>
+          <dd>
+              <span id="shen_cityname{$vo.id}">{$vo.shen_cityname}</span>-
+              <span id="shi_cityname{$vo.id}">{$vo.shi_cityname}</span>-
+              <span id="xian_cityname{$vo.id}">{$vo.xian_cityname}</span>
+              <br><span id="address{$vo.id}">{$vo.address}</span></dd>
+          <dd class="ubtn">
+              <b class="update" onclick="saveAddressInfo('{$vo.id}','load')">修改</b>
+              <if condition="$vo[status] neq 1">
+                  <b class="del" onclick="delAddress('{:U('Member/Account/del_address',array('id'=>$vo[id]))}')">删除</b>
+              </if>
+          </dd>
+          <span style="display: none;" name="ship_info"></span>
+      </dl>
+  </volist>
+  <dl class="add">
+    <dd><b></b>使用新地址</dd>
+  </dl>
+  
+
+</div>
+  </div>
+  
+  <!-- 配送时间 -->
+  <div class="time" id="time">
+    <h3><i>2</i>快递配送时间<b class="update">修改</b></h3>
+    <div id="time_closed" style="display: block;">
+      <p>已选择：{:$_SESSION['orderInfo']['deliveryTime']}</p>
+    </div>
+    <div id="time_opened" style="display: none;">
+      <dl onclick="setOrderInfo('不限时间','setTimeInfo')" value="1" class="on">
+        <dt>不限时间</dt>
+      </dl>
+      <dl onclick="setOrderInfo('周一至周五','setTimeInfo')" value="2">
+        <dt>周一至周五</dt>
+      </dl>
+      <dl onclick="setOrderInfo('周六日/节假日','setTimeInfo')" value="3">
+        <dt>周六日/节假日</dt>
+      </dl>
+    </div>
+    <div id="time_mandi" style="display: none;">
+      <p class="showpirce"><input type="checkbox"><b class="checkbox"></b><span id="time_mandi_msg" style="margin:0"></span></p>
+    </div>
+  </div>
+  <!-- 商品清单 -->
+  <div class="pro-list">
+    <h3><i>3</i>商品清单</h3>
+    <div id="shoppinglistDiv">
+      <h2>
+        <a href="{:U('/buycart')}">返回购物车 <b></b>
+        </a>
+        以下商品由酒富网发出，
+        <span id="arriveTime">预计2-5天内送达</span>
+      </h2>
+      <table cellspacing="0" cellpadding="0" border="0" name="productList">
+      <tbody>
+       <tr>
+        <th class="t1">商品名称</th>
+        <th style="width:140px;">单价</th>
+        <th style="width:110px;">数量</th>
+        <th style="width:110px;">赠送积分</th>
+        <th style="width:110px;">库存情况</th>
+       </tr>
+       <volist name="really_product" id="vo" empty="没有选择任何商品!">
+       <tr>
+        <td class="t1"><a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[pro_id])}">{$vo.title}</a></td>
+        <td class="t2"><b>￥</b>{$vo.price}</td>
+        <td>{$vo.num}</td>
+        <td>{$vo.credit}</td>
+        <td>{:($vo[stock] < $vo[num]) ?'库存不足':'剩余:'.$vo[stock]}</td>
+       </tr>
+           <php>
+               $money += $vo[price]*$vo[num];
+           </php>
+       </volist>
+      </tbody>
+      </table>
+      <div class="price">
+      <p>总价：<span><b>￥</b>{$money == null ? 0 : $money}</span></p>
+      <p>运费：<span><b>{:$money >= 100 ?'':'￥'}</b>{:$money >= 100 ?'满100元免运费':'10'}</span></p>
+      <p>需支付总额：<span class="red"><b>￥</b>{:$money >= 100 ? $money == null ? 0 :$money : $money+10}</span></p>
+      </div>
+      </div>
+</div>
+<!-- 发票 -->
+  <div class="invoice" id="invoice">
+    <h3><i>4</i>开具发票<b class="update">修改</b></h3>
+    <div id="invoice_need_save" style="display: none;">
+          发票抬头:<strong><span id="invoice_need_save_title">个人</span></strong> 
+          发票内容:<strong><span id="invoice_need_save_content">明细</span></strong>
+    </div>
+    <div id="time_closed" style="display: block;">
+      <p>已选择：不开具发票</p>
+    </div>
+    <div id="invoice_need" style="display: none;">
+        
+        <div id="invoice_need_edit">
+          <strong>发票抬头：</strong>
+
+          <form id="invoices" action="" method="post">
+          <p>
+            <span>
+              <label><input name="invoice[title]" type="radio" checked="checked" value="个人">个人
+              </label>
+            </span>
+            <span>
+              <label><input name="invoice[title]" type="radio" value="公司" />公司
+              </label>
+            </span>
+            <input id="invoice_need_edit_cop_title" value="" class="tinput" style="display: none;">
+          </p>
+          <strong>发票内容：</strong>
+          <p>
+            <span>
+              <label>
+                <input name="invoice[content]" type="radio" checked="checked" value="明细">明细
+              </label>
+            </span>
+            <span>
+              <label>
+                <input name="invoice[content]" type="radio" value="保健品">保健品
+              </label>
+            </span>
+            <span>
+              <label>
+                <input name="invoice[content]" type="radio" value="食品">食品
+              </label>
+            </span>
+            <span>
+              <label>
+                <input name="invoice[content]" type="radio" value="礼品">礼品
+              </label>
+            </span>
+          </p>
+          <input type="hidden" name="" >
+          </form>
+          <p><b class="save" onclick="setOrderInfo('#invoices','setInvoice')">保存</b><a href="javascript:;" onclick="setOrderInfo('不开具发票','setInvoice')" class="invoice_no">不需要发票</a></p>
+          <p class="dtip">发票内容由酒富网提供。跨境商品，无法提供发票。</p>
+        </div>
+      </div>
+  </div>
+    
+  <!-- 确认订单按钮 -->
+  <div id="confirm" class="confirm clearfix">
+    <a href="{:U('/buycart')}" class="btn_grey_small fl">返回购物车修改</a>
+    <div class="fr">
+      <span id="confirm_totalPrice">应付金额：<b>￥{:$money >= 100 ? $money == null ? 0 :$money : $money+10}</b></span><a href="{:U('/pay')}"><strong class="on">确认订单</strong></a>
+    </div>
+  </div>
+  </div>
+
+</div>
+<!------- 3.版权信息 ------->
+<!--footer-->
+<include file="Common:member_foot" />
+<!------- 4.公共组件 BEGIN ------->
+<!-- 收货地址弹出框(创建和编辑公用),段落末尾的<b></b><em></em>为错误提示标记 -->
+<div id="path_window" class="pathadd">
+  <h3>创建收货地址</h3><i class="close"></i>
+
+  <form action="" id="form_add">
+      <p>
+        <span><i>*</i>收货人姓名 ：</span><input id="shipwindow_receiver" name="info[username]" value="" style="width:298px;"><b></b><em></em>
+      </p>
+      <input type="hidden" name="info[id]" id="save_id" value="" />
+      <p>
+        <span><i>*</i>所在地区 ：</span>
+        <select id="s_province" name="info[shen_cityname]"></select>
+        <select id="s_city" name="info[shi_cityname]" ></select>
+        <select id="s_county" name="info[xian_cityname]"></select>
+        <script class="resources library" src="__JS__/area.js" type="text/javascript"></script>
+        <script type="text/javascript">_init_area();</script>
+    <em></em>
+      </p>
+      <p>
+        <span><i>*</i>详细地址 ：</span><input id="shipwindow_address" name="info[address]" value="" style="width:418px;"><b>请直接填写街道等详细地址，省/市/区不用填写</b><em></em>
+      </p>
+      <p>
+        <span><i>*</i>手机号码 ：</span><input id="shipwindow_mobile" name="info[phone]" value="" style="width:93px;">
+        <em></em>
+      </p>
+      <p>
+        <span>邮政编码：</span><input id="shipwindow_areacode" name="info[postcode]" style="width:93px;" value="">
+      </p>
+  </form>
+  <span id="shipwindow_optbutton" opt="add" class="save" onclick="saveAddressInfo('#form_add','submit')">保存并使用</span>
+</div>
+<!-- 收货地址弹出框的遮罩 -->
+<div id="lock" style="display: none;"></div>
+<!-- 赠品不足时弹窗 -->
+<div id="whenPresentOutOfStock" class="alt-tip alt-stop" style="display: none; top: 341px; left: 1079px;">
+  <p><span class="red">部分赠品已被抢光，是否继续提交？</span></p>
+  <b class="next">继续提交</b>
+  <span class="cancel">暂不提交</span>
+</div>
+</body></html>

@@ -1,0 +1,92 @@
+<block name="title">
+    <title>个人资料信息-会员中心</title>
+</block>
+<div id="user-info">
+    <div class="u-pic">
+        <img alt="用户头像" src="__ROOT__{:$_SESSION['member']['avatar_100'] == null ?'/Uploads/avatar/no_avatar.jpg':$_SESSION['member']['avatar_100']}">
+        <div class="mask"></div>
+    </div>
+
+    <div class="info-m">
+        <div class="u-name"><a href="{:U('/Member/User')}" target="_top">{$Think.session.member.nickname}</a></div>
+        <div class="u-signature">每天都是新开始，微笑加油哦！</div>
+        <div class="u-safe">
+            <span>账户安全：</span>
+            <!-- 账户安全1－5 -->
+            <php>
+                $i= 0;
+                $b= 0;
+                if($_SESSION[member][email] != null){
+                $i = $i+2;
+                $b = $b+1;
+                $m = '低级';
+                }
+                if($_SESSION[member][pay_pass] != null){
+                $i = $i+2;
+                $b = $b+1;
+                $m = '中级';
+                }
+                if($_SESSION[member][phone] != null){
+                $i = $i+2;
+                $b = $b+1;
+                $m = '安全';
+                }
+            </php>
+            <i id="cla" class="safe-rank0{$i}"></i>
+            <!-- 三个级别 1-3对应低级到高级 -->
+            <strong class="rank-text ftx-0{$b}">{$m}</strong>
+            <if condition="$i lt 6">
+                <a id="up" href="{:U('/Member/Safe')}">提升</a>
+            </if>
+        </div>
+    </div>
+    <ul class="acco-info-2">
+        <li class="fore2">
+            <div class="baitiao-info">
+                <div class="mb5">当前登陆时间</div>
+                <div>
+                    <a class="alink" href="#" target="_blank">{:date('Y-m-d H:i:s',$_SESSION[member][login_time])}</a>
+                </div>
+            </div>
+            <div style="height:10px;"></div>
+            <div class="baitiao-info">
+                <div class="mb5">最后一次登陆时间</div>
+                <div>
+                    <?php if($_SESSION['member']['last_login_time'] == 0 || $_SESSION['member']['last_login_time'] == null){ ?>
+                        <a class="alink" href="#" target="_blank">{:date('Y-m-d H:i:s',time())}</a>
+                    <?php }else{ ?>
+                        <a class="alink" href="#" target="_blank">{:date('Y-m-d H:i:s',$_SESSION[member][last_login_time])}</a>
+                    <?php } ?>
+                </div>
+            </div>
+        </li>
+        <li class="fore2">
+            <div class="baitiao-info">
+                <div class="mb5">当前登陆省份城市</div>
+                <div>
+                    <a class="alink" href="#" target="_blank">{$_SESSION[member][login_ip]}</a>
+                </div>
+            </div>
+            <div style="height:10px;"></div>
+            <div class="baitiao-info">
+                <div class="mb5">最后登陆省份城市</div>
+                <div>
+                    <a class="alink last_login_ip" href="#" target="_blank">{$_SESSION[member][last_login_ip] == null ?'未知省-未知市':$_SESSION[member][last_login_ip]}</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+<!--加载订单页-->
+<iframe src="{:U('/Member/loadOrderList')}" id="iframepage" name="iframepage" frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()" ></iframe>
+<script type="text/javascript" language="javascript">
+    function iFrameHeight() {
+        var ifm= document.getElementById("iframepage");
+        var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;
+        if(ifm != null && subWeb != null) {
+            ifm.height = subWeb.body.scrollHeight;
+        }
+    }
+</script>

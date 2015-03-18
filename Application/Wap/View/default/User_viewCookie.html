@@ -1,0 +1,36 @@
+<include file="Common:subHead" />
+<include file="Common:intoHead" />
+<script src="__JS__/wapCommon.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="__CSS__/collect.css" charset="utf-8"/>
+
+  <section class="history">
+  <script type="text/javascript">
+  $(function(){
+    // 清空浏览历史
+    $(".browseList .del").bind('touchstart', function(event) {
+      $(".clearMask").show().css('opacity', '.5');
+      $(".clearTip").show().css('opacity', '.7');
+    });
+    $(".clearTip .no").bind('touchstart', function(event) {
+      $(".clearMask,.clearTip").hide();
+    });
+  })
+  </script>
+   <!--浏览历史空begin--> 
+   <!--浏览历史空end--> 
+   <div class="browseList"> 
+    <ul>
+    <volist name="list" id="vo" empty="您还没有浏览记录!">
+        <li class="clearfix"> <a class="prodLink" href="{:U('/wapDetail').'?Gid='.$vo[id]}"></a> <img class="prodImg" src="__ROOT__{$vo.savepath}" />
+            <div class="prodInfo">
+                <p class="name"><a href="">{$vo.title}</a></p>
+                <p class="slogan">{$vo.tuixiao}</p>
+                <p class="price">价格：<strong>&yen;{$vo.price}</strong></p>
+            </div> </li>
+    </volist>
+    </ul>
+    <a class="del" onclick="delCookieList()" href="javascript:;">清空浏览历史</a>
+   </div> 
+   <div class="clearMask"></div>
+  </section>
+<include file="Common:footer" />

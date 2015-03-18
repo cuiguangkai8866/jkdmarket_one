@@ -1,0 +1,383 @@
+<include file="Common:top" />
+<script src="__PUBLIC__/Js/functions.js"></script>
+<script src="__PUBLIC__/Js/jquery.form.js"></script>
+<script src="__PUBLIC__/Js/asyncbox/asyncbox.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Js/asyncbox/skins/default.css">
+
+<link href="__CSS__/purchase.2012.css" rel="stylesheet" type="text/css">
+<div class="w w1 header clearfix">
+   <div id="logo">
+    <a href="__ROOT__/"><img src="__IMG__/logo.png" title="返回酒富商城首页" alt="返回酒富商城首页" /></a>
+   </div> 
+   <div class="language">
+    <a href="javascript:void(0);" onclick="toEnCart()"></a>
+   </div> 
+   <div class="progress clearfix"> 
+    <ul class="progress-1"> 
+     <li class="step-1">我的购物车</li> 
+     <li class="step-2">填写核对订单信息</li> 
+     <li class="step-3">成功提交订单</li> 
+    </ul> 
+   </div> 
+</div>
+  <div class="w cart"> 
+   <div class="cart-hd group"> 
+    <h2>我的购物车</h2> 
+    <span id="show2" class="fore">酒富网网上支付满100元免运费。</span> 
+   </div> 
+   <div id="show">
+    <div class="cart-frame"> 
+     <div class="tl"></div> 
+     <div class="tr"></div> 
+    </div>
+    
+    <div class="cart-inner">
+    <if condition="$cart_list eq null">
+      <div class="cart-empty">
+        <div class="message">
+          <ul>
+                  <li>您的购物车还是空的，赶紧行动吧！</li><li><a href="__ROOT__/">去首页</a>挑选喜欢的商品<!-- ，或<a href="###" class="btn-takeout">取出之前寄存的商品</a> --></li>
+          </ul>
+      <!-- </div>购物车内暂时没有商品</div> -->
+    <else />
+     <div class="cart-thead clearfix"> 
+      <div class="column t-checkbox form">
+       <input onclick="updateAllCheckBox()" class="jdcheckbox" name="toggle-checkboxes" id="toggle-checkboxes_up" type="checkbox" checked="" value="" />
+       <label for="toggle-checkboxes_up">全选</label>
+      </div> 
+      <div class="column t-goods">
+       商品
+      </div> 
+      <div class="column t-price">
+       酒富价
+      </div>
+      <div class="column t-inventory"> 
+       赠送积分
+      </div> 
+      <div class="column t-quantity">
+       数量
+      </div> 
+      <div class="column t-action">
+       操作
+      </div> 
+     </div> 
+     <div id="product-list" class="cart-tbody"> 
+      <!-- ************************商品开始********************* --> 
+      <!-- ***************************************************** --> 
+      <!-- 主商品 -->
+         <script type="text/javascript" src="__JS__/shoppingcart.js"></script>
+      <script type="text/javascript">
+        $(function(){
+          //购物车全选全不选
+          $("#toggle-checkboxes_up").bind('click', function(event) {
+            var $this = $(this);
+            if($this.is(':checked')){
+              $(".checkbox,.jdcheckbox").attr('checked',true).prop('checked',true);
+            }else{
+              $(".checkbox,.jdcheckbox").attr('checked', false).prop('checked',false);
+            }
+          });
+          
+          $("#toggle-checkboxes_down").bind('click', function(event) {
+            var $this = $(this);
+            if($this.is(':checked')){
+              $(".checkbox,#toggle-checkboxes_up").attr('checked', true).prop('checked', true);
+            }else{
+              $(".checkbox,#toggle-checkboxes_up").attr('checked', false).prop('checked', false);
+            }
+          });
+          var allcheck = $("#toggle-checkboxes_up,.jdcheckbox");
+          $(".checkbox").click(function(event) {
+            if($(".checkbox").length > $(".checkbox:checked").length){
+              allcheck.attr('checked', false).prop('checked', false);
+            }else if($(".checkbox").length == $(".checkbox:checked").length){
+              allcheck.attr('checked', true).prop('checked', true);
+            }
+          });
+
+          //购物车数量加减
+          $(".increment").click(function(){
+              //num = parseInt(num) + 1;
+              $(this).siblings(".quantity-text").val(parseInt($(this).siblings(".quantity-text").val())+1);
+          })
+          
+          $(".decrement").click(function(){
+             
+              if( $(this).siblings(".quantity-text").val()>1){
+                   $(this).siblings(".quantity-text").val(parseInt( $(this).siblings(".quantity-text").val())-1);
+              }else{
+
+              }
+
+          });
+
+
+        })
+        </script>
+
+      <volist name="cart_list" id="vo" key="cart">
+
+      <div id="product_1033923" class="item item_selected buycart{$vo.id}">
+       <div class="item_form clearfix"> 
+        <div class="cell p-checkbox">
+         <input class="checkbox" onclick="updateCheckBox()" type="checkbox" name="checkItem" checked="" value="{$vo.id}" />
+        </div> 
+        <div class="cell p-goods"> 
+         <div class="p-img">
+          <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[pro_id])}" target="_blank"><img src="__ROOT__{$vo.img}" alt="{$vo.title}" width="50" height="50" /></a>
+         </div> 
+         <div class="p-name">
+          <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[pro_id])}" target="_blank">{$vo.title}</a>
+          <span class="promise411 promise411_1033923" id="promise411_1033923">{:$vo[present] == null ?'无赠品':$vo[present]}</span>
+         </div> 
+        </div> 
+        <div class="cell p-price">
+         <span class="price" >&yen;<span id="cart_price{$vo.id}">{$vo.price}</span></span>
+        </div>
+        <div class="cell p-inventory stock-1033923">
+         {$vo.credit}
+        </div> 
+        <div class="cell p-quantity"> 
+
+         <div class="quantity-form"> 
+          <a href="javascript:void(0);" onclick="addBuyNum('{$vo.id}','{:U('Common/addBuyNum')}','reduce')" class="decrement" id="decrement-1033923-1-1">-</a>
+          <input type="text" class="quantity-text cart_num{$vo.id}" oninput="addBuyNum('{$vo.id}','{:U('Common/addBuyNum')}',null)" value="{$vo.num}" id="changeQuantity-1033923-1-1-0" />
+          <a href="javascript:void(0);" onclick="addBuyNum('{$vo.id}','{:U('Common/addBuyNum')}','add')" class="increment" id="increment-1033923-1-1-0">+</a>
+         </div> 
+         
+        </div> 
+        <div class="cell p-remove">
+         <a class="cart-remove" href="javascript:void(0);" onclick="delBuyCartInfo('{$vo.id}','{:U("Common/delBuyCart")}')">删除</a>
+         <div class="modify-pre" style="display: none;"> 
+          <a href="javascript:void(0);">修改优惠</a> 
+          <div class="dialog" style="display:none;"> 
+           <div class="dialog-outer"> 
+            <span class="dialog-bg dialog-bg-n"></span> 
+            <span class="dialog-bg dialog-bg-ne"></span> 
+            <span class="dialog-bg dialog-bg-e"></span> 
+            <span class="dialog-bg dialog-bg-se"></span> 
+            <span class="dialog-bg dialog-bg-s"></span> 
+            <span class="dialog-bg dialog-bg-sw"></span> 
+            <span class="dialog-bg dialog-bg-w"></span> 
+            <span class="dialog-bg dialog-bg-nw"></span> 
+            <span class="dialog-arrow"></span> 
+            <div class="dialog-inner"> 
+             <ul class="cho-favor"> 
+              <li> <label for="">活动优惠：</label> <select class="sel" id="modifyPromSel"> </select> </li> 
+              <li> <label for="">&nbsp;</label> <a class="btn-submit" href="javascript:void(0);" data-bind="1033923-1">确定</a> <a class="btn-cancel" href="javascript:void(0);">取消</a> </li> 
+             </ul> 
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+         <!-- modify-pre end  --> 
+        </div> 
+       </div> 
+
+
+
+
+       <div class="item_extra"> 
+        <!-- 延保服务按钮异步加载 --> 
+        <div class="sku-yanBao newJdService clearfix"> 
+        </div> 
+        <!-- 多个延保 --> 
+       </div> 
+       <!-- 延保和赠品 --> 
+      </div>
+      <span id="cart_market{$vo.id}" style="display: none;">{$vo.market}</span>
+      <php>
+          $money += $vo[price]*$vo[num];
+          $market += $vo[market]*$vo[num];
+      </php>
+      </volist>
+
+     </div>
+     <!-- product-list结束 --> 
+     <div class="cart-toolbar clearfix"> 
+      <div class="total fr"> 
+       <p><span id="totalSkuPrice">&yen;<span class="cart_money">{$money}</span></span>总计：</p>
+       <p><span id="totalRePrice">&yen;<span id="cart_market" style="text-decoration:line-through;">{$market - $money}</span></span>已优惠：</p>
+      </div> 
+      <div class="amout fr">
+       <span id="selectedCount">{$cart_count}</span> 件商品
+      </div> 
+     </div> 
+     <div class="ui-ceilinglamp-1" style="width: 998px; height: 49px;">
+      <div class="cart-dibu" style="width: 998px; height: 49px;"> 
+       <div class="control fdibu">
+        <span class="delete"> <b> </b> <a href="javascript:void(0);" onclick="delCheckedBox('{:U('Common/delBuyCart')}')" id="remove-batch"> 删除选中的商品 </a> </span>
+        <span class="shopping"> <b> </b> <a href="{$returnBuyUrl}" id="continue">继续购物</a> </span>
+       </div> 
+       <div class="cart-total-2014">
+
+        <div class="cart-button"> 
+         <span class="check-comm-btns" id="checkout-jd"> <a class="checkout" onclick="reallyOrder('{:U("/really")}')" style="cursor: pointer;">去结算<b></b></a> </span>
+         </div>
+        <div class="total fr">
+          总计（不含运费）： 
+         <span id="finalPrice">&yen;<span class="cart_money">{$money}</span></span>
+        </div> 
+       </div> 
+      </div>
+     </div>
+     </if>
+    </div>
+    <!-- cart-inner结束 -->
+   </div> 
+   <div id="show-cart-skuImage" class="combine-box hide"> 
+   </div> 
+   <div class="cart-removed" style="display:none;"> 
+    <div class="r-title">
+     已删除商品，您可以重新购买或加关注：
+    </div> 
+   </div> 
+  </div>
+<!--推荐位html修改处-->
+<div id="c-tabs" class="w w1 hide" style="display: block;margin-top:20px;">
+	<div class="m plist">
+<!-- 
+<style type="text/css">
+    .slideGroup{ width:510px; border:1px solid #ddd; text-align:left;  }
+    .slideGroup .parHd{ height:30px; line-height:30px; background:#f4f4f4; padding:0 20px; border-bottom:1px solid #ddd;  position:relative;  }
+    .slideGroup .parHd ul{ float:left; position:absolute; left:20px; top:-1px; height:32px;   }
+    .slideGroup .parHd ul li{ float:left; padding:0 15px; cursor:pointer;  }
+    .slideGroup .parHd ul li.on{ height:30px;  background:#fff; border:1px solid #ddd; border-bottom:2px solid #fff; }
+    .slideGroup .slideBox{ overflow:hidden; zoom:1; padding:10px 0 10px 42px; position:relative;   }
+
+    .slideGroup .sPrev,.slideGroup .sNext{ position:absolute; left:5px; top:10px; display:block; width:30px; height:94px; border:1px solid #ddd; background:url(__IMG__/icoLeft.gif) center center no-repeat #f4f4f4; }
+    .slideGroup .sNext{ left:auto; right:5px; background:url(__IMG__/icoRight.gif) center center no-repeat #f4f4f4;  }
+    .slideGroup .sPrev:hover,.slideGroup .sNext:hover{ border-color:#f60;  }
+
+    .slideGroup .parBd ul{ overflow:hidden; zoom:1;   }
+    .slideGroup .parBd ul li{ margin:0 8px; float:left; _display:inline; overflow:hidden; text-align:center;  }
+    .slideGroup .parBd ul li .pic{ text-align:center; }
+    .slideGroup .parBd ul li .pic img{ width:120px; height:90px; display:block;  padding:2px; border:1px solid #ccc; }
+    .slideGroup .parBd ul li .pic a:hover img{ border-color:#999;  }
+    .slideGroup .parBd ul li .title{ line-height:24px;   }
+
+
+    </style>
+ -->
+ <style type="text/css">
+  .w{width: 1000px;margin: 0 auto;}
+ </style>
+    <div class="slideGroup">
+		<div class="tab-nav parHd">
+			<ul style="margin-left: 0px;">
+				<li class="curr"><h3>猜你喜欢</h3></li>
+				<li data-widget="tab-item"><h3>我的收藏</h3></li>
+				<li data-widget="tab-item"><h3>最近浏览过的</h3></li>
+			</ul>
+		</div>
+<div class="parBd">
+		<!-- 猜你喜欢的商品 -->
+		  <div id="guess-products" class="cm fore1 curr slideBox"> 
+   <div class="cmc" style="display: block;">
+    <div style="position: relative; width: 876px; height: 235px; overflow: hidden;">
+     <ul class="clearfix" style="position: absolute; width: 2920px; height: 235px; top: 0px; left: 0px;">
+     <volist name="loveList" id="vo" empty="暂时还不能发现您的爱好!">
+         <li>
+             <div class="p-img">
+                 <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}"><img width="130" height="130" src="__ROOT__{$vo[savepath][0][savepath]}" alt="{$vo.title}" /></a>
+             </div>
+             <div class="p-name">
+                 <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}">{$vo.title}</a>
+             </div>
+             <div class="p-price">
+                 <strong>￥{$vo.price}</strong>
+             </div>
+             <div class="p-btn">
+                 <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" class="btn"><span class="btn-icon"></span><span class="btn-text">我要购买</span></a>
+             </div> </li>
+     </volist>
+     </ul>
+    </div>
+    <div class="arrow-l" style="display: block;"></div>
+    <div class="arrow-r" style="display: block;"></div>
+   </div> 
+  </div>
+
+
+<!-- 最近收藏的商品 -->
+
+		<div id="favorite-products" class="cm fore3 slideBox">
+			<div class="cmc"><div><ul class="clearfix">
+                <volist name="collect" id="vo" empty="您还没有收藏过任何商品!">
+                    <li>
+                        <div class="p-img">
+                            <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}">
+                                <img width="130" height="130" src="__ROOT__{$vo[savepath][0][savepath]}" alt="{$vo.title}">
+                            </a>
+                        </div>
+                        <div class="p-name">
+                            <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}">{$vo.title}</a>
+                        </div>
+                        <div class="p-price">
+                            <strong> ￥{$vo.price} </strong>
+                        </div>
+                        <div class="p-btn">
+                            <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" class="btn">
+                                <span class="btn-icon"></span>
+                                <span class="btn-text">查看详情</span>
+                            </a>
+                        </div>
+                    </li>
+                </volist>
+            </ul>
+            </div>
+                <div class="arrow-l" style="display: block;"></div>
+                <div class="arrow-r" style="display: block;"></div>
+            </div>
+		</div>
+
+
+
+
+		<!-- 浏览历史的商品 -->
+		  <div id="history-products" class="cm fore4 slideBox"> 
+   <div class="cmc">
+    <div style="position: relative; width: 876px; height: 235px; overflow: hidden;">
+     <ul class="clearfix" style="position: absolute; width: 2920px; height: 235px; top: 0px; left: 0px;">
+     <volist name="cookie" id="vo" empty="您还没有浏览历史!">
+         <li>
+             <div class="p-img">
+                 <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}"><img width="130" height="130" src="__ROOT__{$vo[savepath][0][savepath]}" alt="{$vo.title}" /></a>
+             </div>
+             <div class="p-name">
+                 <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}">{$vo.title}</a>
+             </div>
+             <div class="p-price">
+                 <strong>￥{$vo.price}</strong>
+             </div>
+             <div class="p-btn">
+                 <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" class="btn"><span class="btn-icon"></span><span class="btn-text">我要购买</span></a>
+             </div> </li>
+     </volist>
+     </ul>
+    </div>
+    <div class="arrow-l" style="display: block;"></div>
+    <div class="arrow-r" style="display: block;"></div>
+   </div> 
+  </div>
+
+</div>
+  </div>
+    <script type="text/javascript">
+      /*
+      SuperSlide组合注意：
+      1、内外层mainCell、targetCell、prevCell、nextCell等对象不能相同，除非特殊应用；
+      2、注意书写顺序，通常先写内层js调用，再写外层js调用
+      */
+
+      /* 内层图片滚动切换 */
+      jQuery(".slideGroup .slideBox").slide({ mainCell:"ul",vis:6,prevCell:".arrow-l",nextCell:".arrow-r",effect:"leftLoop",scroll:6,autoPage:true,pnLoop:false});
+
+      /* 外层tab切换 */
+      jQuery(".slideGroup").slide({delayTime:0, switchLoad:"_src",titCell:".parHd li",mainCell:".parBd",titOnClassName:"curr"});
+
+    </script>
+<include file="Common:member_foot" />
+	</div>
+</div>
+</body></html>

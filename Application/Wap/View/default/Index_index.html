@@ -1,0 +1,79 @@
+﻿<include file="Common:header" />
+ <body id="body">
+  <div class="new-ct main" style="padding-bottom:5.6em;background:#f1f1f5;">
+  <!-- 首页轮播图 -->
+  <style type="text/css">
+    .focus{ width:100%;margin:0 auto; position:relative; overflow:hidden;   }
+  .focus .hd{ width:100%; height:5px;  position:absolute; z-index:1; bottom:0; text-align:center;display: none;  }
+  .focus .hd ul{ overflow:hidden; display:-moz-box; display:-webkit-box; display:box; height:5px; background-color:rgba(51,51,51,0.5);   }
+  .focus .hd ul li{ -moz-box-flex:1; -webkit-box-flex:1; box-flex:1; }
+  .focus .hd ul .on{ background:#FF4000;  }
+  .focus .bd{ position:relative; z-index:0; }
+  .focus .bd li img{ width:100%; }
+  .focus .bd li a{ -webkit-tap-highlight-color:rgba(0, 0, 0, 0); /* 取消链接高亮 */ }
+  .ad2.ad2-v1 {margin-top: 1em;}
+  </style>
+  <div id="focus" class="focus">
+        <div class="hd">
+          <ul></ul>
+        </div>
+        <div class="bd">
+          <ul>
+              <ad position="index_top" order="sort">
+                  <li><a href="{$ad_url}"><img src="__ROOT__/Uploads/picture/{$ad_img}" /></a></li>
+              </ad>
+          </ul>
+        </div>
+      </div>
+      <script type="text/javascript">
+        TouchSlide({ 
+          slideCell:"#focus",
+          titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+          mainCell:".bd ul", 
+          effect:"leftLoop", 
+          autoPlay:true,//自动播放
+          autoPage:true //自动分页
+        });
+      </script>
+
+   <!-- logo -->
+   <div class="logo"> 
+    <img src="__IMG__/logo.png" alt="logo" /> 
+   </div> 
+
+
+   <!-- 首页搜索 -->
+   <div class="search" style="position:relative"> 
+   <span class="input-box"> 
+    <form action="{:U('/wapShop')}" id="searchForm" method="get">
+     <input name="shopName" type="text" class="new-input" required="" value="" placeholder="请输入商品名称" />
+    </form><a href="javascript:void(0)" onclick="$('#searchForm').submit();" class="btn-search"><span>搜索</span></a> </span> 
+   <div class="new-srch-lst" id="shelper" style="position:absolute;top: 2em;left: 3.28em;display:none;width:201px;z-index:10"></div> 
+  </div>
+   <div class="keyword clearfix">
+       <volist name="shopList" id="vo">
+            <a href="{:U('/wapShop').'?Mid='.$vo[guide]}" class="btn-text">{$vo.nav_name}</a>
+       </volist>
+   </div>
+    <div style="background:#f1f1f5;">
+        <volist name="cateList" id="vo">
+            <div class="ad2 ad2-v1" style="background:#fff;">
+                <h2 class="ad-h2">{$vo.name}</h2>
+                <div class="ad2-big-img">
+                    <volist name="vo[ad]" id="v2">
+                        <a href="{$v2[ad_link]}"><img src="__ROOT__/Uploads/picture/{$v2[ad_img]}" class="full-img" alt="{$vo.name}" /></a>
+                    </volist>
+                </div>
+                <ul class="ad-ul clearfix">
+                    <volist name="vo[product]" id="v3" empty="还没有添加商品">
+                        <li>
+                            <div class="ad-box"><a href="{:U('/wapDetail').'?Gid='.$v3[id]}" title="{$v3.title}"><img src="__ROOT__{$v3.savepath}" alt="{$v3.title}" ><span>¥{$v3.price}</span></a></div>
+                            <em><a href="{:U('/wapDetail').'?Gid='.$v3[id]}" title="{$v3.title}" >{:mb_substr($v3[title],0,8,'UTF-8')}...</a></em>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+        </volist>
+  </div>
+  </div>
+ <include file="Common:footer" />

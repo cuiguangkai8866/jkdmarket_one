@@ -1,0 +1,132 @@
+<include file="Common:top" />
+<include file="Common:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/jf-pft.css" media="all">
+    <div class="content_t">
+        <ad position="tuan">
+            <div class="jf_ban" style="background:url(__ROOT__/Uploads/picture/{$ad_img}) top center no-repeat;">
+                <div class="center">
+                    <a href="{$ad_link}" title="{$ad_name}"></a>
+                </div>
+            </div>
+        </ad>
+        <style type="text/css">
+            .lh-wrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 210px;
+}
+        </style>
+        <div class="jftuan clearfix">
+            
+            <div class="jftuan_r fl">
+                <div class="tfloors">
+                    <div class="tfloors_t clearfix">
+                        <div class="tfloors_tl fl">
+                            <h2>正在进行的团购</h2>
+                        </div>
+                    </div>
+                    <div class="tfloors_c">
+                        <ul class="clearfix">
+                            <volist name="nowList" id="vo">
+                                <li>
+                                    <div class="lh-wrap">
+                                        <div class="p-img">
+                                            <a href="{:U('/tDetail').'?tid='.$vo[id]}">
+                                                <!-- 商品图片 -->
+                                                <img src="__ROOT__{$vo.savepath}" data-original="__IMG__/pic_01.png" style="display: inline;">
+                                            </a>
+                                        </div>
+                                        <div class="p-name">
+                                            <!-- 商品名称 -->
+                                            <a href="{:U('/tDetail').'?tid='.$vo[id]}" title="{$vo.title}">{$vo.title}</a>
+                                        </div>
+                                        <div class="p-rname">
+                                            <a href="{:U('/tDetail').'?tid='.$vo[id]}" title="{$vo.tuixiao}">{$vo.tuixiao}</a>
+                                        </div>
+                                        <div class="p-price clearfix">
+                                            <!-- 价格 -->
+                                            <strong>
+                                                <i>￥</i>{$vo.price}
+                                            </strong>
+                                            <div class="btns fr">
+                                                <a href="{:U('/tDetail').'?tid='.$vo[id]}" class="btn-buy" >
+                                                    立刻参团
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="extra clearfix">
+                                        <span class="evaluate">
+                                            <i class="jjgm fl">
+                                                最近{$vo.buy_num}人购买
+                                            </i>
+                                            <!-- 评价数量 -->
+                                            <a target="_blank" href="{:U('/tDetail').'?tid='.$vo[id]}" class="yypj fr">
+                                                {$vo.nownum}条评论
+                                            </a>
+                                        </span>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tfloors">
+                    <div class="tfloors_t clearfix">
+                        <div class="tfloors_tl fl">
+                            <h2>即将开始的团购</h2>
+                        </div>
+                    </div>
+                    <div class="tfloors_c">
+                        <volist name="waitList" id="vo">
+                            <li>
+                                <div class="lh-wrap">
+                                    <div class="p-img">
+                                        <a href="{:U('/tDetail').'?tid='.$vo[id]}">
+                                            <!-- 商品图片 -->
+                                            <img src="__ROOT__{$vo.savepath}" data-original="__IMG__/pic_01.png" style="display: inline;">
+                                        </a>
+                                    </div>
+                                    <div class="p-name">
+                                        <!-- 商品名称 -->
+                                        <a href="{:U('/tDetail').'?tid='.$vo[id]}" title="{$vo.title}">{$vo.title}</a>
+                                    </div>
+                                    <div class="p-rname">
+                                        <a href="{:U('/tDetail').'?tid='.$vo[id]}" title="{$vo.tuixiao}">{$vo.tuixiao}</a>
+                                    </div>
+                                    <div class="p-price clearfix">
+                                        <!-- 价格 -->
+                                        <strong>
+                                            <i>￥</i>{$vo.price}
+                                        </strong>
+                                        <div class="btns fr">
+                                            <a href="{:U('/tDetail').'?tid='.$vo[id]}" class="btn-buy" >
+                                                即将开始
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="extra clearfix">
+                                        <span class="evaluate">
+                                            <i class="jjgm fl">
+                                                最近{$vo.buy_num}人购买
+                                            </i>
+                                            <!-- 评价数量 -->
+                                            <a target="_blank" href="{:U('/tDetail').'?tid='.$vo[id]}" class="yypj fr">
+                                                {$vo.nownum}条评论
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </volist>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<include file="Common:footer" />
+</body>
+</html>

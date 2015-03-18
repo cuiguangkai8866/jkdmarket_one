@@ -1,0 +1,104 @@
+<?php if(ACTION_NAME != 'pay'){ ?>
+<script type="text/javascript">
+    $(function(){
+        $(".sideNav .side_b").on('click', function(){
+            $("html,body").stop(true).animate({scrollTop: 0}, 300);
+        })
+        $(".sideNav .side_k").hover(function(){
+            $(".side_kcon").stop(true).toggle(200);
+        })
+    })
+</script>
+
+<div class="sideNav">
+    <ul>
+        <li class="side_s">
+            <a href="__ROOT__/" title="酒富首页">
+                <em>酒富首页</em>
+            </a>
+        </li>
+        <li class="side_t">
+            <a href="{:U('/tuan')}" title="最近团购">
+                <i></i>
+                <em>团购</em>
+            </a>
+        </li>
+        <li class="side_k pr">
+            <a href="javascript:void(0)" title="在线客服">
+                <i></i>
+            </a>
+            <div class="side_kcon">
+                <volist name="qq" id="vo">
+                <span>{$vo.title}</span>
+                <a href="http://wpa.qq.com/msgrd?v=3&uin={$vo.num}&site=qq&menu=yes" title="{$vo.title}" target="_blank" rel="nofollow">
+                    <img border="0" src='http://wpa.qq.com/pa?p=1:{$vo.num}:1' alt="点击这里给我发消息" title="{$vo.title}">
+                </a>
+                </volist>
+            </div>
+        </li>
+        <li class="side_b">
+            <a href="javascript:;" title="返回顶部">
+                <i></i>
+            </a>
+        </li>
+    </ul>
+</div>
+<?php } ?>
+<div class="footer">
+    <div class="center clearfix">
+        <div class="fl">
+            <ul class="service clearfix">
+                <nav position="bottom" order="sort" tag="Help">
+                    <li>
+                        <b>{$nav_name}</b>
+                        <ul>
+                            <nav position="bottom" order="sort" parent_id="$id">
+                                <li>
+                                    <a href="{:U('/Help/'.$tag)}" target="_blank" title="{$nav_name}">{$nav_name}</a>
+                                </li>
+                            </nav>
+                        </ul>
+                    </li>
+                </nav>
+            </ul>
+        </div>
+        <div class="fl qrcode" style="text-align:center">
+            <img src="__IMG__/wxcode.jpg" width="94" height="94" alt="" />
+            <div><b>关注酒富微信</b></div>
+        </div>
+    </div>
+    <div class="copy">
+        <div class="footer_nav">
+            <a href="{:U('/Help/about')}" title="关于酒富网">
+                关于酒富网
+            </a>
+            <span>|</span>
+            <a href="{:U('/Help/aboutus')}" title="联系我们">
+                联系我们
+            </a>
+            <span>|</span>
+            <a href="http://m.jiufu9.com" title="手机酒富网">
+                手机酒富网
+            </a>
+            <span>|</span>
+            <a href="{:U('/Member')}" title="会员中心">
+                会员中心
+            </a>
+            <span>|</span>
+            <a href="{:U('/Help')}" title="">
+                帮助中心
+            </a>
+            <span>|</span>
+             <a href="http://m.kuaidi100.com" title="" target="_blank">
+                快递查询
+            </a>
+            <span>|</span>
+        </div>
+        <div class="footer_nav">
+
+            {$site.version}
+        </div>
+    </div>
+</div>
+</body>
+</html>

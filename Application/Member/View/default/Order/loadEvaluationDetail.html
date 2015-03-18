@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>商品评价</title>
+<link rel="stylesheet" type="text/css" href="__CSS__/base.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.common.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.index.css" media="all">
+<link type="text/css" rel="stylesheet" href="__CSS__/ued.guang-min.css">
+<link rel="stylesheet" type="text/css" href="__CSS__/plist20131112.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/pop_compare.css" media="all">
+<link href="__CSS__/nav.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="__JS__/jquery.lazyload.min.js"></script>
+<script src="__PUBLIC__/Js/functions.js"></script>
+<script src="__PUBLIC__/Js/jquery.form.js"></script>
+<script src="__PUBLIC__/Js/asyncbox/asyncbox.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Js/asyncbox/skins/default.css">
+</head>
+
+<body>
+    <!-- 订单列表 -->
+    <div class="orderArea">
+    <div class="fc_pjsd">
+    <script type="text/javascript">
+        /*文本域字数限制效果*/
+        function textLimitCheck(thisArea, maxLength){
+            var str = thisArea.value;
+            var strlen = str.length;
+            if (strlen<=maxLength) {
+                document.getElementById('sp').innerHTML="还可以输入<span>"+(maxLength-strlen)+"</span>字";
+            }else {
+                document.getElementById('sp').innerHTML="已超出<span style='color:red'>"+(strlen-maxLength)+"</span>字";
+            }
+        }
+        /*输入框清空效果*/
+        function inputShow(ele,info){
+            $(ele).focusin(function(){$(this).val() == info && $(this).val('').css("color","#333")}).focusout(function(){$(this).val() == '' && $(this).val(info).css("color","#999")});
+        }
+        
+
+    </script>
+    <script type="text/javascript" src="__JS__/comment.js"></script>
+        <script>imageUrl = '__IMG__';</script>
+        <h2 class="title">商品评价</h2>
+                <div class="fc_sppj" id="topMd">
+                    <div class="pro">
+                        <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($proInfo[id])}" target="_blank">{$proInfo.title}</a>
+                        <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($proInfo[id])}" target="_blank"><img src="__ROOT__{$proInfo.savepath}"></a>
+                    </div>
+                    <div class="wdpj">
+                        <div class="star_wm clearfix">
+                        <div class="fl star_ti">商品评价：</div>
+                          <div id="rate-comm-1" class="rate-comm pj_ty6">
+                          </div>
+<!--star_big-->
+                        </div><!--star_wm-->
+                        <div class="pj_bg">
+                            <form id='dForm'>
+                                <div class="ganshou">
+                                    <textarea id="comment_content" name="info[content]" class="gs" onkeyup="textLimitCheck(this, 500);"></textarea>
+                                    <p id="sp">10-500字</p>
+                                    <input type="hidden" name="info[feel]" id="feel" value="" />
+                                </div><!--ganshou-->
+                            </form>
+                        </div>
+                    </div><!--wdpj-->
+                    <div class="star_big">
+                    <p class="pd160"><u></u><a href="javascript:void(0);" class="tijiao_bt" id="product_comment_submit">提交评价</a></p>
+                </div>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        $('.tijiao_bt').click(function(){
+            var pj = parseInt(parseFloat($('.rater-star-result').html()));
+            $('#feel').val(pj);
+            commonAjaxSubmit(null,'#dForm');
+        })
+    })
+</script>

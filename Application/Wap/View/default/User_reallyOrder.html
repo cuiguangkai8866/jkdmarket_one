@@ -1,0 +1,47 @@
+<include file="Common:subHead" />
+<link rel="stylesheet" type="text/css" href="__CSS__/order.css" charset="utf-8"/>
+  <form id="orderForm" action="{:U('/reallyInfo')}" method="post">
+   <section> 
+    <div class="order receiver"> 
+     <h2>收货人信息</h2> 
+     <p class="content">
+         <a class="addrLink" href="{:U('/myAddress').'?Cp='.$_GET['Cp']}">
+
+         </a>
+         <span class="text">
+             <input type="hidden" name="info[aid]" value="{$address.id}" />
+             <input type="hidden" name="info[cart_id]" value="{$Think.get.Cp}" />
+             <i class="name">{$address.username}</i> <i class="tel">{$address.phone}</i> <br /> <i class="addr">{$address.shen_cityname}-{$address.shi_cityname}-{$address.xian_cityname}-{$address.address}</i> </span> <span class="links"></span></p>
+    </div>
+     
+    <div class="order fapiao"> 
+     <h2>发票信息</h2> 
+     <a class="content clearfix">
+         <span class="text"> 发票类型：<i>个人</i>
+             <br />
+             发票内容：<i>酒水</i>
+             <input type="hidden" name="info[invoice]" value="发票抬头:个人-发表内容:酒水" />
+         </span>
+     </a>
+    </div> 
+     
+    <div class="order delivery"> 
+     <h2>配送信息</h2> 
+     <a class="content clearfix"> <span class="text"> <i>快递运输</i>
+         <input type="hidden" name="info[deliver]" value="不限时间" />
+     </span>
+     </a>
+    </div> 
+     
+    <div class="order account"> 
+     <h2>商品结算<span class="actualPay">实付金额：<i>&yen;{:$cartMoney+$cartFreight}</i></span></h2>
+     <ul> 
+      <li class="first">商品总额：<i>&yen;{$cartMoney == null ?0 : $cartMoney}</i></li>
+      <li class="even">运费：<i>&yen;{$cartFreight}</i></li>
+      <li class="even">优惠：<i>&yen;{:$cartMarket - $cartMoney}</i></li>
+     </ul> 
+    </div>
+    <input type="submit" class="btn" style="cursor: pointer" value="提交订单" />
+   </section> 
+  </form>
+<include file="Common:footer" />

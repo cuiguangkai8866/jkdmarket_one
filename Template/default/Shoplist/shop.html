@@ -1,0 +1,437 @@
+<include file="Common:top" />
+<include file="Common:header1" />
+<div class="content_t bge">
+<div class="sortbox mt12" id="sort">
+	<if condition="$listStatus eq 1">
+	<div class="clearfix s_emp">
+        <div class="fl s_emp_i"></div>
+        <div class="fl s_emp_r">
+        	<span>抱歉，没有找到与"<em>&nbsp;{$_GET['search']}&nbsp;</em>"相关的商品!</span>
+            <span>您可以重新搜索或者<a href="shop.html?Mid=MQ==" style="color:#005EA7;">返回上一页</a></span>
+        </div>
+
+    <div class="research">
+        <div class="form clearfix">
+            <form action="{:U('/search')}" method="get">
+            <input type="text" autocomplete="off"
+                   class="text" name="search" placeholder="请输入关键词搜索" value="" />
+                <if condition="$_GET['Mid'] neq null">
+                    <input type="hidden" name="Mid" value="{$_GET['Mid']}" />
+                </if>
+            <input type="submit" value="搜索"
+                   class="button">
+            </form>
+        </div>
+    </div>
+    </div>
+	<else />
+
+    <if condition="$_GET['Mid'] neq null">
+        <div class="siftbox clearfix">
+            <span class="label">已选条件：</span>
+            <div id="condition">
+                    <volist name="category" id="vo">
+                        <if condition="$_GET['Mid'] eq base64_encode($vo['cid'])">
+                            <a class="inbtn pzbtn" rel="{$vo.name}" title="{$vo.name}"><em>分类：</em><span>{$vo.name}</span></a>
+                        </if>
+                    </volist>
+                <if condition="$_GET['Gid'] neq null">
+                    <volist name="guige" id="vo">
+                        <if condition="$_GET['Gid'] eq base64_encode($vo['cid'])">
+                            <a href="{:$_GET == null ? U('/shop').'?Gid='.base64_encode($vo['cid']).'#sort':U('/shop').str_replace('Gid='.$_GET[Gid],'Gid='.base64_encode(0),'?'.$_SERVER['QUERY_STRING']).'#sort'}" class="inbtn pzbtn" rel="{$vo.name}" title="{$vo.name}" onclick="deleteC("{$vo.name}")"><em>规格：</em><span>{$vo.name}</span><b>×</b></a>
+                        </if>
+                    </volist>
+                </if>
+                <if condition="$category neq null">
+                    <volist name="mold_pid" id="vo" key="k">
+                        <volist name="mold_cid" id="v">
+                            <if condition="$vo['cid'] eq $v['pid']">
+                                <if condition="$_GET['Attr'.$k] eq base64_encode($v['cid'])">
+                                    <a href="{:$_GET['Attr'.$k] == null ? U('/shop').'?Attr'.$k.'='.base64_encode($v['cid']).'#sort':U('/shop').str_replace('Attr'.$k.'='.$_GET['Attr'.$k],'Attr'.$k.'='.base64_encode(0),'?'.$_SERVER['QUERY_STRING']).'#sort'}" class="inbtn pzbtn" rel="{$vo.name}" onclick="deleteC("{$v.name}")" title="{$vo.name}"><em>{$vo.name}：</em><span>{$v.name}</span><b>×</b></a>
+                                </if>
+                            </if>
+                        </volist>
+                    </volist>
+                </if>
+            </div>
+        </div>
+        <div class="clearfix" id="screen">
+            <!-- <dl class="clearfix">
+                <dt>分类：</dt>
+                <volist name="category" id="vo" empty="系统还没有发布分类!">
+                    <dd><div><a href="
+                    <php>
+                        if($_GET == null){
+                            echo U('/shop').'?Mid='.base64_encode($vo['cid']).'#sort';
+                        }else{
+                            if($_GET['Mid'] == null){
+                                echo U('/shop').'?'.$_SERVER['QUERY_STRING'].'&Mid='.base64_encode($vo['cid']).'#sort';
+                            }else{
+                                echo U('/shop').str_replace('Mid='.$_GET['Mid'],'Mid='.base64_encode($vo['cid']),'?'.$_SERVER['QUERY_STRING']).'#sort';
+                            }
+                        }
+                    </php>
+                    ">{$vo.name}</a></div></dd>
+                </volist>
+            </dl> -->
+			<if condition="$_GET['Mid'] neq ''">
+			<dl class="clearfix">
+                <dt>适用场景：</dt>
+                <volist name="guige" id="vo" empty="系统还没有发布!">
+                    <dd><div><a title="{$vo.name}" href="
+                    <php>
+                        if($_GET == null){
+                            echo U('/shop').'?Gid='.base64_encode($vo['cid']).'#sort';
+                        }else{
+                            if($_GET['Gid'] == null){
+                                echo U('/shop').'?'.$_SERVER['QUERY_STRING'].'&Gid='.base64_encode($vo['cid']).'#sort';
+                            }else{
+                                echo U('/shop').str_replace('Gid='.$_GET['Gid'],'Gid='.base64_encode($vo['cid']),'?'.$_SERVER['QUERY_STRING']).'#sort';
+                            }
+                        }
+                    </php>
+                    ">{$vo.name}</a></div></dd>
+                </volist>
+            </dl>
+			</if>
+            <volist name="mold_pid" id="vo" key="j">
+                <dl class="clearfix">
+                    <dt>{$vo.name}：</dt>
+                    <volist name="mold_cid" id="v">
+                        <if condition="$v['pid'] == $vo['cid']">
+                            <dd><div><a title="{$vo.name}" href="
+                        <php>
+                            if($_GET == null){
+                                echo U('/shop').'?Attr'.$j.'='.base64_encode($v['cid']).'#sort';
+                            }else{
+                                if($_GET['Attr'.$j] == null){
+                                    echo U('/shop').'?'.$_SERVER['QUERY_STRING'].'&Attr'.$j.'='.base64_encode($v['cid']).'#sort';
+                                }else{
+                                    echo U('/shop').str_replace('Attr'.$j.'='.$_GET['Attr'.$j],'Attr'.$j.'='.base64_encode($v['cid']),'?'.$_SERVER['QUERY_STRING']).'#sort';
+                                }
+                            }
+                        </php>
+                        ">{$v.name}</a></div></dd>
+                        </if>
+                    </volist>
+                </dl>
+            </volist>
+            
+			<if condition="($_GET['seach'] eq '') AND ($_GET['Mid'] neq '')">
+            <div id="moreProp" class="mb">
+                <div class="attr-extra">
+                    更多选项（香型，省份等)
+                    <b></b>
+                </div>
+            </div>
+			<if>
+        </div>
+    </if>
+	</if>
+    <script type="text/javascript">
+        var abc = [];
+
+        $(function(){
+
+            //选中filter下的所有a标签，为其添加hover方法，该方法有两个参数，分别是鼠标移上和移开所执行的函数。
+            $("#screen a").hover(function(){
+                $(this).addClass("seling");
+            },function(){
+                $(this).removeClass("seling");
+            });
+
+            //选中filter下所有的dt标签，并且为dt标签后面的第一个dd标签下的a标签添加样式seled。(感叹jquery的强大)
+            /*$("#filter dt+dd a").attr("class", "seled"); 注意：这儿应该是设置(attr)样式，而不是添加样式(addClass)，
+             不然后面通过$("#filter a[class='seled']")访问不到class样式为seled的a标签。*/
+
+            //为filter下的所有a标签添加单击事件
+            /*$("#screen a").click(function(){
+                $(this).parents("dl").children("dd").each(function(){
+                    $(this).children("div").children("a").removeClass("seled");
+                });
+
+                $(this).parents("dd").attr("class", "seled");
+                var needhide = $(this);
+                needhide.parentsUntil("dl").parent().hide();
+                abc.push(needhide);
+                var val = $(this).html().replace(/ /g, "kongge");
+                var dt = $(this).parents('dd').siblings('dt').text();
+                var condition = '<a class="inbtn pzbtn" rel="'+$(this).html()+'" onclick=deleteC("'+val+'")><em>' + dt + '</em><span>'+$(this).html()+'</span><b>×</b></a>';
+                $("#condition").append(condition);
+                // alert(RetSelecteds()); //返回选中结果
+            });*/
+// alert(RetSelecteds()); //返回选中结果
+
+            $("#screen dl").slice(4).hide();
+            $("#moreProp .attr-extra").click(function(event) {
+                $(this).html("更多选项（香型，省份等)<b></b>")
+                $("#screen dl").slice(4).toggle();
+                $(this).toggleClass('screen_sq');
+                $(".screen_sq").html('收起<b></b>');
+
+            });
+
+            $("#sm-nav .order a").click(function(event) {
+                $(this).addClass('down').siblings('a').removeClass("down");
+            });
+        });
+
+        function deleteC(v){
+            var val = v.replace(/kongge/g, " ");
+            $("#condition").find("a[rel='"+val+"']").remove();
+            for(var i = 0; i<abc.length; i++){
+                if(abc[i].html() == val){
+                    abc[i].parentsUntil("dl").parent().show();
+                    abc.splice(i, 1);
+                    i--;
+                }else{
+                    abc[i].parentsUntil("dl").parent().hide();
+                }
+            }
+        }
+
+        function RetSelecteds(){
+            var result = "";
+            $("#screen a[class='seled']").each(function(){
+                result += $(this).html()+"\n";
+            });
+            return result;
+        }
+    </script>
+</div>
+<div class="w bgf mt20" style="border-radius: 10px 10px 0 0;width:1200px;">
+<div id="filter">
+	<if condition="$listStatus neq 1"> 
+    <div class="cls">
+    </div>
+    <div class="fore1 list960">
+        <!-- 排序方式 -->
+        <div id="sm-nav" class="sm-nav sie">
+            <span class="order">
+                <a class="firstOrd
+                <php>
+                    if($_GET['Px'] == base64_encode('mr') || $_GET['Px'] == null){
+                        echo 'down';
+                    }
+                </php>
+                " href="
+                <php>
+                    if($_GET == null){
+                        echo U('/shop').'?Px='.base64_encode('mr').'#filter';
+                    }else{
+                        if($_GET['Px'] == null){
+                            echo U('/shop').'?'.$_SERVER['QUERY_STRING'].'&Px='.base64_encode('mr').'#filter';
+                        }else{
+                            echo U('/shop').str_replace('Px='.$_GET['Px'],'Px='.base64_encode('mr'),'?'.$_SERVER['QUERY_STRING']).'#filter';
+                        }
+                    }
+                </php>
+                " title="按相似度排序" rel="nofollow">
+                    默认
+                </a>
+                <a class="{:$_GET['Px'] == base64_encode('hot') ?'down':''}" href="
+                <php>
+                    if($_GET == null){
+                        echo U('/shop').'?Px='.base64_encode('hot').'#filter';
+                    }else{
+                        if($_GET['Px'] == null){
+                            echo U('/shop').'?'.$_SERVER['QUERY_STRING'].'&Px='.base64_encode('hot').'#filter';
+                        }else{
+                            echo U('/shop').str_replace('Px='.$_GET['Px'],'Px='.base64_encode('hot'),'?'.$_SERVER['QUERY_STRING']).'#filter';
+                        }
+                    }
+                </php>
+                " title="近期销量由高到低" rel="nofollow">
+                    <b>
+                    </b>
+                    热销1
+                </a>
+                <a  href="
+                <php>
+                    if($_GET == null){
+                        echo U('/shop').'?Px='.base64_encode('moods').'#filter';
+                    }else{
+                        if($_GET['Px'] == null){
+                            echo U('/shop').'?'.$_SERVER['QUERY_STRING'].'&Px='.base64_encode('moods').'#filter';
+                        }else{
+                            echo U('/shop').str_replace('Px='.$_GET['Px'],'Px='.base64_encode('moods'),'?'.$_SERVER['QUERY_STRING']).'#filter';
+                        }
+                    }
+                </php>
+                " title="人气由高到低" rel="nofollow">
+                    <b>
+                    </b>
+                    人气
+                </a>
+                <!-- 点击倒序由低到高添加 up，
+                点击顺序由高到低添加 hup -->
+                <a class="
+                <php>
+                    if($_GET['Px'] == base64_encode('m1')){
+                        echo 'up';
+                    }else if($_GET['Px'] == base64_encode('m2')){
+                        echo 'hup';
+                    }
+                </php>
+                " href="
+                <php>
+                    if($_GET == null){
+                        echo U('/shop').'?Px='.base64_encode('m1').'#filter';
+                    }else{
+                        if($_GET['Px'] == null){
+                            echo U('/shop').'?'.$_SERVER['QUERY_STRING'].'&Px='.base64_encode('m1').'#filter';
+                        }else{
+                            if($_GET['Px'] == base64_encode('m1')){
+                                echo U('/shop').str_replace('Px='.$_GET['Px'],'Px='.base64_encode('m2'),'?'.$_SERVER['QUERY_STRING']).'#filter';
+                            }else{
+                                echo U('/shop').str_replace('Px='.$_GET['Px'],'Px='.base64_encode('m1'),'?'.$_SERVER['QUERY_STRING']).'#filter';
+                            }
+                        }
+                    }
+                </php>
+                " rel="nofollow">
+                    <b>
+                    </b>
+                    价格
+                </a>
+                <a class="{:$_GET['Px'] == base64_encode('new') ?'down':''}" href="
+                <php>
+                    if($_GET == null){
+                        echo U('/shop').'?Px='.base64_encode('new').'#filter';
+                    }else{
+                        if($_GET['Px'] == null){
+                            echo U('/shop').'?'.$_SERVER['QUERY_STRING'].'&Px='.base64_encode('new').'#filter';
+                        }else{
+                            echo U('/shop').str_replace('Px='.$_GET['Px'],'Px='.base64_encode('new'),'?'.$_SERVER['QUERY_STRING']).'#filter';
+                        }
+                    }
+                </php>
+                " title="上架时间" rel="nofollow">
+                    <b>
+                    </b>
+                    最新
+                </a>
+            </span>
+            <span class="tpages">
+                <span class="tpageNum">
+                    共找到
+                    <i>
+                        <!-- 筛选数量 -->
+                        {$count}
+                    </i>
+                    个商品
+                    <!--<em>-->
+                        <!--<i>-->
+                            <!--&lt;!&ndash; 当前页 &ndash;&gt;-->
+                            <!--1-->
+                        <!--</i>-->
+                        <!--&lt;!&ndash; 总页数 &ndash;&gt;-->
+                        <!--/45-->
+                    <!--</em>-->
+                </span>
+                <!-- 上下一页,不可点击状态为 span，可点击状态为 a -->
+                <!--<span class="prev">-->
+                <!--</span>-->
+                <!--<a class="next" href="#">-->
+                <!--</a>-->
+            </span>
+        </div>
+    </div>
+	</if>
+</div>
+<div id="plist" class="m ordinary-prebuy">
+<if condition="$listStatus eq 1">
+<h3 style="line-height: 36px;padding-left: 10px;font-size: 15px;border-bottom:1px solid #f1f1f1;background:#f9f9f9;">热销商品</h3>
+</if>
+
+
+<script type="text/javascript">
+    $(function(){
+        $("#plist li").hover(function(){
+            $(this).toggleClass('popwarp');
+        })
+    })
+</script>
+<!-- 商品显示区域 -->
+<ul class="list-h">
+
+
+<!-- 一页显示70条数据 -->
+<volist name="list" id="vo" empty="您搜索的产品不存在!">
+<li>
+    <div class="lh-wrap">
+        <div class="p-img">
+            <a title="{$vo.title}" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}">
+                <!-- 商品图片 -->
+                <if condition="$vo['img_path'] eq null">
+                    <img src="__IMG__/no_goods.jpg" data-original="__IMG__/no_goods.jpg" alt="{$vo.title}" title="{$vo.title}" />
+                    <else />
+                    <img src="__ROOT__{$vo.img_path}" alt="{$vo.title}" title="{$vo.title}" />
+                </if>
+            </a>
+        </div>
+        <div class="p-name">
+            <!-- 商品名称 -->
+            <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}" title="{$vo.title}">
+                {:str_replace($_GET['search'],'&nbsp;<span style="color: #f32065;font-weight: 900;">'.$_GET['search'].'</span>&nbsp;',$vo[title])}
+            </a>
+        </div>
+        <div class="p-price clearfix">
+            <!-- 价格 -->
+            <strong>
+                <i>￥</i>{$vo.price}
+            </strong>
+            
+            <div class="btns fr">
+                <a title="{$vo.title}" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}" class="btn-buy">
+                    购买此商品
+                </a>
+            </div>
+
+        </div>
+        <div class="extra clearfix">
+            <span class="evaluate">
+                <i class="jjgm fl">
+                    最近{$vo.buy_num}人购买
+                </i>
+                <!-- 评价数量 -->
+                <a title="{$vo.title}" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}" class="yypj fr">
+                    {$vo.comment}条评论
+                </a>
+            </span>
+        </div>
+        <div class="cxmsg">
+            <div><i class="sale_sicon_4"></i>
+                <span title="己优惠¥20.0元">己优惠¥{$vo[market] - $vo[price]}元<br></span></div>
+
+
+            <!-- <div><i class="sale_sicon_2"></i>
+                <span title="免费送红酒开瓶器">{:$vo[present]==null?'此商品暂无可赠物品':$vo[present]}<br></span></div> -->
+
+
+        </div>
+    </div>
+</li>
+</volist>
+</ul>
+<div class="paging">
+    {$show}
+</div>
+</div>
+
+<script type="text/javascript">
+
+    $(function(){
+        var listh = parseInt($(".list-h").height())-2;
+        $(".list-h").height(listh);
+        $(".succ-close,.contgo").click(function(event) {
+            $(this).parents(".alt-succ").hide();
+        });
+
+    })
+</script>
+<!-- 加入购物车弹窗 -->
+</div>
+</div>
+
+<include file="Common:footer" />

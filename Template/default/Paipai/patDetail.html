@@ -1,0 +1,306 @@
+<include file="Common:top" />
+<include file="Common:header" />
+    <div class="content_c">
+    <link href="__CSS__/detail.css" rel="stylesheet" type="text/css" />
+  <link id="newLink" rel="stylesheet" type="text/css" href="__CSS__/index_1200.css" />
+    <script src="__PUBLIC__/Js/functions.js"></script>
+    <script src="__PUBLIC__/Js/jquery.form.js"></script>
+    <script src="__PUBLIC__/Js/asyncbox/asyncbox.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/Js/asyncbox/skins/default.css">
+        <div class="dmain"> 
+   <div class="lazyload"> 
+    <div class="detail-guide">
+        <volist name="mianBaoXie" id="vo" key="u">
+            <a href="{:$vo[url] == null ?'#':$vo[url]}" target="_self"> {$vo.nav_name}</a> {:$u == 3 ?'':'>'}
+        </volist>
+    </div> 
+    <div class="clearfix" style=" border:1px solid #e3e3e3;border-top:2px solid #e4393c;">
+    <script type="text/javascript" src="__JS__/jquery.imagezoom.min.js"></script>
+<!-- 图片放大展示 -->
+    <div class="box">
+        <div class="tb-booth tb-pic tb-s310">
+            <a href="#"><img src="__ROOT__{:$info[savepath][0][savepath] == null ? '/Public/Home/images/no_goods.jpg':$info[savepath][0][savepath]}" alt="{$info.title}" rel="__ROOT__{$info[savepath][0][savepath]}" class="jqzoom" /></a>
+        </div>
+
+        <ul class="tb-thumb" id="thumblist">
+            <volist name="info[savepath]" id="vo">
+                <li class="tb-selected">
+                    <div class="tb-pic tb-s40">
+                        <a href="#">
+                            <img src="__ROOT__{$vo.savepath}" mid="__ROOT__{$vo.savepath}" big="__ROOT__{$vo.savepath}">
+                        </a>
+                    </div>
+                </li>
+            </volist>
+        </ul>
+        <div class="depict-other"> 
+       <div class="other-payment">
+        分享到：
+       </div> 
+       <div class="other-point" id="_isDisableBonus" style="display:none"></div> 
+      </div>
+    </div>
+
+<style type="text/css">
+  .detail-depict {
+float: left;
+width: 430px;
+font-family: "microsoft yahei";}
+.box {width: 325px;}
+
+</style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $(".jqzoom").imagezoom();
+    
+    $("#thumblist li a").hover(function(){
+        $(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
+        $(".jqzoom").attr('src',$(this).find("img").attr("mid"));
+        $(".jqzoom").attr('rel',$(this).find("img").attr("big"));
+    });
+    var zoom = $(".jqzoom");
+    if(parseInt(zoom.height()) > parseInt(zoom.width())){
+        zoom.height('100%').width('auto');
+    }else{
+        zoom.width('100%').height('auto');
+    }
+
+});
+</script>
+     <div class="detail-depict" style="" id="_nomal_div"> 
+      <div class="depict-name"> 
+       <h3>{$info.title}</h3>
+       <p class="dName-Buy" id="_proadvstr" style="">{$info.tuixiao}</p>
+      </div> 
+      <div class="depict-price"> 
+        
+       <div class="dPrice-pri"> 
+        <div class="pri"><div class="buyNub-tit2 fl">当&nbsp;前&nbsp;价：</div><em id="_nowPriceStr"><i>￥</i>{$info.now_price}</em> <input id="_baknowPriceStr" type="hidden" value="{$info.now_price}" /><b>已出价{$info.price_count}次</b></div>
+        <p class="tim _leaveTimeLen" style="display:none;"> <i></i> 剩余 <strong class="t"></strong> </p> 
+        <div class="clear"></div> 
+       </div>
+       <script type="text/javascript" src="__JS__/jf-pft.js"></script>
+          <php>if($info['start_time'] <= time() && $info['end_time'] >= time()){</php>
+              <div class="pai_price_begin" date-endtime="{$info.end_time}">
+              距结束
+              <i></i>
+              </div>
+          <php>}else if(($info['start_time'] >= time()) && (($info['start_time'] - time()) <= (3600*24*C('LISTNUM.startTime')))){</php>
+              <div class="pai_price_begin" date-endtime="{$info.start_time}">
+              距开始
+              <i></i>
+              </div>
+          <php>}else if($info['end_time'] <= time()){</php>
+              <div class="pai_price_begin">
+              已结束
+              <i></i>
+              </div>
+          <php>}else{</php>
+          <div class="pai_price_begin">
+              等待开始
+              <i></i>
+          </div>
+          <php>}</php>
+       <!--<div class="pai_price_begin" date-endtime="1415788428">-->
+            <!--距结束-->
+            <!--<i></i>-->
+       <!--</div>-->
+      </div> 
+      <div class="depict-order" id="_shdzdiv">
+       <!-- 购买数量 --> 
+       <div class="dOrder-buyNub clearfix" id="_gmsl" style="height:auto;"> 
+        <div class="buyNub-tit2">
+         竞拍价：
+        </div> 
+        <div class="buyNub-nub" unselectable="on" style="-moz-user-select:none;padding:0;margin-top:10px;height:43px;" onselectstart="return false;"> 
+        <style type="text/css">
+        div.buyNub-nub .buyNub-nub-blus {background-position: 12px 16px;cursor: default;}.buyNub-nub .buyNub-nub-top {background-position: 12px -49px;}.buyNub-nub .buyNub-nub-blus-c {background-position: 12px -14px;}.usedd_col3{float: right;}.auction_record {width: 202px;height: 462px;border-left: #e3e3e3 solid 1px;border-top: none;margin-right: -1px;position: relative;}.auction_record_hd {height: 50px;}.auction_record_hd a {position: relative;display: block;height: 50px;line-height: 50px;font-size: 20px;font-family: microsoft yahei;text-align: center;background: #e4393c;color: #fff;cursor: default;}.auction_record_hd i {position: absolute;bottom: -20px;left: 50%;margin-left: -10px;width: 0;height: 0;overflow: hidden;font-size: 0;display: inline-block;border-width: 10px;border-color: #e4393c transparent transparent transparent;border-style: solid dashed dashed dashed;}.auction_record_bd {padding-top: 15px;}.auction_record_tit .col1, .auction_record_tit .col2, .auction_record_tit .col3 {float: left;text-indent: 12px;width: 33%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}.auction_record_item {margin-top: 8px;color: #888;position: relative;}.auction_record_bd .col1, .auction_record_bd .col2, .auction_record_bd .col3 {float: left;width: 33%;text-indent: 10px;margin-top: 4px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}.auction_record_list i{top: -11px;left: -20px;}.auction_record_list li:first-child{color:#f00;}</style>
+         <div class="buyNub-nub-wrap buyNub-nub-wrap2"> 
+          <i class="buyNub-nub-blus-c buyNub-nub-blus pai_sub"></i> 
+          <input name="" id="pai_number" type="text" value="{$info.now_price}" onkeyup="if(!/^\d+(\d*)?$/.test(this.value))this.value='1'" onpaste="return false"  size=3 />
+          <i class="buyNub-nub-top pai_add"></i> 
+         </div> 
+
+        </div> 
+        <div class="buyNub-buy-wrap buyNub-buy-wrap3 pr clearfix"> 
+       <div class="buyNub-buy"> 
+       <!-- 
+        商品状态：
+        正常状态为加入购物车；
+        商品下架状态显示商品下架了。
+        -->
+           <php>if($info['start_time'] <= time() && $info['end_time'] >= time()){</php>
+                <a href="javascript:;" name="bi_addToCart" class="u-buy" id="_jrgwc" style="">报名交保证金</a>
+           <php>}else if(($info['start_time'] >= time()) && (($info['start_time'] - time()) <= (3600*24*C('LISTNUM.startTime')))){</php>
+                <a href="javascript:;" class="u-buy-over" id="_buyover" style="background: #f19f41">即将开始</a>
+           <php>}else if($info['end_time'] <= time()){</php>
+                <a href="javascript:;" class="u-buy-over" id="_nosale" style="background: #575656">已经结束</a>
+           <php>}else{</php>
+                <a href="javascript:;" class="u-buy-over" id="_tmpnosale" style="background: #000">等待开始</a>
+           <php>}</php>
+       </div>
+      </div>
+
+
+
+
+        <div class="clear"></div> 
+       </div> 
+
+       <div>注：单次加价幅度至少为 ¥{$info.min_price} 元</div>
+      </div> 
+       
+
+
+       <table class="pai_table">
+           <tr>
+                <td>拍卖类型：增价拍</td>
+                <td>起拍价格：¥{$info.basic_price}</td>
+                <td>保证金额：¥{$info.ensure_price}</td>
+           </tr>
+           <tr>
+               <td>延时周期：5分钟/次</td>
+               <td>运费：满百元免运费</td>
+               <td>卖家：酒富网</td>
+           </tr>
+           <tr>
+               <td>拍卖通知：<a href="#" title="">定时提醒</a></td>
+               <td>商品成色：全新</td>
+               <td></td>
+           </tr>
+       </table>
+       
+       
+     </div>
+     <div class="usedd_col3">
+          <div class="usedd_extra">
+
+            <!-- S j:出价记录 -->
+            <div class="auction_record">
+              <div class="auction_record_hd">
+                <a href="#" title="最近出价记录">最近出价记录 <i></i></a>
+              </div>
+              <div class="auction_record_bd">
+                <div class="auction_record_tit clearfix">
+                  <span class="col1">竞拍人</span>
+                  <span class="col2">出价</span>
+                  <span class="col3">时间</span>
+                </div>
+                <div class="auction_record_list_wrap">
+                  <ul class="auction_record_list" id="recentBidList">
+                  <!-- 出价列表，最多12条 -->
+                    <li class="auction_record_item auction_record_newest clearfix"><i class="ico_state"></i><span class="col1">匿名俊傑</span><span class="col2"><span class="mod_price"><i>¥</i>42.00</span></span><span class="col3">17:17:46</span></li>
+                    <li class="auction_record_item auction_record_out clearfix"><span class="col1">君玄逸</span><span class="col2"><span class="mod_price"><i>¥</i>40.00</span></span><span class="col3">11:30:50</span></li>
+                    <li class="auction_record_item auction_record_out clearfix"><span class="col1">君玄逸</span><span class="col2"><span class="mod_price"><i>¥</i>40.00</span></span><span class="col3">11:30:50</span></li>
+                    <li class="auction_record_item auction_record_out clearfix"><span class="col1">君玄逸</span><span class="col2"><span class="mod_price"><i>¥</i>40.00</span></span><span class="col3">11:30:50</span></li>
+                    <li class="auction_record_item auction_record_out clearfix"><span class="col1">君玄逸</span><span class="col2"><span class="mod_price"><i>¥</i>40.00</span></span><span class="col3">11:30:50</span></li>
+                    <li class="auction_record_item auction_record_out clearfix"><span class="col1">君玄逸</span><span class="col2"><span class="mod_price"><i>¥</i>40.00</span></span><span class="col3">11:30:50</span></li>
+                    <li class="auction_record_item auction_record_out clearfix"><span class="col1">君玄逸</span><span class="col2"><span class="mod_price"><i>¥</i>40.00</span></span><span class="col3">11:30:50</span></li>
+                    <li class="auction_record_item auction_record_out clearfix"><span class="col1">君玄逸</span><span class="col2"><span class="mod_price"><i>¥</i>40.00</span></span><span class="col3">11:30:50</span></li>
+                    <li class="auction_record_item auction_record_out clearfix"><span class="col1">君玄逸</span><span class="col2"><span class="mod_price"><i>¥</i>40.00</span></span><span class="col3">11:30:50</span></li>
+                    <li class="auction_record_item auction_record_out clearfix"><span class="col1">君玄逸</span><span class="col2"><span class="mod_price"><i>¥</i>40.00</span></span><span class="col3">11:30:50</span></li>
+                    <li class="auction_record_item auction_record_out clearfix"><span class="col1">君玄逸</span><span class="col2"><span class="mod_price"><i>¥</i>40.00</span></span><span class="col3">11:30:50</span></li>
+                    <li class="auction_record_item auction_record_out clearfix"><span class="col1">君玄逸</span><span class="col2"><span class="mod_price"><i>¥</i>40.00</span></span><span class="col3">11:30:50</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- E j:出价记录 --> 
+                      
+          </div>
+        </div>
+     <div class="clear"></div> 
+    </div> 
+    <div class="detail-box2 clearfix" id="detail-box2"> 
+      <div class="usedd_bd usedd_bd_j"> 
+   <div class="usedd_tab_nav"> 
+    <ul class="usedd_tab_nav_list J_tabNav clear"> 
+     <li class="cur"><a href="#detail-box2" title="">商品介绍</a> <i class="arrow"></i></li> 
+     <li class=""><a href="#playWay" title="">拍卖玩法</a> <i class="arrow"></i></li> 
+     
+    </ul> 
+   </div> 
+   <div class="usedd_tab_con"> 
+    <!-- S 商品介绍 --> 
+    <div class="usedd_des" id="introduce"> 
+     <div style="width:750px;margin:0 auto;overflow: hidden">
+      <div class="content_tpl">
+      {:($info[content])}
+      </div> 
+     </div> 
+    </div> 
+    <!-- E 商品介绍 --> 
+    <!-- S 出价记录 -->
+       <!-- <span id="bidRecord"></span>
+       <iframe src="{:U('Paipai/offerList',array('pat'=>$info[id]))}" id="iframepage" name="iframepage" frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()" height="100%"></iframe>
+       <script type="text/javascript" language="javascript">
+           function iFrameHeight() {
+               var ifm= document.getElementById("iframepage");
+               var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;
+               if(ifm != null && subWeb != null) {
+                   ifm.height = (subWeb.body.clientHeight);
+               }
+           }
+       </script>-->
+    <!-- E 出价记录 -->
+
+    <!-- S 拍卖玩法 --> 
+    <div class="usedd_mod" id="playWay"> 
+     <div class="usedd_mod_hd clear"> 
+      <h3 class="usedd_mod_tit">拍卖玩法</h3> 
+     </div> 
+     <div class="usedd_mod_bd clear"> 
+      <img src="__IMG__/used_jflow_1.png" alt="拍卖玩法" />
+     </div> 
+    </div> 
+    <!-- E 拍卖玩法 --> 
+   </div> 
+  </div>
+      
+     <div class="clear"></div> 
+    </div> 
+   </div> 
+  </div>
+  <script type="text/javascript" src="__JS__/jf-pft.js"></script>
+<script type="text/javascript">
+daojishi($(".pai_price_begin"));
+    $(function(){
+        var min_price = "{$info[min_price]}";
+        /////////拍拍详情页价格加减///////////////
+        $(".pai_add").click(function(){
+            //num = parseInt(num) + 1;
+            $("#pai_number").val(parseInt($("#pai_number").val())+parseInt(min_price));
+            
+            $(".pai_sub").removeClass("buyNub-nub-blus");
+        })
+        
+        $(".pai_sub").click(function(){
+           
+            if($("#pai_number").val()>parseInt("{$info[now_price]}")){
+                $("#pai_number").val(parseInt($("#pai_number").val())-parseInt(min_price));
+            }else{
+                $(".pai_sub").addClass("buyNub-nub-blus");
+
+            }
+            if($("#pai_number").val()==parseInt("{$info[now_price]}")){
+                $(".pai_sub").addClass("buyNub-nub-blus");
+            }
+        });
+        
+        $("#pai_number").keyup(function(event){
+            if(!(event.keyCode>=48 && event.keyCode<=57)){
+                $("#pd_number").val(parseInt("{$info[now_price]}"));
+            }
+        })
+
+        // 商品详情切换
+        $(".usedd_tab_nav_list li").bind('click', function(event) {
+            $(this).addClass('cur').siblings('li').removeClass('cur');
+        });
+
+    })
+</script>
+    </div>
+<include file="Common:footer" />

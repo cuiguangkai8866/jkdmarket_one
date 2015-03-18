@@ -1,0 +1,160 @@
+<extend name="Index:system" />
+        <block name="title">
+               <title>账号安全设置-会员中心</title>
+        </block>
+        <block name="comcss">
+            <include file="Common:intoHead" />
+            <script type="text/javascript" src="__JS__/register.js"></script>
+            <script type="text/javascript" src="__JS__/jquery.lazyload.min.js"></script>
+            <script src="__JS__/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+        </block>
+        <!--加载账户安全设置-->
+        <block name="system">
+            <div class="member_ty3">
+                <div class="member_ty4 icon color">
+                    账户安全设置
+                </div>
+            </div>
+            <!-- 账户安全 -->
+            <div class="pn-safety">
+                <p class="pn-safety-sign">
+                    上次登录：{:date('Y年m月d日 H:i:s',$_SESSION['member']['last_login_time'])}&nbsp;
+                    <?php if (empty($_SESSION['member']['pwd'])){ ?>
+                        <cite>(&nbsp;您还没有设置密码，请立即&nbsp;<a href="javascript:;" class="set_pass">设置密码</a>&nbsp;)
+                        </cite>
+                    <?php }else{ ?>
+                        <cite>(&nbsp;如果不是您本人登录的，请立即&nbsp;<a href="javascript:;" class="set_pass">修改密码</a>&nbsp;)
+                        </cite>
+                    <?php } ?>
+                    
+
+                </p>
+                <table>
+                    <tbody>
+
+                    <tr>
+                        <td>
+                            <?php if (empty($_SESSION['member']['pwd'])){ ?>
+                                <!-- 已验证添加class=isok,否则为空 -->
+                                <strong>您还没有设置密码</strong>
+                            <?php }else{ ?>
+                                <!-- 已验证添加class=isok,否则为空 -->
+                                <strong class="isok">登录密码</strong>
+                            <?php } ?>
+                            
+                        </td>
+                        <td>
+                            <?php if (empty($_SESSION['member']['pwd'])){ ?>
+                                建议您尽快设置登录密码!
+                            <?php }else{ ?>
+                                建议您定期修改以保护账户安全；
+                                <br>密码强度
+                                <cite class="pn-weight">
+                                    <!-- 密码强度为三种状态，
+                                    弱为空，
+                                    中为pn-pwd-middle，
+                                    强为pn-pwd-strong -->
+                                    <php>
+                                        $i= 0;
+                                        if($_SESSION[member][email] != null){
+                                            $i = $i+1;
+                                        }
+                                        if($_SESSION[member][pay_pass] != null){
+                                            $i = $i+1;
+                                        }
+                                        if($_SESSION[member][phone] != null){
+                                            $i = $i+1;
+                                        }
+                                        switch($i){
+                                            case '1':
+                                                $m = '';
+                                            break;
+                                            case '2':
+                                                $m = 'pn-pwd-middle';
+                                            break;
+                                            case '3':
+                                                $m = 'pn-pwd-strong';
+                                            break;
+                                            default:
+                                                $m = '';
+                                            break;
+                                        }
+                                    </php>
+                                    <code class="{$m}"></code>
+                                </cite>
+                            <?php } ?>
+                            
+
+                        </td>
+                        <td>
+                            <?php if (empty($_SESSION['member']['pwd'])){ ?>
+                                <a href="javascript:;" class="pn-safety-edit set_pass">设置密码</a>
+                            <?php }else{ ?>
+                                <a href="javascript:;" class="pn-safety-edit set_pass">修改</a>
+                            <?php } ?>
+                            
+                        </td>
+                    </tr>
+
+                    <tr>
+
+
+                        <td>
+                            <strong class="{:$_SESSION['member']['email'] == null?'':'isok'}">{:$_SESSION['member']['email'] == null?'未绑定邮箱':'已绑定邮箱'}</strong>
+                        </td>
+                        <td>
+                            可用于邮箱找回登录密码，接收订单提醒服务
+                            <br>
+                            <span>{:$_SESSION['member']['email'] != null?'您已绑定邮箱:'.str_replace(substr($_SESSION['member']['email'],4,strpos($_SESSION['member']['email'],'@')-4),'*****',$_SESSION['member']['email']):'验证成功可以用于登录账号'}</span>
+                        </td>
+                        <td>
+                            <a href="javascript:;" class="pn-safety-check {:$_SESSION['member']['email'] == null?'set_email':'update_email'}">{:$_SESSION['member']['email'] == null?'立刻绑定':'修改邮箱'}</a>
+                        </td>
+
+
+                    </tr>
+                    <tr>
+
+
+                        <td>
+                            <strong class="{:$_SESSION['member']['phone'] == null ?'':'isok'}">{:$_SESSION['member']['phone'] == null ?'未绑定手机':'已绑定手机'}</strong>
+                        </td>
+                        <td>
+                            <p>
+                                <php>
+                                    if($_SESSION['member']['phone'] == null){
+
+                                </php>
+                                您还没有绑定手机号!
+                                <php>
+                                    }else{
+                                </php>
+                                您的验证手机：{:str_replace(substr($_SESSION['member']['phone'],3,5),'*****',$_SESSION['member']['phone'])}
+                                <php>}</php>
+                            </p>
+                        </td>
+                        <td>
+                            <a href="javascript:;" class="pn-safety-edit {:$_SESSION['member']['phone'] == null ?'set_phone':'update_phone'}">{:$_SESSION['member']['phone'] == null ?'绑定':'修改'}</a>
+                        </td>
+
+
+                    </tr>
+                    <tr>
+
+
+                        <td>
+                            <strong class="{:$_SESSION['member']['pay_pass'] == null ?'':'isok'}">{:$_SESSION['member']['pay_pass'] == null ?'未设支付密码':'已设支付密码'}</strong>
+                        </td>
+                        <td>
+                            {:$_SESSION['member']['pay_pass'] == null ?'未设置支付密码您将无法完成积分支付!':'支付密码已经设置，账户积分资产更安全'}
+                        </td>
+                        <td>
+                            <a href="javascript:;" class="pn-safety-check {:$_SESSION['member']['pay_pass'] == null ?'set_pay_pass':'update_pay_pass'}" id="checkPay" data="1">{:$_SESSION['member']['pay_pass'] == null ?'点击设置':'点击修改'}</a>
+                        </td>
+
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </block>

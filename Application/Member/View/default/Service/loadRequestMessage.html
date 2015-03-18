@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>退换货订单</title>
+    <link rel="stylesheet" type="text/css" href="__CSS__/base.css" media="all">
+    <link rel="stylesheet" type="text/css" href="__CSS__/myjf.common.css" media="all">
+    <link rel="stylesheet" type="text/css" href="__CSS__/myjf.index.css" media="all">
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="__PUBLIC__/Js/functions.js"></script>
+    <script src="__PUBLIC__/Js/jquery.form.js"></script>
+    <script src="__PUBLIC__/Js/asyncbox/asyncbox.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/Js/asyncbox/skins/default.css">
+</head>
+
+<body>
+<!-- 订单列表 -->
+<div class="alyCheckWrap">
+    <div class="alySubReList">
+        <form action="{:U('/Member/refundAction')}" method="post">
+            <div class="alySubReDetail">
+                <p class="alySubTitle">
+                    <span>留言/投诉</span>
+                    <em>（“ * ” 号标记的内容，请您务必填写。）</em>
+                </p>
+                <ul>
+                    <li class="alyReUname">
+                            <span class="left">
+                                <b>*</b> 联系人姓名：
+                            </span>
+                        <div class="right">
+                            <input name="info[username]" id="userName" value="{$info.username}" type="text">
+                        </div>
+                    </li>
+                    <li class="alyReUmobile">
+                            <span class="left">
+                                <b>*</b> 联系人手机：
+                            </span>
+                        <div class="right">
+                            <input name="info[moblie]" id="mobile" value="{$info.phone}" type="text">
+                        </div>
+                    </li>
+                    <li class="alyReUmobile">
+                            <span class="left">
+                                <b>*</b> 联系人邮箱：
+                            </span>
+                        <div class="right">
+                            <input name="info[email]" id="mobile" value="{$info.phone}" type="text">
+                        </div>
+                    </li>
+                    <li class="alyReUmobile">
+                            <span class="left">
+                                <b>*</b> 联系人地址：
+                            </span>
+                        <div class="right">
+                            <input name="info[address]" id="mobile" value="{$info.phone}" type="text">
+                        </div>
+                    </li>
+                    <li>
+                            <span class="left">
+                                <b>*</b>留言/投诉内容：
+                            </span>
+                        <div class="right">
+                            <textarea class="alyReTextArea" rows="" cols="" id="reason" name="info[content]"></textarea>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </form>
+            <div class="alyReListBtn">
+                <button class="submit" style="border:0;background: #fff;cursor: pointer;width: 90px;height: 28px;line-height: 28px;display: inline-block;color: #333;text-align: center;background: url(http://img3.imglefeng.com/images/myapp/alyReIcon.png) no-repeat 0px 0px;">提交申请</button>
+            </div>
+    </div>
+    <script>
+        $(function(){
+            $('.submit').click(function(){
+                commonAjaxSubmit();
+            });
+        })
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>添加、编辑产品-后台管理-{$site.SITE_INFO.name}</title>
+    <php>
+        $addCss="";
+        $addJs="";
+        $currentNav ='产品管理 > 添加编辑产品';
+    </php>
+    <include file="Common:intoHead"/>
+    <style>
+        div.spot {
+            float: left;
+            margin: 0 20px 0 0;
+            width: 220px;
+            min-height: 160px;
+            border: 2px dashed #ddd;
+        }
+
+        .droparea {
+            position: relative;
+            text-align: center;
+        }
+
+        .droparea .instructions {
+            opacity: 0.8;
+            background-color: #cccccc;
+            height: 25px;
+            z-index: 10;
+            zoom: 1;
+            background-position: initial initial;
+            background-repeat: initial initial;
+            cursor: pointer;
+        }
+
+        .droparea div, .droparea input {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .droparea input {
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .droparea div, .droparea input {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #uparea1, #uparea2, #uparea3 {
+            height: 170px;
+            cursor: pointer;
+        }
+
+        .delete-btn {
+            min-width: 50%;
+        }
+    </style>
+</head>
+<body>
+<?php $statusList=array(
+0=>'正常',
+1=>'下架',
+2=>'已售罄',
+);
+$propArr=array();
+foreach($skus as $sku){
+$propArr=array_merge($propArr,array_diff(explode(',',$sku['props']),$propArr));
+}
+?>
+<div class="wrap">
+    <include file="Common:head"/>
+    <div class="mainBody">
+        <include file="Common:left"/>
+        <div id="Right">
+            <div class="Item hr">
+                <div class="current">添加编辑产品</div>
+            </div>
+            <form>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1" id="product-table">
+                    <php>if($site['SITE_INFO']['LANG_SWITCH_ON']=='1'){</php>
+                    <tr>
+                        <th>语言选择：</th>
+                        <td>
+                            <select name="info[lang]">
+                                <option value="zh-cn"
+                                <if condition="$info['lang'] eq 'zh-cn'">selected</if>
+                                >简体中文</option>
+                                <option value="en-us"
+                                <if condition="$info['lang'] eq 'en-us'">selected</if>
+                                >English</option>
+
+                            </select></td>
+                    </tr>
+                    <php>}</php>
+                    <tr>
+                        <th width="100">商品名称：</th>
+                        <td><input id="title" type="text" class="input" size="60" name="info[title]"
+                                   value="{$info.title}"/><?php if(!$info){?> <a href="javascript:void(0)"
+                                                                                 id="checkNewsTitle">检测是否重复</a><?php }?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="100">是否上架：</th>
+                        <td><label><input type="radio" name="info[status]" value="0"
+                            <if condition="$info.status eq 0"> checked="checked"</if>
+                            /> 否</label> &nbsp; <label><input type="radio" name="info[status]" value="1"
+                            <if condition="$info.status eq 1"> checked="checked"</if>
+                            /> 是</label></td>
+                    </tr>
+                    <tr>
+                        <th width="100">计量单位：</th>
+                        <td><input id="unit" type="text" class="input" size="60" name="info[unit]" style="width: 60px"
+                                   value="{$info.unit}"/>
+                        </td>
+                    </tr>
+                    <tr class="select-tr">
+                        <th>商品类型：</th>
+                        <td>
+                            <select name="info[category_id]" id="category-select"
+                                    data-url="{:U('product/changeCategory')}">
+                                <option value="">--请选择--</option>
+                                <volist name="categoryList" id="vo">
+                                    <option value="{$vo.id}"
+                                    <php> echo $info['category_id']==$vo['id']?'selected':''</php>
+                                    >{$vo.fullname}</option>
+                                </volist>
+                            </select></td>
+                    </tr>
+                    <?php
+                $productPropList=getPropListByCategoryId($info['category_id']);
+                    foreach($productPropList as $productProp){
+                    $propValues=getPropValueByPropId($productProp['id']);
+                    ?>
+                    <tr class="prop-tr">
+                        <th><?php echo $productProp['prop_name'];?>：</th>
+                        <td>
+                            <?php if($productProp['type']=="optional"){?>
+                            <select name="Product[props][9]">
+                                <?php foreach($propValues as $propValue){
+                               ?>
+                                <option value="<?php echo $productProp['id'].':'.$propValue['id']?>"
+                                <?php if(in_array($productProp['id'].':'.$propValue['id'],explode(',',$info['props']))||in_array($productProp['id'].':'.$propValue['id'],$propArr)) echo 'selected';?>
+                                ><?php echo $propValue['value_name']?></option>
+                                <?php }?>
+                            </select>
+                            <?php }else if($productProp['type']=="multiCheck"){?>
+                            <div
+                            <?php echo $productProp['is_sale_prop']==1?'class="sale-prop"':''?>>
+                            <?php $i = 0;
+                            foreach ($propValues as $propValue) {?>
+                      <span><input value="<?php echo $productProp['id'] . ':' . $propValue['id'] ?>"
+                                   id="Product_props_<?php echo $productProp['id'] . '_' . $i?>"
+                          <?php if(in_array($productProp['id'].':'.$propValue['id'],explode(',',$info['props']))||in_array($productProp['id'].':'.$propValue['id'],$propArr)) echo 'checked="checked"';?>
+                          type="checkbox" <?php echo $productProp['is_sale_prop']==1?'data-product-prop-id="'.$productProp['id'].'"':'name="Product[props][' . $productProp['id'] . '][]"'?>
+                          >
+                            <label class="labelForRadio" for="Product_props_<?php echo $productProp['id'] . '_' . $i?>">
+                                <?php echo $propValue['value_name'] ?></label></span>
+                            <?php  $i++;
+                            }
+                            }?>
+        </div>
+        </td>
+        </tr>
+        <?php }?>
+        <tr>
+            <th></th>
+            <td>
+                <table id="sku">
+                    <?php if($skus){
+                                ?>
+                    <tbody>
+                    <tr>
+                        <th>属性名称</th>
+                        <th>库存</th>
+                        <th>销售价格</th>
+                        <th>市场价格</th>
+                        <th>图片</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    <?php foreach($skus as $sku){?>
+                    <tr class="sku-tr" data-key="<?php echo $sku['props']?>">
+                        <td scope="row">
+                            <?php echo $sku['prop_names']?>
+                        </td>
+                        <td><input class="input" type="text" name="Sku[<?php echo $sku['props']?>][stock]"
+                                   value="<?php echo $sku['stock']?>"></td>
+                        <td><input class="input" type="text" name="Sku[<?php echo $sku['props']?>][price]"
+                                   value="<?php echo $sku['price']?>"></td>
+                        <td><input class="input" type="text"
+                                   name="Sku[<?php echo $sku['props']?>][market_price]"
+                                   value="<?php echo $sku['market_price']?>"></td>
+                        <td>
+                            <div class="droparea spot" id="sku_pic_<?php echo $sku['props']?>"
+                                 style="background-image: url(<?php echo $sku['pic']?>);background-size:80px 40px;cursor: pointer;  width: 80px;  min-height: 40px;">
+
+                                <div class="sku-image-add" data-key="<?php echo $sku['props']?>"></div>
+                                <input type="hidden" name="Sku[<?php echo $sku['props']?>][pic]"
+                                       id="sku_pic_<?php echo $sku['props']?>"
+                                       value="<?php echo $sku['pic']?$sku['pic']:''?>"/>
+                            </div>
+                        </td>
+                        <td><select name="Sku[<?php echo $sku['props']?>][status]">
+                            <?php foreach($statusList as $key=>$statusType){?>
+                            <option value="<?php echo $key?>"
+                            <?php echo $sku['status']==$key?'selected':''?>
+                            ><?php echo $statusType?></option>
+                            <?php }?>
+                        </select></td>
+                        <td>
+                            <div class="btn delete-btn">删除</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <?php }}?>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <th>商品编号：</th>
+            <td><input type="text" class="input" size="20" name="info[number]" value="{$info.number}"/>&nbsp;&nbsp;&nbsp;不填写系统将自动生成
+            </td>
+        </tr>
+
+        <tr>
+            <th>商品图片：</th>
+            <td>
+                <if condition="$img_info eq null">
+                    <div kid="1" class="droparea spot" id="image1"
+                         style="background-image: url({$vo['savepath']});background-size: 220px 160px;">
+                        <div class="instructions" onclick="del_image(1)">删除</div>
+                        <div id="uparea1" class="images_add"></div>
+                        <input type="hidden" name="image_1[]" id="image_1" value="{$vo['savepath']}"/>
+                    </div>
+                    <else/>
+                    <volist name="img_info" id="vo" key="i">
+                        <div kid="{$i}" class="droparea spot" id="image{$i}"
+                             style="background-image: url({$vo['savepath']});background-size: 220px 160px;">
+                            <div class="instructions" onclick="del_image({$i})">删除</div>
+                            <div id="uparea{$i}" class="images_add"></div>
+                            <input type="hidden" name="image_1[]" id="image_{$i}"
+                                   value="{$vo['savepath']}"/>
+                        </div>
+                    </volist>
+                </if>
+                <div class="droparea spot" id="addimg" style="background-size: 220px 160px;">
+                    <div class="instructions">添加新的图片栏-规格400*400</div>
+                    <div style="font:180px/190px Arial;color: #999;cursor:pointer;">+</div>
+                </div>
+                <script>
+                    data_mold_pid = "{$info['mold_pid']}";
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <th>商品关键词：</th>
+            <td><input type="text" class="input" size="60" name="info[keywords]" value="{$info.keywords}"/>
+                多关键词间用半角逗号（,）分开，用于SEO优化
+            </td>
+        </tr>
+        <tr>
+            <th>商品描述：</th>
+            <td><textarea class="input" style="height: 60px; width: 600px;"
+                          name="info[description]">{$info.description}</textarea>
+                用于SEO的description
+            </td>
+        </tr>
+        <tr>
+            <th>商品参数：</th>
+            <td><textarea class="input" style="height: 60px; width: 600px;"
+                          name="info[summary]">{$info.summary}</textarea>
+                例如( 产地:上海 )&nbsp;&nbsp;&nbsp;如果有更多属性请按回车键
+            </td>
+        </tr>
+        <tr>
+            <th>商品介绍：</th>
+            <td><textarea id="content" class="" style="height: 300px; width: 80%;" name="info[content]">{$info['content']}</textarea>
+            </td>
+        </tr>
+        </table>
+        <php>if(empty($_GET['do'])){</php>
+        <input type="hidden" name="info[id]" value="{$info.id}"/>
+        <php>}else{
+            $action_url='__URL__/add';
+            }
+        </php>
+        </form>
+
+        <div class="commonBtnArea">
+            <button class="btn submit">提交</button>
+        </div>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<include file="Common:foot"/>
+<js href="--PUBLIC--/kindeditor/kindeditor.js,--PUBLIC--/kindeditor/lang/zh_CN.js,--PUBLIC--/Js/common.js"/>
+<script type="text/javascript">
+    //类型属性
+    $(function () {
+        $("#category-select").change(function () {
+            $('.prop-tr').each(function () {
+                $(this).remove();
+            });
+            var category_id = $(this).val();
+            data = {
+                category_id: category_id
+            };
+            $.post($(this).data('url'), {category_id: category_id}, function ($result) {
+                $('.select-tr').after($result);
+            }, 'html')
+        });
+        $('#product-table').on('click', '.delete-btn', function () {
+            $(this).parents('.sku-tr').remove();
+        });
+        //获取默认值
+        var cid = $('#mold').children('option:first').val();
+        //插入默认值
+        var html = "<tr><th>商品属性：</th><td id='app_mold'></td></tr>";
+
+        //加载默认值
+        $('#mold').parent().parent().after(html);
+        $.post("{:U('Product/s_mold')}", {cid: cid}, function (data) {
+
+            $.each(data, function (k, v) {
+                $('#app_mold').append("<input type='checkbox' name='mole_pid[]' class='click_mold' value='" + v.cid + " '/><span>" + v.name + "</span>&nbsp;&nbsp;&nbsp;");
+            });
+        }, 'json');
+
+
+        //点击事件
+        $(function () {
+
+            $('#app_mold').delegate('.click_mold', 'click', function () {
+                var cid = $(this).val();
+                var pname = $(this).next('span').html();
+                if ($(this).prop("checked")) {
+                    $.post("{:U('Product/s_mold')}", {cid: cid}, function (data) {
+                        if (data != null) {
+                            $('#app_mold').append("<div class='mold_list" + cid + "'>请选择" + pname + ":&nbsp;&nbsp;&nbsp;</div>");
+                            $.each(data, function (k, v) {
+                                $('.mold_list' + cid).append("<input name='mole_cid[]' type='checkbox' value='" + v.cid + "' />" + v.name + "&nbsp;&nbsp;&nbsp;");
+                            })
+                        }
+                    }, 'json');
+                } else {
+                    $('.mold_list' + cid).remove();
+                }
+            });
+        })
+    })
+    //添加新栏位
+    if (parseInt(($('.spot').length)) >= 7) {
+        $('#addimg').children().html('禁止添加新的图片栏').next().css({'color': '#f00', 'font-size': '150px'}).html('X');
+    }
+    $('#addimg').bind('click', function () {
+        var kid = parseInt($(this).prev().attr('kid')) + parseInt(1);
+        if (parseInt(($('.spot').length)) == 7) {
+            $(this).children().html('禁止添加新的图片栏').next().css({'color': '#f00', 'font-size': '150px'}).html('X');
+        }
+        if (parseInt(($('.spot').length)) > 7) {
+            popup.error('您不能再添加图片栏位,已超出上限！');
+        } else {
+            $(this).before($(this).prev().clone(true));
+            $(this).prev().attr({
+                'kid': kid,
+                'id': 'image' + kid,
+                'style': "background-size: 220px 160px"
+            }).children('.instructions').attr('onclick', "del_image('" + kid + "')").next().attr('id', 'uparea' + kid).next().attr({
+                'name': 'image_1[]',
+                'id': 'image_' + kid,
+                'value': ""
+            }).next().attr('value', kid);
+        }
+    });
+
+    //删除图片
+    function del_image(num) {
+        if (num == 1 || num == '1') {
+            $('#image' + num).css('background-image', '');
+            $('#image_' + num).val('');
+        } else {
+            $('#image' + num).remove();
+            if (parseInt(($('.spot').length)) == 7) {
+                $('#addimg').children().html('添加新的图片栏').next().css('color', '#999').html('+');
+            }
+        }
+
+    }
+    $(function () {
+        var content;
+        KindEditor.ready(function (K) {
+            content = K.create('#content', {
+                allowFileManager: true,
+                uploadJson: '--PUBLIC--/kindeditor/php/upload_json.php?dirname=product'
+            });
+        });
+
+        KindEditor.ready(function (K) {
+            K.create();
+            var editor = K.editor({
+                allowFileManager: true,
+                uploadJson: '--PUBLIC--/kindeditor/php/upload_json.php?dirname=product'
+                //sdl:false
+            });
+            $('#sku').on('click', '.sku-image-add', function () {
+                var imgs_id = $(this).data('key');
+                var $this = $(this);
+                editor.loadPlugin('image', function () {
+                    editor.plugin.imageDialog({
+                        imageUrl: $this.parents('.droparea').find('input').val(),
+                        clickFn: function (url, title, width, height, border, align) {
+                            $this.parents('.droparea').css('background-image', 'url(' + url + ')').css('background-size', '80px 40px');
+                            $this.parents('.droparea').find('input').val(url);
+                            // K('#getImgUrl').val(url);
+                            editor.hideDialog();
+                        }
+                    });
+                });
+            });
+            //触发添加图片
+            $('.images_add').bind('click', function () {
+                var imgs_id = $(this).parent().attr('kid');
+                editor.loadPlugin('image', function () {
+                    editor.plugin.imageDialog({
+                        imageUrl: K('#image_' + imgs_id).val(),
+                        clickFn: function (url, title, width, height, border, align) {
+                            $('#image' + imgs_id).css('background-image', 'url(' + url + ')').css('background-size', '220px 160px');
+                            K('#image_' + imgs_id).val(url);
+                            // K('#getImgUrl').val(url);
+                            editor.hideDialog();
+                        }
+                    });
+                });
+            });
+        });
+        $("#checkNewsTitle").click(function () {
+            if ($('#title').val() == '') {
+                popup.error('名称不能为空！');
+                return false;
+            }
+            $.getJSON("__URL__/checkProductTitle", {title: $("#title").val(), id: "{$info.id}"}, function (json) {
+                $("#checkNewsTitle").css("color", json.status == 1 ? "#0f0" : "#f00").html(json.info);
+            });
+        });
+        $(".submit").click(function () {
+            if ($('#title').val() == '') {
+                popup.error('名称不能为空！');
+                return false;
+            }
+            if ($('#category-select').val() == '') {
+                popup.error('请选择商品属性！');
+                return false;
+            }
+            content.sync();
+            commonAjaxSubmit("{$action_url}");
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

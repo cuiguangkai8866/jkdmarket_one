@@ -1,0 +1,32 @@
+<include file="Common:subHead" />
+<include file="Common:intoHead" />
+<script src="__JS__/wapCommon.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="__CSS__/order.css" charset="gbk"/>
+  <form name="addressForm" onsubmit="return false;">
+   <section class="receiverinfo_address"> 
+    <div class="form clearfix">
+     <p class="frame receiver"> <span>收货人：</span> <input id="username" type="text" name="consignee" value="{$info.username}" /> </p>
+     <p class="frame tel"> <span>手机号码：</span> <input id="phone" type="text" name="mobile" value="{$info.phone}" /> </p>
+     <p class="frame fixedTel"> <span>邮政编码：</span> <input id="postcode" type="text" name="fixedTel" value="{$info.postcode}" /> </p>
+     <div class="frame area"> 
+      <span>所在地区：</span>
+      <div class="selectArea">
+        <select id="s_province" name="s_province"class="ml10"></select>
+        <select id="s_city" name="s_city" ></select>
+        <select id="s_county" name="s_county"></select>
+      </div> 
+      <script class="resources library" src="__JS__/area.js" type="text/javascript"></script>
+       <script type="text/javascript">_init_area();</script>
+ 
+     </div> 
+     <p class="frame street"> <span>详细地址：</span> <input id="address" type="text" name="address" value="{$info.address}" /> </p>
+    </div>
+    <input type="submit" class="btn" style="cursor: pointer;" value="确认" />
+   </section>
+  </form>
+<include file="Common:footer" />
+<script>
+    $('form').submit(function(){
+       addressForm(null,'{$Think.get.id}');
+    })
+</script>

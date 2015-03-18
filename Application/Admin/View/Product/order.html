@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>订单管理-{$site.SITE_INFO.name}</title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='订单管理 > 订单列表';
+        </php>
+        <include file="Common:intoHead" />
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">订单列表</div>
+                    </div>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                        <thead>
+                        <tr>
+
+                        <td colspan="8" align="left">
+                            <form action="__SELF__" method="get">
+                                订单号:&nbsp;&nbsp;&nbsp;<input type="text" name="oid" value="<php>echo $_GET['oid'];</php>" size="30" style="margin-right: 20px;height:25px">
+                                收货人:&nbsp;&nbsp;&nbsp;<input type="text" name="username" value="<php>echo $_GET['username'];</php>" size="20" style="margin-right: 20px;height:25px">
+                                <input type="submit" value="搜索" style="border: 0px;width: 80px;height:30px;cursor:pointer;font:bold 16px/30px 'microsoft YaHei';letter-spacing:5px;background: #575656;color: #fff;">
+                            </form>
+                        </td></td></tr>
+                            <tr>
+                                <td>订单号</td>
+                                <td>订单金额</td>
+                                <td>创建时间</td>
+                                <td>购买用户</td>
+                                <td>收货人</td>
+                                <td>联系电话</td>
+                                <td>状态</td>
+                                <td>操作</td>
+                            </tr>
+                        </thead>
+                        <volist name="list" id="vo">
+                            <tr align="center" id="{$vo.id}">
+                                <td align="center"><a href="__URL__/orderEdit?id={$vo.id}"><input type="checkbox" name="canecelNowOrder[]" class="oneOrder" value="{$vo.id}" />&nbsp;&nbsp;&nbsp;
+                                {$vo.oid}</a></td>
+                                <td>{$vo.total_money}</td>
+                                <td>{$vo.published|date="Y-m-d H:i:s",###}</td>
+                                <td>{$vo.nickname}</td>
+                                <td>{$vo.username}</td>
+                                <td>{$vo.phone}</td>
+                                <td>{$vo.statusHtml}</td>
+                                <td>
+                                    <if condition="ACTION_NAME neq 'errorOrder'">
+                                        [ <a href="__URL__/orderEdit?id={$vo.id}">管理</a> ]
+                                    </if>
+                                    <if condition="ACTION_NAME eq 'waitRefundOrder'">
+                                        [ <a href="javascript:void(0)" onclick="window.open('{:U('Product/cancelOrRefund').'?id='.$vo['id'].'&type=tyRefund'}')">同意退款</a> ]
+                                        [ <a href="javascript:void(0)" onclick="changeOrderStatus('{$vo[status]}','{$vo[id]}','refusedRefund','{:U('Product/changeOrderStatus')}');">取消退款</a> ]
+                                    </if>
+                                    <if condition="ACTION_NAME eq 'waitPayOrder'">
+                                        [ <a href="javascript:void(0)" onclick="changeOrderStatus('{$vo[status]}','{$vo[id]}','invalidOrder','{:U('Product/changeOrderStatus')}');">作废此订单</a> ]
+                                        [ <a href="javascript:void(0)" onclick="changeOrderStatus('{$vo[status]}','{$vo[id]}','setOrderToPay','{:U('Product/changeOrderStatus')}');">设为已支付</a> ]
+                                    </if>
+                                    <if condition="ACTION_NAME eq 'waitDeliveryOrder'">
+                                        [ <a href="__URL__/deliveryEdit?id={$vo.id}">确认发货</a> ]
+                                        [ <a href="javascript:void(0)" onclick="window.open('{:U('Product/cancelOrRefund').'?id='.$vo['id'].'&type=qxOrder'}')">取消订单</a> ]
+                                    </if>
+                                    <if condition="ACTION_NAME eq 'waitReallyOrder'">
+                                        [ <a href="javascript:void(0)" onclick="window.open('{:U('Product/cancelOrRefund').'?id='.$vo['id']}')">取消订单</a> ]
+                                        [ <a href="javascript:void(0)" onclick="changeOrderStatus('{$vo[status]}','{$vo[id]}','setOrderReally','{:U('Product/changeOrderStatus')}');">设为已收货</a> ]
+                                    </if>
+                                    <if condition="ACTION_NAME eq 'successOrder'">
+                                        [ <a href="javascript:void(0)" onclick="changeOrderStatus('{$vo[status]}','{$vo[id]}','invalidOrder','{:U('Product/changeOrderStatus')}');">作废此订单</a> ]
+                                    </if>
+                                    <if condition="ACTION_NAME eq 'errorOrder'">
+                                        [ <a href="__URL__/orderEdit?id={$vo.id}">订单详情</a> ]
+                                    </if>
+                                </td>
+
+                            </tr>
+                        </volist>
+                        <tr>
+                        <?php if(ACTION_NAME != 'errorOrder'){ ?>
+                        <td colspan="2">
+                             &nbsp;<input type="checkbox" name="canecelAllOrder" id="allOrder" /> &nbsp;全选 / 取消
+                                &nbsp;&nbsp;&nbsp;
+                            <select name="orderStatus" id="orderStatus">
+                                    <?php if(ACTION_NAME != 'waitPayOrder' && ACTION_NAME != 'waitDeliveryOrder'){?>
+                                    <option value="writeOrder">批量打印订单</option>
+                                    <option value="writeKuaidi">批量打印快递单</option>
+                                    <?php }?>
+                                    <if condition="ACTION_NAME eq 'waitRefundOrder'">
+                                        <option value="tyRefund">批量同意退款</option>
+                                        <option value="qxRefund">批量取消退款</option>
+                                    </if>
+                                    <if condition="ACTION_NAME eq 'waitPayOrder'">
+                                        <option value="zxOrder">批量作废订单</option>
+                                        <option value="swyzfOrder">批量设为已支付</option>
+                                    </if>
+                                    <if condition="ACTION_NAME eq 'waitDeliveryOrder'">
+                                        <option value="qxOrder">批量取消订单</option>
+                                    </if>
+                                    <if condition="ACTION_NAME eq 'waitReallyOrder'">
+                                        <option value="qxOrder">批量取消订单</option>
+                                        <option value="yshOrder">批量设为已收货</option>
+                                    </if>
+                                    <if condition="ACTION_NAME eq 'successOrder'">
+                                       <option value="dcOrder">批量导出订单(xls)</option>
+                                       <option value="zxOrder">批量作废订单</option>
+                                    </if>
+                            </select>
+                            <input type="submit" value="执行" style="border: 0px;width: 70px;height:25px;cursor:pointer;font:bold 14px/25px 'microsoft YaHei';letter-spacing:5px;background: #575656;color: #fff;" id="submitAll">
+                        </td>
+                        <?php } ?>
+                        <td colspan="{:(ACTION_NAME == 'errorOrder'?8:6)}" align="right">{$page}</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Common:foot" />
+        <script type="text/javascript">
+            $(function(){
+                $(".del").click(function(){
+                    var delLink=$(this).attr("link");
+                    $this = $(this);
+                    popup.confirm('你真的打算删除此条订单吗?','温馨提示',function(action){
+                        if(action == 'ok'){
+                            delByLink(delLink,$this);
+                        }
+                    });
+                    return false;
+                });
+            });
+            function changeOrderStatus(status,obj,type,url){
+                $.post(url,{status:status,obj:obj,type:type},function(data){
+                    if(data.status == 1){
+                        popup.success(data.info);
+                        setTimeout(function(){
+                            popup.close('asyncbox_success');
+                        },1500);
+                        setTimeout(function(){
+                            location.reload();
+                        },1800)
+                    }else{
+                        popup.error(data.info);
+                        setTimeout(function(){
+                            popup.close('asyncbox_error');
+                        },1500);
+                    }
+                },'json');
+            }
+            $('#allOrder').click(function(){
+                if($(this).prop("checked") == true){
+                    $(".oneOrder").prop("checked",true);
+                }else{
+                    $(".oneOrder").prop("checked",false);
+                }
+            });
+            $('#submitAll').click(function(){
+                var type = $('#orderStatus').val();
+                var id = '';
+                $.each($('.oneOrder'),function(k,v){
+                    if($(this).prop("checked") == true){
+                        id += $(this).val()+',';
+                    }
+                })
+                if(id == null || id =='' || id == 'undefined'){
+                    popup.error('请选择您要操作的订单!');
+                    setTimeout(function(){
+                        popup.close('asyncbox_error');
+                    },2000)
+                }else{
+                    $.post('{:U('Common/cancelOrRefundAction')}',{id:id,type:type},function(data){
+                        if(data.status == 1){
+                            popup.success(data.info);
+                            setTimeout(function(){
+                                popup.close('asyncbox_success');
+                                if(data.url != null && data.url){
+                                    window.open(data.url);
+                                }else{
+                                    location.reload();
+                                }
+                            },2000);
+                        }else{
+                            popup.error(data.info);
+                            setTimeout(function(){
+                                popup.close('asyncbox_error');
+                            },2000);
+                        }
+                    },'json');
+                }
+            })
+        </script>
+    </body>
+</html>

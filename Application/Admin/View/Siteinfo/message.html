@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>留言管理-{$site.SITE_INFO.name}</title>
+    <php>
+        $addCss="";
+        $addJs="";
+        $currentNav ='留言管理 > 留言列表';
+    </php>
+    <include file="Common:intoHead" />
+</head>
+<body>
+<div class="wrap">
+    <include file="Common:head" />
+    <div class="mainBody">
+        <include file="Common:left" />
+        <div id="Right">
+            <div class="Item hr">
+                <div class="current">留言列表</div>
+            </div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                <thead>
+                <tr>
+                    <td>留言人</td>
+                    <!--<td>邮箱</td>-->
+                    <td>电话</td>
+                    <!--<td>地址</td>-->
+                    <td>邮箱</td>
+                    <td width="300">留言时间</td>
+                    <td width="300">留言信息</td>
+                    <td width="150">删除</td>
+                </tr>
+                </thead>
+                <volist name="list" id="vo">
+                    <tr align="center" id="{$vo.id}">
+                        <td align="left">{$vo.username}</td>
+                        <!--<td>{$vo.email}</td>-->
+                        <td>{$vo.moblie}</td>
+                        <!--<td>{$vo.address}</td>-->
+                        <td>{$vo.email}</td>
+                        <td>{$vo.addtime|date="Y-m-d H:i:s",###}</td>
+                        <td>{$vo.content}</td>
+                        <td>
+                            <!--<a title="审核状态" href="javascript:void(0);" onclick="changeStatus({$vo.id},this)"><img src="__STATIC__/Img/action_{$vo.display}.png" border="0"></a>-->
+                           <a link="{:U('Siteinfo/delmessage/',array('id'=>$vo['id']))}" href="javascript:void(0)" name="{$vo.id}" class="del">[ 删除 ]</a>
+                            <if condition="$vo[t_content] neq null">
+                                <a zid="{$vo.id}" href="javascript:void(0)" class="ask_update">[ 回复 ]</a>
+                                <else />
+                                已回复
+                            </if>
+                        </td>
+                    </tr>
+                </volist>
+                <tr><td colspan="7" align="right">{$page}</td></td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+    $(function(){
+        $(".del").click(function(){
+            var delLink=$(this).attr("link"),$this = $(this);
+            popup.confirm('你真的打算删除【<b>'+$(this).attr("name")+'</b>】吗?','温馨提示',function(action){
+                if(action == 'ok'){
+                    delByLink(delLink,$this);
+                }
+            });
+            return false;
+        });
+    });
+    function changeStatus(id,v){
+        $.get('{:U("Siteinfo/changeMessageStatus")}?id='+id,function(data){
+            if(data.status==1){
+                $(v).html(data.info);
+            }
+        });
+    }
+    $(function(){
+        $('.ask_update').click(function(){
+            asyncbox.prompt('回复咨询','请输入回复内容:','','textarea',function(action,val){
+                if(action == 'ok'){
+                    var zid = $('.ask_update').attr('zid');
+                    $.post(location.href,{content:val,zid:zid},function(data){
+                        if(data.status == 1){
+                            popup.success(data.info);
+                            setTimeout(function(){
+                                popup.close('asyncbox_success');
+                            },2000);
+                            setTimeout(function(){
+                                location.reload();
+                            },2200)
+                        }else{
+                            popup.error(data.info);
+                            setTimeout(function(){
+                                popup.close('asyncbox_error');
+                            },2000)
+                        }
+                    },'json')
+                }
+            })
+        });
+    })
+</script>
+</body>
+</html>

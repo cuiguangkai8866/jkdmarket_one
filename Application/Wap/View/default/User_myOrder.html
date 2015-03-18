@@ -1,0 +1,45 @@
+<include file="Common:subHead" />
+<include file="Common:intoHead" />
+<script src="__JS__/wapCommon.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="__CSS__/order.css" charset="utf-8"/>
+  <section> 
+
+<volist name="list" id="vo" empty="没有查到您的订单信息!">
+    <div class="orderList normal">
+        <div class="title">
+            <p class="orderNum">订单号：<span>{$vo.oid}</span></p>
+            <p class="orderTime">下单时间：<span>{:date('Y-m-d H:i:s',$vo[published])}</span></p>
+            <p class="orderTime">订单状态：{$vo[statusHtml]}</p>
+            <a class="waitPaid" href="{:U('/wapOrderDetail').'?oid='.$vo[id]}">详情<i></i></a>
+        </div>
+        <div class="orderPrice clearfix">
+            <div class="detail">
+                <p class="amount">订单金额：<span>&yen;{$vo.total_money}</span></p>
+            </div>
+            <if condition="$vo[status] eq 0">
+                <a class="pay" href="javascript:;" onclick="changeOrderStatus(null,'{$vo.id}','payOrder')">立刻支付</a>
+            <elseif condition="$vo[status] eq 1" />
+                <a class="pay" href="javascript:;">订单已取消</a>
+            <elseif condition="$vo[status] eq 2" />
+                <a class="pay" href="javascript:;" onclick="changeOrderStatus(null,'{$vo.id}','refundAction')">申请退款</a>
+            <elseif condition="$vo[status] eq 3" />
+                <a class="pay" href="javascript:;" onclick="changeOrderStatus(null,'{$vo.id}','reallyOrder')">确认收货</a>
+            <elseif condition="$vo[status] eq 4" />
+                <a class="pay" href="javascript:;" onclick="changeOrderStatus(null,'{$vo.id}','cancelRefund')">取消退款</a>
+            <elseif condition="$vo[status] eq 5" />
+                <a class="pay" href="javascript:;">交易完成</a>
+            <elseif condition="$vo[status] eq 6" />
+                <a class="pay" href="javascript:;">订单已退款</a>
+            <elseif condition="$vo[status] eq 7" />
+                <a class="pay" href="javascript:;">订单已失效</a>
+            </if>
+        </div>
+    </div>
+</volist>
+      <div class="new-paging">
+          <div class="new-tbl-type">
+              {$show}
+          </div>
+      </div>
+  </section>
+<include file="Common:footer" />

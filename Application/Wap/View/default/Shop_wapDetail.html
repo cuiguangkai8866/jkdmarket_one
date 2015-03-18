@@ -1,0 +1,372 @@
+﻿<include file="Common:subHead" />
+<include file="Common:intoHead" />
+<link rel="stylesheet" type="text/css" href="__CSS__/view.css" charset="utf-8"/>
+<script src="__JS__/wapCommon.js" type="text/javascript"></script>
+  <div id="mainLayout" style="display:-webkit-box;">
+   <div class="new-ct" id="mainStay" style="-webkit-box-flex: 1;width: 100%;">
+    <div class="new-p-re"> 
+     <div class="detail-img">
+      <div id="focus" class="focus">
+        <div class="hd">
+          <ul></ul>
+        </div>
+        <div class="bd">
+          <ul>
+              <volist name="info[savepath]" id="vo">
+                  <li><img src="__ROOT__{$vo.savepath}" width="320" height="292" alt="{$info.title}" /></li>
+              </volist>
+          </ul>
+        </div>
+      </div>
+     <script type="text/javascript">
+        TouchSlide({ 
+          slideCell:"#focus",
+          titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+          mainCell:".bd ul", 
+          effect:"left", 
+          autoPlay:true,//自动播放
+          autoPage:true, //自动分页
+        });
+
+      </script>
+
+
+
+     </div> 
+     <div class="detail-price"> 
+      <span class="text" id="price">&yen;{$info.price} </span>
+      <a class="btn-sc {:$isFavorite == null ? '':'on'}" id="attention"><span></span></a>
+     </div>
+    </div>
+    <script type="text/javascript">
+    $(function(){
+      //商品收藏
+      var coll;
+      var $left;
+      var $top;
+      function run(){
+        $(".pop-attention").show().css({'left':$left,'top':$top});
+        coll = setInterval(function(){
+          clearInterval(coll);
+          $(".pop-attention").hide();
+        },2000)
+      }
+      $("#attention").bind('touchend', function(event) {
+        $left = parseInt($(window).width())/2-60;
+        $top = parseInt($(window).height())/2-25;
+          $(this).toggleClass("on");
+          if($(this).hasClass("on")){
+              var types = 'addFavorite';
+          }else{
+              var types = 'delFavorite';
+          }
+          run();
+          favoriteAction(null,'{$info.id}','favoriteAction',types);
+
+      });
+      $(".btn-cart").bind('touchend', function(event) {
+        wapAddCart(null,"{$_GET['Gid']}",$('#prosum').val(),'addCart');
+      });
+      // 再逛逛
+      $("#stroll").bind('touchend', function(event) {
+        $("#cart").hide();
+      });
+      
+    })
+
+/**
+ * 购物车加减
+ * 
+ * @param a
+ */
+function chgNum(a) {
+  $('#number_over_goods').css('display', 'none');
+  $('#increase_number_goods').removeClass('off');
+  
+  var prosum = $("#prosum");
+  if (isNaN(prosum.val()) || prosum.val()<=0) {
+    prosum.val('1');
+    $('#increase_number_goods').addClass('off');
+    return;
+  }
+  
+  //三位数 时自动为99 prosum.val(prosum.val().replace(/\D/g,''));
+  if(prosum.val().length>=3){
+    prosum.val('99');
+  }
+  
+  var p = parseInt(prosum.val());
+  var goods_number = parseInt($('#goods_number').val());
+  if(goods_number ==0){
+    prosum.val('1');
+    $('#increase_number_goods').addClass('off');
+    return;
+  }
+  var single_amount = parseInt($('#single_amount').val());
+  var finalVal = goods_number;
+  if (single_amount > 0) {
+    finalVal = single_amount < goods_number ? single_amount : goods_number;
+  }
+  
+  if (a == 1) {
+    if(finalVal>99){
+      finalVal =99;
+    }
+    
+    if (p < finalVal){
+      prosum.val(++p);
+      if(prosum.val() ==99){
+        $('#increase_number_goods').addClass('off');
+      }
+    }
+    else {
+      switch (finalVal) {
+      case 0:
+        break;
+      case 99:
+        $('#increase_number_goods').addClass('off');
+        break;
+      case single_amount:
+        break;
+      case goods_number:
+        if(p<99){
+          prosum.val(++p);
+          if(prosum.val() ==99){
+            $('#increase_number_goods').addClass('off');
+          }
+        }
+        else{
+          $('#increase_number_goods').addClass('off');
+        }
+        $('#number_over_goods').css('display', 'block');
+        break;
+      }
+    }
+
+  } else if (a == -1) {
+    if (p > 1){
+      prosum.val(--p);
+      if(finalVal ==goods_number && p>finalVal){
+        $('#number_over_goods').css('display', 'block');
+      }
+    }
+      
+  } else {
+    if(p ==99){
+      $('#increase_number_goods').addClass('off');
+    }
+    if (p >finalVal) {
+      switch (finalVal) {
+      case 0:
+        break;
+      case 99:
+        $('#increase_number_goods').addClass('off');
+        break;
+      case single_amount:
+        prosum.val(finalVal);
+        break;
+      case goods_number:
+        $('#number_over_goods').css('display', 'block');
+        break;
+      }
+    }
+  }
+  
+  if(parseInt(prosum.val())>1){
+    $('.proNum .decrease').removeClass('off');
+  }
+  else{
+    $('.proNum .decrease').addClass('off');
+  }
+}
+    </script>
+
+
+
+
+
+     <div class="secton10">
+         <div class="info">
+             <a href="#"></a>
+         </div>
+         <p class="detail-title">{$info.title}</font></p>
+     <p class="text3" id="promotionInfo" style=" display:none "> </p> 
+     <p class="text2" id="vender">{$info[tuixiao]}</p>
+     <div class="proNum clearfix">
+        <input type="hidden" id="goods_number" value="4722">
+        <input type="hidden" id="single_amount" value="0"> 
+        <span class="title">数量：</span> 
+        <a class="decrease icon off" href="javascript:;" ontouchstart="chgNum(-1)"></a>
+        <input type="text" value="1" id="prosum" onblur="chgNum()" onafterpaste="chgNum()">
+        <a class="increase icon" href="javascript:;" ontouchstart="chgNum(1)" id="increase_number_goods"></a>
+        <p class="numOver" id="number_over_goods" style="display: none;">您选择的商品数量已超过库存</p>
+    </div>
+  </div>
+
+
+    <div class="proShowFrame">
+<div id="leftTabBox" class="tabBox">
+        <div class="hd" style="margin-bottom:20px;">
+          <ul class="tabBar">
+            <li class="tab"><a href="javascript:void(0)">商品详情</a></li>
+            <li class="tab"><a href="javascript:void(0)">用户评价({$count})</a></li>
+            <li class="tab"><a href="javascript:void(0)">相关推荐</a></li>
+          </ul>
+        </div>
+        <div class="bd" id="leftTabBox-bd">
+            <div class="showCon showCon1" id="showCon1_goods">
+      <div>
+   <div class="prodIntro clearfix"> 
+    {$info.content}
+   </div>
+  </div>
+</div>
+
+<!-- 加载评论框架 -->
+<div class="showCon showCon2" id="showCon2_goods">
+<iframe src="{:U('/wapComment',array('id'=>$_GET['Gid']))}" id="iframepage" name="iframepage" frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()" height="100%"></iframe>
+
+<script type="text/javascript" language="javascript">
+    function iFrameHeight() {
+        var ifm= document.getElementById("iframepage");
+        var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;
+        if(ifm != null && subWeb != null){
+            ifm.height = (subWeb.body.clientHeight);
+        }
+    }
+</script>
+</div>
+<div class="showCon showCon3" id="showCon3_goods">
+   <!-- 商品详情 --> 
+   <ul class="list clearfix">
+       <volist name="randList" id="vo" empty="系统还没有产品">
+           <li class="clearfix"> <input type="hidden" name="goods_id" value="14376" /> <a class="prodLink" href="{:U('/wapDetail').'?Gid='.$vo[id]}"></a> <img class="prodImg" src="__ROOT__{$vo.savepath}" />
+               <div class="recoInfo">
+                   <a class="recoName" href="">{$vo.title}</a>
+                   <p class="recoPrice"> &yen;<strong>{$vo.price}</strong><span>&yen;{$vo.market}</span></p>
+               </div> <a class="addCart icon" href="javascript:;"></a> <p class="tip">商品已添加至购物车</p> </li>
+       </volist>
+   </ul> 
+  </div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        TouchSlide({ slideCell:"#leftTabBox",
+          endFun:function(i){ //高度自适应
+            var bd = document.getElementById("leftTabBox-bd");
+            bd.parentNode.style.height = bd.children[i].children[0].offsetHeight+"px";
+            if(i>0)bd.parentNode.style.transition="200ms";//添加动画效果
+          }
+        });
+      </script>
+
+
+
+
+
+
+    </div>
+
+     
+    <div class="cart-pop" id="cart" style="display:none;position:absolute;z-index:9999;bottom:auto;margin-left: -114px;left: 50%;"> 
+     <div class="ico-succ"> 
+      <span class="att-succ">添加成功！</span> 
+      <span class="cart-succ">商品已成功加入购物车</span> 
+     </div> 
+     <div class="cp-lnk"> 
+      <a href="javascript:void(0)" id="stroll">再逛逛</a> 
+      <a id="goCart" href="#"><span class="bar"></span>去购物车</a> 
+     </div> 
+    </div> 
+    <div class="bg-h15"></div> 
+     
+     
+     
+    <div class="tbl-type detail-tbn2" id="cart1" style="position:fixed;bottom:0;z-index:10;"> 
+     <div class="tbl-cell"> 
+      <a id="directorder" class="btn-buy" onclick="wapAddCart(null,'{$_GET['Gid']}',$('#prosum').val(),'nowBuy');"><span></span>立即购买</a>
+     </div> 
+     <div class="tbl-cell"> 
+      <a id="add_cart" class="btn-cart"><span></span>加入购物车</a> 
+     </div> 
+    </div> 
+   </div>
+   <div id="showassess" style="margin-bottom: 20px;-webkit-box-flex: 1;width: 100%;display: none!important;"> 
+    <div class="new-ct"> 
+     <div class="new-goods-details" id="_assessContent"> 
+      <div class="new-gd-introduce"> 
+       <div class="new-fl w56 new-mg-r12"> 
+        <span class="new-span-block"><span class="new-txt36" id="_assessScale">0</span><span class="new-txt-sign">%</span></span> 
+        <span class="new-span-block new-mg-t5">好评度</span> 
+       </div> 
+       <div class="new-gd-txt3"> 
+        <span class="new-span-block" id="_btnGoodScale"><span>好评</span><span class="new-txtb8" id="_goodScale">（0%）</span><span class="new-gd-bar new-mg-l12"><span style="width:0%" id="_goodScaleImg"></span></span></span> 
+        <span class="new-span-block" id="_btnMediumScale"><span>中评</span><span class="new-txtb8" id="_mediumScale">（0%）</span><span class="new-gd-bar new-mg-l12"><span style="width:0%" id="_mediumScaleImg"></span></span></span> 
+        <span class="new-span-block" id="_btnGoodScale"><span>差评</span><span class="new-txtb8" id="_badScale">（0%）</span><span class="new-gd-bar new-mg-l12"><span style="width:0%" id="_badScaleImg"></span></span></span> 
+       </div> 
+       <div class="new-estimate new-tbl-type new-mg-t15"> 
+        <div class="new-tbl-cell on" id="_tabGoodScale"> 
+         <span>好评</span>
+         <span id="goodNum">0</span> 
+        </div> 
+        <div class="new-tbl-cell" id="_tabMediumScale"> 
+         <span>中评</span>
+         <span id="mediumNum">0</span> 
+        </div> 
+        <div class="new-tbl-cell" id="_tabBadScale"> 
+         <span>差评</span>
+         <span id="badNum">0</span> 
+        </div> 
+       </div> 
+      </div> 
+      <div id="_assessItem"> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="new-paging" id="_assessPage"> 
+    </div> 
+   </div> 
+  </div> 
+  <span class="pop-attention" style="position:absolute;z-index:9999;display:none" id="save"> <span class="icon-succ" id="guanzhu">关注成功</span> </span> 
+   
+  <div id="yuyuecart" style="width:100%;position:fixed;bottom:0;display:none"> 
+   <div class="tbl-type detail-tbn2"> 
+    <div class="tbl-cell"> 
+     <a class="btn-cart" data="" id="cartyuyue"><span></span>加入购物车</a> 
+    </div> 
+   </div> 
+  </div> 
+  <div id="yuyueing" style="width:100%;position:fixed;bottom:0;display:none"> 
+   <div class="tbl-type detail-tbn2"> 
+    <div class="tbl-cell"> 
+     <a class="btn-yuyue" data=""><span class="icon-clock"></span><span id="yuyuetime"></span><span class="txt-yuyue" id="yuyuecontext"><span></span>开始预约</span></a> 
+    </div> 
+   </div> 
+  </div> 
+  <div id="yuyuenow" style="width:100%;position:fixed;bottom:0;display:none"> 
+   <div class="tbl-type detail-tbn2"> 
+    <div class="tbl-cell"> 
+     <a class="btn-yuyue2" href="../yuyue/1016292843.html@sid=e0d0f025d6d3e8e8d7be5428c43ef911" id="nowyuyue"><span class="icon-clock"></span><span class="txt-yuyue" id="yuyuenowcontext"><span></span>立即预约</span></a> 
+    </div> 
+   </div> 
+  </div> 
+  <div id="yuyueend" style="position:fixed;bottom:0;display:none"> 
+   <div class="tbl-type detail-tbn2"> 
+    <div class="tbl-cell"> 
+     <a class="btn-yuyue2"><span class="icon-clock"></span><span class="txt-yuyue" id="yuyueendcontext"><span></span></span></a> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="pop" style="position:absolute;z-index:9999;display:none" id="tip"> 
+   <p><span class="pop-txt"></span> </p> 
+   <div class="pop-txt-area"> 
+    <span class="pop-txt2" id="tips"> </span> 
+   </div> 
+   <div class="tbl-type"> 
+    <a href="javascript:void(0)" onclick="$('#tip').hide();$('#_mask').hide();" class="tbl-cell" style="width:50%">知道啦</a> 
+    <a href="javascript:void(0)" id="myyuyue" class="tbl-cell" style="width:50%">我的预约</a> 
+   </div> 
+  </div>
+   
+ </body>
+</html>

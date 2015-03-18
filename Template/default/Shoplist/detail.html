@@ -1,0 +1,577 @@
+<include file="Common:top" />
+<include file="Common:header" />
+<include file="Common:intoHead" />
+<div class="content_c">
+<link href="__CSS__/detail.css" rel="stylesheet" type="text/css" />
+<!-- <link id="newLink" rel="stylesheet" type="text/css" href="__CSS__/index_1200.css" /> -->
+<script>
+    $(function(){
+        $(".u-buy-close").on("click",function(){
+            $(this).parents('.u-buy-lay').hide();
+        })
+        $(".detailCode-on").hover(function() {
+            $(".detailCode-t").toggle();
+        });
+    })
+</script>
+<div class="dmain">
+<div class="dmainBox lazyload">
+<div class="detail-guide">
+    <volist name="mianBaoXie" id="vo" key="u">
+         <a title="{$vo.nav_name}" href="{:$vo[url] == null ?'#':$vo[url]}" target="_self"> {$vo.nav_name}</a> {:$u == 3 ?'':'>'}
+    </volist>
+</div>
+<style type="text/css">
+    .detail-box1,.w{ width: 1000px;}
+    .detail-right{ width: 788px; float: right;}
+</style>
+<div class="detail-box1 clearfix">
+<!-- <div class="detail-show">
+    <div class="show-pic">
+        <img src="__ROOT__{:$info[savepath][0][savepath] == null ? '/Public/Home/images/no_goods.jpg':$info[savepath][0][savepath]}" width="400" height="400" alt="{$info[title]}" />
+    </div>
+    <div class="show-list">
+        <a class="show-list-prev" href="javascript:;"></a>
+        <div class="show-list-con">
+            <ul>
+                <php>
+                    foreach($info['savepath'] as $k=>$v){
+                </php>
+                    <li> <a class="sList-on" href="javascript:void(0);"> <img src="__ROOT__{$v['savepath']}" width="
+                    54" height="54" /> </a> </li>
+                <php>
+                    }
+                </php> -->
+                <!--<li> <a href="javascript:;" class=""> <img onmouseover="showLN(1)" src="__IMG__/c176aa413cbe436f90479960758b74631.jpg" /> </a> </li>-->
+                <!--<li> <a href="javascript:;"> <img onmouseover="showLN(2)" src="__IMG__/45c45d754e884b6893db2f96c5837d8d1.jpg" /> </a> </li>-->
+                <!--<li> <a href="javascript:;"> <img onmouseover="showLN(3)" src="__IMG__/226d3fbc8b73417386d4c2958836658a1.jpg" /> </a> </li>-->
+                <!-- <div class="clear"></div>
+                            </ul>
+                        </div>
+                        <a class="show-list-next" href="javascript:;"></a>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="show-share">
+                
+                
+                    </div>
+                </div> -->
+
+
+<script type="text/javascript" src="__JS__/jquery.imagezoom.min.js"></script>
+    <!-- 图片放大展示 -->
+    <div class="box">
+        <div class="tb-booth tb-pic tb-s310">
+            <a href="images/b1e6fadd6e3843cfa98ff2e53a0dbb496.jpg"><img src="__ROOT__{:$info[savepath][0][savepath] == null ? '/Public/Home/images/no_goods.jpg':$info[savepath][0][savepath]}" alt="{$info[title]}" rel="__ROOT__{:$info[savepath][0][savepath] == null ? '/Public/Home/images/no_goods.jpg':$info[savepath][0][savepath]}" alt="{$info[title]}" class="jqzoom" /></a>
+        </div>
+
+        <ul class="tb-thumb" id="thumblist">
+        <php>
+                    foreach($info['savepath'] as $k=>$v){
+                </php>
+                    <li>
+                        <div class="tb-pic tb-s40">
+                            <a href="javascript:void(0)">
+                                <img src="__ROOT__{$v['savepath']}" mid="__ROOT__{$v['savepath']}" big="__ROOT__{$v['savepath']}" />
+                            </a>
+                        </div>
+                    </li>
+                <php>
+                    }
+                </php>
+        </ul>
+        
+    </div>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $(".jqzoom").imagezoom();
+    
+    $("#thumblist li a").hover(function(){
+        $(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
+        $(".jqzoom").attr('src',$(this).find("img").attr("mid"));
+        $(".jqzoom").attr('rel',$(this).find("img").attr("big"));
+    });
+    /* var zoom = $(".jqzoom");
+    if(parseInt(zoom.height()) > parseInt(zoom.width())){
+        zoom.height('100%').width('auto');
+    }else{
+        zoom.width('100%').height('auto');
+    } */
+
+    $("#thumblist li:first").addClass('tb-selected');
+
+
+
+});
+</script>
+
+
+
+
+<div class="detail-depict" style="" id="_nomal_div">
+<div class="depict-name">
+    <h3>{$info[title]}</h3>
+    <p class="dName-Buy" id="_proadvstr" style="">{$info[tuixiao]}</p>
+    <!-- 葡萄酒评分开始 -->
+    <!-- 葡萄酒评分结束 -->
+</div>
+<div class="depict-price">
+    <div class="dPrice-mark">
+        市&nbsp;场&nbsp;价：
+        <del id="_markPriceStr">
+            ￥{$info[market]}
+        </del>
+    </div>
+    <div class="dPrice-pri">
+        <p class="pri">
+            <span id="_jxjgmc">促&nbsp;销&nbsp;价：</span>
+            <i>￥</i> <em id="_nowPriceStr">{$info[price]}</em>
+            <input id="_baknowPriceStr" type="hidden" value="{$info[price]}" />
+        </p>
+        <p class="tim _leaveTimeLen" style="display:none;"> <i></i> 剩余 <strong class="t"></strong> </p>
+        <div class="clear"></div>
+    </div>
+    <div class="dPrice-pricing clearfix" id="_nowactstr" style="">
+        <div class="pricing-tit">
+            优&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;惠： <!-- {:($info[market] - $info[price])}  元-->
+        </div>
+
+
+        <div class="pricing-con">
+            <div class="pri-con-act">
+                <div class="decx">
+                    <i class="sale_sicon_4"></i>
+                </div>
+                <div class="pri-con-pre">
+                    已优惠￥{:($info[market] - $info[price])} 元
+                </div>
+                <div class="pri-con-view">
+                    <a href="" target="_blank"></a>
+                </div>
+            </div>
+
+
+
+            <!-- <div class="pri-con-act clearfix">
+                <div class="decx">
+                    <i class="sale_sicon_2"></i>
+                </div>
+                <div class="pri-con-pre">
+                    {$info[present] == null ?'此商品无可赠物品':$info[present]}
+                </div>
+            </div> -->
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="dPrice-premiums" id="_pur" style="display:none;">
+    </div>
+    <div class="dPrice-premiums" id="_lartgessprostr" style="display:none;">
+    </div>
+</div>
+<div class="depict-order" id="_shdzdiv">
+
+    <!-- 套装 -->
+    <div class="dOrder-set" id="_dmdyhtz" style="display:none;">
+    </div>
+    <div class="u-selected" id="_dmdyhtzyxz" style="display:none;"></div>
+    <!-- 购买数量 -->
+    <div class="dOrder-buyNub" id="_gmsl">
+        <div class="buyNub-tit">
+            数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量
+        </div>
+        <div class="buyNub-nub">
+            <div class="buyNub-nub-wrap">
+                <i class="buyNub-nub-blus-c buyNub-nub-blus sub"></i>
+                <input name="" id="pd_number" type="text" value="1" />
+                <i class="buyNub-nub-top add"></i>
+            </div>
+        </div>
+        <div class="buyNub-tit">
+            &nbsp;&nbsp;&nbsp;库存：<span class="stock">{$info[stock] == null ?'0':$info[stock]}</span><!-- &nbsp;&nbsp;规格:{$info.cname} -->
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="buyNub-buy-wrap pr clearfix" style="z-index:9;">
+    <div class="buyNub-buy">
+        <!-- 
+         商品状态：
+         正常状态为加入购物车；
+         商品下架状态显示商品下架了。
+         -->
+        <if condition="$info[status] eq 0">
+            <a href="javascript:;" class="u-buy-over" id="_nosale" style="display: block;">商品已经下架</a>
+        <elseif condition="$info[stock] elt 0" />
+            <a href="javascript:;" class="u-buy-over" id="_buyover" style="display: block;">商品库存不足</a>
+        <else />
+            <a href="javascript:;" name="bi_addToCart" class="u-buy" id="_jrgwc" style=""> <i></i> <span class="_jrgwcanmc">加入购物车</span> </a>
+        </if>
+        <script>
+            $(function(){
+                $('#_jrgwc').click(function(){
+                    shoppingCart("{:U('Common/shoppingCart')}","{:base64_decode($_GET[md5('Goods')])}",$('#pd_number').val(),1,'detail')
+                });
+            })
+        </script>
+        <!--<a href="#" class="u-buy-orderbuy" id="_orderbuy" style="display:none"> <i></i> <span>立即预约</span> </a>-->
+        <!--<a href="javascript:;" class="u-buy-over" id="_orderbuyover" style="display:none;">预约结束</a>-->
+        <!--<a href="javascript:;" class="u-buy-over" id="_nosupportsh" style="display: none;">商品不支持配送</a>-->
+        <!--<a href="javascript:;" class="u-buy-over" id="_tmpnosale" style="display: none;">暂不销售</a>-->
+
+        <!-- 成功加入购物车弹出层 -->
+        <div class="u-buy-lay" id="u-buy-layId">
+            <div class="u-buy-con">
+                <div class="u-buy-ok">
+                    <i></i>
+                    <span class="shoppingcartinfo">添加成功!</span>
+                </div>
+                <div class="u-buy-gon">
+                    <a href="{:U('/buycart')}" target="_blank" class="u-buy-go">去结算</a>
+                    <a href="{:U('/shop')}" class="u-buy-g">继续购物</a>
+                </div>
+                <div class="u-buy-tit">
+                    买过该商品的用户还买了
+                </div>
+                <div class="u-collect-list">
+                    <ul>
+                        <volist name="cart" id="vo" offset="0" length="4">
+                            <li>
+                                <div class="u-collect-pic">
+                                    <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank"> <img src="__ROOT__{:$vo[savepath] == null ? '/Public/Home/images/no_goods.jpg' : $vo[savepath]}" width="80" height="80" alt="{$vo.title}" /> </a>
+                                </div>
+                                <div class="u-collect-name">
+                                    <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank" title="{$vo.title}">{$vo.title}</a>
+                                </div>
+                                <div class="u-collect-price" goodid="15267">
+                                    ￥{$vo.price}
+                                </div></li>
+                        </volist>
+                        <div class=" clear"></div>
+                    </ul>
+                </div>
+            </div>
+            <a href="javascript:;" class="u-buy-close"></a>
+            <s></s>
+        </div>
+
+
+        <!-- 加入购物车失败 -->
+        <div class="u-buy-lay" id="u-buy-layId2">
+            <div class="u-buy-con">
+                <div class="u-buy-no">
+                    <i></i>
+                    <span class="_cartstatus shoppingcartinfo">添加失败，库存不足！</span>
+                </div>
+                <div class="u-buy-tit">
+                    晚了一步？看看其他类似商品吧！
+                </div>
+                <div class="u-collect-list">
+                    <ul>
+                        <volist name="cart" id="vo" offset="0" length="4">
+                            <li>
+                                <div class="u-collect-pic">
+                                    <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank"> <img src="__ROOT__{:$vo[savepath] == null ? '/Public/Home/images/no_goods.jpg' : $vo[savepath]}" width="80" height="80" alt="{$vo.title}" /> </a>
+                                </div>
+                                <div class="u-collect-name">
+                                    <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank" title="{$vo.title}">{$vo.title}</a>
+                                </div>
+                                <div class="u-collect-price" goodid="15267">
+                                    ￥{$vo.price}
+                                </div></li>
+                        </volist>
+                        <div class=" clear"></div>
+                    </ul>
+                </div>
+            </div>
+            <a href="javascript:;" class="u-buy-close"></a>
+            <s></s>
+        </div>
+    </div>
+    <if condition="$collect eq null">
+        <div class="u-cell" onclick="AddCommect()">
+            <span><img src="/Public/Home/images/shou.jpg" width="16" height="16" alt="{$vo.title}" /></span>
+            <a href="javascript:void(0)">收藏商品</a>
+            <em>+1</em>
+        </div>
+        <else />
+        <div class="u-cell" onclick="DelCommect()">
+            <span><img src="/Public/Home/images/shou.jpg" width="16" height="16" alt="{$vo.title}" /></span>
+            <a href="javascript:void(0)">取消收藏</a>
+            <em>+1</em>
+        </div>
+    </if>
+
+</div>
+<div class="depict-other">
+    <div class="other-payment">
+        分享到：<div class="bshare-custom" style="float:none;margin-top:5px"><div class="bsPromo bsPromo2"></div><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=7afd94bb-a7e8-4d65-9936-979b687f14eb&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+    </div>
+    <div class="other-point" id="_isDisableBonus" style="display:none"></div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<div class="detail-box2 clearfix">
+<div class="detail-left">
+<div class="u-coupons-box" id="_canusecoupons" style="display:none;">
+</div>
+<include file="Common:detailLeft" />
+<!--<div class="dLeft-history">
+    <div id="_viewll">
+        
+        <h4>浏览历史</h4>
+        <div class="d-history-list">
+            <ul>
+                <li>
+
+                    <volist name="cookie" id="vo" offset="0" length="10" empty="还没有浏览记录!">
+                    <div class="d-history-info">
+                        <div class="history-pic">
+                            <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}">
+                            <img src="__ROOT__{:$vo[savepath] == null ?'/Public/Home/images/no_goods.jpg':$vo[savepath]}" alt="{$vo.title}" width="64" height="64" />
+                            </a>
+                        </div>
+                        <div class="history-dep">
+                            <p class="history-name"> <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo['id'])}" title="{$vo.title}">{:mb_substr($vo['title'],0,7,'UTF-8')}...</a> </p>
+                            <p class="history-pri" goodid="3">￥{$vo.price}</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    </volist>
+                    </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+</div>-->
+</div>
+<div class="detail-right">
+
+<div id="_tzvm"></div>
+<div class="detBox_title" id="answerArea">
+    <div class="productTabTit hd">
+        <!-- __JS__/newdetail/detail.js 商品介绍 -->
+        <ul>
+            <li class="on">商品介绍</li>
+            <li class="">评价<span id="_plnub">({$commentnum})</span></li>
+            <li class="">商品咨询</li>
+        </ul>
+    </div>
+    <div class="detailSetBtn-box" style="display: none;">
+        <a id="_jrgwc2" href="javascript:;" class="detailSetBtn float-top-btn"> <em></em> <span class="_jrgwcanmc">加入购物车</span> </a>
+        <div class="u-buy-lay u-buy-lay-small" id="u-buy-laycl" style="display:none;">
+            <div class="u-buy-con u-buy-con-small">
+                <div class="u-buy-ok u-buy-ok-small">
+                    <i></i>
+                    <span>添加成功!</span>
+                </div>
+                <div class="u-buy-gon u-buy-gon-small">
+                    <a href="{:U('/buycart')}" target="_blank" class="u-buy-go">去结算</a>
+                    <a href="{:U('/shop')}" class="u-buy-g">继续购物</a>
+                </div>
+            </div>
+            <a href="javascript:;" class="u-buy-close"></a>
+            <s></s>
+        </div>
+        <div class="u-buy-lay u-buy-lay-small" id="u-buy-laycl2" style="display:none;">
+            <div class="u-buy-con u-buy-con-small">
+                <div class="u-buy-no">
+                    <i></i>
+                    <span class="_cartstatus">添加失败，库存不足！</span>
+                </div>
+            </div>
+            <a href="javascript:;" class="u-buy-close"></a>
+            <s></s>
+        </div>
+    </div>
+    <div class="detailCode detailCode-on">
+        关注酒富官方微信
+        <span> <img src="__IMG__/wxcode.jpg" width="21" height="21" /> </span>
+        <i></i>
+        <div class="detailCode-t">
+            <img src="__IMG__/wxcode.jpg" width="200" height="200" />
+        </div>
+    </div>
+</div>
+<div class="dRight-wrap bd">
+<div class="dRight-tab-con" style="display: block;">
+    <div class="detail_switch clearfix" id="proShow">
+        <div class="dRight-parameter">
+            <ul>
+                <volist name="canshu" id="vo" empty="请参考详细介绍!">
+                    <li> <span>{$vo}</span> </li>
+                </volist>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <!-- <div class="wxTip">
+            <h4 class="h4_ass"><i></i>产品描述</h4>
+            <p>
+                {$info[description] == null ?'此商品暂无描述!':$info[description]}
+            </p>
+        </div> -->
+        <div class="part_box clearfix">
+            <dl class="ass_share_dl2 clearfix">
+            </dl>
+        </div>
+        <div style="clear:both;"></div>
+        <!--part_box over-->
+        <div class="part_box clearfix">
+            <h4 class="h4_ass"> <i></i> 商品介绍 </h4>
+            <dl class="ass_share_dl2 clearfix">
+               {$info[content] == null ?'此商品暂无介绍!':$info[content]}
+            </dl>
+            <!--detail_prtpic over-->
+        </div>
+    </div>
+</div>
+    <div class="dRight-tab-con" style="display: none;">
+        <div class="dRight_detBox">
+            <div class="detBox_con">
+                <div class="d-evaluate-no" id="_nopl" style="display:none;">
+                    <p>暂无用户评价,您可对已购买的商品进行评价。</p>
+                    <a class="d-evaluate-btn" href="{:U('/Member/Order')}" target="_blank">查看我的订单</a>
+                </div>
+                <div class="d-evaluate-wrap" id="_havapl" style="">
+                    <div class="d-evaluate">
+                        <div class="d-evaluate-l">
+                            <em>{$pnum}</em>
+                            <span>分</span>
+                            <input type="hidden" value="{$pnum}" id="Fraction">
+                        </div>
+                        <div class="d-evaluate-z">
+                            <div class="d-evaluate-list">
+                                <ul>
+                                    <php>if($pnum >= 1){</php>
+                                    <li class="s1">非常不满意</li>
+                                    <php>}
+                                        if($pnum >=2){</php>
+                                    <li class="s2">不满意</li>
+                                    <php>}
+                                        if($pnum >= 3){
+                                    </php>
+                                    <li class="s3">一般</li>
+                                    <php>}
+                                        if($pnum >= 4){
+                                    </php>
+                                    <li class="s4">满意</li>
+                                    <php>}
+                                        if($pnum >= 5){
+                                    </php>
+                                    <li class="s5">非常满意</li>
+                                    <php>}else{</php>
+									<li class="s1">非常不满意</li>
+									<li class="s2">不满意</li>
+									<li class="s3">一般</li>
+									<li class="s4">满意</li>
+									<li class="s5">非常满意</li>
+									<php>}</php>
+                                </ul>
+                            </div>
+                            <div class="d-evaluate-part">
+                                共有
+                                <strong>{$commentnum}</strong> 次评价
+                            </div>
+                        </div>
+                        <div class="d-evaluate-r">
+                            <p>您可对已购买的商品进行评价</p>
+                            <a href="{:U('/Member/Order')}" target="_blank" class="d-evaluate-link">查看我的订单</a>
+                        </div>
+                    </div>
+                    <!-- 评价 异步请求-->
+                    <iframe src="{:U('/Shoplist/pingjia',array('id'=>base64_decode($_GET[md5('Goods')])))}" id="iframepage" name="iframepage" frameBorder=0 scrolling=no width="100%" onLoad="iFrameHeight()" height="100%"></iframe>
+                    <script type="text/javascript" language="javascript">
+                        function iFrameHeight() {
+                            var ifm= document.getElementById("iframepage");
+                            var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;
+                            if(ifm != null && subWeb != null){
+                                ifm.height = (subWeb.body.clientHeight) - 800;
+                            }
+                        }
+                        /*评价分数*/
+                        var f = $("#Fraction").val() || 5;
+                        (function(f){
+                            $(".d-evaluate-l em").text(f);
+                            $(".d-evaluate-list").append('<span>' + f + '</span>');
+                            $(".d-evaluate-list").children('span').css('left', 90 * f - 12);
+                        })(f)
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dRight-tab-con" style="display: none;">
+    <div class="u-consulting-wrap">
+        <div class="u-consulting-title">
+            <ul>
+                <li class="on">商品咨询<i id="_zx0"></i></li>
+            </ul>
+            <div class="u-consulting-line"></div>
+        </div>
+        <div class="u-consulting-info-box">
+            <div class="u-consulting-info-con">
+                <div class="u-consulting-prompt">
+                    <p>提示:因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同， 为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</p>
+                    <a href="#bottom-ask" style="cursor: pointer;" class="u-consulting-btn"><span></span>快速咨询</a>
+                    <div class="clear"></div>
+                </div>
+                <div>
+                    <iframe id="ifr" name="ifr" src="{:U('Shoplist/zixun',array('pro_id'=>base64_decode($_GET[md5('Goods')])))}" style="width: 100%;height:900px;overflow: hidden;" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dRight_bottom clearfix" id="bottom-ask">
+        <div class="u-comments-area">
+            <div class="u-comments-title">
+                <i></i>
+                <strong>提问：{$info[title]}</strong>
+                <span></span>
+            </div>
+            <div class="u-consulting-table">
+                <form onsubmit="return false;" id="ask">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                        <td align="right"> <strong>提问类型：</strong> </td>
+                        <td> <label> <input type="radio" name="ask[mold_name]" value="商品提问" id="RadioGroup1_0" checked="checked" /> <span>商品提问</span> </label>
+                            <label> <input type="radio" name="ask[mold_name]" value="促销活动提问" id="RadioGroup1_1" /> <span>促销活动提问</span>
+                            </label> <label> <input type="radio" name="ask[mold_name]" value="库存及物流提问" id="RadioGroup1_2" /> <span>库存及物流提问</span> </label>
+                            <label> <input type="radio" name="ask[mold_name]" value="售后提问" id="RadioGroup1_2" /> <span>售后提问</span> </label> </td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top"> <strong>提问内容：</strong> </td>
+                        <td> <textarea id="_ComContent1" name="ask[content]" cols="" rows="" class="u-consulting-form"></textarea> </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td> <input type="button" class="u-consulting-b ask_insert" onclick="" value="提交问题" name="" /></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </form>
+            </div>
+        </div>
+        <div class="u-consulting-rule">
+            <h4>咨询说明</h4>
+            <p>1、商品咨询是酒富网为您提供的疑难问答，在这里您可以与工作人员直接进行交流。因发起咨询的用户较多，可能无法及时进行回复，我们将在最快的时间内为您解答；</p>
+            <p>2、当涉及广告、比价、重复反馈、不实评论、恶意评论、粗口、危害国家安全等等不当言论时，酒富网有权予以管理。</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- <script src="__PUBLIC__/Js/functions.js"></script>
+<script src="__PUBLIC__/Js/jquery.form.js"></script> -->
+<include file="Common:footer" />

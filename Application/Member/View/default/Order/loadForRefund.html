@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>退换货订单</title>
+<link rel="stylesheet" type="text/css" href="__CSS__/base.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.common.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.index.css" media="all">
+<link type="text/css" rel="stylesheet" href="__CSS__/ued.guang-min.css">
+<link rel="stylesheet" type="text/css" href="__CSS__/plist20131112.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/pop_compare.css" media="all">
+<link href="__CSS__/nav.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__JS__/jquery-1.2.6.pack.js"></script>
+<script type="text/javascript" src="__JS__/jquery.lazyload.min.js"></script>
+<script src="__JS__/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#nav").hover(function(){
+            $(".tit").show();
+        }, function(){
+            $(".tit").hide();
+        })
+    })
+</script>
+<script type="text/javascript">
+    $(function(){
+        $("#app-jd,#biz-service,#site-nav").hover(function(){
+            $(this).addClass('hover');
+        },function(){
+            $(this).removeClass('hover');
+        })
+        $("#my360buy-2013,#settleup-2013").hover(function(){
+            $(this).children('dl').addClass('hover');
+        },function(){
+            $(this).children('dl').removeClass('hover');
+        })
+        $("img").lazyload({ 
+            effect : "fadeIn" ,
+            placeholder : "img/grey.gif",  //占位图  
+            //threshold : 200 , //灵敏度,当图片没有看到之前先load 200像素
+            
+            //event : "click"  //事件
+        }); 
+    })
+</script>
+</head>
+
+<body>
+    <!-- 订单列表 -->
+    <div class="alyCheckWrap">
+                <div class="alyFlow">
+                    <span class="alyFlow02"></span>
+                </div>
+            <div class="alySubReList">
+                <dl class="subing-main">
+                    <dt>
+                        <b class="colspan1">商品名称</b>
+                        <!-- <b class="colspan2">商品优惠</b> -->
+                        <b class="colspan3">商品单价</b>
+                        <b class="colspan4">商品数量</b>
+                        <b class="colspan5">商品赠品</b>
+                    </dt>
+                    <dd>
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                            <volist name="info[product]" id="vo" empty="并没有查询到该订单的商品,订单是否违法？">
+                                <tr>
+                                    <td class="p-info">
+                                        <a title="{$vo.title}" class="p-img" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank"><img src="__ROOT__{$vo.savepath}"></a>
+                                        <div>
+                                            <a title="{$vo.title}" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank">
+                                                {$vo.title}
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <!-- <td class="p-yh">满赠/满减</td> -->
+                                    <td class="p-hasnum">{$vo.price}</td>
+                                    <td class="p-isNum">{$vo.num}</td>
+                                    <td class="p-number ">
+                                        {$vo.present}
+                                    </td>
+
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                    </dd>
+                </dl>
+                <form action="{:U('/Member/refundAction')}" method="post">
+                <div class="alySubReDetail">
+                    <p class="alySubTitle">
+                        <span>退货申请内容</span>
+                        <em>（“ * ” 号标记的内容，请您务必填写。）</em>
+                    </p>
+                    <ul>
+                        <li>
+                            <span class="left">
+                                <b>*</b>退货原因：
+                            </span>
+                            <div class="right">
+                                <select id="reasonType" class="alyReSelect" name="info[t_why]">
+                                    
+                                    <option id="dic354" value="实物与网站不符" tname="实物与网站不符" tcode="COMPANY">实物与网站不符</option>
+                                    
+                                    <option id="dic355" value="商品质量问题" tname="商品质量问题" tcode="COMPANY">商品质量问题</option>
+                                    
+                                    <option id="dic356" value="商品有效期问题" tname="商品有效期问题" tcode="COMPANY">商品有效期问题</option>
+                                    
+                                    <option id="dic357" value="商品使用过敏" tname="商品使用过敏" tcode="COMPANY">商品使用过敏</option>
+                                    
+                                    <option id="dic358" value="商品破损/泄漏" tname="商品破损/泄漏" tcode="COMPANY">商品破损/泄漏</option>
+                                    
+                                    <option id="dic360" value="商品发货错误" tname="商品发货错误" tcode="COMPANY">商品发货错误</option>
+                                    
+                                    <option id="dic359" value="商品内容物异常" tname="商品内容物异常" tcode="COMPANY">商品内容物异常</option>
+                                    
+                                    <option id="dic361" value="个人原因订购错误/重复" tname="个人原因订购错误/重复" tcode="USER">个人原因订购错误/重复</option>
+                                </select> 
+                            </div>
+                        </li>
+                        <li>
+                            <span class="left">
+                                原因描述：
+                            </span>
+                            <div class="right">
+                                <textarea class="alyReTextArea" rows="" cols="" id="reason" name="info[t_content]"></textarea>
+                            </div>
+                        </li>
+                        <li class="alyReAddress">
+                            <span class="left">
+                                <b>*</b> 客户地址：
+                            </span>
+                            <div class="right">
+                                <em>{$info.shen_cityname}-{$info.shi_cityname}-{$info.xian_cityname}-{$info.address}</em>
+                                    <i>（与收货地址一致，不支持修改。）</i>
+                            </div>
+                        </li>
+                        <li class="alyReUname">
+                            <span class="left">
+                                <b>*</b> 联系人姓名：
+                            </span>
+                            <div class="right">
+                                <input name="info[t_username]" id="userName" value="{$info.username}" type="text">
+                            </div>
+                        </li>
+                        <li class="alyReUmobile">
+                            <span class="left">
+                                <b>*</b> 联系人手机：
+                            </span>
+                            <div class="right">
+                                <input name="info[t_phone]" id="mobile" value="{$info.phone}" type="text">
+                            </div>
+                        </li>
+                        <li class="alyReStyle">
+                            <span class="left">
+                                <b>*</b> 商品返回方式：
+                            </span>
+                            <div class="right">
+                                <span>
+                                    <label><input name="info[id]" id="retfunction" checked type="radio" value="{:$_GET['id']}"><em>自行寄回</em></label>
+                                    <input type="hidden" name="info[old_status]" value="{$info[status]}" />
+                                    <input type="hidden" name="info[oid]" value="{$info[oid]}" />
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="alyReListBtn">
+                    <button style="border:0;background: #fff;cursor: pointer;width: 90px;height: 28px;line-height: 28px;display: inline-block;color: #333;text-align: center;background: url(http://img3.imglefeng.com/images/myapp/alyReIcon.png) no-repeat 0px 0px;">提交申请</button>
+                </div>
+            </div>
+            </form>
+            </div>
+</body>
+</html>

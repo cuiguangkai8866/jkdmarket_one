@@ -1,0 +1,101 @@
+<include file="Common:member_head" />
+<div class="sign">
+<div class="loginWrap">
+<div class="loginPic">
+    <div class="loginBan">
+        <ad position="login" limit="1" order="sort">
+            <img src="__ROOT__/Uploads/picture/{$ad_img}" alt="{$ad_name}" />
+        </ad>
+    </div>
+    <div class="loginBord">
+        <div class="loginTit">
+            <h1>登录酒富</h1>
+        </div>
+        <form id="login-user-form" onsubmit="return false;" method="post" action="">
+            <div class="textbox_ui user">
+                <input type="text" name="info[login_name]" placeholder="邮箱/手机号" autofocus="" value="{$Think.cookie.name}" id="name" autocomplete="off">
+                <div class="invalid">
+                    <i></i>
+                    <div class="required">请输入邮箱/手机号</div>
+                    <div class="custom"></div>
+                </div>
+            </div>
+            <div class="textbox_ui pass">
+                <input type="password" name="info[password]" placeholder="密码" value="{$Think.cookie.pass}" id="pass">
+                <div class="invalid">
+                    <i></i>
+                    <div class="required">请输入密码</div>
+                    <div class="custom"></div>
+                </div>
+            </div>
+            <p>
+                <a href="{:U('/Re_pass')}" class="fr">忘记密码?</a>
+                <label for="agree_userterm">
+                    <input type="checkbox" name="info[auto_login]" id="agree_userterm" {:$_COOKIE['loginStatus'] == 1 ?'checked':''}>
+                    &nbsp;自动登录
+                </label>
+            </p>
+            <input class="loginbtn" type="submit" value="登 录" onclick="return jfLogin()">
+            <div id="errorMsg"></div>
+        </form>
+        <div class="otherAccout">
+            <p>你也可以使用以下账号登录</p>
+            <a href="{:U('/qqlogin')}"><i class="iqq"></i>QQ</a>
+             <!--<a href="{:U('/wblogin')}"><i class="iweibo"></i>新浪微博</a>-->
+            <a href="{:U('/aliFastLogin')}"><i class="ialipay"></i>支付宝</a>
+        </div>
+        <div class="shadow_l"></div>
+        <div class="shadow_r"></div>
+    </div>
+    <div class="freereg">
+        <a href="{:U('/Register')}" title="">
+            免费注册
+        </a>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+    function jfLogin(){
+        var result=false;
+        var name = $("#name");
+        var pass = $("#pass");
+        if(name.val()=="" || name.val()==null){
+            //name.focus();
+            name.parent().addClass('error_ui');
+            name.siblings(".invalid").show().children('.required').show();
+        }else if(pass.val()=="" || pass.val()==null){
+            //pass.focus();
+            pass.parent().addClass('error_ui');
+            pass.siblings(".invalid").show().children('.required').show();
+        }else
+            result=true;
+        return result;
+
+    }
+    $("#login-user-form input").focus(function(){
+        $(this).siblings('.invalid').hide();
+        $(this).parent().removeClass('error_ui');
+    })
+    $("#login-user-form input").blur(function(){
+        $(this).siblings('.invalid').hide();
+        $(this).parent().removeClass('error_ui');
+        jfLogin();
+    })
+    $('.loginbtn').click(function(){
+       commonAjaxSubmit(null,'#login-user-form');
+    })
+    $(function(){
+        if(($('#agree_userterm').is(':checked')) && ($('#name').val() != null) && ($('#pass').val() != null)){
+            popup.confirm('检测到您上次保存自动登录状态,是否自动登录?','操作提示',function(action){
+                if(action == 'ok'){
+                    commonAjaxSubmit(null,'#login-user-form');
+                }
+            })
+        }
+    })
+</script>
+
+
+    </div>
+<div class="clear"></div>
+<include file="Common:member_foot" />

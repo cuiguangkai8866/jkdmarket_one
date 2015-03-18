@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>菜单管理-菜单列表-后台管理首页-{$site.SITE_INFO.name}</title>
+    <php>
+        $addCss="";
+        $addJs="";
+        $currentNav ='菜单管理 > 菜单列表';
+    </php>
+    <include file="Common:intoHead" />
+</head>
+<body>
+<div class="wrap">
+    <include file="Common:head" />
+    <div class="mainBody">
+        <include file="Common:left" />
+        <div id="Right">
+            <div class="Item hr">
+                <div class="current" style="max-width: 100px; float: left;">菜单管理</div>
+                <div style="width: 100px;float: right;"><button type="button" class="btn" onclick="window.location.href='{:U('Siteinfo/addKdInfo')}'">添加</button></div>
+            </div>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tab">
+                <thead>
+                <tr align="center">
+                    <td width="10%">快递公司编号</td>
+                    <td width="10%">快递公司代码</td>
+                    <td width="10%" align="left">快递公司名称</td>
+                    <td width="20%">添加时间</td>
+                    <td width="20%">修改时间</td>
+                    <td width="10%">操作用户</td>
+                    <td width="20%">操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <volist name="list" id="tree">
+                    <tr pid="{$tree.parent_id}" cid="{$tree.id}">
+                        <td  align="center">{$tree.id}<input type="hidden" name="id" value="{$tree.id}"/></td>
+                        <td  class="tree" style="cursor: pointer;">{$tree.code}</td>
+                        <td >{$tree.name}</td>
+                        <td >
+                            {:date('Y-m-d H:i:s',$tree[published])}
+                        </td>
+                        <td >{:date('Y-m-d H:i:s',$tree[update_time])}</td>
+                        <td >{$tree.uname}</td>
+                        <td align="center" ><button link="{:U('Siteinfo/delKd/',array('id'=>$tree['id']))}" href="javascript:void(0)" name="{$tree.name}" class="btn opCat del">删除</button>
+                            <button type="button" class="btn" onclick="window.location.href='{:U('Siteinfo/addKdInfo')}?id={$tree.id}'">编辑</button></td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<form action="" method="post" id="opForm">
+    <input id="cid" type="hidden" name="data[id]" />
+    <input id="act" type="hidden" name="act" />
+    <input id="pid" type="hidden" name="data[parent_id]" />
+    <input id="name" type="hidden" name="data[nav_name]" />
+</form>
+<div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+    $(function(){
+        $(".del").click(function(){
+            var delLink=$(this).attr("link"),$this = $(this);
+            popup.confirm('你真的打算删除【<b>'+$(this).attr("name")+'</b>】吗?','温馨提示',function(action){
+                if(action == 'ok'){
+                    delByLink(delLink,$this);
+                }
+            });
+            return false;
+        });
+        var chn=function(cid,op){
+            if(op=="show"){
+                $("tr[pid='"+cid+"']").each(function(){
+                    $(this).removeAttr("status").show();
+                    chn($(this).attr("cid"),"show");
+                });
+            }else{
+                $("tr[pid='"+cid+"']").each(function(){
+                    $(this).attr("status",1).hide();
+                    chn($(this).attr("cid"),"hide");
+                });
+            }
+        }
+        $(".tree").click(function(){
+            if($(this).attr("status")!=1){
+                chn($(this).parent().attr("cid"),"hide");
+                $(this).attr("status",1);
+            }else{
+                chn($(this).parent().attr("cid"),"show");
+                $(this).removeAttr("status");
+            }
+        });
+    });
+</script>
+</body>
+</html>

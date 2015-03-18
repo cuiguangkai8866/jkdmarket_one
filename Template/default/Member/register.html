@@ -1,0 +1,188 @@
+<include file="Common:member_head" />
+<div class="sign">
+<div class="sign_main signup">
+    <div class="main">
+        <div class="tabnav">
+            <a href="javascript:;" class="mail curr">会员注册</a>
+        </div>
+        <div class="content_body">
+            <form id="mail">
+                <div class="line">
+                    <label for="signup-email-address">邮箱/手机号</label>
+                    <div class="textbox_ui">
+                        <input type="text" class="type_email ui-autocomplete-input" name="info[email]" id="signup-email-address" autocomplete="off" value="">
+                        <div class="focus_text">邮箱/手机号可用于登录和找回密码</div>
+                        <div class="invalid">
+                            <i></i>
+                            <div class="required">请输入邮箱/手机号</div>
+                            <div class="format">请输入有效的邮箱/手机号</div>
+                            <div class="custom"></div>
+                        </div>
+                        <i class="valid"></i>
+                        <i class="loading"></i>
+                    </div>
+                </div>
+
+                <div class="line verityWrap">
+                    <label for="mobileVerify">邮箱/手机验证码</label>
+                    <div class="textbox_ui">
+                        <input type="text" id="mobileVerify" name="info[email_code]" value="" >
+                        <div class="focus_text">请登录邮箱/或查看手机获取校验码</div>
+                        <div class="invalid">
+                            <i></i>
+                            <div class="required">请输入邮箱/手机校验码</div>
+                            <div class="format">邮箱/手机校验码输入有误</div>
+                            <div class="custom">没有获取验证码</div>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" class="{:(time() - $_SESSION['check_code']['time'] >= 1)?'phonecode':'sendcode'}">{:(time() - $_SESSION['check_code']['time'] >= 1)?'获取校验码':'等待(<span>'.($_SESSION['check_code']['time'] - time()).'</span>秒)后重新发送'}</a>
+                </div>
+
+                <div class="line">
+                    <label for="signup-password">密码</label>
+                    <div class="textbox_ui">
+                        <input type="password" name="info[password]" id="signup-password" value="" >
+                        <div class="focus_text">
+                            <p class="default">6-16个字符，字母开头,请使用字母加数字的组合</p>
+                            <p class="safe"><span>弱</span><span>中</span><span>强</span></p>
+                        </div>
+                        <i class="valid"></i>
+                        <div class="invalid">
+                            <i></i>
+                            <div class="required">请输入确认密码</div>
+                            <div class="format">密码长度为6-16个字符</div>
+                            <div class="custom">为了您的账号安全，密码需为6-16位字母和数字的组合</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="line">
+                    <label for="signup-password-confirm">重复密码</label>
+                    <div class="textbox_ui">
+                        <input type="password" name="info[password2]" id="signup-password-confirm" value="" >
+                        <div class="focus_text">请再次输入密码</div>
+                        <i class="valid"></i>
+                        <div class="invalid">
+                            <i></i>
+                            <div class="required">请再次输入密码</div>
+                            <div class="custom">两次密码输入不一致</div>
+                        </div>
+                    </div>
+                </div>
+                                <div class="line verityWrap">
+                    <label for="signup-hashcode-confirm">验证码</label>
+                    <div class="textbox_ui">
+                        <input type="text" name="info[hash_code]" id="signup-hashcode-confirm" value="" >
+                        <div class="focus_text">按右图填写，不区分大小写</div>
+                        <div class="invalid">
+                            <i></i>
+                            <div class="required">请输入验证码</div>
+                            <div class="format">验证码输入有误</div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <img src="{:U('Common/check_code')}"  title="看不清？单击此处刷新" onclick="this.src+='?rand='+Math.random();"  style="width:107px;height:35px;cursor: pointer; vertical-align: middle;"/>
+                    </a>
+                </div>
+                <div class="act">
+                    <!-- <label for="news_subscription">
+                        <input type="checkbox" id="news_subscription" name="info[subscribe]" checked="">
+                        &nbsp;同意
+                    </label> -->
+                    <p>
+                        <input type="submit" value="同意协议并注册" id="signup-submit" onclick="return jfReg()">
+                    </p>
+                    <p>
+                        <a href="{:U('Help/jiufuxy')}" rel="nofollow" target="_blank">《酒富网用户协议》</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+            </div>
+    <script>
+        $(function(){
+        	time($('.sendcode'),"{:($_SESSION['check_code']['time'] - time())}");
+            SendMail();
+            $('#signup-submit').click(function(){
+            	commonAjaxSubmit();
+            	return false;
+            })
+        });
+        function jfReg(){
+            var result=false;
+            var uName = $("#signup-email-address");
+            var uVerify = $("#mobileVerify");
+            var uPass = $("#signup-password");
+            var uRepass = $("#signup-password-confirm");
+            var uCode = $("#signup-hashcode-confirm");
+            if(uName.val()=="" || uName.val()==null){
+                // uName.focus();
+                uName.parent().addClass('error_ui');
+                uName.siblings(".invalid").show().children('.required').show();
+                uName.siblings(".invalid").find('.format').hide();
+            }else if(!(/^1\d{10}$/.test(uName.val())) && !(/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test(uName.val()))){
+                // uName.focus();
+                uName.parent().addClass('error_ui');
+                uName.siblings(".invalid").show().children('.format').show();
+                uName.siblings(".invalid").find('.required').hide();
+            }else if(uVerify.val()=="" || uVerify.val()==null){
+                // uVerify.focus();
+                uVerify.parent().addClass('error_ui');
+                uVerify.siblings(".invalid").show().children('.required').show();
+            }else if(uPass.val()=="" || uPass.val()==null){
+                // uPass.focus();
+                uPass.parent().addClass('error_ui');
+                uPass.siblings(".invalid").show().children('.required').show();
+                uPass.siblings(".invalid").find('.format').hide();
+            }else if(uPass.val().length<6 || uPass.val().length>16){
+                // uPass.focus();
+                uPass.parent().addClass('error_ui');
+                uPass.siblings(".invalid").show().children('.format').show();
+                uPass.siblings(".invalid").find('.required').hide();
+            }else if(uRepass.val()=="" || uRepass.val()==null){
+                // uRepass.focus();
+                uRepass.parent().addClass('error_ui');
+                uRepass.siblings(".invalid").show().children('.required').show();
+                uRepass.siblings(".invalid").find('.format').hide();
+            }else if(uRepass.val()!=uPass.val()){
+                // uRepass.focus();
+                uRepass.parent().addClass('error_ui');
+                uRepass.siblings(".invalid").show().children('.custom').show();
+                uRepass.siblings(".invalid").find('.required').hide();
+            }else if(uCode.val()=="" || uCode.val()==null){
+                // uCode.focus();
+                uCode.parent().addClass('error_ui');
+                uCode.siblings(".invalid").show().children('.required').show();
+            }else
+                result=true;
+            return result;
+        }
+        $("#mail input").focus(function(){
+            $(this).siblings('.invalid').hide();
+            $(this).parent().removeClass('error_ui');
+        })
+        $("#mail input").blur(function(){
+            $(this).siblings('.invalid').hide();
+            $(this).parent().removeClass('error_ui');
+            jfReg();
+        })
+    </script>
+    <!--end id=main-->
+    <!--id=sidebar-->
+    <div class="sidebar">
+        <div class="siderbar_head">
+            已有酒富账号？
+        </div>
+        <a class="sign_butn" href="{:U('/Login')}">立即登录</a>
+        <div class="otherAccout">
+            <p>你也可以使用以下账号登录</p>
+            <a href="{:U('/qqlogin')}"><i class="iqq"></i>QQ</a>
+            <!--<a href="{:U('/wblogin')}"><i class="iweibo"></i>新浪微博</a>-->
+            <a href="{:U('/aliFastLogin')}"><i class="ialipay"></i>支付宝</a>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="clear"></div>
+<include file="Common:member_foot" />

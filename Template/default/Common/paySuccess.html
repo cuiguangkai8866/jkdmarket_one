@@ -1,0 +1,49 @@
+<include file="Common:top" />
+<link href="__CSS__/cart_confirm.css" rel="stylesheet" type="text/css">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<div class="header clearfix">
+  <div class="center">
+   <div id="logo">
+    <a href="__ROOT__/"><img src="__IMG__/logo.png" title="返回酒富商城首页" alt="返回酒富商城首页" /></a>
+   </div> 
+   <div class="language">
+    <a href="javascript:void(0);"></a>
+   </div> 
+   <div class="progress clearfix"> 
+    <ul class="progress-3"> 
+     <li class="step-1">我的购物车</li> 
+     <li class="step-2">填写核对订单信息</li> 
+     <li class="step-3">成功提交订单</li> 
+    </ul> 
+   </div> 
+   </div>
+</div>
+
+<div class="main" style="background:none;">
+<div class="pay-wrap gwrap gheader" style="margin-bottom:0;">
+        <p class="text">
+            {:$order['status'] == 1?'<b></b>':''}
+            {$order.info}
+        </p>
+        <div class="info2">
+       <p class="order-mes pay bank-type">
+        <!-- 在线支付区域开始 -->
+        <span>订单号:{$order.oid}<b class="pay-money">{$order['price']}</span>
+       <!-- 在线支付区域结束 -->
+         </p>
+       </div>
+      
+  
+  </div>
+<div class="paysucc">您现在可以：<a href="{:U('/Member/Order')}" title="查看订单状态">查看订单状态</a><a href="{:U('/shop')}" title="继续购物">继续购物</a></div>
+
+<div style="height:300px;"></div>
+</div>
+
+<!------- 3.版权信息 ------->
+<include file="Common:member_foot" />

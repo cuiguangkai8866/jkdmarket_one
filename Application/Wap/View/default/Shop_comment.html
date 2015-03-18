@@ -1,0 +1,19 @@
+<!doctype html>
+<link rel="stylesheet" type="text/css" href="__CSS__/view.css" charset="UTF-8"/>
+<link rel="stylesheet" type="text/css" href="__CSS__/base2013.css" charset="utf-8" />
+
+    <div class="comm clearfix">
+        <ul id="commlist" class="comml">
+            <volist name="list" id="vo" empty="还没有评价!">
+                <li>
+                    <div class="userInfo clearfix">
+                        <p class="userName">{$vo.nickname}</p>
+                        <span class="icon score score{$vo.feel}"></span>
+                    </div><p class="judge">{$vo.content}</p><p class="time">{:date('Y-m-d H:i:s',$vo[published])}</p></li>
+            </volist>
+        </ul>
+        <div class="pagination" id="pagination">
+            {$show}
+        </div>
+    </div>
+

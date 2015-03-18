@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>咨询管理</title>
+<link rel="stylesheet" type="text/css" href="__CSS__/base.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.common.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.index.css" media="all">
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="__JS__/common_js.js"></script>
+<script src="__PUBLIC__/Js/functions.js"></script>
+<script src="__PUBLIC__/Js/jquery.form.js"></script>
+<script src="__PUBLIC__/Js/asyncbox/asyncbox.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Js/asyncbox/skins/default.css">
+</head>
+
+<body>
+    <!-- 订单列表 -->
+    <div class="orderArea">
+        <div class="clearfix return">
+            <div class="fl">我的咨询</div>
+        </div>
+        <div class="orderlist alyReManager">
+                        <table class="has" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <thead>
+                                <tr>
+                                    <td width="25%">商品名称</td>
+                                    <td width="25%">咨询类容</td>
+                                    <td width="25%">客服回复</td>
+                                    <td width="15%">咨询时间</td>
+                                    <td width="">操作</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <volist name="askList" id="vo" empty="您还没有咨询过商品的问题!">
+                                    <tr>
+                                        <td>{$vo.product}</td>
+                                        <td>{$vo.content}</td>
+                                        <td>{:($vo[ask_content] == null) ?'等待回复':$vo[ask_content]}</td>
+                                        <td>
+                                            {:date('Y-m-d',$vo[published])}
+                                        </td>
+                                        <td class="alyManagerBtn">
+                                            <!-- 商城订单  -->
+                                            <a class="seeAlyBtn" href="#" onclick="askDataAction('{$vo.id}')">追问</a>
+                                        </td>
+                                    </tr>
+                                </volist>
+
+                            </tbody>
+                        </table>
+                    </div>
+        <div class="paging">
+            {$page}
+        </div>
+    </div>
+</body>
+</html>

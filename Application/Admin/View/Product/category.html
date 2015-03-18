@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>商品分类管理-产品管理-后台管理首页-{$site.SITE_INFO.name}</title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='商品管理 > 商品分类管理';
+        </php>
+        <include file="Common:intoHead" />
+    </head>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">商品分类管理</div>
+                    </div>
+                    <form action=""  method="post" id="quickForm">
+                        <b>添加分类：</b>
+                        <input type="hidden" name="act" value="add" /> &nbsp;
+                        <select name="data[parent_id]">
+                            <option value="0">顶级分类</option>
+                            <volist name="list" id="vo">
+                                <option value="{$vo.id}">{$vo.fullname}</option>
+                            </volist>
+                        </select>  &nbsp;
+
+                        <input type="hidden" name="type" value="product">
+                        <input placeholder="你要添加的分类名称" id="newName" class="input" type="text" name="data[name]" value="" /> &nbsp;
+                        <button class="btn quickSubmit">确定添加</button>
+                    </form>
+
+
+
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tab">
+                        <thead>
+                        <tr align="center">
+                            <td width="5%">原分类ID</td>
+                            <td width="20%">原分类结构 <b title="单击分类隐藏/显示该分类下在子类">[i]</b></td>
+                            <td width="20%" align="left">操作属性</td>
+                            <td width="20%">新分类</td>
+                            <td width="15%">修改后的名称</td>
+                            <td width="5%">排序</td>
+                            <td width="10%">前台显示</td>
+                            <td width="10%" >操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="list" id="tree">
+                            <tr pid="{$tree.parent_id}" cid="{$tree.id}">
+                                <td width="10%" align="center">{$tree.id}<input type="hidden" name="id" value="{$tree.id}"/></td>
+                                <td width="20%" class="tree" style="cursor: pointer;">{$tree.fullname}</td>
+                                <td width="20%">
+                                    <select name="act" class="act">
+                                        <option selected="selected" value="edit">修改该分类</option>
+                                        <option value="del">删除该分类</option>
+                                    </select>
+                                    &nbsp;&nbsp;
+                                </td>
+                                <td width="20%">
+                                    <select name="parent_id">
+                                        <option value="0">顶级分类</option>
+                                        <volist name="list" id="vo1">
+                                            <if condition="$vo1['id'] eq $tree['id']">
+                                                <option value="{$vo1.id}" selected="selected" readonly>{$vo1.fullname}</option>
+                                                <else/>
+                                                <option value="{$vo1.id}">{$vo1.fullname}</option>
+                                            </if>
+                                        </volist>
+                                    </select>
+                                </td>
+                                <td width="15%"><input type="text" value="" name="name" class="input" placeholder="你要修改分类的新名称"/></td>
+                                <td width="5%"><input type="text" value="" name="sort" class="input" placeholder="{$tree.sort}"/></td>
+                                <td width="10%" align="center"><a href="javascript:void(0);" onclick="changeShow({$tree.id},this)">
+
+                                    <php> echo $tree['is_show']==1?'是':'否'</php>
+
+                                </a></td>
+
+                                <td align="center" width="10%"><button class="btn opCat">确定</button></td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <form action="" method="post" id="opForm">
+            <input id="id" type="hidden" name="data[id]" />
+            <input id="act" type="hidden" name="act" />
+            <input id="parent_id" type="hidden" name="data[parent_id]" />
+            <input id="name" type="hidden" name="data[name]" />
+            <input id="sort" type="hidden" name="data[sort]" />
+
+        </form>
+        <div class="clear"></div>
+
+        <include file="Common:foot" />
+
+
+        <script type="text/javascript">
+            $(function(){
+                $(".opCat").click(function(){
+                    var obj=$(this).parents("tr");
+                    $("#id").val(obj.find("input[name='id']").val());
+                    $("#act").val(obj.find("select[name='act']").val());
+                    $("#parent_id").val(obj.find("select[name='parent_id']").val());
+                    $("#name").val(obj.find("input[name='name']").val());
+                    $("#sort").val(obj.find("input[name='sort']").val());
+                    if($("#act").val()=="del"){
+                        popup.confirm('你真的打算删除该分类吗?','温馨提示',function(action){
+                            if(action == 'ok'){
+                                commonAjaxSubmit("","#opForm");
+                            }
+                        });
+                        return false;
+                    }
+                    commonAjaxSubmit("","#opForm");
+                });
+                $(".quickSubmit").click(function(){
+                    if($("#newName").val()==''){
+                        popup.alert("分类名称不能为空滴！");
+                        return false;
+                    }
+                    commonAjaxSubmit("","#quickForm");
+                    return false;
+                });
+
+                var chn=function(id,op){
+                    if(op=="show"){
+                        $("tr[parent_id='"+id+"']").each(function(){
+                            $(this).removeAttr("status").show();
+                            chn($(this).attr("id"),"show");
+                        });
+                    }else{
+                        $("tr[parent_id='"+id+"']").each(function(){
+                            $(this).attr("status",1).hide();
+                            chn($(this).attr("id"),"hide");
+                        });
+                    }
+                }
+                $(".tree").click(function(){
+                    if($(this).attr("status")!=1){
+                        chn($(this).parent().attr("id"),"hide");
+                        $(this).attr("status",1);
+                    }else{
+                        chn($(this).parent().attr("id"),"show");
+                        $(this).removeAttr("status");
+                    }
+                });
+            });
+            function changeShow(id,v){
+                $.get('{:U("Product/changeShow")}?id='+id,function(data){
+                    if(data.status==1){
+                        $(v).html(data.info);
+                    }
+                },'json');
+            }
+        </script>
+
+
+
+    </body>
+</html>

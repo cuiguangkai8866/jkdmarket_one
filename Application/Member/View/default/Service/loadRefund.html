@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>退货管理</title>
+<link rel="stylesheet" type="text/css" href="__CSS__/base.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.common.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.index.css" media="all">
+<link type="text/css" rel="stylesheet" href="__CSS__/ued.guang-min.css">
+<link rel="stylesheet" type="text/css" href="__CSS__/plist20131112.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/pop_compare.css" media="all">
+<script type="text/javascript" src="__JS__/jquery-1.2.6.pack.js"></script>
+<script type="text/javascript" src="__JS__/common_js.js"></script>
+<script src="__PUBLIC__/Js/functions.js"></script>
+<script src="__PUBLIC__/Js/jquery.form.js"></script>
+<script src="__PUBLIC__/Js/asyncbox/asyncbox.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Js/asyncbox/skins/default.css">
+</head>
+
+<body>
+    <!-- 订单列表 -->
+    <div class="orderArea">
+        <div class="clearfix return">
+            <div class="fl">我的退货</div>
+        </div>
+        <div class="orderlist alyReManager">
+                        <table class="has" width="100%" cellspacing="0" cellpadding="0" border="0">
+                            <thead>
+                                <tr>
+                                    <td width="25%">退款订单编号</td>
+                                    <td width="20%">更新时间</td>
+                                    <td width="15%">当前状态</td>
+                                    <td width="15%">申请前状态</td>
+                                    <td width="">操作</td>
+                                </tr>
+                            </thead>
+                            <?php if(empty($refund)){ ?>
+                                <tr>
+                                    <td colspan="5">
+                                        <div style="padding:10px 0;">暂无记录!</div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                            <volist name="refund" id="vo">
+                                <tr>
+                                    <td>{$vo.oid}</td>
+                                    <td>{:date('Y-m-d H:i:s',$vo[update_time])}</td>
+                                    <td>{$vo.statusHtml}</td>
+                                    <td>{$vo.old_statusHtml}</td>
+                                    <td class="alyManagerBtn">
+                                        <!-- 商城订单  -->
+                                        <a class="seeAlyBtn" href="{:U('/Member/refundDetail').'?id='.$vo[id]}">查看申请</a>
+                                        <if condition="$vo[status] eq 4">
+                                            <a class="cancelAlyBtn" onclick="performOrderAction('{$vo.id}','cancelRefund','{:U('/Member/loadOrderList')}')" href="#">取消申请</a>
+                                        </if>
+                                        <!-- 商城订单 -->
+                                    </td>
+                                </tr>
+
+                            </volist>
+                        </table>
+                    </div>
+        <div class="paging">
+            {$page}
+        </div>
+    </div>
+</body>
+</html>

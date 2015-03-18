@@ -1,0 +1,67 @@
+<!--加载头部开始-->
+<include file="./Template/default/Common/top.html" />
+<!--头部加载结束-->
+<!--header 加载开始-->
+<include file="./Template/default/Common/header.html" />
+<!--header 加载结束-->
+
+<div id="myjd-shortcut" class="clearfix">
+    <div class="tit1">
+        <a href="__ROOT__/Member">我的酒富</a>
+    </div>
+    <div class="mypage">
+        <a href="__ROOT__/Member" target="_blank">个人主页</a>
+    </div>
+    <dl class="myjd-set">
+        <dt><span>设置</span><b></b></dt>
+        <dd>
+            <a href="{:U('/Member/User')}">
+                <span>个人信息</span>
+            </a>
+            <a href="{:U('/Member/Safe')}">
+                <span>账户安全</span>
+            </a>
+            <a href="{:U('/Member/Order')}">
+                <span>我的订单</span>
+            </a>
+            <a href="{:U('/Member/Evaluation')}">
+                <span>我的评价</span>
+            </a>
+            <a href="{:U('/Member/Address')}">
+                <span>收货地址</span>
+            </a>
+            <a href="{:U('/Member/Refund')}">
+                <span>退货管理</span>
+            </a>
+            <a href="{:U('/Member/Consulting')}">
+                <span>咨询管理</span>
+            </a>
+            <a href="{:U('/Member/Message')}">
+                <span>留言管理</span>
+            </a>
+        </dd>
+    </dl>
+</div>
+<div class="clearfix myhome">
+<!--会员中心公共左边栏-->
+
+<include file="Common:menu" />
+
+<!--公共左边栏结束-->
+
+<!--定义右边栏内容-->
+<div class="member_r fl">
+<block name="system">
+
+<include file="Index:index" />
+
+</block>
+</div>
+<!--定义结束-->
+
+    </div>
+<!--加载公共底部文件-->
+<include file="./Template/default/Common/footer.html" />
+<!--加载底部结束-->
+</body>
+</html>

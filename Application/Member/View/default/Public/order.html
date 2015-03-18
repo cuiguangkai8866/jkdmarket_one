@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<link rel="stylesheet" type="text/css" href="__CSS__/base.css" media="all" />
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.common.css" media="all" />
+<link rel="stylesheet" type="text/css" href="__CSS__/myjf.index.css" media="all" />
+<script type="text/javascript" src="__JS__/jquery-1.2.6.pack.js"></script>
+<script type="text/javascript" src="__JS__/common_js.js"></script>
+<script src="__PUBLIC__/Js/functions.js"></script>
+<script src="__PUBLIC__/Js/jquery.form.js"></script>
+<script src="__PUBLIC__/Js/asyncbox/asyncbox.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/Js/asyncbox/skins/default.css">
+<div class="orderArea">
+    <div class="orderTitle">
+        <ul class="tag5">
+            <li class="on"><a href="#">全部订单 <b class="top"></b></a></li>
+        </ul>
+    </div>
+    <div class="orderState">
+
+        <select name="switchMyOrder" onchange="changeOrderUrl(this.value)">
+            <option {:($_GET['allStatusOrder'] == 'yes' || $_GET['allstatusorder']) == 'yes' ?'selected':''} value="{:U('/Member/loadOrderList',array('allStatusOrder'=>'yes'))}">所有状态的订单</option>
+            <option {:($_GET['monthOrder'] == 'yes' || $_GET['monthorder']) == 'yes' ?'selected':''} value="{:U('/Member/loadOrderList',array('monthOrder'=>'yes'))}">最近一个月的订单</option>
+            <option {:($_GET['allOrder'] == 'yes' || $_GET['allorder']) == 'yes' ?'selected':''} value="{:U('/Member/loadOrderList',array('allOrder'=>'yes'))}">历史订单</option>
+            <option {:($_GET['waitPayOrder'] == 'yes' || $_GET['waitpayorder']) == 'yes' ?'selected':''} value="{:U('/Member/loadOrderList',array('waitPayOrder'=>'yes'))}">待支付订单</option>
+            <option {:($_GET['waitDeliveryOrder'] == 'yes' || $_GET['waitdeliveryorder']) == 'yes' ?'selected':''} value="{:U('/Member/loadOrderList',array('waitDeliveryOrder'=>'yes'))}">待发货订单</option>
+            <option {:($_GET['waitReallyOrder'] == 'yes' || $_GET['waitreallyorder']) == 'yes' ?'selected':''} value="{:U('/Member/loadOrderList',array('waitReallyOrder'=>'yes'))}">待确认订单</option>
+            <option {:($_GET['successOrder'] == 'yes' || $_GET['successorder']) == 'yes' ?'selected':''} value="{:U('/Member/loadOrderList',array('successOrder'=>'yes'))}">已完成订单</option>
+            <option {:($_GET['cancelOrder'] == 'yes' || $_GET['cancelorder']) == 'yes' ?'selected':''} value="{:U('/Member/loadOrderList',array('cancelOrder'=>'yes'))}">已取消订单</option>
+        </select>
+    </div>
+    <script>
+        function changeOrderUrl(url){
+            location.href = url;
+        }
+        function fra(){
+            window.parent.location.href="__ROOT__/";
+        }
+    </script>
+    <div class="orderlist">
+        <style>
+        </style>
+        <table width="100%" cellspacing="0" cellpadding="0" border="0" class="has">
+            <colgroup>
+                <col width="360"/>
+                <col width="90"/>
+                <col width="110"/>
+                <col width="100"/>
+                <col width="100"/>
+                <col width="130" />
+            </colgroup>
+            <thead>
+            <tr>
+                <td>订单商品</td>
+                <td>收货人</td>
+                <td>订单金额</td>
+                <td>下单时间</td>
+                <td>订单状态</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+        </table>
+            <?php if(empty($list)){ ?>
+                <div class="order_null">暂无订单，这就去挑选商品：<a href="javascript:;" onclick="fra()">商城首页</a></div>
+            <?php } ?>
+            <!-- 订单开始 -->
+            <volist name="list" id="vo" empty="搜索不到您要的订单!">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" class="has" style="margin-top:20px;">
+            <colgroup>
+                <col width="360"/>
+                <col width="90"/>
+                <col width="110"/>
+                <col width="100"/>
+                <col width="100"/>
+                <col width="130" />
+            </colgroup>
+                <tbody>
+                <tr>
+                    <td colspan="6" class="tr-th">
+              <span class="tcol1">
+                  订单编号:
+                  <a href="{:U('/Member/Detail?id='.$vo[id])}">{$vo.oid}</a>
+              </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pro">
+                        <volist name="vo['product']" id="v">
+                            <a href="__ROOT__/{:'detail.html?'.md5('Goods').'='.base64_encode($v[id])}" target="_blank">
+                                <img src="__ROOT__{$v[savepath][0][savepath]}" title="{$v.title}" />
+                            </a>
+                        </volist>
+                    </td>
+                    <td>{$vo.username}</td>
+                    <td> <em>￥</em>{$vo[total_money]+$vo[freight]}<br /> 在线支付 </td>
+                    <td><em class="co06">{:date('Y-m-d H:i:s',$vo[published])}</em></td>
+                    <td>{$vo.statusHtml}</td>
+                    <td class="orderother">
+                            <if condition="$vo[status] eq 0">
+                                <span class="orderbtn">
+                                    <a class="oBuybtn" href="__ROOT__/pay.html?key={$vo.id}" target="_blank">
+                                        我要支付
+                                    </a>
+                                </span>
+                                <span class="orderbtn">
+                                    <a class="oBuybtn" onclick="performOrderAction('{$vo.id}','cancelOrder');" href="#">
+                                        取消订单
+                                    </a>
+                                </span>
+                            </if>
+                            <if condition="$vo[status] eq 1">
+                                <a href="{:U('/Member/Detail?id='.$vo[id])}">
+                                    详情
+                                </a>
+                                <br />
+                                订单已取消
+                            </if>
+                            <if condition="$vo[status] eq 2">
+                                <br />
+                                等待发货
+                                <span class="orderbtn">
+                                    <a class="oBuybtn" href="{:U('/Member/ForRefund').'?id='.$vo[id]}">
+                                        申请退款
+                                    </a>
+                                </span>
+                            </if>
+                            <if condition="$vo[status] eq 3">
+                                <a href="{:U('/Member/Detail?id='.$vo[id])}">
+                                    详情
+                                </a>
+                                <br/>
+                                <span class="orderbtn">
+                                    <a class="oBuybtn" onclick="performOrderAction('{$vo.id}','pleaseReallyOrderInfo');" href="#">
+                                    <!-- <a class="oBuybtn" target="_blank" href="https://lab.alipay.com/consume/queryTradeDetail.htm?actionName=CANCEL_REFUND&tradeNo={$vo.alipay_id}"> -->
+                                        确认收货
+                                    </a>
+                                </span>
+                                <span class="orderbtn">
+                                    <!-- <a target="_blank" class="oBuybtn" href="https://lab.alipay.com/consume/queryTradeDetail.htm?actionName=APPLY_REFUND&tradeNo={$vo[alipay_id]}"> -->
+                                    <a class="oBuybtn" href="{:U('/Member/ForRefund').'?id='.$vo[id]}">
+                                        申请退款
+                                    </a>
+                                </span>
+                            </if>
+                            <if condition="$vo[status] eq 4">
+                                <br/>
+                                <a class="oBuybtn" href="https://lab.alipay.com/consume/queryTradeDetail.htm?tradeNo={$vo.alipay_id}}" target="_top">
+                                        退款详情
+                                </a>
+                                 <span class="orderbtn">
+                                    <a class="oBuybtn" onclick="performOrderAction('{$vo.id}','cancelRefund');" href="#">
+                                    <!-- <a class="oBuybtn" target="_blank" href="https://lab.alipay.com/consume/queryTradeDetail.htm?actionName=CANCEL_REFUND&tradeNo={$vo.alipay_id}"> -->
+                                        取消退款
+                                    </a>
+                                </span>
+                                <span class="orderbtn">
+                                    <a class="oBuybtn" onclick="performOrderAction('{$vo.id}','pleaseReallyOrderInfo');" href="#">
+                                    <!-- <a class="oBuybtn" target="_blank" href="https://lab.alipay.com/consume/queryTradeDetail.htm?actionName=CANCEL_REFUND&tradeNo={$vo.alipay_id}"> -->
+                                        确认收货
+                                    </a>
+                                </span>
+                                <br/>
+                            </if>
+                            <if condition="$vo[status] eq 5">
+                                <a href="{:U('/Member/Detail?id='.$vo[id])}">
+                                    详情
+                                </a>
+                            </if>
+                            <if condition="$vo[status] eq 6">
+                                <a href="{:U('/Member/Detail?id='.$vo[id])}">
+                                    详情
+                                </a>
+                                <br/>
+                                退款成功
+                            </if>
+                            <if condition="$vo[status] eq 7">
+                                <a href="{:U('/Member/Detail?id='.$vo[id])}">
+                                    详情
+                                </a>
+                                <br/>
+                                已经失效
+                            </if>
+                    </td>
+                </tr>
+                </tbody>
+                </table>
+            </volist>
+        </table>
+    </div>
+    <div class="paging">
+        {$page}
+    </div>
+</div>

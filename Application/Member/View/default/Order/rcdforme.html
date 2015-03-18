@@ -1,0 +1,47 @@
+<extend name="Index:system" />
+<block name="title">
+    <title>为您推荐-会员中心</title>
+</block>
+<block name="comcss">
+<script type="text/javascript" src="__JS__/jquery.lazyload.min.js"></script>
+</block>
+<!--加载订单列表-->
+<block name="system">
+
+<!-- 订单列表 -->
+<volist name="cateList" id="vo" empty="暂无推荐!">
+    <div class="picScroll picScroll-left">
+        <div class="pscroll_t clearfix">
+            <span class="color fl">按{$vo.name}为您推荐</span>
+            <div class="pscroll_a fr"><a href="{:U('/shop').'?Mid='.base64_encode($vo[cid])}" title="{$vo.name}" target="_blank">查看详情>></a></div>
+        </div>
+        <div class="hd">
+            <a class="next"></a>
+            <a class="prev"></a>
+        </div>
+        <div class="bd">
+            <ul class="picList">
+                <volist name="vo[product]" id="v" empty="暂时还没有可推荐的商品!">
+                    <li>
+                        <div class="pic">
+                            <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($v[id])}" target="_blank">
+                                <img src="__ROOT__{$v[savepath][0][savepath]}" width="160" height="160" />
+                            </a>
+                        </div>
+                        <div class="title"><a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($v[id])}" target="_blank">{:mb_substr($v[title],0,12,'UTF-8')}...</a></div>
+                        <p class="pri">
+                            <span class="fl color"><i>￥{$v.price}</i></span>
+                            <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($v[id])}" class="to push fr">加入购物车</a>
+                        </p>
+                    </li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+</volist>
+<script type="text/javascript">
+    jQuery(".picScroll").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,easing:"easeOutCirc",vis:4,trigger:"click"});
+    jQuery(".picScroll2").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,easing:"easeOutCirc",vis:4,trigger:"click"});
+    jQuery(".picScroll3").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,easing:"easeOutCirc",vis:4,trigger:"click"});
+</script>
+</block>

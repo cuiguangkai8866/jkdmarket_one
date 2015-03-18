@@ -1,0 +1,28 @@
+<div id="Top">
+    <div class="logo"><a target="_blank" href="{:C('SITE_INFO.url')}"><img src="__IMG__/logo.png" /></a></div>
+    <div class="help"><a href="javascript:void(0)" onclick="updateSitemap()" target="_blank">Sitemap</a><span><a href="http://www.9koudai.cn" target="_blank">关于</a></span></div>
+    <div class="menu">
+        <ul> {$menu} </ul>
+    </div>
+</div>
+<div id="Tags">
+    <div class="userPhoto"><img src="__IMG__/Admin.png" /> </div>
+    <div class="navArea">
+        <div class="userInfo"><div><a href="{:U('Webinfo/index')}" class="sysSet"><span>&nbsp;</span>系统设置</a> <a href="{:U("Public/loginOut")}" class="loginOut"><span>&nbsp;</span>退出系统</a></div>欢迎您，{$my_info.email}</div>
+        <div class="nav"><font id="today"><php>echo date("Y-m-d H:i:s");</php></font>您的位置：{$currentNav}</div>
+    </div>
+</div>
+<div class="clear"></div>
+<script>
+    function updateSitemap(){
+        $.post('{:U('Common/sitemap')}',function(data){
+            if(data.status == 1){
+                popup.confirm('Sitemap更新成功,是否查看?','操作提示!',function(action){
+                    if(action == 'ok'){
+                        window.open("{:'http://'.rtrim($_SERVER['SERVER_NAME'],'/').'/sitemap.xml'}");
+                    }
+                });
+            }
+        },'json');
+    }
+</script>

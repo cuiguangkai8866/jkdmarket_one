@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>网站管理-{$site.SITE_INFO.name}</title>
+        <php>
+            $addCss="";
+            $addJs="";
+            $currentNav ='网站管理 > SEO管理';
+        </php>
+        <include file="Common:intoHead" />
+    </head>
+    <style>
+        div.spot {
+            float: left;
+            margin: 0 20px 0 0;
+            width: 220px;
+            min-height: 160px;
+            border: 2px dashed #ddd;
+        }
+        .droparea {
+            position: relative;
+            text-align: center;
+        }
+        .droparea .instructions {
+            opacity: 0.8;
+            background-color: #cccccc;
+            height: 25px;
+            z-index: 10;
+            zoom: 1;
+            background-position: initial initial;
+            background-repeat: initial initial;
+            cursor: pointer;
+        }
+        .droparea div, .droparea input {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .droparea input {
+            cursor: pointer;
+            opacity: 0;
+        }
+        .droparea div, .droparea input {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #uparea1,#uparea2,#uparea3{
+            height: 170px;
+            cursor: pointer;
+        }
+    </style>
+    <body>
+        <div class="wrap">
+            <include file="Common:head" />
+            <div class="mainBody">
+                <include file="Common:left" />
+                <div id="Right">
+                    <div class="Item hr">
+                        <div class="current">修改SEO管理</div>
+                    </div>
+                    <form action="{:U('Siteinfo/up_seo')}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="{$info.id}" />
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table1">
+                            <tr>
+                                <th width="120">位置：</th>
+                                <td>{$info.weizhi} </td>
+                            </tr>
+                            <tr>
+                                <th width="120">title：</th>
+                                <td><input  type="text" class="input" size="40" name="info[title]" value="{$info.title}" /> </td>
+                            </tr>
+                           
+                            <tr>
+                                <th>关键词：</th>
+                                <td><input type="text" class="input" size="60" name="info[keywords]" value="{$info.keywords}"/> 多关键词间用半角逗号（,）分开</td>
+                            </tr>
+                            <tr>
+                                <th>描述：</th>
+                                <td><textarea class="input" style="height: 60px; width: 600px;" name="info[description]">{$info.description}</textarea> 用于SEO的description</td>
+                            </tr>
+
+                        </table>
+                        <div class="commonBtnArea" >
+                            <input type="submit" name="submit" value="提交" />
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <include file="Common:foot" />
+        <js href="__PUBLIC__/kindeditor/kindeditor.js,__PUBLIC__/kindeditor/lang/zh_CN.js"/>
+        <script type="text/javascript">
+            function del_image(num) {
+                $('#image' + num).css('background-image', '');
+                $('#image_' + num).val('');
+            }
+            $(function() {
+
+                var content;
+                KindEditor.ready(function(K) {
+                    content = K.create('#content', {
+                        allowFileManager: true,
+                        uploadJson: '__PUBLIC__/kindeditor/php/upload_json.php?dirname=product'
+                    });
+                });
+
+                KindEditor.ready(function(K) {
+                    K.create();
+                    var editor = K.editor({
+                        allowFileManager: true,
+                        uploadJson: '__PUBLIC__/kindeditor/php/upload_json.php?dirname=product'
+                                //sdl:false
+                    });
+                    K('#uparea1').click(function() {
+                        editor.loadPlugin('image', function() {
+                            editor.plugin.imageDialog({
+                                imageUrl: K('#image_1').val(),
+                                clickFn: function(url, title, width, height, border, align) {
+                                    $('#image1').css('background-image', 'url(' + url + ')').css('background-size', '220px 160px');
+                                    K('#image_1').val(url);
+                                    // K('#getImgUrl').val(url);
+                                    editor.hideDialog();
+                                }
+                            });
+                        });
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

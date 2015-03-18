@@ -1,0 +1,25 @@
+<include file="Common:top" />
+<include file="Common:header" />
+        <style type="text/css">
+            #detail{border:1px solid #EBEBEB;padding:15px 30px 0;/*margin:10px 0 10px 220px;*/width: 900px;min-height:393px;}
+            #detail h1{padding:10px 0 15px;margin-bottom:10px;height:24px;text-align:center;border-bottom:1px solid #EBEBEB;font-family:\5fae\8f6f\96c5\9ed1;line-height:24px;font-size:20px;}
+            #detail .summary{text-align:center;color:#999;}
+            #detail .mc{padding:30px 10px;font-size:14px;line-height:2em;}
+            #detail .mt{padding-bottom:2px;position:relative;}
+            #detail .mc img{max-width: 100%;}
+            #detail .partake{display: inline-block;*display:inline;zoom:1;}
+        </style>
+<div class="content_c">
+    <div id="detail" class="m">
+        <div class="mt"><h1>{$info.title}</h1>
+            
+            <div class="summary">时间：{:date('Y-m-d H:i:s',$info[published])}&nbsp;&nbsp;&nbsp;&nbsp;<div class="partake">
+            <div class="bshare-custom"><div class="bsPromo bsPromo2"></div><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-apple"></a><span class="BSHARE_COUNT bshare-share-count" style="float: none;">33.6K</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=7afd94bb-a7e8-4d65-9936-979b687f14eb&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+            </div></div>
+         </div>
+         <div class="mc">
+             {$info.content}
+         </div>
+        </div>
+</div>
+<include file="Common:footer" />

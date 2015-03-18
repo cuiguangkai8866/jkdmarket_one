@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>商品类型管理-类型管理-后台管理首页-{$site.SITE_INFO.name}</title>
+    <php>
+        $addCss="";
+        $addJs="";
+        $currentNav ='类型管理 > 商品属性管理 ';
+    </php>
+    <include file="Common:intoHead"/>
+    <style>
+
+
+    </style>
+</head>
+<body>
+<?php
+ $statuList=array(
+0=>'否',
+1=>'是',
+);
+$typeList=array(
+'input'=>'单选',
+'multiCheck'=>'多选',
+'optional'=>'输入',
+);
+?>
+<div class="wrap">
+    <include file="Common:head"/>
+    <div class="mainBody">
+        <include file="Common:left"/>
+        <div id="Right"><a href="{:U('Product/mold')}">
+            <div class="btn" style="float: right">添加属性</div>
+        </a>
+
+            <div class="Item hr">
+
+                <div class="current">商品属性管理</div>
+            </div>
+            <div class="clear"></div>
+
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tab">
+                <thead>
+                <tr>
+                    <td>分类名称</td>
+                    <td>属性名称</td>
+                    <td>属性值类型</td>
+                    <td>属性值</td>
+                    <td>是否图片属性</td>
+                    <td>是否销售属性</td>
+                    <td>状态</td>
+                    <td>排序</td>
+                    <td width="150">操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <volist name="propList" id="vo">
+                    <php>
+                        $propValues=getPropValueByPropId($vo['id']);
+                        $category=getCategoryById($vo['category_id']);
+                    </php>
+                    <tr>
+                        <td>
+                            <php>echo $category['name']</php>
+                        </td>
+                        <td>{$vo.prop_name}</td>
+                        <td>{$typeList[$vo['type']]}</td>
+                        <td>
+                            <php>
+                                foreach($propValues as $propValue){
+                                echo $propValue['value_name'].' , ';
+                                }
+                            </php>
+                        </td>
+                        <td>{$statuList[$vo['is_image_prop']]}</td>
+                        <td>{$statuList[$vo['is_sale_prop']]}</td>
+                        <td>{$statuList[$vo['status']]}</td>
+                        <td>{$vo.sort}</td>
+                        <td>[ <a href="__URL__/editProp?id={$vo.id}">编辑 </a> ] [ <a
+                                link="{:U('Product/deleteProp',array('id'=>$vo['id']))}" data-name="{$vo.prop_name}"
+                                href="javascript:void(0)" class="del">删除 </a> ]
+                        </td>
+                    </tr>
+
+                </volist>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="9" align="right">{$page}</td>
+                    </td></tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+<div class="clear"></div>
+<include file="Common:foot"/>
+
+</body>
+<script type="text/javascript">
+    $(function () {
+        $(".del").click(function () {
+            var delLink = $(this).attr("link");
+            $this = $(this);
+            popup.confirm('你真的打算删除【<b>' + $(this).data("name") + '</b>】吗?<br />提示：如果删除此属性，可能引起系统错误，<br />(仅用于删除错误添加的属性)', '温馨提示', function (action) {
+                if (action == 'ok') {
+                    delByLink(delLink, $this);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+</html>

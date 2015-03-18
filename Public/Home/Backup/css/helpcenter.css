@@ -1,0 +1,31 @@
+.member{margin-top:11px;font-family: "宋体";}
+.member_l{width: 22%;}
+.member_ty1{height: 34px;line-height: 34px;background: #7e3d00;color: #fff;font-size: 14px;}
+.member_ty1 span{display: block;width: 23px;height: 28px;background: url(../images/help_ico1.png) no-repeat;vertical-align: middle;margin:5px 5px 0 38px;}
+.member_ty1 b{display: block;}
+
+
+.slidemember,.slideqa{background: #fff;border: 1px solid #e5e5e5;margin-top: 10px;}
+.slidemember_c,.slideqa_c{height: 34px;line-height: 34px;background: #f3f3f3;color: #333;font-size: 14px;padding-left: 20px;cursor: pointer;font-weight: bold;}
+.slidemember_c .icon,.slideqa_c span.icon{width: 9px;height: 6px;background: url(../images/myjd-common-icon.png) -9px -39px no-repeat;margin:15px 30px 0 0;float: right;transition: all .5s ease;-moz-transition: all .5s ease;-webkit-transition: all .5s ease;-o-transition: all .5s ease;}
+.slidemember_b,.slideqa_b{padding: 5px 0;}
+.slidemember_b li,.slideqa_b li{color: #666;line-height: 26px;padding-left: 17px;}
+.slideqa_b li{padding-left: 40px;}
+.slidemember_b a,.slideqa_b a{color: #666;}
+.slidemember_b a:hover,.slideqa_b a:hover,.slide_on a{color: #7e3d00;}
+.slideqa_a{width: 11px;height: 11px;background: url(../images/myjd-common-icon.png) -8px -8px no-repeat;margin:12px 10px 0 0;}
+.member_ty2{background: #fee191;height: 34px;line-height: 34px;text-align: center;margin-top: 10px;}
+.member_ty2 a{color: #7e3d00;display: block;font-size: 14px;font-weight: bold;}
+.member_ty2 span{height: 22px;display: block;float: left;}
+.member_ty2 .icon{background-position: -415px -126px;width: 22px;margin: 6px 10px 0 60px;}
+
+
+.member_r{width: 76.5%;border: 1px solid #e6e6e6;margin-left: 10px;background: #fff;}
+.member_ty3{height: 37px;border-bottom: 3px solid #7e3d00;}
+.member_ty3 b{color: #6e6c6b;margin-left: 15px;}
+.member_ty5{width: 100px;height: 32px;line-height: 32px;background:url(../images/help_ico2.png) no-repeat;margin: 5px 0 0 10px;color: #fff;font-size: 14px;font-weight: bold;text-align: center;cursor: pointer;display: inline-block;*display:inline;zoom:1;}
+.member_ty11{padding-top: 10px;}
+.ask{padding: 20px;line-height: 22px;;color: #666;}
+.ask_q{font-weight: bold;color: #666;margin-top: 10px;text-indent: 2em;}
+.ask p{text-indent: 2em}
+.ask_h{color: #492818;font-size: 14px;font-weight: bold;text-indent: 1.7em;}

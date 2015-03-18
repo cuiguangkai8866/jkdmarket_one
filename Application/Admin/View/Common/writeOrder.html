@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>批量打印订单</title>
+	<style>
+		#box{
+			width: 1000px;
+			height:auto;
+			margin:0 auto;
+			border:1px solid #d1d1d1;
+		}
+		#top{
+			width: 100%;
+			height:100px;
+			border-bottom: 1px solid #d1d1d1;
+		}
+		#info{
+			width: 100%;
+			height:auto;
+		}
+		#order{
+			width:900px;
+			height:auto;
+			margin: 20px auto;
+			border:1px dashed #999;
+		}
+		.orderTop{
+			width: 100%;
+			height:80px;
+			font: 20px/80px 'Microsoft YaHei';
+			text-align: center;
+			letter-spacing: 3px;
+		}
+		.orderInfo{
+			width: 100%;
+			height:auto;
+			font: 14px/30px 'Microsoft YaHei';
+			text-align: center;
+			letter-spacing: 1px;
+		}
+		.orderInfoTop{
+			width: 100%;
+			height:40px;
+			display: block;
+		}
+		.orderId{
+			width:600px;
+			height:auto;
+			text-align: center;
+			float: left;
+		}
+		.orderTime{
+			width:300px;
+			height:auto;
+			text-align: center;
+			float: right;
+		}
+		.orderAddress{
+			width:100%;
+			height:auto;
+		}
+		.orderAddress ul li{
+			text-align: left;
+			list-style: none;
+		}
+		.orderList{
+			width: 96%;
+			height:auto;
+			margin: 0 auto 20px;
+		}
+		.orderList table,table td,table th{
+			border:1px solid #ccc;
+			border-collapse:collapse;
+		}
+		.orderMoney{
+			width: 94%;
+			margin:10px auto;
+			padding:10px;
+			text-align: center;
+			font:14px/30px 'Microsoft YaHei';
+		}
+		.orderMoney span{
+			margin-right: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="top">
+			<button style="width:100px;height:25px;margin:40px 0 0 100px;" onclick="printNow('info')">全部打印</button>
+		</div>
+		
+		<div id="info">
+		<volist name="orderInfo" id="vo">
+			<div id="order">
+				<div class="orderTop">
+					{:C('WEIXIN.alipay_appname')}&nbsp;&nbsp;&nbsp;发货单
+				</div>
+				<div class="orderInfo">
+					<div class="orderInfoTop">
+						<div class="orderId">
+							站内订单号:&nbsp;&nbsp;{$vo.oid}
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							订单归属用户:&nbsp;&nbsp;{$vo.username}
+						</div>
+						<div class="orderTime">
+							购买时间:{:date('Y-m-d H:i:s',$vo[published])}
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+					<div class="orderAddress">
+						<ul>
+							<li>收货姓名:&nbsp;&nbsp;{$vo.username}</li>
+							<li>联系方式:&nbsp;&nbsp;{$vo.phone}</li>
+							<li>所在地区:&nbsp;&nbsp;{$vo.shen_cityname}-{$vo.shi_cityname}-{$vo.xian_cityname}</li>
+							<li>详细地址:&nbsp;&nbsp;{$vo.address}</li>
+						</ul>
+					</div>
+					<div class="orderList">
+						<table width="100%" border="1" cellpadding="0" cellspacing="0">
+							<tr>
+								<th>商品名称</th>
+								<th>商品价格</th>
+								<th>商品数量</th>
+								<th>商品赠送积分</th>
+								<th>赠送物品</th>
+							</tr>
+							<volist name="vo[proinfo]" id="v">
+							<tr>
+								<td>{:mb_substr($v[title],0,30,'UTF-8')}...</td>
+								<td>{$v.price}</td>
+								<td>{$v.num}</td>
+								<td>{$v.credit}</td>
+								<td>{$v[present] == null ?'无赠品':$v[present]}</td>
+							</tr>
+							</volist>
+						</table>
+					</div>
+				</div>
+				<div class="orderMoney">
+					<span>商品总价 : ￥ {$vo.total_money} 元</span>
+					<span>运费金额 : ￥ {$vo.freight} 元</span>
+					<span>应收金额 : ￥ {:$vo['total_money']+$vo['freight']} 元</span>
+					<br />
+					<br />
+					<span>{:C('WEIXIN.alipay_appname')} 版权所有 如果您有任何疑问可以咨询我们的在线客服</span>
+				</div>
+			</div>
+			<hr />
+			</volist>
+		</div>
+		
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+    function printNow(id){
+		var sprnhtml = document.getElementById(id).innerHTML;
+        var selfhtml = window.document.body.innerHTML;
+        window.document.body.innerHTML = sprnhtml;
+        window.print();
+        window.document.body.innerHTML = selfhtml;
+    }
+</script>

@@ -1,0 +1,129 @@
+<include file="Common:top" />
+<include file="Common:header" />
+<script type="text/javascript" src="__JS__/jf-pft.js"></script>
+<link rel="stylesheet" type="text/css" href="__CSS__/jf-pft.css" media="all">
+    <div class="content_t bge">
+        <ad order="sort" position="paipai">
+            <div class="jf_ban" style="background:url(__ROOT__/Uploads/picture/{$ad_img}) top center no-repeat;">
+                <div class="center">
+                    <a href="{$ad_link}" title="{$ad_name}"></a>
+                </div>
+            </div>
+        </ad>
+        <div class="pai_qp">
+            <div class="center">
+                <div class="pai_t tac">
+                    <img src="__IMG__/xsqp.png" alt="" />
+                </div>
+                <ul class="jfplist clearfix">
+                    <volist name="list" id="vo" empty="还没有可拍的产品!">
+                        <li>
+                            <div class="jfplist_box">
+                                <a href="{:U('/patDetail').'?pat='.$vo[id]}" title="{$vo.title}"><img src="__ROOT__{$vo.savepath}" alt="{$vo.title}" /></a>
+                            </div>
+                            <div class="jfplist_t">
+                                <a href="{:U('/patDetail').'?pat='.$vo[id]}" title="{$vo.title}">{$vo.title}</a>
+                            </div>
+                            <div class="jfplist_price">
+                                ￥<i>{$vo.price}</i>
+                            </div>
+
+                            <!-- 我要拍状态：jfplist_state_pay
+                            开拍提醒：jfplist_state_notice
+                            已结束状态：jfplist_state_end -->
+
+
+                            <php>if($vo['start_time'] <= time() && $vo['end_time'] >= time()){</php>
+                            <div class="jfplist_state jfplist_state_pay">
+                                    <div class="jfplist_time" date-endtime='{$vo.end_time}'>
+                                        还有<i></i>结束
+                                    </div>
+                                    <div class="jfplist_bh">
+                                        <a href="{:U('/patDetail').'?pat='.$vo[id]}" title="{$vo.title}">
+                                            <i></i>
+                                            <em>我要拍</em>
+                                        </a>
+                                    </div>
+                                </div>
+                            <php>}else if(($vo['start_time'] >= time()) && (($vo['start_time'] - time()) <= (3600*24*C('LISTNUM.startTime')))){</php>
+                            <div class="jfplist_state jfplist_state_notice">
+                            <div class="jfplist_time" date-endtime='{$vo.start_time}'>
+                                        还有<i></i>开始
+                                    </div>
+                                    <div class="jfplist_bh">
+                                        <a href="javascript:;" title="">
+                                            <i></i>
+                                            <em>开拍提醒</em>
+                                        </a>
+                                    </div>
+                                </div>
+                            <php>}else if($vo['end_time'] <= time()){</php>
+                                <div class="jfplist_state jfplist_state_end">
+                                    <div class="jfplist_time">
+                                        已结束
+                                    </div>
+                                    <div class="jfplist_bh">
+                                        <a href="javascript:;" title="">
+                                            <i></i>
+                                            <em>已结束</em>
+                                        </a>
+                                    </div>
+                                    </div>
+                            <php>}else{</php>
+                                    <div class="jfplist_state jfplist_state_end">
+                                        <div class="jfplist_time">
+                                            等待开始
+                                        </div>
+                                        <div class="jfplist_bh">
+                                            <a href="javascript:;" title="">
+                                                <i></i>
+                                                <em>等待开始</em>
+                                            </a>
+                                        </div>
+                                    </div>
+                            <php>}</php>
+                            <!-- 这里放商品标题 -->
+                            <input type="hidden" value="{$vo.title}" class="clock_con" />
+                            <!-- 这里放开拍时间，
+                            格式为 2014-11-1 9:00 -->
+                            <input type="hidden" value="{:date('Y-m-d H:i',$vo[start_time])}" class="clock_time" />
+                            <!-- 这里放此商品的链接地址 -->
+                            <input type="hidden" value="{:U('/patDetail').'?pat='.$vo[id]}" class="clock_url" />
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+            <div class="jfplist_p"></div>
+            <div class="pai_yh">
+                <div class="center">
+                    <div class="pai_t tac">
+                        <img src="__IMG__/gdyh.png" alt="" />
+                    </div>
+                    <ul class="jfplist clearfix">
+                        <volist name="proList" id="vo" empty="没有可推荐的产品">
+                            <li>
+                                <div class="jfplist_box">
+                                    <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" title="{$vo.title}" target="_blank"><img src="__ROOT__{$vo[savepath][0][savepath]}" alt="" /></a>
+                                </div>
+                                <div class="jfplist_t">
+                                    {$vo.title}
+                                </div>
+                                <div class="jfplist_price">
+                                    ￥<i>{$vo.price}</i>
+                                </div>
+                                <div class="jfplist_buy">
+                                    <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" title="{$vo.title}" target="_blank">
+                                        立即抢购
+                                    </a>
+                                </div>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    daojishi($(".jfplist_time"));
+</script>
+<include file="Common:footer" />

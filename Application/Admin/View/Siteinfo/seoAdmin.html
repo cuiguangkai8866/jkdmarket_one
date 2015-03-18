@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SEO管理-SEO列表-后台管理首页-{$site.SITE_INFO.name}</title>
+    <php>
+        $addCss="";
+        $addJs="";
+        $currentNav ='SEO管理 > SEO列表';
+    </php>
+    <include file="Common:intoHead" />
+</head>
+<body>
+<div class="wrap">
+    <include file="Common:head" />
+    <div class="mainBody">
+        <include file="Common:left" />
+        <div id="Right">
+            <div class="Item hr">
+                <div class="current" style="max-width: 100px; float: left;">菜单管理</div>
+                <div style="width: 100px;float: right;"><button type="button" class="btn" onclick="window.location.href='{:U('Siteinfo/add_nav')}'">添加</button></div>
+            </div>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tab">
+                <thead>
+                <tr align="center">
+                    <td width="30%">关联导航</td>
+                    <td width="20%">关键字</td>
+                    <td width="40%">站点描述</td>
+                    <td width="10%">操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <volist name="list" id="tree">
+                    <tr class="GetId" pid="{$tree.parent_id}" cid="{$tree.id}">
+                        <td  class="tree" style="cursor: pointer;">{$tree.fullname}</td>
+                        <td ><input type="text" value="{$tree.keywords}" size="40" name="keywords" class="input" placeholder="填写您的关键字"/></td>
+                        <td ><textarea name="description" id="" cols="55" rows="1">{$tree.description}</textarea></td>
+                        <td align="center" ><button class="btn opCat">确定</button></td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<form action="" method="post" id="opForm">
+    <input id="keywords" type="hidden" name="data[keywords]" />
+    <input id="description" type="hidden" name="data[description]" />
+    <input id="ThisId" type="hidden" name="id" value="" />
+</form>
+<div class="clear"></div>
+<include file="Common:foot" />
+<script type="text/javascript">
+    $(function(){
+        $(".opCat").click(function(){
+            var obj=$(this).parents("tr");
+            $("#keywords").val(obj.find("input[name='keywords']").val());
+            $("#description").val(obj.find("textarea[name='description']").val());
+            $("#ThisId").val($('.GetId').attr('cid'));
+            commonAjaxSubmit("","#opForm");
+        });
+        var chn=function(cid,op){
+            if(op=="show"){
+                $("tr[pid='"+cid+"']").each(function(){
+                    $(this).removeAttr("status").show();
+                    chn($(this).attr("cid"),"show");
+                });
+            }else{
+                $("tr[pid='"+cid+"']").each(function(){
+                    $(this).attr("status",1).hide();
+                    chn($(this).attr("cid"),"hide");
+                });
+            }
+        }
+        $(".tree").click(function(){
+            if($(this).attr("status")!=1){
+                chn($(this).parent().attr("cid"),"hide");
+                $(this).attr("status",1);
+            }else{
+                chn($(this).parent().attr("cid"),"show");
+                $(this).removeAttr("status");
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+﻿<include file="Common:subHead" />
+  <link rel="stylesheet" href="__CSS__/all_html5.css">
+  <form action="{:U('/wapShop')}" id="searchForm">
+   <div class="new-cate-srch"> 
+    <div class="new-srch-box"> 
+     <input name="shopName" id="newkeyword" type="text" required="" class="new-srch-input" value="" />
+     <a href="javascript:void(0);" target="_self" onclick="cancelHotWord()" class="new-s-close"></a>
+     <a href="javascript:void(0)" target="_self" onclick="$('#searchForm').submit();" class="new-s-srch"><span></span></a> 
+    </div> 
+    <div class="new-srch-lst" id="shelper" style="display:none"> 
+    </div> 
+   </div>
+  </form> 
+  <div class="new-ct"> 
+   <div class="new-category"> 
+    <ul class="new-category-lst">
+        <volist name="cateList" id="vo" empty="系统还没有添加分类">
+            <li class="new-category-li">
+                <a href="javascript:void(0)" id="1315" class="new-category-a">
+                    <span class="icon"></span>
+                    {$vo.name}
+                </a>
+                <ul class="new-category2-lst clearfix" id="category1315" style="display:none">
+                    <volist name="vo[subList]" id="v2" empty="系统还没有添加子类">
+                        <li class="new-category2-li">
+                            <a href="{:U('/wapShop').'?Mid='.$vo['cid'].'&Attr1='.$v2['cid']}" class="new-category2-a">
+                                {$v2.name}
+                            </a>
+                        </li>
+                    </volist>
+                </ul>
+            </li>
+        </volist>
+    </ul> 
+   </div> 
+  </div>  
+  <script language="javascript">
+    $(function(){
+      $(".new-category-li").first().children('ul').show();
+        $("li.new-category-li>a").click(function(){
+            var obj = $(this).next();
+            if(obj.css('display')=='none'){
+                // $(".new-category2-lst").hide();
+                obj.show().parent().siblings('li').children('.new-category2-lst').hide();
+                /*$("li.new-category-li>a").removeClass("new-category-a new-on").addClass("new-category-a");
+                $(this).addClass("new-category-a new-on");*/
+            }/*else{
+                obj.hide();
+                $("li.new-category-li>a").removeClass("new-category-a new-on").addClass("new-category-a");
+                $(this).removeClass("new-category-a new-on").addClass("new-category-a");
+            }*/
+        })
+    })
+    </script>
+<include file="Common:footer" />

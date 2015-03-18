@@ -1,0 +1,366 @@
+<include file="Common:top" />
+
+<!-- 头部 -->
+<link rel="stylesheet" type="text/css" href="__CSS__/index.css" media="all">
+<include file="Common:header1" />
+<style type="text/css">
+    .bannerBox{min-width:1200px;width:100%;height:420px;margin:auto;overflow:hidden;position:relative}.bannerBox>.hd{width:100%;height:40px;overflow:hidden;position:absolute;left:0;bottom:0;z-index:1;text-align:center}.bannerBox>.hd ul{zoom:1}.bannerBox>.hd ul li{display:inline-block;*display:inline;zoom:1;width:22px;height:22px;font-size:12px;font-weight:bold;margin:5px 15px 0 0;border-radius:50%;background:#222;opacity:.8;color:#fff;box-shadow:0 0 5px;line-height:22px;cursor:pointer}.bannerBox>.hd ul li.on{background:#ff000a;color:#fff}.bannerBox>.bd{position:relative;height:100%;z-index:0}.bannerBox>.bd li{zoom:1;vertical-align:middle;height:420px}.bannerBox>.bd li a{display:block;width:100%;height:100%;max-width:1200px;margin:auto}
+</style>
+<script>
+    $(function(){
+        $(".jnews .hd li").eq(0).css('border-left', 'none');
+        $(".jnews .hd li").eq(1).css('border-right', 'none');
+        $(".floors_c").each(function() {
+            $(this).children('.floors_box').first().css('margin-left', '0');
+        });
+        $(".menu li:first").children('a').addClass('select');
+    })
+
+
+</script>
+
+<div id="banner" class="bannerBox">
+    <div class="hd">
+        <ul></ul>
+    </div>
+    <div class="bd">
+        <ul>
+        <volist name="index_ad" id="vo" key="ad">
+            <li class="banner" style="background:url(__UPLOAD__/picture/{$vo.ad_img}) no-repeat top center;"><a href="{$vo.ad_link}" title="{$vo.ad_name}"></a></li>
+        </volist>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery("#banner").slide({mainCell:".bd ul",autoPlay:true,delayTime:1000,autoPage:true,titCell:".hd ul",effect: "fold"});
+</script>
+
+        <!-- <volist name="index_ad" id="vo" key="ad">
+            <div class="banner" style="background:url(__UPLOAD__/picture/{$vo.ad_img}) no-repeat top center;{($vo[ad] != 1)?'display:none;':''}"></div>
+        </volist> -->
+<div class="content_c" style="width:1200px;">
+    <div class="clearfix mt10">
+        <div class="j_box slideTxtBox fl">
+            <div class="hd">
+                <ul>
+                    <li class="on">
+                        疯狂抢购
+                        <i></i>
+                    </li>
+                    <li>
+                        热卖推荐
+                        <i></i>
+                    </li>
+                    <li>
+                        猜你喜欢
+                        <i></i>
+                    </li>
+                    <li>
+                        新品上架
+                        <i></i>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="j_boxcontent bd">
+            <!-- 疯狂抢购 -->
+                <div class="j_skulist">
+                    <div class="j_skulist_inner">
+                        <ul class="clearfix">
+                            <volist name="randList" id="vo" empty="还没有推荐的商品!">
+                                <li>
+                                    <div class="p_img">
+                                        <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank" title="{$vo.title}">
+                                            <img src="__ROOT__{$vo[savepath][0][savepath]}" _src="__ROOT__{$vo[savepath][0][savepath]}" width="200" height="200" alt="{$vo.title}" title="{$vo.title}">
+                                        </a>
+                                    </div>
+                                    <div class="p_name">
+                                        <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank" title="{$vo.title}">
+                                            {:mb_substr($vo[title],0,15,'UTF-8')}...
+                                        </a>
+                                    </div>
+                                    <div class="p_cnt_info clearfix">
+                                        <div class="p_price">
+                                            <span class="tag_title">￥</span>
+                                            <span class="tag_content" id="price_1097000863">{$vo.price}</span>
+                                        </div>
+                                        <a class="djgm" title="立即购买" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" title="{$vo.title}">
+                                            点击购买
+                                        </a>
+                                    </div>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+
+            <!-- 热卖推荐 -->
+                <div class="j_skulist">
+                    <div class="j_skulist_inner">
+                        <ul class="clearfix">
+                            <volist name="hotList" id="vo" empty="还没有推荐的商品!">
+                                <li>
+                                    <div class="p_img">
+                                        <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank" title="{$vo.title}">
+                                            <img src="__ROOT__{$vo[savepath][0][savepath]}" _src="__ROOT__{$vo[savepath][0][savepath]}" width="200" height="200" alt="{$vo.title}" title="{$vo.title}">
+                                        </a>
+                                    </div>
+                                    <div class="p_name">
+                                        <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank" title="{$vo.title}">
+                                            {:mb_substr($vo[title],0,15,'UTF-8')}...
+                                        </a>
+                                    </div>
+                                    <div class="p_cnt_info clearfix">
+                                        <div class="p_price">
+                                            <span class="tag_title">￥</span>
+                                            <span class="tag_content" id="price_1097000863">{$vo.price}</span>
+                                        </div>
+                                        <a class="djgm" title="立即购买" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}">
+                                            点击购买
+                                        </a>
+                                    </div>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+
+    <!-- 猜你喜欢 -->
+                <div class="j_skulist">
+                    <div class="j_skulist_inner">
+                        <ul class="clearfix">
+                            <volist name="loveList" id="vo" empty="还没有推荐的商品!">
+                                <li>
+                                    <div class="p_img">
+                                        <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank" title="{$vo.title}">
+                                            <img src="__ROOT__{$vo[savepath][0][savepath]}" _src="__ROOT__{$vo[savepath][0][savepath]}" width="200" height="200" alt="{$vo.title}" title="{$vo.title}">
+                                        </a>
+                                    </div>
+                                    <div class="p_name">
+                                        <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank" title="{$vo.title}">
+                                            {:mb_substr($vo[title],0,15,'UTF-8')}...
+                                        </a>
+                                    </div>
+                                    <div class="p_cnt_info clearfix">
+                                        <div class="p_price">
+                                            <span class="tag_title">￥</span>
+                                            <span class="tag_content" id="price_1097000863">{$vo.price}</span>
+                                        </div>
+                                        <a class="djgm" title="立即购买" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}">
+                                            点击购买
+                                        </a>
+                                    </div>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+
+    <!-- 新品上架 -->
+                <div class="j_skulist">
+                    <div class="j_skulist_inner">
+                        <ul class="clearfix">
+                            <volist name="newList" id="vo" empty="还没有推荐的商品!">
+                                <li>
+                                    <div class="p_img">
+                                        <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank" title="{$vo.title}">
+                                            <img src="__ROOT__{$vo[savepath][0][savepath]}" _src="__ROOT__{$vo[savepath][0][savepath]}" width="200" height="200" alt="{$vo.title}" title="{$vo.title}">
+                                        </a>
+                                    </div>
+                                    <div class="p_name">
+                                        <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}" target="_blank" title="{$vo.title}">
+                                            {:mb_substr($vo[title],0,15,'UTF-8')}...
+                                        </a>
+                                    </div>
+                                    <div class="p_cnt_info clearfix">
+                                        <div class="p_price">
+                                            <span class="tag_title">￥</span>
+                                            <span class="tag_content" id="price_1097000863">{$vo.price}</span>
+                                        </div>
+                                        <a class="djgm" title="立即购买" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[id])}">
+                                            点击购买
+                                        </a>
+                                    </div>
+                                </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fl jbox_r">
+            <div class="jnews slideTxtBox2 ml10">
+                <div class="hd clearfix">
+                    <ul>
+                        <li class="on">商场公告</li>
+                        <li>促销信息</li>
+                    </ul>
+                </div>
+                <div class="bd">
+                <!-- 商场公告 -->
+                    <ul class="clearfix jnews_list">
+                        <volist name="scggList" id="vo" empty="暂时还没有公告!">
+                            <li>
+                                <a href="{:U('/newsInfo/'.$vo[id])}" target="_blank" title="{$vo.title}" title="{$vo.title}">
+                                    {$vo.title}
+                                </a>
+                            </li>
+                        </volist>
+                    </ul>
+
+                    <!-- 促销信息 -->
+                    <ul class="clearfix jnews_list">
+                        <volist name="cxxxList" id="vo" empty="暂时还没有促销信息!">
+                            <li>
+                                <a href="{:U('/newsInfo/'.$vo[id])}" target="_blank" title="{$vo.title}" title="{$vo.title}">
+                                    {$vo.title}
+                                </a>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="slideBox mlt10 slidePicBox3">
+                <div class="hd">
+                    <ul><li>1</li><li>2</li><li>3</li></ul>
+                </div>
+                <div class="bd">
+                    <ul>
+                        <volist name="tjList" id="vo" empty="暂时还没有团购的商品!">
+                            <li>
+                                <div class="clearfix">
+                                    <div class="jfpricer_l fl">
+                                        <div class="jfpricer_1">
+                                            今日团购
+                                        </div>
+                                        <div class="jfpricer_2">
+                                            {$vo.title}
+                                        </div>
+                                        <div class="jfpricer_3">
+                                            {$vo.tuixiao}
+                                        </div>
+                                        <div class="jfpricer_4">
+                                            团购价<i>￥{$vo.price}</i>
+                                        </div>
+                                        <div class="jfpricer_5">
+                                            <a href="{:U('/tDetail').'?tid='.$vo[id]}" title="" target="_blank" title="{$vo.title}"></a>
+                                        </div>
+                                    </div>
+                                    <div class="jfpricer_r fl">
+                                        <div class="jfpricer_6">
+                                            <a href="{:U('/tDetail').'?tid='.$vo[id]}" target="_blank" title="{$vo.title}">
+                                                <img src="__ROOT__{$vo.savepath}" alt="{$vo.title}" title="{$vo.title}" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+                <!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+                <a class="prev" href="javascript:void(0)"></a>
+                <a class="next" href="javascript:void(0)"></a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        jQuery(".slideTxtBox").slide({effect:"fold", switchLoad:"_src" });
+        jQuery(".slideTxtBox2").slide();
+        $(function(){
+            if($(".slidePicBox3 .bd li").length > 1){
+                jQuery(".slidePicBox3").slide({mainCell:".bd ul",effect:"leftLoop",autoPlay:false});
+            }
+            $(".removeDom").css("margin-left","0");
+            /*$("#menu").hover(function(){
+                $(this).find(".tit").show();
+            },function(){
+                $(this).find(".tit").show();
+            })*/
+        })
+    </script>
+    
+    <!-- 酒馆 -->
+    <volist name="product" key="h" id="vo">
+        <?php if(!empty($vo['product'])){ ?>
+        <div class="floors">
+            <div class="floors_t clearfix">
+                <!-- 楼层名称 -->
+                <h2>{$vo.name}酒馆<i></i></h2>
+                <!-- 更多 -->
+                <div class="more fr">
+                    <a href="{:U('/shop').'?Mid='.base64_encode($vo[cid])}" target="_blank" title="{$vo.name}酒馆">更多>></a>
+                </div>
+            </div>
+            <!-- 展示区域 -->
+            <div class="floors_c clearfix floors_ob">
+                <if condition="$h eq 1 OR $h eq 2">
+                <div class="floors_box fl">
+                    <div class="floors_bd">
+                        <div class="floors_img">
+                            <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[product][0][id])}" title="{$vo[product][0][title]}"><img src="__ROOT__{$vo[product][0][savepath]}" alt="{$vo[product][0][title]}" /></a>
+                        </div>
+                        <div class="floors_ti">
+                            <a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[product][0][id])}" title="{$vo[product][0][title]}">{:mb_substr($vo[product][0][title],0,25,'UTF-8')}</a>
+                        </div>
+                        <!-- <div class="floors_de">
+                            {:mb_substr($vo[product][0][tuixiao],0,15,'UTF-8')}...
+                        </div> -->
+                        <div class="clearfix floors_gm">
+                            <div class="fl">￥{$vo[product][0][price]}</div>
+                            <div class="fr"><a target="_blank" href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[product][0][id])}" title="{$vo[product][0][title]}">立即购买</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floors_ban fl">
+                    <volist name="vo[ad]" id="o">
+                        <a href="{$o.ad_link}" title="$o.ad_name" target="_blank"><img src="__UPLOAD__/picture/{:$o[ad_img] == null ? 'floors.png':$o[ad_img]}" alt="{$o.ad_name}" title="{$o.ad_name}" /></a>
+                    </volist>
+                </div>
+                <div class="floors_box fl">
+                    <div class="floors_bd">
+                        <div class="floors_img">
+                            <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[product][1][id])}" title="{$vo[product][1][title]}"><img src="__ROOT__{$vo[product][1][savepath]}" alt="{$vo[product][1][title]}" /></a>
+                        </div>
+                        <div class="floors_ti">
+                            <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[product][1][id])}" title="{$vo[product][1][title]}">{:mb_substr($vo[product][1][title],0,25,'UTF-8')}</a>
+                        </div>
+                        <!-- <div class="floors_de">
+                            {:mb_substr($vo[product][1][tuixiao],0,15,'UTF-8')}...
+                        </div> -->
+                        <div class="clearfix floors_gm">
+                            <div class="fl">￥{$vo[product][1][price]}</div>
+                            <div class="fr"><a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($vo[product][1][id])}" title="{$vo[product][1][title]}">立即购买</a></div>
+                        </div>
+                    </div>
+                </div>
+                </if>
+                <volist name="vo[product]" id="v" key="n" offset="($h == 1 || $h == 2 ? 2:0)" length="5">
+                    <div class="floors_box {:$n == 1 ?'removeDom':'' } fl">
+                        <div class="floors_bd">
+                            <div class="floors_img">
+                                <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($v[id])}" title="{$v.title}" target="_blank"><img src="__ROOT__{$v.savepath}" alt="{$v.title}" /></a>
+                            </div>
+                            <div class="floors_ti">
+                                <a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($v[id])}" title="{$v.title}" target="_blank">{:mb_substr($v['title'],0,25,'UTF-8')}</a>
+                            </div>
+                            <!-- <div class="floors_de">
+                                {:mb_substr($v['tuixiao'],0,10,'UTF-8')}{:$v[tuixiao] == null ?'':'...'}
+                            </div> -->
+                            <div class="clearfix floors_gm">
+                                <div class="fl">￥{$v.price}</div>
+                                <div class="fr"><a href="{:U('/detail').'?'.md5('Goods').'='.base64_encode($v[id])}" title="{$v.title}" target="_blank">立即购买</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </volist>
+            </div>
+        </div>
+        <?php } ?>
+    </volist>
+    <br>
+</div>
+<include file="Common:footer" />

@@ -1,0 +1,67 @@
+@charset "UTF-8";
+/* 2014-10-31 18:40 fcdcyy@sina.cn */
+
+
+
+/*拍拍*/
+.jf_ban{height: 420px;width: 100%;}
+.jf_ban .center{height: 420px;}
+.jf_ban a{display: block;width: 100%;height: 100%;}
+.pai_qp{background: #e4393c;overflow: hidden;}
+.pai_t{height: 56px;background: url(../images/pai_h.png) no-repeat;margin-top: 30px;text-align: center;padding-top: 9px;}
+
+.jfplist li{float: left;padding: 16px;width: 208px;background: #fff;margin: 16px 0 0 13px;overflow: hidden;-webkit-transition:.8s box-shadow ease;-moz-transition:.8s box-shadow ease;transition:.8s box-shadow ease;}
+.jfplist li:hover{box-shadow: 0 0 12px #333;}
+.jfplist_box{height: 208px;overflow: hidden;}
+.jfplist img{width: 100%;}
+.jfplist_t{color: #333;font-family: '宋体';font-size: 14px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;font-weight: bold;line-height: 28px;}
+.jfplist_t a{color: #333;}
+.jfplist_t a:hover{color: #e4393c;}
+.jfplist_dname{color: #e66f05;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;}
+.jfplist_price{color: #c00;font-size: 18px;font-family: 'microsoft yahei';margin-top: 6px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;line-height: 26px;}
+.jfplist_price i{font-size: 26px;font-family: Arial;}
+.jfplist_time{margin-top: 12px;height: 26px;line-height: 26px;background: #333;color: #fff;text-align: center;}
+.jfplist_time i{font-family: Arial;display: inline-block;*display:line;zoom:1;min-width: 30px;}
+.jfplist_bh{height: 35px;line-height: 35px;background: #f4f4f4;border: 1px solid #e4e4e4;text-align: center;font-size: 16px;}
+.jfplist_bh a{display: block;}
+.jfplist_bh i{display: inline-block;*display:inline;zoom:1;vertical-align: middle;background: url(../images/hp_icon.png) no-repeat;}
+.jfplist_bh em{vertical-align: middle;}
+.jfplist_state_pay .jfplist_bh a{color: #c00;}
+.jfplist_state_pay .jfplist_bh i{width: 18px;height: 18px;background-position: -69px -21px}
+
+.jfplist_state_notice .jfplist_bh i{width: 18px;height: 18px;background-position: -70px -51px;}
+.jfplist_state_notice .jfplist_bh a:hover{color: #666;}
+
+.jfplist_state_end .jfplist_bh a{color: #c7c7c7;cursor: default;}
+
+.jfplist_p{background: url(../images/pai_p.png) repeat-x;height: 20px;margin-top: 34px;}
+
+.pai_yh{background: #9011dd;overflow: hidden;padding-bottom: 44px;}
+.jfplist_buy{height: 36px;line-height: 34px;text-align: center;margin: 10px 0 5px;}
+.jfplist_buy a{display: block;width: 100%;height: 100%;background: url(../images/Btn_Buy.png) no-repeat;color: #fff;font-family: 'microsoft yahei';font-size: 16px;}
+
+
+/*秒杀*/
+.miao_qp{background: #f39800;overflow: hidden;padding-bottom: 40px;}
+.miao_t{height: 74px;width: 100%;background: #fff33f;margin-top: 30px;}
+
+.miao_f{width: 298px;height: 87px;margin-top: -6px;}
+.miao_f1{background: url(../images/miao_1f.png) no-repeat;}
+.miao_f2{background: url(../images/miao_2f.png) no-repeat;}
+.miao_f3{background: url(../images/miao_3f.png) no-repeat;}
+.miao_mg{width: 100px;height: 100px;overflow: hidden;margin-top: -13px;}
+.miao_mg img{width: 100%;}
+
+.miao_ys{margin-top: 20px;}
+
+.miao_ys li{position: relative;height: 322px;}
+
+.miao_ys .jfplist_buy{width: 101px;height: 32px;line-height: 32px;}
+.miao_ys .jfplist_buy a{background: url(../images/Btn_Buy2.png) no-repeat;font-size: 14px;}
+
+.miao_ys .jfplist_price{margin-top: 14px;width: 100px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.miao_ys .jfplist_price i{font-size: 24px;}
+
+.jfplist_cou{width: 100%;height: 30px;line-height: 29px;background: #e8e8e8;position: absolute;left: 0;bottom: 0;text-align: center;}
+.jfplist_cou > span{display: inline-block;*display:inline;zoom:1;width: 16px;height: 16px;background: url(../images/hp_icon.png) no-repeat -71px -83px;vertical-align: middle;}
+.jfplist_cou em{vertical-align: middle;}

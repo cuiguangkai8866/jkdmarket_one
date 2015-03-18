@@ -1,0 +1,9 @@
+User-Agent: Baiduspider
+Allow: /Runtime/Temp/
+Allow: /Application/Runtime/Temp/
+Allow: /Application/Runtime/Cache/
+Allow: /Runtime/Cache/
+Allow: /Member/View/
+Allow: /Uploads/
+Allow: /Template/
+Sitemap: /sitemap.xml

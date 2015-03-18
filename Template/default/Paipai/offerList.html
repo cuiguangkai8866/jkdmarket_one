@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<link href="__CSS__/detail.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="__CSS__/base.css" media="all">
+
+<div class="usedd_des usedd_bid_record" id="bidRecord">
+    <div class="usedd_mod_hd clear">
+        <h3 class="usedd_mod_tit">出价记录</h3>
+    </div>
+    <div class="usedd_mod_bd clear">
+        <div class="auction_blank" id="auctionBlank" style="display: none;">
+            暂无出价记录
+        </div>
+        <div class="auction_record" id="auctionRecord">
+            <div class="auction_record_bd">
+                <div class="auction_record_tit clear">
+                    <span class="col0">领先/出局</span>
+                    <span class="col1">竞拍人</span>
+                    <span class="col2">出价</span>
+                    <span class="col3">时间</span>
+                </div>
+                <div class="auction_record_list_wrap">
+                    <ul class="auction_record_list" id="allBidList">
+                        <volist name="offer_num" id="vo" key="s" empty="还没有人参与出价!">
+                            <li class="auction_record_item auction_record_{:$_SESSION['PAT']['priceId'] == $vo[id] ? 'newest':'out'} clear">
+                              <span class="col0">
+                                  <i class="ico_state"></i>
+                              </span>
+                              <span class="col1">
+                                  {$vo.nickname}
+                              </span>
+                              <span class="col2">
+                                  <span class="mod_price">
+                                      <i>&yen;</i>
+                                      {$vo.price}
+                                  </span>
+                              </span>
+                              <span class="col3">
+                                  {:date('Y-m-d H:i:s',$vo[published])}
+                              </span>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="paging">
+            {$page}
+        </div>
+    </div>
+</div>

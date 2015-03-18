@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<include file="Common:intoHead" />
+<head>
+	<meta charset="UTF-8">
+	<title>批量打印快递单</title>
+	<style>
+		body{
+			overflow: visible;
+		}
+		#box{
+			width: 1000px;
+			height:auto;
+			margin:0 auto;
+			border:1px solid #d1d1d1;
+		}
+		#top{
+			width: 100%;
+			height:100px;
+			border-bottom: 1px solid #d1d1d1;
+		}
+		#info{
+			width: 100%;
+			height:auto;
+		}
+		.order{
+			width:816px;
+			height:525px;
+			margin: 0 auto;
+			border:1px dashed #262628;
+			background: url(__IMG__/111.jpg) no-repeat;
+		}
+		.orderId{
+			position:relative;
+			top:30px;
+			left:180px;
+		}
+		.myAddress{
+			position:relative;
+			top:112px;
+			left:95px;
+		}
+		.inputCss{
+			border:1px solid #hjhjsx;
+			width:200px;
+			height:22px;
+			display:none;
+		}
+		.orderInfo{
+			width:270px;
+			height:30px;
+			display: block;
+			font:14px/20px 'Microsoft YaHei';
+		}
+		.myuser{
+			position:relative;
+			top:115px;
+			left:133px;
+		}
+		.myuseradd{
+			position:relative;
+			top:110px;
+			left:100px;
+		}
+		.myquhao{
+			position:relative;
+			top:135px;
+			left:80px;
+		}
+		.mydianhua{
+			position:relative;
+			top:135px;
+			left:115px;
+		}
+		.uAddress{
+			position:relative;
+			top:145px;
+			left:105px;
+		}
+		.uuser{
+			position:relative;
+			top:145px;
+			left:245px;
+		}
+		.uuseradd{
+			position:relative;
+			top:140px;
+			left:95px;
+		}
+		.uquhao{
+			position:relative;
+			top:195px;
+			left:80px;
+		}
+		.udianhua{
+			position:relative;
+			top:195px;
+			left:130px;
+		}
+		.myname{
+			position:relative;
+			top:100px;
+			left:660px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="top">
+			<button style="width:100px;height:25px;margin:40px 0 0 100px;" onclick="printNow('info')">全部打印</button>
+		</div>
+		
+		<div id="info">
+			<volist name="info" id="vo">
+			<div class="order">
+				<div class="orderInfo">
+					<span class='orderId spanOrderId{$vo.id}' onclick="changmeOrderId('{$vo.id}','OrderId')">{$vo.fee_kid}</span>
+					<input class="orderId inputOrderId{$vo.id} inputCss" onblur="changmeInputId('{$vo.id}','OrderId')" type="text" value="" />
+				</div>
+				<div class="orderInfo">
+					<span class='myAddress spanAddress{$vo.id}' onclick="changmeOrderId('{$vo.id}','Address')">酒富网电子商务有限公司</span>
+					<input class="myAddress inputAddress{$vo.id} inputCss" onblur="changmeInputId('{$vo.id}','Address')" type="text" value="" />
+					<span class='myuser spanUser{$vo.id}' onclick="changmeOrderId('{$vo.id}','User')">酒富网</span>
+					<input class="myuser inputUser{$vo.id} inputCss" onblur="changmeInputId('{$vo.id}','User')" type="text" value="" />
+				</div>
+				<div class="orderInfo">
+					<span class='myuseradd spanUserAddress{$vo.id}' onclick="changmeOrderId('{$vo.id}','UserAddress')">天津市东丽区华明镇津赤路6号</span>
+					<input class="myuseradd inputUserAddress{$vo.id} inputCss" onblur="changmeInputId('{$vo.id}','UserAddress')" type="text" value="" />
+				</div>
+				<div class="orderInfo">
+					<span class='myquhao spanquhao{$vo.id}' onclick="changmeOrderId('{$vo.id}','quhao')">000000</span>
+					<input class="myuseradd inputquhao{$vo.id} inputCss" onblur="changmeInputId('{$vo.id}','quhao')" type="text" value="" />
+					<span class='mydianhua spandianhua{$vo.id}' onclick="changmeOrderId('{$vo.id}','dianhua')">400 069 1573</span>
+					<input class="myuseradd inputdianhua{$vo.id} inputCss" onblur="changmeInputId('{$vo.id}','dianhua')" type="text" value="" />
+				</div>
+				<div class="orderInfo">
+					<span class='uAddress spanuAddress{$vo.id}' onclick="changmeOrderId('{$vo.id}','uAddress')">无公司</span>
+					<input class="uAddress inputuAddress{$vo.id} inputCss" onblur="changmeInputId('{$vo.id}','uAddress')" type="text" value="" />
+					<span class='uuser spanuuser{$vo.id}' onclick="changmeOrderId('{$vo.id}','uuser')">{$vo.username}</span>
+					<input class="uuser inputuuser{$vo.id} inputCss" onblur="changmeInputId('{$vo.id}','uuser')" type="text" value="" />
+				</div>
+				<div class="orderInfo">
+					<span class='uuseradd spanuuseradd{$vo.id}' onclick="changmeOrderId('{$vo.id}','uuseradd')">{$vo.shen_cityname}{$vo.shi_cityname}{$vo.xian_cityname}{$vo.address}</span>
+					<input class="uuseradd inputuuseradd{$vo.id} inputCss" onblur="changmeInputId('{$vo.id}','uuseradd')" type="text" value="" />
+				</div>
+				<div class="orderInfo">
+					<span class='uquhao spanuquhao{$vo.id}' onclick="changmeOrderId('{$vo.id}','uquhao')">{$vo[postcode] == null?'000000':$vo[postcode]}</span>
+					<input class="uquhao inputuquhao{$vo.id} inputCss" onblur="changmeInputId('{$vo.id}','uquhao')" type="text" value="" />
+					<span class='udianhua spanudianhua{$vo.id}' onclick="changmeOrderId('{$vo.id}','udianhua')">{$vo.phone}</span>
+					<input class="udianhua inputudianhua{$vo.id} inputCss" onblur="changmeInputId('{$vo.id}','udianhua')" type="text" value="" />
+				</div>
+				<div class="orderInfo">
+					<span class='myname spanmyname{$vo.id}' onclick="changmeOrderId('{$vo.id}','myname')">酒富网</span>
+					<input class="myname inputmyname{$vo.id} inputCss" onblur="changmeInputId('{$vo.id}','myname')" type="text" value="" />
+				</div>
+			</div>
+			</volist>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+    function printNow(id){
+		var sprnhtml = document.getElementById(id).innerHTML;
+        var selfhtml = window.document.body.innerHTML;
+        window.document.body.innerHTML = sprnhtml;
+        window.print();
+        window.document.body.innerHTML = selfhtml;
+    }
+    function changmeOrderId(obj,type){
+		$('.span'+type+obj).hide();
+		$('.input'+type+obj).val($('.span'+type+obj).html());
+		$('.input'+type+obj).show();
+    }
+    function changmeInputId(obj,type){
+		var orderId = $('.input'+type+obj).val();
+		$('.span'+type+obj).html(orderId);
+		$('.input'+type+obj).hide();
+		$('.span'+type+obj).show();
+    }
+</script>
